@@ -20,11 +20,13 @@
         <ion-label color="primary" stacked>Password</ion-label>
         <ion-input type="password" placeholder="Your password" class="input-underline"></ion-input>
       </ion-item>
-
-      <ion-item *ngIf='authenticationSent'>
+      <p style="text-align: right !important;" *ngIf='authenticationSent'>
+      <ion-item >
         <ion-label color="primary" stacked>OTP</ion-label>
         <ion-input type="tel" maxlength=6 placeholder="Enter 6 digit OTP" class="input-underline"></ion-input>
       </ion-item>
+      <ion-spinner name="dots" style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>
+    </p>
 
     </ion-card-content>   
     <p style="text-align: right !important; margin-right: 20px !important;">
