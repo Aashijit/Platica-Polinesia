@@ -25695,3 +25695,27 @@ ion-navbar.toolbar {
   padding-bottom: 4px;
   min-height: 46px;
 }
+
+.input-underline {
+  border-bottom: 1px #ddd solid !important;
+}
+
+.input-underline:focus-within {
+  border-bottom: 1px #3880ff solid !important;
+}
+
+page-login .card-md {
+  border-radius: 8px !important;
+  padding: 5px !important;
+  opacity: 0.95 !important;
+}
+
+page-login .primary-header {
+  color: #999 !important;
+  font-weight: 900 !important;
+}
+
+page-login .background {
+  background-image: url("../../assets/imgs/background.png");
+  text-align: center !important;
+}

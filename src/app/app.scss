@@ -14,3 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.input-underline{
+    border-bottom: 1px #ddd solid !important;
+}
+
+.input-underline:focus-within{
+    border-bottom: 1px #3880ff solid !important;
+}
+
+
+
+

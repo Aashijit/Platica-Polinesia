@@ -1,0 +1,38 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>Platica Polinesia</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content padding class="background">
+
+  <ion-card>
+    <ion-card-header class="primary-header">Authentication Gate</ion-card-header>
+
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label color="primary" stacked>Phone Number</ion-label>
+        <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label color="primary" stacked>Password</ion-label>
+        <ion-input type="password" placeholder="Your password" class="input-underline"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf='authenticationSent'>
+        <ion-label color="primary" stacked>OTP</ion-label>
+        <ion-input type="tel" maxlength=6 placeholder="Enter 6 digit OTP" class="input-underline"></ion-input>
+      </ion-item>
+
+    </ion-card-content>   
+    <p style="text-align: right !important; margin-right: 20px !important;">
+      <button ion-button clear *ngIf='!authenticationSent' (click)="authenticationSent = !authenticationSent">Login</button>
+      <button ion-button clear *ngIf='authenticationSent'>Verify</button>
+    </p>
+  </ion-card>
+
+
+
+</ion-content>
