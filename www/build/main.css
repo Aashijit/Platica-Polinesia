@@ -25704,6 +25704,26 @@ ion-navbar.toolbar {
   border-bottom: 1px #3880ff solid !important;
 }
 
+.nopadding {
+  padding: 0px !important;
+}
+
+.nomargin {
+  margin: 0px !important;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.w-50 {
+  width: 50px !important;
+}
+
+.h-50 {
+  height: 50px !important;
+}
+
 page-login .card-md {
   border-radius: 8px !important;
   padding: 5px !important;
@@ -25716,6 +25736,52 @@ page-login .primary-header {
 }
 
 page-login .background {
-  background-image: url("../../assets/imgs/background.png");
+  background-image: radial-gradient(#fff, #ccc);
   text-align: center !important;
+}
+
+page-login .image-middle-card {
+  text-align: center !important;
+  z-index: 10 !important;
+}
+
+page-login .image-top-card {
+  margin-top: 10px !important;
+}
+
+page-login .backelement {
+  z-index: -1 !important;
+}
+
+page-login .button-inner {
+  text-transform: capitalize !important;
+}
+
+page-login #content {
+  margin-top: 25% !important;
+}
+
+page-login #user-info {
+  position: absolute;
+  top: -95px;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  margin-left: 32% !important;
+}
+
+page-login #user-image {
+  display: block;
+  border-radius: 120px;
+  border: 1px solid #fff;
+  width: 70px;
+  height: 70px;
+  margin-top: 40% !important;
+  -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+}
+
+page-login .small-text {
+  font-weight: 800 !important;
+  color: #919191;
 }

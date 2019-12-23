@@ -1,5 +1,7 @@
 {
   "name": "platica-polinesia",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
