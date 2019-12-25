@@ -25708,12 +25708,44 @@ ion-navbar.toolbar {
   padding: 0px !important;
 }
 
+.p-10 {
+  padding: 10px !important;
+}
+
 .nomargin {
   margin: 0px !important;
 }
 
 .mt-10 {
   margin-top: 10px !important;
+}
+
+.mt-16 {
+  margin-top: 16px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.mt-30 {
+  margin-top: 30px !important;
+}
+
+.mt-66 {
+  margin-top: 66px !important;
+}
+
+.mb-66 {
+  margin-bottom: 66px !important;
+}
+
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
 }
 
 .w-50 {
@@ -25724,14 +25756,88 @@ ion-navbar.toolbar {
   height: 50px !important;
 }
 
+star-provider .background {
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+  padding: 5px !important;
+  background: white !important;
+}
+
 user-info .user-image-size {
-  width: 45px !important;
-  height: 45px !important;
+  width: 35px !important;
+  height: 35px !important;
 }
 
 user-info .noti-image-size {
-  width: 25px !important;
-  height: 25px !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+
+page-home .background-content {
+  background-color: #fff;
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+}
+
+page-home ion-app, page-home ion-nav, page-home ion-tab, page-home ion-tabs, page-home .app-root, page-home .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-home .header-md::after {
+  background-image: none !important;
+}
+
+page-home .button-md {
+  padding: 11px !important;
+}
+
+page-home .scroll-content {
+  margin: 0px !important;
+}
+
+page-home .card-content-md {
+  padding: 0px !important;
+}
+
+page-home .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-home .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-home .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-home .badge-md {
+  background-color: #448e00 !important;
+}
+
+page-home ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-home .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
 }
 
 page-login .card-md {
