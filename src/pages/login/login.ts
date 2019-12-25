@@ -17,4 +17,8 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  verify(){
+    this.navCtrl.setRoot('HomePage');
+  }
 }

@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
 @NgModule({
   declarations: [
     MyApp,
@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    RoundProgressModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -38,7 +38,7 @@
     <p style="text-align: right !important; margin-right: 20px !important;">
       <button ion-button clear *ngIf='!authenticationSent'
         (click)="authenticationSent = !authenticationSent">Login</button>
-      <button ion-button clear *ngIf='authenticationSent'>Verify</button>
+      <button ion-button clear *ngIf='authenticationSent' (click)="verify()">Verify</button>
     </p>
   </ion-card>
 

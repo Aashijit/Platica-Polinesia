@@ -25724,6 +25724,16 @@ ion-navbar.toolbar {
   height: 50px !important;
 }
 
+user-info .user-image-size {
+  width: 45px !important;
+  height: 45px !important;
+}
+
+user-info .noti-image-size {
+  width: 25px !important;
+  height: 25px !important;
+}
+
 page-login .card-md {
   border-radius: 8px !important;
   padding: 5px !important;
