@@ -25756,6 +25756,20 @@ ion-navbar.toolbar {
   height: 50px !important;
 }
 
+.badge-progress {
+  background-color: #fab801 !important;
+  color: white !important;
+}
+
+.badge-complete {
+  background-color: #20b602 !important;
+  color: white !important;
+}
+
+ion-app.md {
+  background-color: #744f4f !important;
+}
+
 star-provider .background {
   border-radius: 10px !important;
   border: 1px solid #ddd;
@@ -25822,10 +25836,6 @@ page-home .phase-title {
   text-align: center !important;
 }
 
-page-home .badge-md {
-  background-color: #448e00 !important;
-}
-
 page-home ion-badge {
   padding: 3px !important;
   font-size: 9px !important;
@@ -25837,6 +25847,24 @@ page-home .circle-image {
   border: 1px solid #000;
   border-radius: 50px !important;
   padding: 10px !important;
+  background: #fff;
+}
+
+page-home .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-home .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
   background: #fff;
 }
 
@@ -25900,4 +25928,31 @@ page-login #user-image {
 page-login .small-text {
   font-weight: 800 !important;
   color: #919191;
+}
+
+page-project-information .custom-popup {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+page-project-information .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-project-information .list-md .item-block .item-inner {
+  border: none !important;
+}
+
+page-user-message-notification-list .custom-popup {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+page-user-message-notification-list .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-user-message-notification-list .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
 }

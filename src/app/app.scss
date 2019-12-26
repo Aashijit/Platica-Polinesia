@@ -78,3 +78,19 @@
 .h-50{
     height: 50px !important;
 }
+
+
+.badge-progress{
+    background-color: #fab801 !important;
+    color: white !important;
+}
+.badge-complete{
+    background-color: #20b602 !important;
+    color: white !important;
+}
+
+
+//Change the background colour
+ion-app.md{
+    background-color: #744f4f !important;
+}

@@ -1,14 +1,16 @@
 webpackJsonp([1],{
 
-/***/ 273:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(278);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserMessageNotificationListPageModule", function() { return UserMessageNotificationListPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__ = __webpack_require__(282);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +20,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var LoginPageModule = /** @class */ (function () {
-    function LoginPageModule() {
+
+var UserMessageNotificationListPageModule = /** @class */ (function () {
+    function UserMessageNotificationListPageModule() {
     }
-    LoginPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+    UserMessageNotificationListPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__["a" /* UserMessageNotificationListPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__["a" /* UserMessageNotificationListPage */]),
+                __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__["RoundProgressModule"]
             ],
         })
-    ], LoginPageModule);
-    return LoginPageModule;
+    ], UserMessageNotificationListPageModule);
+    return UserMessageNotificationListPageModule;
 }());
 
-//# sourceMappingURL=login.module.js.map
+//# sourceMappingURL=user-message-notification-list.module.js.map
 
 /***/ }),
 
-/***/ 278:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserMessageNotificationListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(101);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -56,28 +60,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams) {
+/**
+ * Generated class for the UserMessageNotificationListPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var UserMessageNotificationListPage = /** @class */ (function () {
+    function UserMessageNotificationListPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.authenticationSent = false;
     }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LoginPage');
+    UserMessageNotificationListPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UserMessageNotificationListPage');
     };
-    LoginPage.prototype.verify = function () {
-        this.navCtrl.setRoot('HomePage');
+    UserMessageNotificationListPage.prototype.closeModal = function () {
+        this.navCtrl.pop();
     };
-    LoginPage = __decorate([
+    UserMessageNotificationListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/'<ion-content padding class="background">\n\n  <p class="image-middle-card nomargin">\n    \n  </p>\n  <ion-card id="content">\n    <ion-avatar id="user-info">\n      <img id="user-image" src="../../assets/imgs/user.png" />\n    </ion-avatar>\n    <!-- <ion-card-header class="primary-header">Authentication Gate</ion-card-header> -->\n    <ion-card-content>\n          <ion-item class="mt-10">\n            <ion-label color="primary" stacked>Phone Number</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Email Id</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered email id" class="input-underline">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Password</ion-label>\n            <ion-input type="password" placeholder="Your password" class="input-underline"></ion-input>\n          </ion-item>\n          <p style="text-align: right !important;" *ngIf=\'authenticationSent\'>\n            <ion-item>\n              <ion-label color="primary" stacked>Verification Code</ion-label>\n              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline"></ion-input>\n            </ion-item>\n            <ion-spinner name="dots"\n              style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>\n          </p>\n        \n    </ion-card-content>\n    <p style="text-align: right !important; margin-right: 20px !important;">\n      <button ion-button clear *ngIf=\'!authenticationSent\'\n        (click)="authenticationSent = !authenticationSent">Login</button>\n      <button ion-button clear *ngIf=\'authenticationSent\' (click)="verify()">Verify</button>\n    </p>\n  </ion-card>\n\n\n  <p class="small-text mt-10">\n    Platica Polinesia\n  </p>\n</ion-content>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/,
+            selector: 'page-user-message-notification-list',template:/*ion-inline-start:"C:\Platica-Polinesia\src\pages\user-message-notification-list\user-message-notification-list.html"*/'<ion-header style="padding-top: 10px !important;">\n\n  <!--Header-->\n\n  <ion-row>\n\n    <ion-col col-10 style="text-align: right !important;">\n\n      <p style="color: white;" class="nomargin">\n\n        Welcome <strong>Stella</strong>\n\n      </p>\n\n      <p style="color: white;" class="nomargin">\n\n        Log Out <ion-icon name="log-out"></ion-icon>\n\n      </p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <img src="../../assets/imgs/user.png" style="width: 35px !important; height: 35px !important;" />\n\n    </ion-col>\n\n  </ion-row>\n\n  <!--Header-->\n\n\n\n  \n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="custom-popup">\n\n\n\n  \n\n<!--Message, Notification number-->\n\n<ion-row class="list-underline">\n\n  <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;\n\n    position: absolute;\n\n    font-size: 11px !important;\n\n    top: 7px !important;\n\n    left: 27px !important;">15</span></ion-col>\n\n  <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;\n\n    position: absolute;\n\n    font-size: 11px !important;\n\n    top: 9px !important;\n\n    left: 10px !important;">20</span></ion-col>\n\n</ion-row>\n\n<!--Message, Notification number-->\n\n\n\n <ion-list>\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando wanted something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="45" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando updated something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="50" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando brought something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Brought item name</p>\n\n    <p style="color: #fff;font-size: 11px !important;">from rewardsl</p>\n\n    </ion-col>\n\n    <!-- <ion-col col-2>\n\n      <round-progress [current]="30" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 30px !important;\n\n      position: absolute;\n\n      top: 10px !important;\n\n      left: 10px !important;" />\n\n    </ion-col> -->\n\n    </ion-row>\n\n  </ion-item>\n\n\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando uploaded something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="80" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando wanted something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="10" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando wanted something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="90" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n  \n\n\n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando wanted something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="20" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n  \n\n\n\n\n\n  <ion-item >\n\n    <ion-row>\n\n      <ion-col col-10>\n\n    <b style="font-size: 14px !important;">Allejando wanted something</b>\n\n    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>\n\n    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>\n\n    </ion-col>\n\n    <ion-col col-2>\n\n      <round-progress [current]="30" [max]="100" [radius]="20" [stroke]="4" [color]="\'#00ff00\'" [background]="\'#eaeaea\'"  [animation]="\'easeInOutQuart\'"\n\n      [animationDelay]="500" ></round-progress>\n\n      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;\n\n      position: absolute;\n\n      top: 9px !important;\n\n      left: 9px !important;" />\n\n    </ion-col>\n\n    </ion-row>\n\n  </ion-item>\n\n  \n\n\n\n\n\n </ion-list>\n\n\n\n\n\n</ion-content>\n\n\n\n\n\n<ion-footer>\n\n  <button ion-button clear full (click)="closeModal();" color="light">\n\n    <ion-icon name="close-circle" color="white"></ion-icon>\n\n  </button>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Platica-Polinesia\src\pages\user-message-notification-list\user-message-notification-list.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], LoginPage);
-    return LoginPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+    ], UserMessageNotificationListPage);
+    return UserMessageNotificationListPage;
 }());
 
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=user-message-notification-list.js.map
 
 /***/ })
 
