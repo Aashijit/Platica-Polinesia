@@ -1,3 +1,7 @@
+import { HttpProvider } from './../providers/data/data';
+import { Codes } from './../Utils/Codes';
+import { MessageHelper } from './../providers/message-helper';
+import { DataValidation } from './../Utils/DataValidation';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -8,15 +12,16 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
+import { Http, ConnectionBackend, HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
-    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    RoundProgressModule
+    RoundProgressModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,6 +31,10 @@ import {RoundProgressModule} from 'angular-svg-round-progressbar';
   providers: [
     StatusBar,
     SplashScreen,
+    DataValidation,
+    MessageHelper, 
+    Codes,
+    HttpProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

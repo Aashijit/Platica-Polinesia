@@ -11,33 +11,32 @@
     <ion-card-content>
           <ion-item class="mt-10">
             <ion-label color="primary" stacked>Phone Number</ion-label>
-            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline">
+            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline" [(ngModel)]="mobileNumber">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label color="primary" stacked>Email Id</ion-label>
-            <ion-input type="tel" maxlength=10 placeholder="Your registered email id" class="input-underline">
+            <ion-input type="email" placeholder="Your registered email id" class="input-underline" [(ngModel)]="emailId">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label color="primary" stacked>Password</ion-label>
-            <ion-input type="password" placeholder="Your password" class="input-underline"></ion-input>
+            <ion-input type="password" placeholder="Your password" class="input-underline" [(ngModel)]="password"></ion-input>
           </ion-item>
           <p style="text-align: right !important;" *ngIf='authenticationSent'>
             <ion-item>
               <ion-label color="primary" stacked>Verification Code</ion-label>
-              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline"></ion-input>
-            </ion-item>
+              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline" [(ngModel)]="verificationCode"></ion-input>
+            </ion-item>            
             <ion-spinner name="dots"
               style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>
           </p>
         
     </ion-card-content>
     <p style="text-align: right !important; margin-right: 20px !important;">
-      <button ion-button clear *ngIf='!authenticationSent'
-        (click)="authenticationSent = !authenticationSent">Login</button>
+      <button ion-button clear *ngIf='!authenticationSent' (click)="login()">Login</button>
       <button ion-button clear *ngIf='authenticationSent' (click)="verify()">Verify</button>
     </p>
   </ion-card>

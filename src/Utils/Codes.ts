@@ -1,0 +1,31 @@
+
+export class Codes{
+
+    public  EM_INVALID_MOBILE_NUMBER="Invalid mobile number";
+    public  EM_INVALID_EMAILID="Invalid email id";
+    public  EM_INVALID_PASSWORD="Invalid password";
+    public  EM_INVALID_VERIFICATION_ID="Invalid verification id";
+
+
+
+
+    public API_ERROR="500";
+
+
+    
+    
+    public  API_GET_TOKEN="Login/GetToken";
+    public  API_GET_LOGIN_DETAILS="Login/GetLoginDetails";
+    public  API_INSERT_USER="User/InsertUser";
+    public  API_UPDATE_USER="User/UpdateUser";
+    public  API_DELETE_USER="User/DeleteUser";
+    public  API_GET_PARTICULAR_USER_INFORMATION="User/GetUserInformation";
+    public  API_CHANGE_USER_PASSWORD="User/ChangeUserPassword";
+    public  API_FORGOT_PASSWORD="Login/ForgotPassword";
+    public  API_GET_USER_GROUP="UserGroup/GetUserGroup";
+    
+    
+    public  API_ENDPOINT="http://101.53.145.231:8053/";
+
+
+}
