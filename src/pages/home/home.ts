@@ -110,6 +110,11 @@ export class HomePage {
     projectSelectionModal.present();
   }
 
+  editUser(user){
+    let userModal = this.modalCtrl.create('UpdateUserPage',{'userinfo' : user});
+    userModal.present();
+  }
+
 
   deleteUser(user){
     const alert = this.alertController.create({
@@ -119,7 +124,6 @@ export class HomePage {
         {
           text: 'No',
           role: 'no',
-          cssClass: 'secondary',
           handler: () => {
             
           }
@@ -138,7 +142,7 @@ export class HomePage {
             this.httpCall.callApi(requestJson,this.codes.API_DELETE_USER).then(responseJson=>{
 
               loading.dismiss();
-              
+
               if(this.dataValidation.isEmptyJson(responseJson))
               {
                 this.msgHelper.showErrorDialog('Error !!','Empty response received from server  !!!');
@@ -161,4 +165,9 @@ export class HomePage {
 
   }
 
+
+  addUser(){
+    let userModal = this.modalCtrl.create('AddUserPage');
+    userModal.present();
+  }
 }

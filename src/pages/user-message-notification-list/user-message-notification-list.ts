@@ -1,3 +1,4 @@
+import { AlertController } from 'ionic-angular';
 import { DataValidation } from './../../Utils/DataValidation';
 import { MessageHelper } from './../../providers/message-helper';
 import { Codes } from './../../Utils/Codes';
@@ -16,10 +17,11 @@ export class UserMessageNotificationListPage {
   userName : any= 'User';
   userInformation : any = null;
   showUserInformation : boolean = false;
+  newPassword : string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public codes : Codes,
     public msgHelper : MessageHelper,public httpCall : HttpProvider,public dataValidation : DataValidation,
-    public actionSheet : ActionSheetController) {
+    public actionSheet : ActionSheetController,public alertController : AlertController) {
 
      //Get the  parameter from the local storage
     
@@ -125,5 +127,68 @@ export class UserMessageNotificationListPage {
     });
  
     actionSheet.present();
+  }
+
+  changePassword(){
+    const alert = this.alertController.create({
+      title: 'Password to be changed',
+      message: 'Please note down the password.',
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            //Validation
+            if(this.dataValidation.isEmptyJson(this.newPassword)){
+              this.msgHelper.showToast('Please enter a new password !!!');
+              return;
+            }
+
+
+            if(String(this.newPassword).length >= 50){
+              this.msgHelper.showToast('Password cannot be more than 50 characters !!!');
+              return;
+            }
+
+
+            //Call the delete user API
+            var requestJson={
+              "UserId": this.userInformation[0]['UserId'],
+              "OldPassword": localStorage.getItem(this.codes.LSK_USER_PASSWORD),
+              "NewPassword": this.newPassword,
+              "ModifiedById": this.userInformation[0]['UserId'],
+              "AppType": "W"
+            }
+            var loading = this.msgHelper.showWorkingDialog('Changing the password ...');
+
+            this.httpCall.callApi(requestJson,this.codes.API_CHANGE_USER_PASSWORD).then(responseJson=>{
+
+              loading.dismiss();
+
+              if(this.dataValidation.isEmptyJson(responseJson))
+              {
+                this.msgHelper.showErrorDialog('Error !!','Empty response received from server  !!!');
+                return;
+              } 
+              if(responseJson['status']==1){
+                this.msgHelper.showToast('Password changed successfully !!!');
+              }
+
+            });
+
+          }
+        }
+      ]
+    });
+
+     alert.present();
+
+
   }
 }

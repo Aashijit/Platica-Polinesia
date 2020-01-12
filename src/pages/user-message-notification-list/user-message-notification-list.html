@@ -84,6 +84,19 @@
 </ion-list> 
 
 
+<!--Change Password-->
+<p *ngIf='showUserInformation' style="text-align: center;">
+<ion-title color="light">Change Password</ion-title>
+
+
+<ion-item class="no-underline">
+  <ion-label color="primary" floating>New Password</ion-label>
+  <ion-input [(ngModel)]="newPassword">
+  </ion-input>
+</ion-item>
+
+<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+</p>
   <!--User information to be present here-->
 
   

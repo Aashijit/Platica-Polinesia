@@ -25896,6 +25896,10 @@ page-home .grid {
   padding: 0px !important;
 }
 
+page-home .alert-md .alert-message, page-home .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
 page-login .card-md {
   border-radius: 8px !important;
   padding: 5px !important;
@@ -25969,6 +25973,20 @@ page-project-information .item-md {
 
 page-project-information .list-md .item-block .item-inner {
   border: none !important;
+}
+
+page-update-user .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-update-user .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-update-user .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
 }
 
 page-user-message-notification-list .custom-popup {
