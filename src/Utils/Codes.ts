@@ -12,10 +12,13 @@ export class Codes{
     public API_ERROR="500";
 
 
+    public LSK_USER_PASSWORD="userpassword";
+    public LSK_USER_INFORMATION_JSON="userinfo";
     
     
     public  API_GET_TOKEN="Login/GetToken";
     public  API_GET_LOGIN_DETAILS="Login/GetLoginDetails";
+    public  API_GET_USER_DETAILS="User/GetUserList";
     public  API_INSERT_USER="User/InsertUser";
     public  API_UPDATE_USER="User/UpdateUser";
     public  API_DELETE_USER="User/DeleteUser";
@@ -23,6 +26,7 @@ export class Codes{
     public  API_CHANGE_USER_PASSWORD="User/ChangeUserPassword";
     public  API_FORGOT_PASSWORD="Login/ForgotPassword";
     public  API_GET_USER_GROUP="UserGroup/GetUserGroup";
+    public  API_GET_USER_MAP_LIST="UserMap/GetUserMapList";
     
     
     public  API_ENDPOINT="http://101.53.145.231:8053/";

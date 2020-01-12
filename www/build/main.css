@@ -25770,6 +25770,10 @@ ion-app.md {
   background-color: #744f4f !important;
 }
 
+.no-underline {
+  border-bottom: 0px !important;
+}
+
 star-provider .background {
   border-radius: 10px !important;
   border: 1px solid #ddd;
@@ -25868,6 +25872,30 @@ page-home .circle-image-buttom-incomplete {
   background: #fff;
 }
 
+page-home .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-home .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-home .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-home .label-md {
+  margin: 0px !important;
+}
+
+page-home .grid {
+  padding: 0px !important;
+}
+
 page-login .card-md {
   border-radius: 8px !important;
   padding: 5px !important;
@@ -25944,7 +25972,7 @@ page-project-information .list-md .item-block .item-inner {
 }
 
 page-user-message-notification-list .custom-popup {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 page-user-message-notification-list .item-md {

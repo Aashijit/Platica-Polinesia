@@ -1,4 +1,4 @@
-<div class="background">
+<div class="background" *ngIf="coins != '0' && stars != '0' && videos != '0'">
     <span>
       <img src="../../assets/imgs/coin.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{coins}}</sup>
       <img src="../../assets/imgs/star.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important; ">{{stars}}</sup>

@@ -3,13 +3,13 @@
   <ion-row>
     <ion-col col-10 style="text-align: right !important;">
       <p style="color: white;" class="nomargin">
-        Welcome <strong>Stella</strong>
+        Welcome <strong (click)="showUserEditInformation()">{{userName}}</strong>
       </p>
-      <p style="color: white;" class="nomargin">
+      <p style="color: white;" class="nomargin" (click)="logOut()">
         Log Out <ion-icon name="log-out"></ion-icon>
       </p>
     </ion-col>
-    <ion-col col-2>
+    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
       <img src="../../assets/imgs/user.png" style="width: 35px !important; height: 35px !important;" />
     </ion-col>
   </ion-row>
@@ -21,182 +21,90 @@
 
 <ion-content padding class="custom-popup">
 
+  <!--User information to be present here-->
+  <ion-list *ngIf='showUserInformation'>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">First Name</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['FirstName']">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Middle Name</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['MiddleName']">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Last Name</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['LastName']">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Address Line 1</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['Address1']">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Address Line 2</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['Address2']">
+    </ion-input>
+  </ion-item>
+
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">City</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['City']">
+    </ion-input>
+  </ion-item>
+
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">State</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['State']">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Zipcode</ion-label>
+    <ion-input [(ngModel)]="userInformation[0]['Pincode']">
+    </ion-input>
+  </ion-item>
+
+
+  <p style="text-align: center;">
+  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+  </p>  
+
+
+
+</ion-list> 
+
+
+  <!--User information to be present here-->
+
   
 <!--Message, Notification number-->
-<ion-row class="list-underline">
+<ion-row class="list-underline" *ngIf='!showUserInformation'>
   <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;
     position: absolute;
     font-size: 11px !important;
     top: 7px !important;
-    left: 27px !important;">15</span></ion-col>
+    left: 27px !important;"></span></ion-col>
   <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;
     position: absolute;
     font-size: 11px !important;
     top: 9px !important;
-    left: 10px !important;">20</span></ion-col>
+    left: 10px !important;"></span></ion-col>
 </ion-row>
 <!--Message, Notification number-->
 
- <ion-list>
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando wanted something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="45" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando updated something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="50" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando brought something</b>
-    <p style="color: #fff;font-size: 11px !important;">Brought item name</p>
-    <p style="color: #fff;font-size: 11px !important;">from rewardsl</p>
-    </ion-col>
-    <!-- <ion-col col-2>
-      <round-progress [current]="30" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 30px !important;
-      position: absolute;
-      top: 10px !important;
-      left: 10px !important;" />
-    </ion-col> -->
-    </ion-row>
-  </ion-item>
-
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando uploaded something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="80" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando wanted something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="10" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando wanted something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="90" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-  
-
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando wanted something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="20" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-  
-
-
-  <ion-item >
-    <ion-row>
-      <ion-col col-10>
-    <b style="font-size: 14px !important;">Allejando wanted something</b>
-    <p style="color: #fff;font-size: 11px !important;">Project Photography Sample</p>
-    <p style="color: #fff;font-size: 11px !important;">Activity : Upload Thumbnail</p>
-    </ion-col>
-    <ion-col col-2>
-      <round-progress [current]="30" [max]="100" [radius]="20" [stroke]="4" [color]="'#00ff00'" [background]="'#eaeaea'"  [animation]="'easeInOutQuart'"
-      [animationDelay]="500" ></round-progress>
-      <img src="../../assets/imgs/icon_video.png" style="    width: 32px !important;
-      position: absolute;
-      top: 9px !important;
-      left: 9px !important;" />
-    </ion-col>
-    </ion-row>
-  </ion-item>
-  
-
-
+ <ion-list style=" text-align: center !important;" *ngIf='!showUserInformation'>
+  <img src='../../assets/imgs/no_message.svg' style="width: 30% !important;margin-top: 40% !important;" />
+  <ion-label style="color: darksalmon !important;">No message/notifications</ion-label>
  </ion-list>
 
 

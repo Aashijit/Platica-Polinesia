@@ -2,7 +2,7 @@
    <!--header starts here-->
    <ion-row>
     <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">
-      <round-progress [current]="70" [max]="100" [radius]="20" [stroke]="7" [color]="'#00ff00'"></round-progress>
+      <round-progress [current]="0" [max]="100" [radius]="20" [stroke]="7" [color]="'#00ff00'"></round-progress>
       <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;
       position: absolute;
       top: 7px !important;
@@ -10,298 +10,61 @@
     </ion-col>
 
     <ion-col class="nopadding mt-20">
-      <star-provider [coins]="10" [stars]="15" [videos]="20"></star-provider>
+      <star-provider [coins]="0" [stars]="0" [videos]="0"></star-provider>
     </ion-col>
 
     <ion-col class="nopadding">
-      
-     <user-info [messageNumber]="15" [notificationNumber]="20" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      
+     <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      
     </ion-col>
+
   </ion-row>
 <!--header ends here-->
 </ion-header>
 
 <!--Body starts here-->
-<ion-content class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2% !important;">
+<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
 
-<ion-row style="position: absolute; right: 0px ; padding:3px !important">
-  <img src="../../assets/imgs/globe.png" style="width: 12px !important; margin-left:2px !important" /><span style="font-size:10px !important;  margin-left:2px !important"> 99.99%</span>
-  <img src="../../assets/imgs/calendar.png" style="width: 12px !important;  margin-left:4px !important" /><span style="font-size:10px !important;  margin-left:2px !important"> 99.99%</span>
-</ion-row>
-
-  
-  <button ion-button clear style="text-transform: capitalize;" ><ion-title>Phase 1</ion-title>
-  </button>
-  <p style=" border-bottom: 1px solid #ddd; padding:0px !important; margin:0px !important; margin-left:4px !important; margin-right:4px !important"></p>
-
- <ion-row>
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
+  <p *ngIf='userList == null'>
+  <ion-spinner name='ios' style="margin-top: 40% !important;"></ion-spinner>
+  <ion-label style="color: #999 !important;" >{{loadingStatus}}</ion-label>
+  </p>  
+  <!--Break Gap-->
+  <p class="mt-10"></p>
+  <!--Break Gap-->
+  <ion-list *ngFor='let user of userList' class="nomargin nopadding"> 
+    <ion-item class="nopadding"> 
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2 style="margin-top: 6% !important;"> 
+            <img src="../../assets/imgs/user.png" style="width: 40px !important; height: 40px !important;" /> 
+          </ion-col>
+          <ion-col col-10 class="underline">
+          <p><strong style="color: dodgerblue !important;">{{user['FirstName'] + ' '+user['LastName']}}</strong> <span style="font-size: 12px !important;"><ion-icon name="create"></ion-icon></span>
+              <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode='ios'></ion-icon></span>
+              </p>
+            <p class="subtitle-1"><ion-icon name="pin"></ion-icon> {{user['Address1'] +' '+user['Address2']}}</p>
+            <p class="subtitle-2"><ion-icon name="phone-portrait"></ion-icon>  <a href="tel:{{user['Mobile']}}" style="text-decoration: none !important;">{{user['Mobile']}}</a>
+              <span> &nbsp;&nbsp;
+                <ion-icon name="mail"></ion-icon> <a href="mailto:{{user['Email']}}" style="text-decoration: none !important;">{{user['Email']}}</a></span>
+              
+              </p>
+            <p>
+              <ion-badge color="dark" >{{user['GroupName']}}</ion-badge>
+              <ion-badge color="success" >{{user['UserTypeName']}}</ion-badge>
+            </p>
+          </ion-col>
         </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-
-
- 
- </ion-row>
-
-
-
-
-
-
-
-
-
- <button ion-button clear style="text-transform: capitalize;"><ion-title>Phase 2</ion-title>
- </button>
- <p style=" border-bottom: 1px solid #ddd; padding:0px !important; margin:0px !important; margin-left:4px !important; margin-right:4px !important"></p>
-
-
-<ion-row>
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge class="badge-progress">In Progress</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom-incomplete"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom-incomplete"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-
-  <ion-col>
-    <ion-card>
-      <ion-card-content>
-        <ion-row class="nopadding">
-          <ion-col col-2>
-          <p class="circle-image"><img src="../../assets/imgs/video-camera.png" style="width: 30px !important;"/></p>
-        </ion-col>
-        <ion-col col-10 class="nopadding">
-          <p style="text-align: center;"><ion-badge color="badge-complete">Complete</ion-badge></p>
-          <p class="phase-title"><b>Activity Name</b></p>
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col class="nopadding">
-          <button ion-button round color="light" color="light" class="button-info">Details</button>
-        </ion-col>
-        <ion-col class="nopadding">
-          <img src="../../assets/imgs/profile_ballon1.png" style="width: 15px !important; margin-top: 8px;" />
-        </ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/file.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/folder.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/check-mark.svg" style="height:20px;"/></button></ion-col>
-          <ion-col col-3 class="nopadding" ><button ion-button clear style="padding:0px !important;" class="circle-image-buttom"><img src="../../assets/imgs/download.svg" style="height:20px;"/></button></ion-col>
-        </ion-row>
-        <ion-row class="nopadding">
-          <button ion-button full round color="light" class="button-info ml-20 mr-20">+ Ask for material</button>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
-
-
-
-
-</ion-row>
-
-
-
-
-
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-fab bottom right>
+  <button ion-fab><ion-icon name="person-add"></ion-icon></button>
+</ion-fab>
 </ion-content>
 <!--Body ends here-->
 
 <!--Footer starts here-->
-<ion-footer style="background-color: #919191;">
+<ion-footer style="background-color: #efefef; text-align: center;">
   <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>

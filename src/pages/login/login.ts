@@ -96,6 +96,10 @@ export class LoginPage {
         }
 
         this.userInformation = getLoginDetailsApiResponseJson['resultData'];
+        //Keep the user password 
+        localStorage.setItem(this.codes.LSK_USER_PASSWORD,this.password);
+        //Keep the user info in the user info key
+        localStorage.setItem(this.codes.LSK_USER_INFORMATION_JSON,JSON.stringify(this.userInformation));
       }
       else{
         this.msgHelper.showErrorDialog('Error !!!',getLoginDetailsApiResponseJson['resMessage']);
