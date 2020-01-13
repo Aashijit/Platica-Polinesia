@@ -1,3 +1,4 @@
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HttpProvider } from './../providers/data/data';
 import { Codes } from './../Utils/Codes';
 import { MessageHelper } from './../providers/message-helper';
@@ -35,6 +36,7 @@ import { Http, ConnectionBackend, HttpModule } from '@angular/http';
     MessageHelper, 
     Codes,
     HttpProvider,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -39,8 +39,11 @@
       <button ion-button clear *ngIf='!authenticationSent' (click)="login()">Login</button>
       <button ion-button clear *ngIf='authenticationSent' (click)="verify()">Verify</button>
     </p>
+    <p style="font-size:10px !important">
+      <button ion-button clear (click)="forgotPassword()">Forgot Password?</button>
+    </p>
   </ion-card>
-
+ 
 
   <p class="small-text mt-10">
     Platica Polinesia

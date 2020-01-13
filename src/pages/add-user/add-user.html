@@ -5,62 +5,62 @@
   <ion-list style="text-align: center !important;">
 
     <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
-      <img src="../../assets/imgs/user.png" style="width: 55px !important; height: 55px !important;" />
+      <img [src]="profileImage" class="camera-img-wrapper" />
     </ion-col>
     
   <ion-item class="no-underline">
     <ion-label color="primary">First Name</ion-label>
-    <ion-input [(ngModel)]="userInformation['FirstName']">
+    <ion-input [(ngModel)]="firstName">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
     <ion-label color="primary">Middle Name</ion-label>
-    <ion-input [(ngModel)]="userInformation['MiddleName']">
+    <ion-input [(ngModel)]="middleName">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
     <ion-label color="primary">Last Name</ion-label>
-    <ion-input [(ngModel)]="userInformation['LastName']">
+    <ion-input [(ngModel)]="lastName">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
     <ion-label color="primary">Address Line 1</ion-label>
-    <ion-input [(ngModel)]="userInformation['Address1']">
+    <ion-input [(ngModel)]="address1">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
     <ion-label color="primary">Address Line 2</ion-label>
-    <ion-input [(ngModel)]="userInformation['Address2']">
+    <ion-input [(ngModel)]="address2">
     </ion-input>
   </ion-item>
 
 
   <ion-item class="no-underline">
     <ion-label color="primary">City</ion-label>
-    <ion-input [(ngModel)]="userInformation['City']">
+    <ion-input [(ngModel)]="city">
     </ion-input>
   </ion-item>
 
 
   <ion-item class="no-underline">
     <ion-label color="primary">State</ion-label>
-    <ion-input [(ngModel)]="userInformation['State']">
+    <ion-input [(ngModel)]="state">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
     <ion-label color="primary">Zipcode</ion-label>
-    <ion-input [(ngModel)]="userInformation['Pincode']">
+    <ion-input [(ngModel)]="pincode">
     </ion-input>
   </ion-item>
 
 
   <p style="text-align: center;">
-    <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+    <button ion-button clear class="capitalize" (click)="createUserInformation()">Create User &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
   </p>  
 
 </ion-list> 

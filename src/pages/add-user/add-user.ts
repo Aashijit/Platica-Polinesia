@@ -4,6 +4,7 @@ import { Codes } from './../../Utils/Codes';
 import { HttpProvider } from './../../providers/data/data';
 import { MessageHelper } from './../../providers/message-helper';
 import { Component } from '@angular/core';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 
 @IonicPage()
@@ -14,16 +15,31 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 export class AddUserPage {
 
   userInformation : any;
+  firstName : any;
+  middleName : any;
+  lastName : any;
+  address1 : any;
+  address2 : any;
+  city : any;
+  state : any;
+  pincode : any;
+  profileImage : any = '../../assets/imgs/user.png';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
-    public actionSheet : ActionSheetController,public alertController : AlertController) {
+    public actionSheet : ActionSheetController,public alertController : AlertController,
+    private camera : Camera ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddUserPage');
   }
 
+  createUserInformation(){
+    this.msgHelper.showToast('Creating your user ...');
+
+    this.navCtrl.pop();
+  }
   updateUserInformation(){
     //Call the change password API
     var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
@@ -86,7 +102,23 @@ export class AddUserPage {
           role: 'camera',
           icon: 'camera',
           handler: () => {
-            //TODO
+
+            const options: CameraOptions = {
+              quality: 100,
+              sourceType : this.camera.PictureSourceType.CAMERA,
+              destinationType: this.camera.DestinationType.FILE_URI,
+              encodingType: this.camera.EncodingType.JPEG,
+              mediaType: this.camera.MediaType.PICTURE
+            }
+            
+            this.camera.getPicture(options).then((imageData) => {
+             // imageData is either a base64 encoded string or a file URI
+             // If it's base64 (DATA_URL):
+             let base64Image = 'data:image/jpeg;base64,' + imageData;
+             this.profileImage  = base64Image;
+            }, (err) => {
+             // Handle error
+            });
           }
         },
         {
@@ -94,7 +126,26 @@ export class AddUserPage {
           role: 'gallery',
           icon: 'image',
           handler: () => {
-            //TODO
+
+            const options: CameraOptions = {
+              quality: 100,
+              sourceType : this.camera.PictureSourceType.PHOTOLIBRARY,
+              destinationType: this.camera.DestinationType.FILE_URI,
+              encodingType: this.camera.EncodingType.JPEG,
+              mediaType: this.camera.MediaType.PICTURE
+            }
+            
+            this.camera.getPicture(options).then((imageData) => {
+             // imageData is either a base64 encoded string or a file URI
+             // If it's base64 (DATA_URL):
+             let base64Image = 'data:image/jpeg;base64,' + imageData;
+             this.profileImage  = base64Image;
+            }, (err) => {
+             // Handle error
+            });
+
+
+
           }
         },
         {

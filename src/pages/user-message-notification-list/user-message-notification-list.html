@@ -10,7 +10,7 @@
       </p>
     </ion-col>
     <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
-      <img src="../../assets/imgs/user.png" style="width: 35px !important; height: 35px !important;" />
+      <img [src]="profileImage" class="camera-img-wrapper" />
     </ion-col>
   </ion-row>
   <!--Header-->
@@ -86,7 +86,7 @@
 
 <!--Change Password-->
 <p *ngIf='showUserInformation' style="text-align: center;">
-<ion-title color="light">Change Password</ion-title>
+<ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>
 
 
 <ion-item class="no-underline">

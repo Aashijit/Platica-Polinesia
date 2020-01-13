@@ -5,6 +5,7 @@ import { Codes } from './../../Utils/Codes';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,  ActionSheetController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/data/data';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 @IonicPage()
@@ -18,10 +19,12 @@ export class UserMessageNotificationListPage {
   userInformation : any = null;
   showUserInformation : boolean = false;
   newPassword : string = null;
+  profileImage : any = '../../assets/imgs/user.png';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public codes : Codes,
     public msgHelper : MessageHelper,public httpCall : HttpProvider,public dataValidation : DataValidation,
-    public actionSheet : ActionSheetController,public alertController : AlertController) {
+    public actionSheet : ActionSheetController,public alertController : AlertController,
+    public camera : Camera) {
 
      //Get the  parameter from the local storage
     
@@ -104,7 +107,23 @@ export class UserMessageNotificationListPage {
           role: 'camera',
           icon: 'camera',
           handler: () => {
-            //TODO
+
+            const options: CameraOptions = {
+              quality: 100,
+              sourceType : this.camera.PictureSourceType.CAMERA,
+              destinationType: this.camera.DestinationType.FILE_URI,
+              encodingType: this.camera.EncodingType.JPEG,
+              mediaType: this.camera.MediaType.PICTURE
+            }
+            
+            this.camera.getPicture(options).then((imageData) => {
+             // imageData is either a base64 encoded string or a file URI
+             // If it's base64 (DATA_URL):
+             let base64Image = 'data:image/jpeg;base64,' + imageData;
+             this.profileImage  = base64Image;
+            }, (err) => {
+             // Handle error
+            });
           }
         },
         {
@@ -112,7 +131,26 @@ export class UserMessageNotificationListPage {
           role: 'gallery',
           icon: 'image',
           handler: () => {
-            //TODO
+
+            const options: CameraOptions = {
+              quality: 100,
+              sourceType : this.camera.PictureSourceType.PHOTOLIBRARY,
+              destinationType: this.camera.DestinationType.FILE_URI,
+              encodingType: this.camera.EncodingType.JPEG,
+              mediaType: this.camera.MediaType.PICTURE
+            }
+            
+            this.camera.getPicture(options).then((imageData) => {
+             // imageData is either a base64 encoded string or a file URI
+             // If it's base64 (DATA_URL):
+             let base64Image = 'data:image/jpeg;base64,' + imageData;
+             this.profileImage  = base64Image;
+            }, (err) => {
+             // Handle error
+            });
+
+
+
           }
         },
         {

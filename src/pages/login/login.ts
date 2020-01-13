@@ -3,7 +3,7 @@ import { Codes } from './../../Utils/Codes';
 import { MessageHelper } from './../../providers/message-helper';
 import { DataValidation } from './../../Utils/DataValidation';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 
 
@@ -26,7 +26,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataValidation: DataValidation, public msgHelper: MessageHelper, public codes: Codes,
-    public httpCall : HttpProvider) {
+    public httpCall : HttpProvider,public modalCtrl : ModalController) {
   }
 
   ionViewDidLoad() {
@@ -107,5 +107,11 @@ export class LoginPage {
       }
     });
 
+  }
+
+
+  forgotPassword(){
+    let userModal = this.modalCtrl.create('ForgotPasswordPage');
+    userModal.present();
   }
 }
