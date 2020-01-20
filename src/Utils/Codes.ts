@@ -29,8 +29,11 @@ export class Codes{
     public  API_GET_USER_MAP_LIST="UserMap/GetUserMapList";
     public API_GET_BUSINESS_UNIT_LIST="BusinessUnit/GetBusinessUnitList";
     public API_GET_BRAND_LIST="Brand/GetBrandList";
-    
-    
+    public API_INSERT_BUSINESS_UNIT="BusinessUnit/InsertBusinessUnit";
+    public API_UPDATE_BUSINESS_UNIT="BusinessUnit/UpdateBusinessUnit";
+    public API_UPDATE_BRAND="Brand/UpdateBrand";
+    public API_INSERT_USER_MAP="UserMap/InsertUserMap";
+
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 
 

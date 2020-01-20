@@ -15,13 +15,13 @@
   </ion-item>
 
   <ion-item class="no-underline">
-    <ion-label color="primary">Middle Name</ion-label>
+    <ion-label color="primary">Father's Name</ion-label>
     <ion-input [(ngModel)]="userInformation['MiddleName']">
     </ion-input>
   </ion-item>
 
   <ion-item class="no-underline">
-    <ion-label color="primary">Last Name</ion-label>
+    <ion-label color="primary">Mother's Name</ion-label>
     <ion-input [(ngModel)]="userInformation['LastName']">
     </ion-input>
   </ion-item>
@@ -66,6 +66,45 @@
 
 
 </ion-list> 
+<p style="text-align: center !important;">
+<ion-label style="color: white !important; font-size: 20px !important;">User Mapping</ion-label>
+</p>
+
+<ion-item class="no-underline">
+  <ion-label color="primary" floating>User Group</ion-label>
+  <ion-select [(ngModel)]="groupIds" interface="popover" [selectOptions]="{ mode: 'ios' }">
+    <p *ngFor='let group of groupList'>
+  <ion-option [value]="group['UserGroupId']">{{group['UserGroupName']}}</ion-option>
+  </p>
+  </ion-select>
+
+</ion-item>
+
+
+<ion-item class="no-underline">
+  <ion-label color="primary" floating>User Type</ion-label>
+  <ion-select [(ngModel)]="userTypeId" interface="popover" [selectOptions]="{ mode: 'ios' }">
+    <p *ngFor='let type of UserTypes'>
+  <ion-option [value]="type['UserTypeId']">{{type['UserTypeName']}}</ion-option>
+  </p>
+  </ion-select>
+
+</ion-item>
+
+
+<p style="text-align: center;">
+  <button ion-button clear class="capitalize" (click)="updateUserMapping()">Update Mapping &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+  </p>  
+
+
+<ion-list>
+
+
+
+
+
+
+</ion-list>
 
 
 <!--Change Password-->

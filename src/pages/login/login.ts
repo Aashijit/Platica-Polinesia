@@ -45,11 +45,11 @@ export class LoginPage {
 
   login() {
 
-    //Step 1 : Validate the mobile number
-    if (!this.dataValidation.isValidMobileNumber(this.mobileNumber)) {
-      this.msgHelper.showToast(this.codes.EM_INVALID_MOBILE_NUMBER);
-      return;
-    }
+    //Step 1 : Validate the mobile number TODO:
+    // if (!this.dataValidation.isValidMobileNumber(this.mobileNumber)) {
+    //   this.msgHelper.showToast(this.codes.EM_INVALID_MOBILE_NUMBER);
+    //   return;
+    // }
     //Step 2 : Validate the email id
     if (!this.dataValidation.isValidEmailId(this.emailId)) {
       this.msgHelper.showToast(this.codes.EM_INVALID_EMAILID);

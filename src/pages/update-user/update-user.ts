@@ -19,6 +19,10 @@ export class UpdateUserPage {
   newPassword : any;
   oldPassword : any;
   profileImage : any = '../../assets/imgs/user.png';
+  userTypeId : any = null;
+  UserTypes : any = null;
+  groupList : any = null;
+  groupIds : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -27,12 +31,50 @@ export class UpdateUserPage {
       this.userInformation = this.navParams.get(this.codes.LSK_USER_INFORMATION_JSON);
       this.profileImage = this.userInformation['UserImagePath'];
 
+      this.UserTypes = this.navParams.get('UserTypes');
+      this.groupList = this.navParams.get('GroupList');
+
       console.error(this.userInformation);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UpdateUserPage');
-    
+  }
+
+  updateUserMapping(){
+      var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
+
+
+      if(this.dataValidation.isEmptyJson(currentUserInfo)){
+        this.msgHelper.showToast('Could not fetch user id');
+        return;
+      }
+      //Insert into the database
+      var requestJson ={
+        "AppType": "W",
+         "UserId":this.userInformation['UserId'],
+         "UserGroupIds" : this.groupIds,
+         "CreatedByID" : currentUserInfo[0]['UserId'],
+         "UserTypeId" : this.userTypeId
+      };
+
+      var loading = this.msgHelper.showWorkingDialog('Mapping User ...');
+
+      this.httpCall.callApi(requestJson,this.codes.API_INSERT_USER_MAP).then(responseJson =>{
+
+        loading.dismiss();
+        if(this.dataValidation.isEmptyJson(responseJson)){
+          this.msgHelper.showAlert('Error !!','No response received !!!');
+          return;
+        }
+
+        if(responseJson['status'] == 1){
+          this.msgHelper.showToast('Mapped user !!!');
+          this.navCtrl.pop();
+          return;
+        }
+        
+      });
   }
 
 

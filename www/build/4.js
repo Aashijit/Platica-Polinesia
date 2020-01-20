@@ -1,17 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 286:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home__ = __webpack_require__(294);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(300);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21,41 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-var HomePageModule = /** @class */ (function () {
-    function HomePageModule() {
+var LoginPageModule = /** @class */ (function () {
+    function LoginPageModule() {
     }
-    HomePageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+    LoginPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */]),
-                __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_0__components_components_module__["a" /* ComponentsModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
             ],
         })
-    ], HomePageModule);
-    return HomePageModule;
+    ], LoginPageModule);
+    return LoginPageModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ }),
 
-/***/ 294:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_data_data__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -71,148 +64,103 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, dataValidation, msgHelper, codes, httpCall, modalCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.httpCall = httpCall;
-        this.codes = codes;
         this.dataValidation = dataValidation;
         this.msgHelper = msgHelper;
-        this.alertController = alertController;
-        this.loadingStatus = 'Getting the list of users';
-        this.userList = null;
+        this.codes = codes;
+        this.httpCall = httpCall;
+        this.modalCtrl = modalCtrl;
+        this.authenticationSent = false;
+        this.emailId = "";
+        this.mobileNumber = "";
+        this.password = "";
+        this.verificationCode = "";
     }
-    HomePage.prototype.ionViewDidLoad = function () {
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage.prototype.verify = function () {
+        if (!this.dataValidation.isEmptyJson(this.userInformation)) {
+            this.navCtrl.push('HomePage', this.userInformation);
+        }
+        else {
+            this.msgHelper.showToast('User information could not be fetched', false);
+            return;
+        }
+    };
+    LoginPage.prototype.login = function () {
         var _this = this;
-        console.log('ionViewDidLoad HomePage');
-        //Start calling the API's
-        //Get user list
-        var requestJson = {
-            'AppType': 'W'
+        //Step 1 : Validate the mobile number TODO:
+        // if (!this.dataValidation.isValidMobileNumber(this.mobileNumber)) {
+        //   this.msgHelper.showToast(this.codes.EM_INVALID_MOBILE_NUMBER);
+        //   return;
+        // }
+        //Step 2 : Validate the email id
+        if (!this.dataValidation.isValidEmailId(this.emailId)) {
+            this.msgHelper.showToast(this.codes.EM_INVALID_EMAILID);
+            return;
+        }
+        //Step 3 : Validate the password
+        if (this.dataValidation.isEmptyJson(this.password)) {
+            this.msgHelper.showToast(this.codes.EM_INVALID_PASSWORD);
+            return;
+        }
+        //Step 4 : Make the API call for logging in
+        //Create the json
+        var getLoginDetailsApiRequestJson = {
+            "email": this.emailId,
+            "password": this.password,
+            "apptype": "W"
         };
-        this.httpCall.callApi(requestJson, this.codes.API_GET_USER_DETAILS).then(function (responseJson) {
+        //start the loading controller
+        var loading = this.msgHelper.showWorkingDialog("Sending verification message");
+        //Call the API
+        this.httpCall.callApi(getLoginDetailsApiRequestJson, this.codes.API_GET_LOGIN_DETAILS).then(function (getLoginDetailsApiResponseJson) {
+            //Dismiss the loader
+            loading.dismiss();
             //Validate
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
+            if (_this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson)) {
                 _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
                 return;
             }
-            _this.userList = responseJson['resultData'];
-            //Get the user mapped list
-            _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_MAP_LIST).then(function (getUserMappedListJson) {
-                //Validate
-                if (_this.dataValidation.isEmptyJson(getUserMappedListJson)) {
-                    _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
+            //Check for response
+            if (getLoginDetailsApiResponseJson['status'] == 1) {
+                _this.authenticationSent = true;
+                if (_this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson['resultData'])) {
+                    _this.msgHelper.showErrorDialog('Alert', 'No user information fetched !!!');
                     return;
                 }
-                if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
-                    var listOfMappings = getUserMappedListJson['resultData'];
-                    //Fetch the list of group ids
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_GROUP).then(function (usergroupjson) {
-                        if (_this.dataValidation.isEmptyJson(usergroupjson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Group List API !!!');
-                            return;
-                        }
-                        var userGroups = usergroupjson['resultData'];
-                        console.error(userGroups);
-                        for (var i = 0; i <= _this.userList.length - 1; i++) {
-                            _this.userList[i]['UserTypeName'] = _this.getUserTypeName(listOfMappings, _this.userList[i]['UserId']);
-                            _this.userList[i]['GroupName'] = _this.getUserGroupId(listOfMappings, _this.userList[i]['UserId'], userGroups);
-                        }
-                    });
-                }
-            });
+                _this.userInformation = getLoginDetailsApiResponseJson['resultData'];
+                //Keep the user password 
+                localStorage.setItem(_this.codes.LSK_USER_PASSWORD, _this.password);
+                //Keep the user info in the user info key
+                localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
+            }
+            else {
+                _this.msgHelper.showErrorDialog('Error !!!', getLoginDetailsApiResponseJson['resMessage']);
+                return;
+            }
         });
     };
-    HomePage.prototype.getUserGroupId = function (resultData, userId, userGroup) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                for (var j = 0; j < userGroup.length; j++) {
-                    // alert(userGroup[j]['GroupId']+' '+ resultData[i]['UserGroupIds']);
-                    if (userGroup[j]['UserGroupId'] == resultData[i]['UserGroupIds']) {
-                        return userGroup[j]['UserGroupName'];
-                    }
-                }
-            }
-        }
-        return null;
-    };
-    HomePage.prototype.getUserTypeName = function (resultData, userId) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                return resultData[i]['UserTypeName'];
-            }
-        }
-        return null;
-    };
-    HomePage.prototype.goToUserMessages = function () {
-        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
+    LoginPage.prototype.forgotPassword = function () {
+        var userModal = this.modalCtrl.create('ForgotPasswordPage');
         userModal.present();
     };
-    HomePage.prototype.goToProjectSelection = function () {
-        var projectSelectionModal = this.modalCtrl.create('ProjectInformationPage');
-        projectSelectionModal.present();
-    };
-    HomePage.prototype.editUser = function (user) {
-        var userModal = this.modalCtrl.create('UpdateUserPage', { 'userinfo': user });
-        userModal.present();
-    };
-    HomePage.prototype.deleteUser = function (user) {
-        var _this = this;
-        var alert = this.alertController.create({
-            title: 'User to be deleted',
-            message: 'User is to be deleted. <strong>Are you sure</strong>!!!',
-            buttons: [
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                    }
-                }, {
-                    text: 'Yes',
-                    handler: function () {
-                        //Call the delete user API
-                        var requestJson = {
-                            "UserId": user['UserId'],
-                            "AppType": "W"
-                        };
-                        var loading = _this.msgHelper.showWorkingDialog('Deleting the user ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_DELETE_USER).then(function (responseJson) {
-                            loading.dismiss();
-                            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
-                                return;
-                            }
-                            if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('User deleted !!!');
-                                _this.ionViewDidLoad();
-                            }
-                        });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    HomePage.prototype.addUser = function () {
-        var userModal = this.modalCtrl.create('AddUserPage');
-        userModal.present();
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n   <!--header starts here-->\n   <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n      position: absolute;\n      top: 7px !important;\n      left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n     <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n    </ion-col>\n\n  </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/,
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+            selector: 'page-login',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/'<ion-content padding class="background">\n\n  <p class="image-middle-card nomargin">\n    \n  </p>\n  <ion-card id="content">\n    <ion-avatar id="user-info">\n      <img id="user-image" src="../../assets/imgs/user.png" />\n    </ion-avatar>\n    <!-- <ion-card-header class="primary-header">Authentication Gate</ion-card-header> -->\n    <ion-card-content>\n          <!-- <ion-item class="mt-10">\n            <ion-label color="primary" stacked>Phone Number</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline" [(ngModel)]="mobileNumber">\n            </ion-input>\n          </ion-item> -->\n\n          <ion-item>\n            <ion-label color="primary" stacked>Email Id</ion-label>\n            <ion-input type="email" placeholder="Your registered email id" class="input-underline" [(ngModel)]="emailId">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Password</ion-label>\n            <ion-input type="password" placeholder="Your password" class="input-underline" [(ngModel)]="password"></ion-input>\n          </ion-item>\n          <p style="text-align: right !important;" *ngIf=\'authenticationSent\'>\n            <ion-item>\n              <ion-label color="primary" stacked>Verification Code</ion-label>\n              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline" [(ngModel)]="verificationCode"></ion-input>\n            </ion-item>            \n            <ion-spinner name="dots"\n              style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>\n          </p>\n        \n    </ion-card-content>\n    <p style="text-align: right !important; margin-right: 20px !important;">\n      <button ion-button clear *ngIf=\'!authenticationSent\' (click)="login()">Login</button>\n      <button ion-button clear *ngIf=\'authenticationSent\' (click)="verify()">Verify</button>\n    </p>\n    <p style="font-size:10px !important">\n      <button ion-button clear (click)="forgotPassword()">Forgot Password?</button>\n    </p>\n  </ion-card>\n \n\n  <p class="small-text mt-10">\n    Platica Polinesia\n  </p>\n</ion-content>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */]])
-    ], HomePage);
-    return HomePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__["a" /* DataValidation */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* ModalController */]])
+    ], LoginPage);
+    return LoginPage;
 }());
 
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=login.js.map
 
 /***/ })
 

@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([11],{
 
 /***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27,6 +27,10 @@ var Codes = /** @class */ (function () {
         this.API_GET_USER_MAP_LIST = "UserMap/GetUserMapList";
         this.API_GET_BUSINESS_UNIT_LIST = "BusinessUnit/GetBusinessUnitList";
         this.API_GET_BRAND_LIST = "Brand/GetBrandList";
+        this.API_INSERT_BUSINESS_UNIT = "BusinessUnit/InsertBusinessUnit";
+        this.API_UPDATE_BUSINESS_UNIT = "BusinessUnit/UpdateBusinessUnit";
+        this.API_UPDATE_BRAND = "Brand/UpdateBrand";
+        this.API_INSERT_USER_MAP = "UserMap/InsertUserMap";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
     }
     return Codes;
@@ -57,36 +61,48 @@ webpackEmptyAsyncContext.id = 114;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/add-user/add-user.module": [
+	"../pages/add-business-unit/add-business-unit.module": [
 		283,
-		7
+		10
+	],
+	"../pages/add-user/add-user.module": [
+		284,
+		9
+	],
+	"../pages/edit-brand/edit-brand.module": [
+		285,
+		8
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		284,
-		6
+		286,
+		7
 	],
 	"../pages/general-settings/general-settings.module": [
-		285,
-		5
+		287,
+		6
 	],
 	"../pages/home/home.module": [
-		286,
-		4
+		288,
+		5
 	],
 	"../pages/login/login.module": [
-		287,
-		3
+		289,
+		4
 	],
 	"../pages/project-information/project-information.module": [
-		288,
+		290,
+		3
+	],
+	"../pages/update-business-unit/update-business-unit.module": [
+		291,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		289,
+		292,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		290,
+		293,
 		0
 	]
 };
@@ -600,12 +616,15 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__["BrowserModule"],
                 __WEBPACK_IMPORTED_MODULE_8_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {}, {
                     links: [
+                        { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
                     ]

@@ -13,12 +13,59 @@ import { ModalController } from 'ionic-angular';
   templateUrl: 'general-settings.html',
 })
 export class GeneralSettingsPage {
+  
+  //Add the Log Out Confirmation -->
 
   loadingStatus : any = 'Getting the list of users';
   userList : any = null;
   businessunitList : any = null;
   brandList : any = null;
   segment : any = 'users';
+
+  groupList : any = null;
+  //FIXME: Call the API to get this list
+  userTypes : any = [
+    {
+        "UserTypeId": 1,
+        "UserTypeName": "Super Admin",
+        "CanAdd": true,
+        "CanModify": true,
+        "CanDelete": true,
+        "CanViewOnly": true
+    },
+    {
+        "UserTypeId": 2,
+        "UserTypeName": "Admin",
+        "CanAdd": true,
+        "CanModify": true,
+        "CanDelete": false,
+        "CanViewOnly": true
+    },
+    {
+        "UserTypeId": 3,
+        "UserTypeName": "Generic User",
+        "CanAdd": false,
+        "CanModify": false,
+        "CanDelete": false,
+        "CanViewOnly": true
+    },
+    {
+        "UserTypeId": 4,
+        "UserTypeName": "Specific Role User",
+        "CanAdd": true,
+        "CanModify": false,
+        "CanDelete": false,
+        "CanViewOnly": true
+    },
+    {
+        "UserTypeId": 5,
+        "UserTypeName": "Collaborator",
+        "CanAdd": true,
+        "CanModify": true,
+        "CanDelete": false,
+        "CanViewOnly": true
+    }
+];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -77,7 +124,8 @@ export class GeneralSettingsPage {
             this.msgHelper.showErrorDialog('Error !!',usergroupjson['resMessage']);
             return;
           }
-          console.error(userGroups);
+          this.groupList = userGroups;
+          console.error(this.groupList);
           for(let i=0;i<=this.userList.length - 1;i++){
             this.userList[i]['UserTypeName'] = this.getUserTypeName(listOfMappings,this.userList[i]['UserId']);
             this.userList[i]['GroupName'] = this.getUserGroupId(listOfMappings,this.userList[i]['UserId'],userGroups);
@@ -170,7 +218,8 @@ return null;
 
   
   addBusinessUnit(){
-
+    let userModal = this.modalCtrl.create('AddBusinessUnitPage',{'userList' : this.userList});
+    userModal.present();
   }
 
 
@@ -181,7 +230,7 @@ return null;
 
 
   editUser(user){
-    let userModal = this.modalCtrl.create('UpdateUserPage',{'userinfo' : user});
+    let userModal = this.modalCtrl.create('UpdateUserPage',{'userinfo' : user,'UserTypes': this.userTypes,'GroupList':this.groupList});
     userModal.present();
   }
 
@@ -234,4 +283,25 @@ return null;
      alert.present();
 
   }
+
+
+  ionViewWillEnter(){
+   this.ionViewDidLoad();
+  }
+
+  editBusinessUnit(businessunit){
+    let userModal = this.modalCtrl.create('UpdateBusinessUnitPage',{'businessUnit' : businessunit , 'userList': this.userList});
+    userModal.present();
+  }
+
+  editBrand(brand){
+    let userModal = this.modalCtrl.create('EditBrandPage',{'brand' : brand , 'userList': this.userList});
+    userModal.present();
+  }
+
+  goToUserMessages(){
+    let userModal = this.modalCtrl.create('UserMessageNotificationListPage');
+    userModal.present();
+  }
+
   }

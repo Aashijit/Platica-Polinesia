@@ -25800,6 +25800,20 @@ user-info .noti-image-size {
   height: 15px !important;
 }
 
+page-add-business-unit .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-business-unit .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-business-unit .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-add-user .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -25810,6 +25824,20 @@ page-add-user .item-md {
 }
 
 page-add-user .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-edit-brand .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-edit-brand .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-edit-brand .list-underline {
   border-bottom: 1px solid #fff;
   margin-left: 16px !important;
 }
@@ -26128,6 +26156,20 @@ page-project-information .item-md {
 
 page-project-information .list-md .item-block .item-inner {
   border: none !important;
+}
+
+page-update-business-unit .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-update-business-unit .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-update-business-unit .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
 }
 
 page-update-user .custom-popup {
