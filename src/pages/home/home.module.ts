@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { StarProviderComponent } from './../../components/star-provider/star-provider';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ProjectModuleComponent } from './../../components/project-module/project-module';
@@ -11,13 +12,11 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     HomePage,
-    UserInfoComponent,
-    ProjectModuleComponent,
-    StarProviderComponent
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
-    RoundProgressModule
+    RoundProgressModule,
+    ComponentsModule
   ],
 })
 export class HomePageModule {}

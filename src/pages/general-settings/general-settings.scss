@@ -1,0 +1,123 @@
+page-general-settings {
+
+    .background-content{
+        background-color: #fff;
+        border-radius: 10px !important;
+        border:1px solid #ddd;
+    }
+   
+    ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page 
+    { background-image: radial-gradient(#fff ,#ccc); text-align: center !important;}
+   
+    .header-md::after{
+        background-image: none !important;
+    }
+   
+    .button-md{
+        padding: 11px !important;
+    }
+    .scroll-content {
+       margin:0px !important;
+    }
+    .card-content-md{
+        padding: 0px !important;
+    }
+   
+    .card-md{
+        min-width: 160px !important;
+        max-width: 162px !important;
+        margin:0px !important;
+        border:1px solid #ddd !important;
+        background: #ddd !important;
+    }
+   
+    .button-info{
+       padding-top: 0px !important;
+       padding-bottom: 0px !important;
+       height: 15px !important;
+       font-size: 10px !important;
+       margin-top: 1px !important;
+       text-transform: capitalize !important;
+    }
+   
+    .phase-title{
+        font-size: 10px !important;
+        text-align: center !important;
+    }
+   
+   //  .badge-md {
+   //     background-color: #448e00 !important;
+   // }
+   ion-badge{
+       padding: 3px !important;
+       font-size:9px !important;
+   }
+   
+   
+   .circle-image{
+       width: 45px !important;
+       height: 45px !important;
+       border: 1px solid #000;
+       border-radius:50px !important;
+       padding: 10px !important;
+       background:#fff;
+   }
+   
+   .circle-image-buttom{
+       width: 35px !important;
+       height: 35px !important;
+       border: 1px solid rgb(66, 250, 10);
+       border-radius:100px !important;
+       padding: 5px !important;
+       background:#fff;
+   }
+   
+   .circle-image-buttom-incomplete{
+       width: 35px !important;
+       height: 35px !important;
+       border: 1px solid #333;
+       border-radius:100px !important;
+       padding: 5px !important;
+       background:#fff;
+   }
+   
+   
+   
+   .subtitle-1{
+       font-size: 11px !important;
+       color: #555 !important;
+       font-weight: 300 !important;
+   }
+   
+   .subtitle-2{
+       font-size: 9px !important;
+       color: rgb(31, 126, 251) !important;
+       font-weight: 400 !important;
+   }
+   
+   .underline{
+       border-bottom: 1px solid #ddd;
+   }
+   
+   .label-md{
+       margin:0px !important;
+   }
+   
+   .grid{
+       padding: 0px !important;
+   }
+   
+   .alert-md .alert-message, .alert-md .alert-input-group{
+       padding:2px !important;
+   }
+
+   .segment-md .segment-button{
+       font-size: 10px !important;
+   }
+
+   .camera-img-wrapper{
+    width: 40px !important;
+    height: 40px !important;
+}
+
+}

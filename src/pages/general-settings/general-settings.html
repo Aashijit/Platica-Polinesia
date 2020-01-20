@@ -1,0 +1,192 @@
+<ion-header style="padding-left:10px !important; padding-right:10px !important">
+  <!--header starts here-->
+  <ion-row>
+    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">
+      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="'#00ff00'"></round-progress>
+      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;
+     position: absolute;
+     top: 7px !important;
+     left: 7px !important;" />
+    </ion-col>
+
+    <ion-col class="nopadding mt-20">
+      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>
+    </ion-col>
+
+    <ion-col class="nopadding">
+      <user-info [messageNumber]="10" [notificationNumber]="15" (click)="goToUserMessages()"
+        style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-segment [(ngModel)]="segment" mode="ios" style="margin-top: 13px !important; padding: 3% !important;">
+
+    <ion-segment-button value="businessunits">
+      Business Units
+    </ion-segment-button>
+    <ion-segment-button value="brands">
+      Brands
+    </ion-segment-button>
+    <ion-segment-button value="users">
+      Users
+    </ion-segment-button>
+
+  </ion-segment>
+
+
+  <!--header ends here-->
+</ion-header>
+
+<!--Body starts here-->
+<ion-content padding class="background-content mt-66"
+  style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
+
+  <p style=" margin-top: 10% !important;"></p>
+  <div [ngSwitch]="segment">
+    <p *ngSwitchCase="'businessunits'">
+      <ion-list *ngFor='let businessunit of businessunitList' class="nomargin nopadding">
+        <ion-item class="nopadding">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12 class="underline">
+                <p><strong style="color: dodgerblue !important;">{{businessunit['BusinessUnitName']}}</strong> <span
+                    style="font-size: 12px !important;" (click)="editBusinessUnit(businessunit)">
+                    <ion-icon name="create"></ion-icon>
+                  </span>
+                  <!-- <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode='ios'></ion-icon></span> -->
+                </p>
+                <p class="subtitle-1">
+                  <ion-icon name="pin"></ion-icon>
+                  {{businessunit['Address1'] +' '+businessunit['Address2']}}
+                </p>
+                <p class="subtitle-2">
+                  <ion-icon name="phone-portrait"></ion-icon> <a href="tel:{{businessunit['Phone']}}"
+                    style="text-decoration: none !important;">{{businessunit['Phone']}}</a>
+                </p>
+                <p *ngIf="!dataValidation.isEmptyJson(businessunit['OwnerName'])" style="font-size: 12px !important;">
+                  <ion-icon name="person"></ion-icon>&nbsp;{{businessunit['OwnerName']}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+      <ion-fab bottom right>
+        <button ion-fab (click)="addBusinessUnit()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+    </p>
+
+    <p *ngSwitchCase="'brands'">
+      <ion-list *ngFor='let brand of brandList' class="nomargin nopadding">
+        <ion-item class="nopadding">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2 style="margin-top: 2% !important;"> 
+                <img [src]="brand['BrandImagePath']" class="camera-img-wrapper" />
+              </ion-col>
+              <ion-col col-10 class="underline">
+                <p><strong style="color: dodgerblue !important;">{{brand['BrandName']}}</strong> <span
+                    style="font-size: 12px !important;" (click)="editBrand(brand)">
+                    <ion-icon name="create"></ion-icon>
+                  </span>
+                  <!-- <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode='ios'></ion-icon></span> -->
+                </p>
+                <p class="subtitle-1">
+                  <ion-icon name="list-box"></ion-icon>
+                  {{brand['BrandDescription']}}
+                </p>
+                <p *ngIf="!dataValidation.isEmptyJson(brand['OwnerName'])" style="font-size: 12px !important;">
+                  <ion-icon name="person"></ion-icon>&nbsp;{{brand['OwnerName']}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+      <ion-fab bottom right>
+        <button ion-fab (click)="addBrands()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
+    </p>
+
+
+    <!-- <p *ngSwitchCase="'users'"> -->
+      <div  *ngSwitchCase="'users'">
+      <p *ngIf='userList == null'>
+        <ion-spinner name='ios' style="margin-top: 40% !important;"></ion-spinner>
+        <ion-label style="color: #999 !important;">{{loadingStatus}}</ion-label>
+      </p>
+      <!--Break Gap-->
+      <p class="mt-10"></p>
+      <!--Break Gap-->
+      <ion-list *ngFor='let user of userList' class="nomargin nopadding">
+        <ion-item class="nopadding">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2 style="margin-top: 2% !important;"> 
+                <img [src]="user['UserImagePath']" class="camera-img-wrapper" />
+              </ion-col>
+              <ion-col col-10 class="underline">
+                <p><strong style="color: dodgerblue !important;">{{user['FirstName'] + ' '+user['LastName']}}</strong>
+                  <span style="font-size: 12px !important;" (click)="editUser(user)">
+                    <ion-icon name="create"></ion-icon>
+                  </span>
+                  <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)">
+                    <ion-icon name="trash" mode='ios'></ion-icon>
+                  </span>
+                </p>
+                <p class="subtitle-1">
+                  <ion-icon name="pin"></ion-icon> {{user['Address1'] +' '+user['Address2']}}
+                </p>
+                <p class="subtitle-2">
+                  <ion-icon name="phone-portrait"></ion-icon> <a href="tel:{{user['Mobile']}}"
+                    style="text-decoration: none !important;">{{user['Mobile']}}</a>
+                  <span> &nbsp;&nbsp;
+                    <ion-icon name="mail"></ion-icon> <a href="mailto:{{user['Email']}}"
+                      style="text-decoration: none !important;">{{user['Email']}}</a></span>
+                </p>
+                <p>
+                  <ion-badge color="dark">{{user['GroupName']}}</ion-badge>
+                  <ion-badge color="success">{{user['UserTypeName']}}</ion-badge>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+      <ion-fab bottom right>
+        <button ion-fab (click)="addUser()">
+          <ion-icon name="person-add"></ion-icon>
+        </button>
+      </ion-fab>
+    </div>
+  </div>
+
+</ion-content>
+<!--Body ends here-->
+
+<!--Footer starts here-->
+<ion-footer style="background-color: #efefef; text-align: center;">
+  <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png"
+      style="width: 15px !important;" /></button>
+  <button ion-button clear><img src="../../assets/imgs/menu_configuracion_on.png"
+      style="width: 15px !important;" /></button>
+</ion-footer>
+<!--Footer ends here-->

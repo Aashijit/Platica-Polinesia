@@ -27,6 +27,8 @@ export class Codes{
     public  API_FORGOT_PASSWORD="Login/ForgotPassword";
     public  API_GET_USER_GROUP="UserGroup/GetUserGroup";
     public  API_GET_USER_MAP_LIST="UserMap/GetUserMapList";
+    public API_GET_BUSINESS_UNIT_LIST="BusinessUnit/GetBusinessUnitList";
+    public API_GET_BRAND_LIST="Brand/GetBrandList";
     
     
     public  API_ENDPOINT="http://101.53.145.231:8053/";

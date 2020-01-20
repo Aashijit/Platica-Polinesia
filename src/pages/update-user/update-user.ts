@@ -25,6 +25,7 @@ export class UpdateUserPage {
     public actionSheet : ActionSheetController,public alertController : AlertController,public camera : Camera) {
 
       this.userInformation = this.navParams.get(this.codes.LSK_USER_INFORMATION_JSON);
+      this.profileImage = this.userInformation['UserImagePath'];
 
       console.error(this.userInformation);
   }

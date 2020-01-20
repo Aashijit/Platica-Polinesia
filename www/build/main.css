@@ -25828,6 +25828,124 @@ page-forgot-password .list-underline {
   margin-left: 16px !important;
 }
 
+page-general-settings .background-content {
+  background-color: #fff;
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+}
+
+page-general-settings ion-app, page-general-settings ion-nav, page-general-settings ion-tab, page-general-settings ion-tabs, page-general-settings .app-root, page-general-settings .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-general-settings .header-md::after {
+  background-image: none !important;
+}
+
+page-general-settings .button-md {
+  padding: 11px !important;
+}
+
+page-general-settings .scroll-content {
+  margin: 0px !important;
+}
+
+page-general-settings .card-content-md {
+  padding: 0px !important;
+}
+
+page-general-settings .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-general-settings .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-general-settings .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-general-settings ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-general-settings .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-general-settings .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-general-settings .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-general-settings .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-general-settings .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-general-settings .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-general-settings .label-md {
+  margin: 0px !important;
+}
+
+page-general-settings .grid {
+  padding: 0px !important;
+}
+
+page-general-settings .alert-md .alert-message, page-general-settings .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
+page-general-settings .segment-md .segment-button {
+  font-size: 10px !important;
+}
+
+page-general-settings .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+}
+
 page-home .background-content {
   background-color: #fff;
   border-radius: 10px !important;

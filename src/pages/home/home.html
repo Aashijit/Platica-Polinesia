@@ -24,42 +24,7 @@
 <!--Body starts here-->
 <ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
 
-  <p *ngIf='userList == null'>
-  <ion-spinner name='ios' style="margin-top: 40% !important;"></ion-spinner>
-  <ion-label style="color: #999 !important;" >{{loadingStatus}}</ion-label>
-  </p>  
-  <!--Break Gap-->
-  <p class="mt-10"></p>
-  <!--Break Gap-->
-  <ion-list *ngFor='let user of userList' class="nomargin nopadding"> 
-    <ion-item class="nopadding"> 
-      <ion-grid>
-        <ion-row>
-          <ion-col col-2 style="margin-top: 6% !important;"> 
-            <img src="../../assets/imgs/user.png" style="width: 40px !important; height: 40px !important;" /> 
-          </ion-col>
-          <ion-col col-10 class="underline">
-          <p><strong style="color: dodgerblue !important;">{{user['FirstName'] + ' '+user['LastName']}}</strong> <span style="font-size: 12px !important;" (click)="editUser(user)"><ion-icon name="create"></ion-icon></span>
-              <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode='ios'></ion-icon></span>
-              </p>
-            <p class="subtitle-1"><ion-icon name="pin"></ion-icon> {{user['Address1'] +' '+user['Address2']}}</p>
-            <p class="subtitle-2"><ion-icon name="phone-portrait"></ion-icon>  <a href="tel:{{user['Mobile']}}" style="text-decoration: none !important;">{{user['Mobile']}}</a>
-              <span> &nbsp;&nbsp;
-                <ion-icon name="mail"></ion-icon> <a href="mailto:{{user['Email']}}" style="text-decoration: none !important;">{{user['Email']}}</a></span>
-              
-              </p>
-            <p>
-              <ion-badge color="dark" >{{user['GroupName']}}</ion-badge>
-              <ion-badge color="success" >{{user['UserTypeName']}}</ion-badge>
-            </p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-list>
-  <ion-fab bottom right>
-  <button ion-fab (click)="addUser()"><ion-icon name="person-add"></ion-icon></button>
-</ion-fab>
+
 </ion-content>
 <!--Body ends here-->
 
@@ -72,6 +37,6 @@
   <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
-  <button ion-button clear><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>
+  <button ion-button clear (click)="navCtrl.setRoot('GeneralSettingsPage')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>
 </ion-footer>
 <!--Footer ends here-->
