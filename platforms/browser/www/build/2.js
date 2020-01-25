@@ -1,14 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 284:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateUserPageModule", function() { return UpdateUserPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateBusinessUnitPageModule", function() { return UpdateBusinessUnitPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_user__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_business_unit__ = __webpack_require__(302);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var UpdateUserPageModule = /** @class */ (function () {
-    function UpdateUserPageModule() {
+var UpdateBusinessUnitPageModule = /** @class */ (function () {
+    function UpdateBusinessUnitPageModule() {
     }
-    UpdateUserPageModule = __decorate([
+    UpdateBusinessUnitPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__update_user__["a" /* UpdateUserPage */],
+                __WEBPACK_IMPORTED_MODULE_2__update_business_unit__["a" /* UpdateBusinessUnitPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__update_user__["a" /* UpdateUserPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__update_business_unit__["a" /* UpdateBusinessUnitPage */]),
             ],
         })
-    ], UpdateUserPageModule);
-    return UpdateUserPageModule;
+    ], UpdateBusinessUnitPageModule);
+    return UpdateBusinessUnitPageModule;
 }());
 
-//# sourceMappingURL=update-user.module.js.map
+//# sourceMappingURL=update-business-unit.module.js.map
 
 /***/ }),
 
-/***/ 294:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateUserPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateBusinessUnitPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(203);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,9 +65,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var UpdateUserPage = /** @class */ (function () {
-    function UpdateUserPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController, camera) {
+var UpdateBusinessUnitPage = /** @class */ (function () {
+    function UpdateBusinessUnitPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.msgHelper = msgHelper;
@@ -77,187 +75,55 @@ var UpdateUserPage = /** @class */ (function () {
         this.dataValidation = dataValidation;
         this.actionSheet = actionSheet;
         this.alertController = alertController;
-        this.camera = camera;
-        this.profileImage = '../../assets/imgs/user.png';
-        this.userInformation = this.navParams.get(this.codes.LSK_USER_INFORMATION_JSON);
-        console.error(this.userInformation);
+        this.businessUnit = null;
+        this.userList = null;
+        this.businessUnit = this.navParams.get('businessUnit');
+        this.userList = this.navParams.get('userList');
     }
-    UpdateUserPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UpdateUserPage');
+    UpdateBusinessUnitPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UpdateBusinessUnitPage');
     };
-    UpdateUserPage.prototype.updateUserInformation = function () {
+    UpdateBusinessUnitPage.prototype.check = function (id) {
+    };
+    UpdateBusinessUnitPage.prototype.updateBusinessUnit = function () {
         var _this = this;
-        //Call the change password API
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
         if (this.dataValidation.isEmptyJson(currentUserInfo)) {
             this.msgHelper.showToast('Could not fetch user id');
             return;
         }
-        //Update the alerady present json to update the information
-        var loading = this.msgHelper.showWorkingDialog('Updating your profile');
-        var apiUpdateString = this.codes.API_UPDATE_USER +
-            '?uid=' + this.userInformation['UserId'] +
-            '&ufname=' + this.removeNull(this.userInformation['FirstName']) +
-            '&umname=' + this.removeNull(this.userInformation['MiddleName']) +
-            '&ulname=' + this.removeNull(this.userInformation['LastName']) +
-            '&uadd1=' + this.removeNull(this.userInformation['Address1']) +
-            '&uadd2=' + this.removeNull(this.userInformation['Address2']) +
-            '&ucity=' + this.removeNull(this.userInformation['City']) +
-            '&ustate=' + this.removeNull(this.userInformation['State']) +
-            '&uzip=' + this.removeNull(this.userInformation['Pincode']) +
-            '&uactivestatus=true' +
-            '&umodifybyid=' + currentUserInfo[0]['UserId'] +
-            '&uparentbyid=0' +
-            '&AppType=W&updateWithImageStatus=N'; //TODO: Fix this
-        this.httpCall.callApi('', apiUpdateString).then(function (responseJson) {
-            //Dismiss the loader
+        this.businessUnit['ModifiedByID'] = currentUserInfo['UserId'];
+        this.businessUnit['AppType'] = 'W';
+        console.error(JSON.stringify(this.businessUnit));
+        var loading = this.msgHelper.showWorkingDialog('Updating Business Unit ...');
+        this.httpCall.callApi(this.businessUnit, this.codes.API_UPDATE_BUSINESS_UNIT).then(function (responseJson) {
             loading.dismiss();
-            //Validate
             if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
+                _this.msgHelper.showAlert('Error !!', 'Empty response received');
                 return;
             }
-            if (responseJson['status'] == 1) {
-                _this.msgHelper.showToast('Profile Information Updated !!!');
-                localStorage.removeItem(_this.codes.LSK_USER_INFORMATION_JSON);
-                localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
+            if (responseJson['status'] == '1') {
+                _this.msgHelper.showToast('Business Unit Updated !!!');
+                _this.navCtrl.pop();
+                return;
             }
         });
     };
-    UpdateUserPage.prototype.removeNull = function (variable) {
-        if (variable == null || variable == undefined || variable == 0)
-            return '';
-        return variable;
-    };
-    UpdateUserPage.prototype.presentActionSheetToUpdateImage = function () {
-        var _this = this;
-        var actionSheet = this.actionSheet.create({
-            title: 'Update your profile picture',
-            buttons: [
-                {
-                    text: 'Capture an image',
-                    role: 'camera',
-                    icon: 'camera',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.CAMERA,
-                            destinationType: _this.camera.DestinationType.FILE_URI,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Select from gallery',
-                    role: 'gallery',
-                    icon: 'image',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
-                            destinationType: _this.camera.DestinationType.FILE_URI,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Close',
-                    role: 'close',
-                    icon: 'close',
-                    handler: function () {
-                        actionSheet.dismiss();
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    UpdateUserPage.prototype.changePassword = function () {
-        var _this = this;
-        var alert = this.alertController.create({
-            title: 'Password to be changed',
-            message: 'Please note down the password.',
-            buttons: [
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                    }
-                }, {
-                    text: 'Yes',
-                    handler: function () {
-                        //Validation
-                        if (_this.dataValidation.isEmptyJson(_this.newPassword)) {
-                            _this.msgHelper.showToast('Please enter a new password !!!');
-                            return;
-                        }
-                        if (String(_this.newPassword).length >= 50) {
-                            _this.msgHelper.showToast('Password cannot be more than 50 characters !!!');
-                            return;
-                        }
-                        //Call the change password API
-                        var currentUserInfo = JSON.parse(localStorage.getItem(_this.codes.LSK_USER_INFORMATION_JSON));
-                        if (_this.dataValidation.isEmptyJson(currentUserInfo)) {
-                            _this.msgHelper.showToast('Could not fetch user id');
-                            return;
-                        }
-                        var requestJson = {
-                            "UserId": _this.userInformation['UserId'],
-                            "OldPassword": _this.oldPassword,
-                            "NewPassword": _this.newPassword,
-                            "ModifiedById": +currentUserInfo[0]['UserId'],
-                            "AppType": "W"
-                        };
-                        var loading = _this.msgHelper.showWorkingDialog('Changing the password ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_CHANGE_USER_PASSWORD).then(function (responseJson) {
-                            loading.dismiss();
-                            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
-                                return;
-                            }
-                            if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('Password changed successfully !!!');
-                            }
-                        });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    UpdateUserPage.prototype.closeModal = function () {
+    UpdateBusinessUnitPage.prototype.closeModal = function () {
         this.navCtrl.pop();
     };
-    UpdateUserPage = __decorate([
+    UpdateBusinessUnitPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-update-user',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/'\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Middle Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Last Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<!--Change Password-->\n<p  style="text-align: center;">\n  <ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>Old Password</ion-label>\n  <ion-input [(ngModel)]="oldPassword">\n  </ion-input>\n</ion-item>\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/,
+            selector: 'page-update-business-unit',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/update-business-unit/update-business-unit.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Business Unit</h1>\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">Business Unit Name</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'BusinessUnitName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Business Unit Alias</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'BusinessUnitAlias\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Phone</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'Phone\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="businessUnit[\'Zip\']">\n    </ion-input>\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary" floating>Business Owner</ion-label>\n    <ion-select [(ngModel)]="businessUnit[\'BusinessUnitOwnerID\']" (ionChange)="check(businessUnit[\'BusinessUnitOwnerID\'])" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n      <p *ngFor=\'let user of userList\'>\n    <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n    </p>\n    </ion-select>\n\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateBusinessUnit()">Update Business Unit &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal()" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/update-business-unit/update-business-unit.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
-    ], UpdateUserPage);
-    return UpdateUserPage;
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */]])
+    ], UpdateBusinessUnitPage);
+    return UpdateBusinessUnitPage;
 }());
 
-//# sourceMappingURL=update-user.js.map
+//# sourceMappingURL=update-business-unit.js.map
 
 /***/ })
 

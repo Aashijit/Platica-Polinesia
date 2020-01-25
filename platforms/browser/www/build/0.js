@@ -1,19 +1,16 @@
 webpackJsonp([0],{
 
-/***/ 281:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_star_provider_star_provider__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_project_module_project_module__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_user_info_user_info__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home__ = __webpack_require__(291);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserMessageNotificationListPageModule", function() { return UserMessageNotificationListPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__ = __webpack_require__(304);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,168 +21,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-
-var HomePageModule = /** @class */ (function () {
-    function HomePageModule() {
+var UserMessageNotificationListPageModule = /** @class */ (function () {
+    function UserMessageNotificationListPageModule() {
     }
-    HomePageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["NgModule"])({
+    UserMessageNotificationListPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_6__home__["a" /* HomePage */],
-                __WEBPACK_IMPORTED_MODULE_3__components_user_info_user_info__["a" /* UserInfoComponent */],
-                __WEBPACK_IMPORTED_MODULE_2__components_project_module_project_module__["a" /* ProjectModuleComponent */],
-                __WEBPACK_IMPORTED_MODULE_0__components_star_provider_star_provider__["a" /* StarProviderComponent */]
+                __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__["a" /* UserMessageNotificationListPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_6__home__["a" /* HomePage */]),
-                __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__["RoundProgressModule"]
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__["a" /* UserMessageNotificationListPage */]),
+                __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__["RoundProgressModule"]
             ],
         })
-    ], HomePageModule);
-    return HomePageModule;
+    ], UserMessageNotificationListPageModule);
+    return UserMessageNotificationListPageModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=user-message-notification-list.module.js.map
 
 /***/ }),
 
-/***/ 288:
+/***/ 304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StarProviderComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var StarProviderComponent = /** @class */ (function () {
-    function StarProviderComponent() {
-        this.coins = "10";
-        this.stars = "20";
-        this.videos = "45";
-        console.log('Hello StarProviderComponent Component');
-        this.text = 'Hello World';
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], StarProviderComponent.prototype, "coins", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], StarProviderComponent.prototype, "stars", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], StarProviderComponent.prototype, "videos", void 0);
-    StarProviderComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'star-provider',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/star-provider/star-provider.html"*/'<div class="background" *ngIf="coins != \'0\' && stars != \'0\' && videos != \'0\'">\n    <span>\n      <img src="../../assets/imgs/coin.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{coins}}</sup>\n      <img src="../../assets/imgs/star.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important; ">{{stars}}</sup>\n      <img src="../../assets/imgs/movie-symbol-of-video-camera.png" style="width: 15px !important; margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{videos}}</sup>\n    </span>\n</div>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/star-provider/star-provider.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], StarProviderComponent);
-    return StarProviderComponent;
-}());
-
-//# sourceMappingURL=star-provider.js.map
-
-/***/ }),
-
-/***/ 289:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProjectModuleComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ProjectModuleComponent = /** @class */ (function () {
-    function ProjectModuleComponent() {
-        console.log('Hello ProjectModuleComponent Component');
-        this.text = 'Hello World';
-    }
-    ProjectModuleComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'project-module',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/project-module/project-module.html"*/'<div style="width: 200px !important;">\n  <span>\n  <round-progress [current]="50" [max]="100" [radius]="30" [stroke]="8"></round-progress>\n  <img src="../../assets/imgs/icon_video.png" style="    width: 30px !important;\n  height: 30px !important;\n  top: 125px !important;\n  position: absolute;\n  left: 31px !important;"\n  />\n  <span style="font-size: 8px !important;\n  position: absolute;\n  top: 117px !important;\n  left: 66px !important;\n  background: white;\n  border: 1px solid #ddd;\n  padding: 9px !important;\n  padding-left: 15px !important;\n  z-index: -1 !important;\n  border-radius: 14px !important;">\n    <p class="nomargin">Allejandro wants something</p>\n    <p class="nomargin">2019/12/21 - 2019/12/22</p>\n    <p class="nomargin">Owner : Allejandro</p>\n  </span>\n</span>\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/project-module/project-module.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], ProjectModuleComponent);
-    return ProjectModuleComponent;
-}());
-
-//# sourceMappingURL=project-module.js.map
-
-/***/ }),
-
-/***/ 290:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserInfoComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var UserInfoComponent = /** @class */ (function () {
-    function UserInfoComponent() {
-        console.log('Hello UserInfoComponent Component');
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], UserInfoComponent.prototype, "messageNumber", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], UserInfoComponent.prototype, "notificationNumber", void 0);
-    UserInfoComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;" *ngIf=\'messageNumber != "0"\'>{{messageNumber}}</span>\n  </button>\n  <p style="margin-left: 26px !important; margin-top: -27px !important;">\n    <img src="../../assets/imgs/user.png" class="user-image-size" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;" *ngIf=\'notificationNumber != "0"\'>{{notificationNumber}}</span>\n  </button>\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
-        }),
-        __metadata("design:paramtypes", [])
-    ], UserInfoComponent);
-    return UserInfoComponent;
-}());
-
-//# sourceMappingURL=user-info.js.map
-
-/***/ }),
-
-/***/ 291:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserMessageNotificationListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_data_data__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(204);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -203,98 +71,147 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
+var UserMessageNotificationListPage = /** @class */ (function () {
+    function UserMessageNotificationListPage(navCtrl, navParams, codes, msgHelper, httpCall, dataValidation, actionSheet, alertController, camera) {
+        //Get the  parameter from the local storage
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.httpCall = httpCall;
         this.codes = codes;
-        this.dataValidation = dataValidation;
         this.msgHelper = msgHelper;
+        this.httpCall = httpCall;
+        this.dataValidation = dataValidation;
+        this.actionSheet = actionSheet;
         this.alertController = alertController;
-        this.loadingStatus = 'Getting the list of users';
-        this.userList = null;
+        this.camera = camera;
+        this.userName = 'User';
+        this.userInformation = null;
+        this.showUserInformation = false;
+        this.newPassword = null;
+        this.profileImage = '../../assets/imgs/user.png';
+        this.userInformation = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
+        console.error(this.userInformation[0]);
+        this.userName = this.userInformation[0]['FirstName'];
     }
-    HomePage.prototype.ionViewDidLoad = function () {
+    UserMessageNotificationListPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UserMessageNotificationListPage');
+    };
+    UserMessageNotificationListPage.prototype.closeModal = function () {
+        this.navCtrl.pop();
+    };
+    UserMessageNotificationListPage.prototype.showUserEditInformation = function () {
+        //Show the contents of the user information -- Do it vice versa
+        this.showUserInformation = !this.showUserInformation;
+    };
+    //Log Out function
+    UserMessageNotificationListPage.prototype.logOut = function () {
+        //Empty the local storage
+        this.navCtrl.setRoot('LoginPage');
+    };
+    UserMessageNotificationListPage.prototype.updateUserInformation = function () {
         var _this = this;
-        console.log('ionViewDidLoad HomePage');
-        //Start calling the API's
-        //Get user list
-        var requestJson = {
-            'AppType': 'W'
-        };
-        this.httpCall.callApi(requestJson, this.codes.API_GET_USER_DETAILS).then(function (responseJson) {
+        //Update the alerady present json to update the information
+        var loading = this.msgHelper.showWorkingDialog('Updating your profile');
+        var apiUpdateString = this.codes.API_UPDATE_USER +
+            '?uid=' + this.userInformation[0]['UserId'] +
+            '&ufname=' + this.removeNull(this.userInformation[0]['FirstName']) +
+            '&umname=' + this.removeNull(this.userInformation[0]['MiddleName']) +
+            '&ulname=' + this.removeNull(this.userInformation[0]['LastName']) +
+            '&uadd1=' + this.removeNull(this.userInformation[0]['Address1']) +
+            '&uadd2=' + this.removeNull(this.userInformation[0]['Address2']) +
+            '&ucity=' + this.removeNull(this.userInformation[0]['City']) +
+            '&ustate=' + this.removeNull(this.userInformation[0]['State']) +
+            '&uzip=' + this.removeNull(this.userInformation[0]['Pincode']) +
+            '&uactivestatus=true' +
+            '&umodifybyid=' + this.removeNull(this.userInformation[0]['UserId']) +
+            '&uparentbyid=0' +
+            '&upwd=' + localStorage.getItem(this.codes.LSK_USER_PASSWORD) +
+            '&AppType=W&updateWithImageStatus=N'; //TODO: Fix this
+        this.httpCall.callApi('', apiUpdateString).then(function (responseJson) {
+            //Dismiss the loader
+            loading.dismiss();
             //Validate
             if (_this.dataValidation.isEmptyJson(responseJson)) {
                 _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
                 return;
             }
-            _this.userList = responseJson['resultData'];
-            //Get the user mapped list
-            _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_MAP_LIST).then(function (getUserMappedListJson) {
-                //Validate
-                if (_this.dataValidation.isEmptyJson(getUserMappedListJson)) {
-                    _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
-                    return;
-                }
-                if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
-                    var listOfMappings = getUserMappedListJson['resultData'];
-                    //Fetch the list of group ids
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_GROUP).then(function (usergroupjson) {
-                        if (_this.dataValidation.isEmptyJson(usergroupjson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Group List API !!!');
-                            return;
-                        }
-                        var userGroups = usergroupjson['resultData'];
-                        console.error(userGroups);
-                        for (var i = 0; i <= _this.userList.length - 1; i++) {
-                            _this.userList[i]['UserTypeName'] = _this.getUserTypeName(listOfMappings, _this.userList[i]['UserId']);
-                            _this.userList[i]['GroupName'] = _this.getUserGroupId(listOfMappings, _this.userList[i]['UserId'], userGroups);
-                        }
-                    });
-                }
-            });
+            if (responseJson['status'] == 1) {
+                _this.msgHelper.showToast('Profile Information Updated !!!');
+                localStorage.removeItem(_this.codes.LSK_USER_INFORMATION_JSON);
+                localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
+            }
         });
     };
-    HomePage.prototype.getUserGroupId = function (resultData, userId, userGroup) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                for (var j = 0; j < userGroup.length; j++) {
-                    // alert(userGroup[j]['GroupId']+' '+ resultData[i]['UserGroupIds']);
-                    if (userGroup[j]['UserGroupId'] == resultData[i]['UserGroupIds']) {
-                        return userGroup[j]['UserGroupName'];
+    UserMessageNotificationListPage.prototype.removeNull = function (variable) {
+        if (variable == null || variable == undefined || variable == 0)
+            return '';
+        return variable;
+    };
+    UserMessageNotificationListPage.prototype.presentActionSheetToUpdateImage = function () {
+        var _this = this;
+        var actionSheet = this.actionSheet.create({
+            title: 'Update your profile picture',
+            buttons: [
+                {
+                    text: 'Capture an image',
+                    role: 'camera',
+                    icon: 'camera',
+                    handler: function () {
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.CAMERA,
+                            destinationType: _this.camera.DestinationType.FILE_URI,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
+                        };
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):
+                            var base64Image = 'data:image/jpeg;base64,' + imageData;
+                            _this.profileImage = base64Image;
+                        }, function (err) {
+                            // Handle error
+                        });
+                    }
+                },
+                {
+                    text: 'Select from gallery',
+                    role: 'gallery',
+                    icon: 'image',
+                    handler: function () {
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
+                            destinationType: _this.camera.DestinationType.FILE_URI,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
+                        };
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):
+                            var base64Image = 'data:image/jpeg;base64,' + imageData;
+                            _this.profileImage = base64Image;
+                        }, function (err) {
+                            // Handle error
+                        });
+                    }
+                },
+                {
+                    text: 'Close',
+                    role: 'close',
+                    icon: 'close',
+                    handler: function () {
+                        actionSheet.dismiss();
                     }
                 }
-            }
-        }
-        return null;
+            ]
+        });
+        actionSheet.present();
     };
-    HomePage.prototype.getUserTypeName = function (resultData, userId) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                return resultData[i]['UserTypeName'];
-            }
-        }
-        return null;
-    };
-    HomePage.prototype.goToUserMessages = function () {
-        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
-        userModal.present();
-    };
-    HomePage.prototype.goToProjectSelection = function () {
-        var projectSelectionModal = this.modalCtrl.create('ProjectInformationPage');
-        projectSelectionModal.present();
-    };
-    HomePage.prototype.editUser = function (user) {
-        var userModal = this.modalCtrl.create('UpdateUserPage', { 'userinfo': user });
-        userModal.present();
-    };
-    HomePage.prototype.deleteUser = function (user) {
+    UserMessageNotificationListPage.prototype.changePassword = function () {
         var _this = this;
         var alert = this.alertController.create({
-            title: 'User to be deleted',
-            message: 'User is to be deleted. <strong>Are you sure</strong>!!!',
+            title: 'Password to be changed',
+            message: 'Please note down the password.',
             buttons: [
                 {
                     text: 'No',
@@ -304,21 +221,32 @@ var HomePage = /** @class */ (function () {
                 }, {
                     text: 'Yes',
                     handler: function () {
+                        //Validation
+                        if (_this.dataValidation.isEmptyJson(_this.newPassword)) {
+                            _this.msgHelper.showToast('Please enter a new password !!!');
+                            return;
+                        }
+                        if (String(_this.newPassword).length >= 50) {
+                            _this.msgHelper.showToast('Password cannot be more than 50 characters !!!');
+                            return;
+                        }
                         //Call the delete user API
                         var requestJson = {
-                            "UserId": user['UserId'],
+                            "UserId": _this.userInformation[0]['UserId'],
+                            "OldPassword": localStorage.getItem(_this.codes.LSK_USER_PASSWORD),
+                            "NewPassword": _this.newPassword,
+                            "ModifiedById": _this.userInformation[0]['UserId'],
                             "AppType": "W"
                         };
-                        var loading = _this.msgHelper.showWorkingDialog('Deleting the user ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_DELETE_USER).then(function (responseJson) {
+                        var loading = _this.msgHelper.showWorkingDialog('Changing the password ...');
+                        _this.httpCall.callApi(requestJson, _this.codes.API_CHANGE_USER_PASSWORD).then(function (responseJson) {
                             loading.dismiss();
                             if (_this.dataValidation.isEmptyJson(responseJson)) {
                                 _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
                                 return;
                             }
                             if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('User deleted !!!');
-                                _this.ionViewDidLoad();
+                                _this.msgHelper.showToast('Password changed successfully !!!');
                             }
                         });
                     }
@@ -327,22 +255,19 @@ var HomePage = /** @class */ (function () {
         });
         alert.present();
     };
-    HomePage.prototype.addUser = function () {
-        var userModal = this.modalCtrl.create('AddUserPage');
-        userModal.present();
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n   <!--header starts here-->\n   <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n      position: absolute;\n      top: 7px !important;\n      left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n     <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n    </ion-col>\n\n  </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n  <p *ngIf=\'userList == null\'>\n  <ion-spinner name=\'ios\' style="margin-top: 40% !important;"></ion-spinner>\n  <ion-label style="color: #999 !important;" >{{loadingStatus}}</ion-label>\n  </p>  \n  <!--Break Gap-->\n  <p class="mt-10"></p>\n  <!--Break Gap-->\n  <ion-list *ngFor=\'let user of userList\' class="nomargin nopadding"> \n    <ion-item class="nopadding"> \n      <ion-grid>\n        <ion-row>\n          <ion-col col-2 style="margin-top: 6% !important;"> \n            <img src="../../assets/imgs/user.png" style="width: 40px !important; height: 40px !important;" /> \n          </ion-col>\n          <ion-col col-10 class="underline">\n          <p><strong style="color: dodgerblue !important;">{{user[\'FirstName\'] + \' \'+user[\'LastName\']}}</strong> <span style="font-size: 12px !important;" (click)="editUser(user)"><ion-icon name="create"></ion-icon></span>\n              <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode=\'ios\'></ion-icon></span>\n              </p>\n            <p class="subtitle-1"><ion-icon name="pin"></ion-icon> {{user[\'Address1\'] +\' \'+user[\'Address2\']}}</p>\n            <p class="subtitle-2"><ion-icon name="phone-portrait"></ion-icon>  <a href="tel:{{user[\'Mobile\']}}" style="text-decoration: none !important;">{{user[\'Mobile\']}}</a>\n              <span> &nbsp;&nbsp;\n                <ion-icon name="mail"></ion-icon> <a href="mailto:{{user[\'Email\']}}" style="text-decoration: none !important;">{{user[\'Email\']}}</a></span>\n              \n              </p>\n            <p>\n              <ion-badge color="dark" >{{user[\'GroupName\']}}</ion-badge>\n              <ion-badge color="success" >{{user[\'UserTypeName\']}}</ion-badge>\n            </p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n  </ion-list>\n  <ion-fab bottom right>\n  <button ion-fab (click)="addUser()"><ion-icon name="person-add"></ion-icon></button>\n</ion-fab>\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/,
+    UserMessageNotificationListPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+            selector: 'page-user-message-notification-list',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/'<ion-header style="padding-top: 10px !important;">\n  <!--Header-->\n  <ion-row>\n    <ion-col col-10 style="text-align: right !important;">\n      <p style="color: white;" class="nomargin">\n        Welcome <strong (click)="showUserEditInformation()">{{userName}}</strong>\n      </p>\n      <p style="color: white;" class="nomargin" (click)="logOut()">\n        Log Out <ion-icon name="log-out"></ion-icon>\n      </p>\n    </ion-col>\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n  </ion-row>\n  <!--Header-->\n\n  \n</ion-header>\n\n\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list *ngIf=\'showUserInformation\'>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Middle Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Last Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<!--Change Password-->\n<p *ngIf=\'showUserInformation\' style="text-align: center;">\n<ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n  \n<!--Message, Notification number-->\n<ion-row class="list-underline" *ngIf=\'!showUserInformation\'>\n  <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 7px !important;\n    left: 27px !important;"></span></ion-col>\n  <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 9px !important;\n    left: 10px !important;"></span></ion-col>\n</ion-row>\n<!--Message, Notification number-->\n\n <ion-list style=" text-align: center !important;" *ngIf=\'!showUserInformation\'>\n  <img src=\'../../assets/imgs/no_message.svg\' style="width: 30% !important;margin-top: 40% !important;" />\n  <ion-label style="color: darksalmon !important;">No message/notifications</ion-label>\n </ion-list>\n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */]])
-    ], HomePage);
-    return HomePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_5__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
+    ], UserMessageNotificationListPage);
+    return UserMessageNotificationListPage;
 }());
 
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=user-message-notification-list.js.map
 
 /***/ })
 

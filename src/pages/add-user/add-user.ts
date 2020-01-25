@@ -5,6 +5,7 @@ import { HttpProvider } from './../../providers/data/data';
 import { MessageHelper } from './../../providers/message-helper';
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 
 @IonicPage()
@@ -35,12 +36,12 @@ export class AddUserPage {
     console.log('ionViewDidLoad AddUserPage');
   }
 
-  createUserInformation(){
+  update(){
     this.msgHelper.showToast('Creating your user ...');
 
     this.navCtrl.pop();
   }
-  updateUserInformation(){
+  createUserInformation(){
     //Call the change password API
     var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
 
@@ -50,25 +51,31 @@ export class AddUserPage {
       return;
     }
 
-    //Update the alerady present json to update the information
-    var loading = this.msgHelper.showWorkingDialog('Updating your profile');
+    //Inserting a new user profile
+    var loading = this.msgHelper.showWorkingDialog('Creating your profile');
 
-    var apiUpdateString = this.codes.API_UPDATE_USER+
-    '?uid='+this.userInformation['UserId']+
-    '&ufname='+this.removeNull(this.userInformation['FirstName'])+
-    '&umname='+this.removeNull(this.userInformation['MiddleName'])+
-    '&ulname='+this.removeNull(this.userInformation['LastName'])+
-    '&uadd1='+this.removeNull(this.userInformation['Address1'])+
-    '&uadd2='+this.removeNull(this.userInformation['Address2'])+
-    '&ucity='+this.removeNull(this.userInformation['City'])+
-    '&ustate='+this.removeNull(this.userInformation['State'])+
-    '&uzip='+this.removeNull(this.userInformation['Pincode'])+
+    var apiUpdateString = this.codes.API_INSERT_USER+
+    '?ufname='+this.removeNull(this.firstName)+
+    '&umname='+this.removeNull(this.middleName)+
+    '&ulname='+this.removeNull(this.lastName)+
+    '&uadd1='+this.removeNull(this.address1)+
+    '&uadd2='+this.removeNull(this.address2)+
+    '&ucity='+this.removeNull(this.city)+
+    '&ustate='+this.removeNull(this.state)+
+    '&uzip='+this.removeNull(this.pincode)+
     '&uactivestatus=true'+
-    '&umodifybyid='+currentUserInfo[0]['UserId']+
+    '&ucreatebyid='+currentUserInfo['UserId']+
     '&uparentbyid=0'+
-    '&AppType=W&updateWithImageStatus=N';//TODO: Fix this
+    '&upwd=12345'+
+    '&AppType=W';
+    //TODO: Fix this
 
-    this.httpCall.callApi('',apiUpdateString).then(responseJson => {
+    const formData = new FormData();
+    formData.append('file', this.profileImage);
+
+    this.httpCall.callApi(formData,apiUpdateString).then(responseJson => {
+
+      alert(JSON.stringify(responseJson));
        //Dismiss the loader
        loading.dismiss();
 
@@ -79,7 +86,7 @@ export class AddUserPage {
        }
 
        if(responseJson['status'] == 1){
-        this.msgHelper.showToast('Profile Information Updated !!!');
+        this.msgHelper.showToast('Profile Added !!!');
         localStorage.removeItem(this.codes.LSK_USER_INFORMATION_JSON);
         localStorage.setItem(this.codes.LSK_USER_INFORMATION_JSON,JSON.stringify(this.userInformation));
        }
@@ -114,8 +121,16 @@ export class AddUserPage {
             this.camera.getPicture(options).then((imageData) => {
              // imageData is either a base64 encoded string or a file URI
              // If it's base64 (DATA_URL):
+
              let base64Image = 'data:image/jpeg;base64,' + imageData;
-             this.profileImage  = base64Image;
+             alert(imageData);
+             this.profileImage  = imageData;
+
+             //Convert the base64 to blob 
+
+
+
+
             }, (err) => {
              // Handle error
             });
@@ -138,8 +153,10 @@ export class AddUserPage {
             this.camera.getPicture(options).then((imageData) => {
              // imageData is either a base64 encoded string or a file URI
              // If it's base64 (DATA_URL):
+             console.error(imageData);
              let base64Image = 'data:image/jpeg;base64,' + imageData;
-             this.profileImage  = base64Image;
+             alert(imageData);
+             this.profileImage  = imageData;
             }, (err) => {
              // Handle error
             });

@@ -25770,6 +25770,19 @@ ion-app.md {
   background-color: #744f4f !important;
 }
 
+.no-underline {
+  border-bottom: 0px !important;
+}
+
+.camera-img-wrapper {
+  height: 80px;
+  width: 80px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
 star-provider .background {
   border-radius: 10px !important;
   border: 1px solid #ddd;
@@ -25785,6 +25798,180 @@ user-info .user-image-size {
 user-info .noti-image-size {
   width: 15px !important;
   height: 15px !important;
+}
+
+page-add-business-unit .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-business-unit .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-business-unit .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-add-user .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-user .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-user .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-edit-brand .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-edit-brand .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-edit-brand .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-forgot-password .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-forgot-password .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-forgot-password .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-general-settings .background-content {
+  background-color: #fff;
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+}
+
+page-general-settings ion-app, page-general-settings ion-nav, page-general-settings ion-tab, page-general-settings ion-tabs, page-general-settings .app-root, page-general-settings .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-general-settings .header-md::after {
+  background-image: none !important;
+}
+
+page-general-settings .button-md {
+  padding: 11px !important;
+}
+
+page-general-settings .scroll-content {
+  margin: 0px !important;
+}
+
+page-general-settings .card-content-md {
+  padding: 0px !important;
+}
+
+page-general-settings .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-general-settings .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-general-settings .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-general-settings ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-general-settings .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-general-settings .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-general-settings .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-general-settings .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-general-settings .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-general-settings .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-general-settings .label-md {
+  margin: 0px !important;
+}
+
+page-general-settings .grid {
+  padding: 0px !important;
+}
+
+page-general-settings .alert-md .alert-message, page-general-settings .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
+page-general-settings .segment-md .segment-button {
+  font-size: 10px !important;
+}
+
+page-general-settings .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
 }
 
 page-home .background-content {
@@ -25868,6 +26055,34 @@ page-home .circle-image-buttom-incomplete {
   background: #fff;
 }
 
+page-home .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-home .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-home .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-home .label-md {
+  margin: 0px !important;
+}
+
+page-home .grid {
+  padding: 0px !important;
+}
+
+page-home .alert-md .alert-message, page-home .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
 page-login .card-md {
   border-radius: 8px !important;
   padding: 5px !important;
@@ -25943,8 +26158,36 @@ page-project-information .list-md .item-block .item-inner {
   border: none !important;
 }
 
+page-update-business-unit .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-update-business-unit .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-update-business-unit .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-update-user .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-update-user .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-update-user .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-user-message-notification-list .custom-popup {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 page-user-message-notification-list .item-md {
@@ -25955,4 +26198,9 @@ page-user-message-notification-list .item-md {
 page-user-message-notification-list .list-underline {
   border-bottom: 1px solid #fff;
   margin-left: 16px !important;
+}
+
+page-user-message-notification-list .camera-img-wrapper {
+  width: 30px !important;
+  height: 30px !important;
 }

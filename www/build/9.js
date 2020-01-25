@@ -83,11 +83,11 @@ var AddUserPage = /** @class */ (function () {
     AddUserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddUserPage');
     };
-    AddUserPage.prototype.createUserInformation = function () {
+    AddUserPage.prototype.update = function () {
         this.msgHelper.showToast('Creating your user ...');
         this.navCtrl.pop();
     };
-    AddUserPage.prototype.updateUserInformation = function () {
+    AddUserPage.prototype.createUserInformation = function () {
         var _this = this;
         //Call the change password API
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
@@ -95,23 +95,27 @@ var AddUserPage = /** @class */ (function () {
             this.msgHelper.showToast('Could not fetch user id');
             return;
         }
-        //Update the alerady present json to update the information
-        var loading = this.msgHelper.showWorkingDialog('Updating your profile');
-        var apiUpdateString = this.codes.API_UPDATE_USER +
-            '?uid=' + this.userInformation['UserId'] +
-            '&ufname=' + this.removeNull(this.userInformation['FirstName']) +
-            '&umname=' + this.removeNull(this.userInformation['MiddleName']) +
-            '&ulname=' + this.removeNull(this.userInformation['LastName']) +
-            '&uadd1=' + this.removeNull(this.userInformation['Address1']) +
-            '&uadd2=' + this.removeNull(this.userInformation['Address2']) +
-            '&ucity=' + this.removeNull(this.userInformation['City']) +
-            '&ustate=' + this.removeNull(this.userInformation['State']) +
-            '&uzip=' + this.removeNull(this.userInformation['Pincode']) +
+        //Inserting a new user profile
+        var loading = this.msgHelper.showWorkingDialog('Creating your profile');
+        var apiUpdateString = this.codes.API_INSERT_USER +
+            '?ufname=' + this.removeNull(this.firstName) +
+            '&umname=' + this.removeNull(this.middleName) +
+            '&ulname=' + this.removeNull(this.lastName) +
+            '&uadd1=' + this.removeNull(this.address1) +
+            '&uadd2=' + this.removeNull(this.address2) +
+            '&ucity=' + this.removeNull(this.city) +
+            '&ustate=' + this.removeNull(this.state) +
+            '&uzip=' + this.removeNull(this.pincode) +
             '&uactivestatus=true' +
-            '&umodifybyid=' + currentUserInfo[0]['UserId'] +
+            '&ucreatebyid=' + currentUserInfo['UserId'] +
             '&uparentbyid=0' +
-            '&AppType=W&updateWithImageStatus=N'; //TODO: Fix this
-        this.httpCall.callApi('', apiUpdateString).then(function (responseJson) {
+            '&upwd=12345' +
+            '&AppType=W';
+        //TODO: Fix this
+        var formData = new FormData();
+        formData.append('file', this.profileImage);
+        this.httpCall.callApi(formData, apiUpdateString).then(function (responseJson) {
+            alert(JSON.stringify(responseJson));
             //Dismiss the loader
             loading.dismiss();
             //Validate
@@ -120,7 +124,7 @@ var AddUserPage = /** @class */ (function () {
                 return;
             }
             if (responseJson['status'] == 1) {
-                _this.msgHelper.showToast('Profile Information Updated !!!');
+                _this.msgHelper.showToast('Profile Added !!!');
                 localStorage.removeItem(_this.codes.LSK_USER_INFORMATION_JSON);
                 localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
             }
@@ -152,7 +156,9 @@ var AddUserPage = /** @class */ (function () {
                             // imageData is either a base64 encoded string or a file URI
                             // If it's base64 (DATA_URL):
                             var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
+                            alert(imageData);
+                            _this.profileImage = imageData;
+                            //Convert the base64 to blob 
                         }, function (err) {
                             // Handle error
                         });
@@ -173,8 +179,10 @@ var AddUserPage = /** @class */ (function () {
                         _this.camera.getPicture(options).then(function (imageData) {
                             // imageData is either a base64 encoded string or a file URI
                             // If it's base64 (DATA_URL):
+                            console.error(imageData);
                             var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
+                            alert(imageData);
+                            _this.profileImage = imageData;
                         }, function (err) {
                             // Handle error
                         });
