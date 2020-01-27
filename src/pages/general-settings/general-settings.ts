@@ -16,11 +16,11 @@ export class GeneralSettingsPage {
   
   //Add the Log Out Confirmation -->
 
-  loadingStatus : any = 'Getting the list of users';
+  loadingStatus : any = 'Getting the business units ...';
   userList : any = null;
   businessunitList : any = null;
   brandList : any = null;
-  segment : any = 'users';
+  segment : any = 'businessunits';
 
   groupList : any = null;
   //FIXME: Call the API to get this list
@@ -284,6 +284,18 @@ return null;
 
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+  addBrands(){
+    let userModal = this.modalCtrl.create('AddBrandPage',{'userList':this.userList});
+    userModal.present();
+  }
 
   ionViewWillEnter(){
    this.ionViewDidLoad();

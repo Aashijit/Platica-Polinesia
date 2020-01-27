@@ -25800,6 +25800,20 @@ user-info .noti-image-size {
   height: 15px !important;
 }
 
+page-add-brand .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-brand .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-brand .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-add-business-unit .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }

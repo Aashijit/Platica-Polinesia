@@ -1,0 +1,47 @@
+<ion-content padding class="custom-popup">
+
+  <h1 style="color: wheat;">Brand</h1>
+
+  <ion-list style="text-align: center !important;">
+    
+    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
+      <img [src]="brandImage" class="camera-img-wrapper" />
+    </ion-col>
+  
+    <ion-item class="no-underline">
+      <ion-label color="primary">Brand Name</ion-label>
+      <ion-input [(ngModel)]="brandName">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Brand Description</ion-label>
+      <ion-textarea [(ngModel)]="brandDescription">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary" floating>Brand Owner</ion-label>
+      <ion-select [(ngModel)]="brandOwnerId" interface="popover" [selectOptions]="{ mode: 'ios' }">
+        <p *ngFor='let user of UserList'>
+      <ion-option [value]="user['UserId']">{{user['FirstName']+' '+user['LastName']}}</ion-option>
+      </p>
+      </ion-select>
+  
+    </ion-item>
+    
+    <p style="text-align: center;">
+      <button ion-button clear class="capitalize" (click)="addBrand()">Add Brand &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+    </p>  
+  
+  </ion-list>
+
+</ion-content>
+
+
+
+<ion-footer>
+  <button ion-button clear full (click)="closeModal();" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-footer>

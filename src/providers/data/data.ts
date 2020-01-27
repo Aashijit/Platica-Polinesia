@@ -2,11 +2,14 @@ import { Codes } from './../../Utils/Codes';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Http,Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class HttpProvider {
 
-  constructor(private http: Http,public codes : Codes) {
+  constructor(private http: Http,public codes : Codes, 
+    private httpClient : HttpClient) {
   }
 
   /**
@@ -36,6 +39,29 @@ export class HttpProvider {
       
     });
   }
+
+
+
+
+  uploadFile(data,apiName) {
+    return new Promise(resolve => {
+
+      console.log(data.get("file"));
+      this.httpClient.post(this.codes.API_ENDPOINT+apiName, data).subscribe(
+        (res) => {
+
+          console.log("Success: " + JSON.stringify(res))
+          resolve(res);
+        },
+        (err) => {
+          console.log(err);
+          resolve(err);
+        }
+    );
+      
+    });
+  }
+
 
 
   isNullOrEmpty(str) {

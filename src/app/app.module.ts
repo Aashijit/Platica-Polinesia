@@ -20,6 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { Http, ConnectionBackend, HttpModule } from '@angular/http';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
@@ -29,6 +30,7 @@ import { Http, ConnectionBackend, HttpModule } from '@angular/http';
     IonicModule.forRoot(MyApp),
     RoundProgressModule,
     HttpModule,
+    HttpClientModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],

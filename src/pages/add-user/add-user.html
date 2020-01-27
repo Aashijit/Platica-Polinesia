@@ -7,6 +7,24 @@
     <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
       <img [src]="profileImage" class="camera-img-wrapper" />
     </ion-col>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Email</ion-label>
+      <ion-input [(ngModel)]="email">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Phone</ion-label>
+      <ion-input [(ngModel)]="phone">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password">
+      </ion-input>
+    </ion-item>
     
   <ion-item class="no-underline">
     <ion-label color="primary">First Name</ion-label>

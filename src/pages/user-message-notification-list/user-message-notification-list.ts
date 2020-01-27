@@ -49,8 +49,31 @@ export class UserMessageNotificationListPage {
 
   //Log Out function
   logOut(){
-    //Empty the local storage
-    this.navCtrl.setRoot('LoginPage');
+
+    //Ask for permission from the user to log out
+    const alert = this.alertController.create({
+      title: 'Log Out',
+      message: 'You will be logged out from this app.<strong>Are you sure?</strong>',
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          handler: () => {
+            
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            //Empty the local storage
+            localStorage.removeItem(this.codes.LSK_USER_INFORMATION_JSON);
+            this.navCtrl.setRoot('LoginPage');
+          }
+        }
+      ]
+    });
+
+     alert.present();
+
   }
 
   updateUserInformation(){

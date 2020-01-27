@@ -31,6 +31,7 @@ export class Codes{
     public API_GET_BRAND_LIST="Brand/GetBrandList";
     public API_INSERT_BUSINESS_UNIT="BusinessUnit/InsertBusinessUnit";
     public API_UPDATE_BUSINESS_UNIT="BusinessUnit/UpdateBusinessUnit";
+    public API_INSERT_BRAND="Brand/InsertBrand";
     public API_UPDATE_BRAND="Brand/UpdateBrand";
     public API_INSERT_USER_MAP="UserMap/InsertUserMap";
 

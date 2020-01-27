@@ -24,7 +24,11 @@ export class AddUserPage {
   city : any;
   state : any;
   pincode : any;
+  email: any;
+  phone: any;
+  password: any;
   profileImage : any = '../../assets/imgs/user.png';
+  profileImageBlob : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -45,6 +49,7 @@ export class AddUserPage {
     //Call the change password API
     var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
 
+    console.error(JSON.stringify(currentUserInfo));
 
     if(this.dataValidation.isEmptyJson(currentUserInfo)){
       this.msgHelper.showToast('Could not fetch user id');
@@ -54,28 +59,37 @@ export class AddUserPage {
     //Inserting a new user profile
     var loading = this.msgHelper.showWorkingDialog('Creating your profile');
 
+    /*
+    &ucreatebyid=10007&uparentbyid=10007&upwd=123&AppType=W
+    */
+
     var apiUpdateString = this.codes.API_INSERT_USER+
     '?ufname='+this.removeNull(this.firstName)+
     '&umname='+this.removeNull(this.middleName)+
     '&ulname='+this.removeNull(this.lastName)+
+    '&uemail='+this.removeNull(this.email)+
+    '&umobile='+this.removeNull(this.phone)+
     '&uadd1='+this.removeNull(this.address1)+
     '&uadd2='+this.removeNull(this.address2)+
     '&ucity='+this.removeNull(this.city)+
     '&ustate='+this.removeNull(this.state)+
     '&uzip='+this.removeNull(this.pincode)+
-    '&uactivestatus=true'+
-    '&ucreatebyid='+currentUserInfo['UserId']+
+    '&ucreatebyid='+currentUserInfo[0]['UserId']+
     '&uparentbyid=0'+
-    '&upwd=12345'+
+    '&upwd='+this.removeNull(this.password)+
     '&AppType=W';
     //TODO: Fix this
 
-    const formData = new FormData();
-    formData.append('file', this.profileImage);
+    if(this.profileImageBlob == null){
+      this.msgHelper.showErrorDialog('Error !!!','Profile Image is mandatory');
+      return;
+    }
 
-    this.httpCall.callApi(formData,apiUpdateString).then(responseJson => {
 
-      alert(JSON.stringify(responseJson));
+    var formData : any= new FormData();
+    formData.append("file", this.profileImageBlob);
+
+    this.httpCall.uploadFile(formData,apiUpdateString).then(responseJson => {
        //Dismiss the loader
        loading.dismiss();
 
@@ -89,6 +103,7 @@ export class AddUserPage {
         this.msgHelper.showToast('Profile Added !!!');
         localStorage.removeItem(this.codes.LSK_USER_INFORMATION_JSON);
         localStorage.setItem(this.codes.LSK_USER_INFORMATION_JSON,JSON.stringify(this.userInformation));
+        this.navCtrl.pop();
        }
     });
   }
@@ -113,23 +128,18 @@ export class AddUserPage {
             const options: CameraOptions = {
               quality: 100,
               sourceType : this.camera.PictureSourceType.CAMERA,
-              destinationType: this.camera.DestinationType.FILE_URI,
+              destinationType: this.camera.DestinationType.DATA_URL,
               encodingType: this.camera.EncodingType.JPEG,
               mediaType: this.camera.MediaType.PICTURE
             }
             
             this.camera.getPicture(options).then((imageData) => {
              // imageData is either a base64 encoded string or a file URI
-             // If it's base64 (DATA_URL):
-
+             // If it's base64 (DATA_URL):             
+             console.error(imageData);
              let base64Image = 'data:image/jpeg;base64,' + imageData;
-             alert(imageData);
-             this.profileImage  = imageData;
-
-             //Convert the base64 to blob 
-
-
-
+             this.profileImage  = base64Image;
+             this.profileImageBlob = this.convertBase64ToBlob(base64Image);
 
             }, (err) => {
              // Handle error
@@ -145,7 +155,7 @@ export class AddUserPage {
             const options: CameraOptions = {
               quality: 100,
               sourceType : this.camera.PictureSourceType.PHOTOLIBRARY,
-              destinationType: this.camera.DestinationType.FILE_URI,
+              destinationType: this.camera.DestinationType.DATA_URL,
               encodingType: this.camera.EncodingType.JPEG,
               mediaType: this.camera.MediaType.PICTURE
             }
@@ -155,14 +165,12 @@ export class AddUserPage {
              // If it's base64 (DATA_URL):
              console.error(imageData);
              let base64Image = 'data:image/jpeg;base64,' + imageData;
-             alert(imageData);
-             this.profileImage  = imageData;
+             
+             this.profileImage  = base64Image;
+             this.profileImageBlob = this.convertBase64ToBlob(base64Image);
             }, (err) => {
              // Handle error
             });
-
-
-
           }
         },
         {
@@ -179,11 +187,44 @@ export class AddUserPage {
     actionSheet.present();
   }
 
+
+  private convertBase64ToBlob(base64: string) {
+    const info = this.getInfoFromBase64(base64);
+    const sliceSize = 512;
+    const byteCharacters = window.atob(info.rawBase64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+
+    return new Blob(byteArrays, { type: info.mime });
+  }
+
+  private getInfoFromBase64(base64: string) {
+    const meta = base64.split(',')[0];
+    const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
+    const mime = /:([^;]+);/.exec(meta)[1];
+    const extension = /\/([^;]+);/.exec(meta)[1];
+
+    return {
+      mime,
+      extension,
+      meta,
+      rawBase64
+    };
+  }
+
  
 
   closeModal(){
     this.navCtrl.pop();
   }
-
-
 }
