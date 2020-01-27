@@ -15,11 +15,11 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 })
 export class AddBrandPage {
 
-  brandName : any = '';
-  brandDescription : any = '';
-  brandOwnerId : any = '';
+  brandName : any;
+  brandDescription : any;
+  brandOwnerId : any;
   brandImage : any = '../../assets/imgs/user.png';
-  brandImageBlob : any = '';
+  brandImageBlob : any = null;
   UserList : any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
@@ -49,10 +49,10 @@ export class AddBrandPage {
       //Inserting a new user profile
       var loading = this.msgHelper.showWorkingDialog('Creating your brand ...');
   
-     
+
       var apiUpdateString = this.codes.API_INSERT_BRAND+
       '?brname='+this.removeNull(this.brandName)+
-      '&branddesc='+this.removeNull(this.brandDescription)+
+      '&brdesc='+this.removeNull(this.brandDescription)+
       '&brownerid='+this.removeNull(this.brandOwnerId)+
       '&brcreatebyid='+currentUserInfo[0]['UserId']+
       '&AppType=W';
@@ -203,5 +203,4 @@ export class AddBrandPage {
   closeModal(){
     this.navCtrl.pop();
   }
-
 }

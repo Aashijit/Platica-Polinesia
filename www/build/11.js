@@ -78,11 +78,8 @@ var AddBrandPage = /** @class */ (function () {
         this.actionSheet = actionSheet;
         this.alertController = alertController;
         this.camera = camera;
-        this.brandName = '';
-        this.brandDescription = '';
-        this.brandOwnerId = '';
         this.brandImage = '../../assets/imgs/user.png';
-        this.brandImageBlob = '';
+        this.brandImageBlob = null;
         this.UserList = '';
         this.UserList = this.navParams.get('userList');
     }
@@ -100,9 +97,10 @@ var AddBrandPage = /** @class */ (function () {
         }
         //Inserting a new user profile
         var loading = this.msgHelper.showWorkingDialog('Creating your brand ...');
+        alert(this.brandDescription);
         var apiUpdateString = this.codes.API_INSERT_BRAND +
             '?brname=' + this.removeNull(this.brandName) +
-            '&branddesc=' + this.removeNull(this.brandDescription) +
+            '&brdesc=' + this.removeNull(this.brandDescription) +
             '&brownerid=' + this.removeNull(this.brandOwnerId) +
             '&brcreatebyid=' + currentUserInfo[0]['UserId'] +
             '&AppType=W';
@@ -218,6 +216,7 @@ var AddBrandPage = /** @class */ (function () {
         var rawBase64 = base64.split(',')[1].replace(/\s/g, '');
         var mime = /:([^;]+);/.exec(meta)[1];
         var extension = /\/([^;]+);/.exec(meta)[1];
+        alert(mime);
         return {
             mime: mime,
             extension: extension,
@@ -230,7 +229,7 @@ var AddBrandPage = /** @class */ (function () {
     };
     AddBrandPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-add-brand',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Business Unit</h1>\n\n  <ion-list style="text-align: center !important;">\n    \n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="brandImage" class="camera-img-wrapper" />\n    </ion-col>\n  \n    <ion-item class="no-underline">\n      <ion-label color="primary">Brand Name</ion-label>\n      <ion-input [(ngModel)]="brandName">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-textarea color="primary">Brand Description</ion-textarea>\n      <ion-input [(ngModel)]="brandDescription">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Brand Owner</ion-label>\n      <ion-select [(ngModel)]="brandOwnerId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n        <p *ngFor=\'let user of UserList\'>\n      <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n      </p>\n      </ion-select>\n  \n    </ion-item>\n    \n    <p style="text-align: center;">\n      <button ion-button clear class="capitalize" (click)="addBrand()">Add Brand&nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n    </p>  \n  \n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/,
+            selector: 'page-add-brand',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Brand</h1>\n\n  <ion-list style="text-align: center !important;">\n    \n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="brandImage" class="camera-img-wrapper" />\n    </ion-col>\n  \n    <ion-item class="no-underline">\n      <ion-label color="primary">Brand Name</ion-label>\n      <ion-input [(ngModel)]="brandName">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary">Brand Description</ion-label>\n      <ion-textarea [(ngModel)]="brandDescription">\n      </ion-textarea>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Brand Owner</ion-label>\n      <ion-select [(ngModel)]="brandOwnerId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n        <p *ngFor=\'let user of UserList\'>\n      <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n      </p>\n      </ion-select>\n  \n    </ion-item>\n    \n    <p style="text-align: center;">\n      <button ion-button clear class="capitalize" (click)="addBrand()">Add Brand &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n    </p>  \n  \n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],

@@ -84,11 +84,11 @@ var GeneralSettingsPage = /** @class */ (function () {
         this.msgHelper = msgHelper;
         this.alertController = alertController;
         //Add the Log Out Confirmation -->
-        this.loadingStatus = 'Getting the list of users';
+        this.loadingStatus = 'Getting the business units ...';
         this.userList = null;
         this.businessunitList = null;
         this.brandList = null;
-        this.segment = 'users';
+        this.segment = 'businessunits';
         this.groupList = null;
         //FIXME: Call the API to get this list
         this.userTypes = [
