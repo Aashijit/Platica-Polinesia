@@ -1,6 +1,6 @@
 webpackJsonp([9],{
 
-/***/ 290:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddUserPageModule", function() { return AddUserPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_user__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_user__ = __webpack_require__(303);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,16 +38,16 @@ var AddUserPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 301:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUserPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(207);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -79,6 +79,7 @@ var AddUserPage = /** @class */ (function () {
         this.alertController = alertController;
         this.camera = camera;
         this.profileImage = '../../assets/imgs/user.png';
+        this.profileImageBlob = null;
     }
     AddUserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddUserPage');
@@ -117,11 +118,13 @@ var AddUserPage = /** @class */ (function () {
             '&upwd=' + this.removeNull(this.password) +
             '&AppType=W';
         //TODO: Fix this
+        if (this.profileImageBlob == null) {
+            this.msgHelper.showErrorDialog('Error !!!', 'Profile Image is mandatory');
+            return;
+        }
         var formData = new FormData();
-        formData.append("file", this.profileImage);
-        alert(formData.get("file"));
+        formData.append("file", this.profileImageBlob);
         this.httpCall.uploadFile(formData, apiUpdateString).then(function (responseJson) {
-            alert(JSON.stringify(responseJson));
             //Dismiss the loader
             loading.dismiss();
             //Validate
@@ -133,6 +136,7 @@ var AddUserPage = /** @class */ (function () {
                 _this.msgHelper.showToast('Profile Added !!!');
                 localStorage.removeItem(_this.codes.LSK_USER_INFORMATION_JSON);
                 localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
+                _this.navCtrl.pop();
             }
         });
     };
@@ -154,17 +158,17 @@ var AddUserPage = /** @class */ (function () {
                         var options = {
                             quality: 100,
                             sourceType: _this.camera.PictureSourceType.CAMERA,
-                            destinationType: _this.camera.DestinationType.FILE_URI,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
                             encodingType: _this.camera.EncodingType.JPEG,
                             mediaType: _this.camera.MediaType.PICTURE
                         };
                         _this.camera.getPicture(options).then(function (imageData) {
                             // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):
+                            // If it's base64 (DATA_URL):             
+                            console.error(imageData);
                             var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            alert(imageData);
-                            _this.profileImage = imageData;
-                            //Convert the base64 to blob 
+                            _this.profileImage = base64Image;
+                            _this.profileImageBlob = _this.convertBase64ToBlob(base64Image);
                         }, function (err) {
                             // Handle error
                         });
@@ -178,7 +182,7 @@ var AddUserPage = /** @class */ (function () {
                         var options = {
                             quality: 100,
                             sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
-                            destinationType: _this.camera.DestinationType.FILE_URI,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
                             encodingType: _this.camera.EncodingType.JPEG,
                             mediaType: _this.camera.MediaType.PICTURE
                         };
@@ -187,8 +191,8 @@ var AddUserPage = /** @class */ (function () {
                             // If it's base64 (DATA_URL):
                             console.error(imageData);
                             var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            alert(imageData);
-                            _this.profileImage = imageData;
+                            _this.profileImage = base64Image;
+                            _this.profileImageBlob = _this.convertBase64ToBlob(base64Image);
                         }, function (err) {
                             // Handle error
                         });
@@ -205,6 +209,33 @@ var AddUserPage = /** @class */ (function () {
             ]
         });
         actionSheet.present();
+    };
+    AddUserPage.prototype.convertBase64ToBlob = function (base64) {
+        var info = this.getInfoFromBase64(base64);
+        var sliceSize = 512;
+        var byteCharacters = window.atob(info.rawBase64);
+        var byteArrays = [];
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            byteArrays.push(new Uint8Array(byteNumbers));
+        }
+        return new Blob(byteArrays, { type: info.mime });
+    };
+    AddUserPage.prototype.getInfoFromBase64 = function (base64) {
+        var meta = base64.split(',')[0];
+        var rawBase64 = base64.split(',')[1].replace(/\s/g, '');
+        var mime = /:([^;]+);/.exec(meta)[1];
+        var extension = /\/([^;]+);/.exec(meta)[1];
+        return {
+            mime: mime,
+            extension: extension,
+            meta: meta,
+            rawBase64: rawBase64
+        };
     };
     AddUserPage.prototype.closeModal = function () {
         this.navCtrl.pop();
