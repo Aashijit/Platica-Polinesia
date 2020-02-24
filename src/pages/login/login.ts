@@ -45,6 +45,105 @@ export class LoginPage {
 
   login() {
 
+    // if(this.emailId == 'aashijitM@gmail.com'){
+    //   var permissions = [
+    //     {
+    //       "_MenuId":"1",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"2",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"3",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"4",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"5",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"6",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"7",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"8",
+    //       "_CanView":"1",
+    //     },
+    //     {
+    //       "_MenuId":"9",
+    //       "_CanView":"1",
+    //     }
+    //   ];
+    //   this.navCtrl.setRoot('PermissionsHomeTempPage',{"Permissions":permissions});
+    //   return;
+    // }
+
+    // if(this.emailId == 'bidyutr@gmail.com'){
+
+    //   var permissionList = JSON.parse(localStorage.getItem('Permission'));
+
+    //   permissions = [];
+    //   for(let i=0;i<permissionList.length;i++){
+    //     var permission = {
+    //       "_MenuId":String(i+1),
+    //       "_CanView":permissionList[i]['_CanView']
+    //     };
+    //     permissions[i] = permission;
+    //   }
+      
+    // // var permissions = [
+    //   //   {
+    //   //     "_MenuId":"1",
+    //   //     "_CanView":"0",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"2",
+    //   //     "_CanView":"1",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"3",
+    //   //     "_CanView":"1",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"4",
+    //   //     "_CanView":"1",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"5",
+    //   //     "_CanView":"0",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"6",
+    //   //     "_CanView":"1",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"7",
+    //   //     "_CanView":"1",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"8",
+    //   //     "_CanView":"0",
+    //   //   },
+    //   //   {
+    //   //     "_MenuId":"9",
+    //   //     "_CanView":"1",
+    //   //   }
+    //   // ];
+    //   this.navCtrl.setRoot('PermissionsHomeTempPage',{"Permissions":permissions});
+    //   return;
+    // }
+
+
     //Step 1 : Validate the mobile number TODO:
     // if (!this.dataValidation.isValidMobileNumber(this.mobileNumber)) {
     //   this.msgHelper.showToast(this.codes.EM_INVALID_MOBILE_NUMBER);

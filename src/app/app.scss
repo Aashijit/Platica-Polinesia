@@ -25,6 +25,14 @@
 }
 
 
+//Text align
+.ta-left {
+    text-align: left !important;
+}
+.ta-center{
+    text-align: center !important;
+}
+
 
 //Padding
 .nopadding{
@@ -32,6 +40,9 @@
 }
 .p-10{
     padding: 10px !important;
+}
+.pt-15{
+    padding-top:15px !important;
 }
 
 

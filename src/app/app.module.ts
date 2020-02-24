@@ -21,6 +21,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { Http, ConnectionBackend, HttpModule } from '@angular/http';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+
+import { CalendarModule, CalendarModal } from 'ion2-calendar';
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +35,8 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
     RoundProgressModule,
     HttpModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    CalendarModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +50,7 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
     Codes,
     HttpProvider,
     Camera,
+    DatePipe,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

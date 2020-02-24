@@ -24,6 +24,8 @@
 <!--Body starts here-->
 <ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
 
+  
+
 
 </ion-content>
 <!--Body ends here-->
@@ -36,7 +38,7 @@
   <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>
-  <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
+  <button ion-button clear (click)="navCtrl.setRoot('LeaveSelectionPage')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear (click)="navCtrl.setRoot('GeneralSettingsPage')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>
 </ion-footer>
 <!--Footer ends here-->

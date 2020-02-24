@@ -43,7 +43,7 @@ export class UpdateBusinessUnitPage {
       return;
     }
 
-    this.businessUnit['ModifiedByID'] = currentUserInfo['UserId'];
+    this.businessUnit['ModifiedByID'] =  
     this.businessUnit['AppType'] = 'W';
 
     console.error(JSON.stringify(this.businessUnit));

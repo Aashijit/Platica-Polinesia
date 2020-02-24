@@ -34,6 +34,12 @@ export class Codes{
     public API_INSERT_BRAND="Brand/InsertBrand";
     public API_UPDATE_BRAND="Brand/UpdateBrand";
     public API_INSERT_USER_MAP="UserMap/InsertUserMap";
+    public API_GET_LEAVE_TYPE="Leave/GetLeaveType";
+    public API_GET_LEAVE_INFORMATION_COUNT="Leave/GetLeaveTypeCountInformation";
+    public API_GET_USER_LEAVE_BALANCE_INFORMATION="Leave/GetUserLeaveBalanceInformation";
+    public API_LEAVE_APPLY="Leave/LeaveApply";
+    public API_GET_LEAVE_BALANCE_INFORMATION="Leave/GetLeaveBalanceInformation";
+    public API_APPROVE_LEAVE="Leave/LeaveApproval";
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 

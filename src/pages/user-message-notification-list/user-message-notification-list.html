@@ -8,6 +8,9 @@
       <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="logOut()">
         Log Out <ion-icon name="log-out"></ion-icon>
       </p>
+      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="navCtrl.setRoot('HomePage')">
+        Go Home <ion-icon name="home"></ion-icon>
+      </p>
     </ion-col>
     <ion-col col-2 (click)="presentActionSheetToUpdateImage()">
       <img [src]="profileImage" class="camera-img-wrapper" />

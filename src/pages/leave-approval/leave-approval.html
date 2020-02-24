@@ -1,0 +1,122 @@
+<ion-header style="padding-left:10px !important; padding-right:10px !important">
+  <!--header starts here-->
+  <ion-row>
+   <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">
+     <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="'#00ff00'"></round-progress>
+     <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;
+     position: absolute;
+     top: 7px !important;
+     left: 7px !important;" />
+   </ion-col>
+
+   <ion-col class="nopadding mt-20">
+     <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>
+   </ion-col>
+
+   <ion-col class="nopadding">
+    <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      
+   </ion-col>
+
+ </ion-row>
+<!--header ends here-->
+</ion-header>
+
+<!--Body starts here-->
+<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
+
+  <ion-list *ngFor="let leave of leaves">
+    <ion-row >
+    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
+      <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
+    </ion-col>
+    <ion-col col-10 class="underline ta-left nopadding"> 
+    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
+    <p style="font-size:12px !important; color: #888 !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
+    <p *ngIf="leave['LeaveStatus'] == 'A' && !dataValidation.isEmptyJson(leave['ApproveOrRejectedBy'])"><ion-badge color="secondary">Approved</ion-badge></p>
+    <span *ngIf="dataValidation.isEmptyJson(leave['ApproveOrRejectedBy'])">
+    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>
+    &nbsp;
+    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>
+  </span>
+    </ion-col>
+  </ion-header>
+  <ion-row>
+    <ion-col>
+    {{leave['ApprovedOrRejectedLeaveComments']}}
+  </ion-col>
+  </ion-row>
+  </ion-list>
+
+
+
+<!-- <strong style="margin-bottom: 2% !important; color: #aaa !important;">Approved Leaves</strong> -->
+  <ion-list *ngFor="let leave of appleaves">
+    <ion-row >
+    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
+      <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
+    </ion-col>
+    <ion-col col-8 class="underline ta-left nopadding"> 
+    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
+    <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
+    <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="secondary">Approved by {{leave['ApprovedOrRejectedByName']}}</ion-badge></p>
+    <!-- <span *ngIf="dataValidation.isEmptyJson(leave['ApproveOrRejectedBy'])">
+    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>
+    &nbsp;
+    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>
+  </span> -->
+    </ion-col>
+    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
+      <img [src]="leave['ApprovedOrRejectedByImagePath']" class="camera-img-wrapper" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+    {{leave['ApprovedOrRejectedLeaveComments']}}
+  </ion-col>
+  </ion-row>
+  </ion-list>
+
+
+
+
+  <!-- <strong style="margin-bottom: 2% !important; color: #aaa !important">Rejected Leaves</strong> -->
+  <ion-list *ngFor="let leave of rejleaves">
+    <ion-row >
+    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
+      <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
+    </ion-col>
+    <ion-col col-8 class="underline ta-left nopadding"> 
+    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
+    <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
+    <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="danger">Rejected by {{leave['ApprovedOrRejectedByName']}}</ion-badge></p>
+    <!-- <span *ngIf="dataValidation.isEmptyJson(leave['ApproveOrRejectedBy'])">
+    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>
+    &nbsp;
+    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>
+  </span> -->
+    </ion-col>
+    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
+      <img [src]="leave['ApprovedOrRejectedByImagePath']" class="camera-img-wrapper" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+    {{leave['ApprovedOrRejectedLeaveComments']}}
+  </ion-col>
+  </ion-row>
+  </ion-list>
+</ion-content>
+<!--Body ends here-->
+
+<!--Footer starts here-->
+<ion-footer style="background-color: #efefef; text-align: center;">
+ <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear (click)="navCtrl.setRoot('LeaveSelectionPage')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear (click)="navCtrl.setRoot('GeneralSettingsPage')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>
+</ion-footer>
+<!--Footer ends here-->
