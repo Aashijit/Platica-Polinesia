@@ -1,0 +1,47 @@
+<ion-content padding class="custom-popup">
+
+  <ion-card *ngIf="!dataValidation.isEmptyJson(requestJson)">
+    <ion-card-header>Apply leave</ion-card-header>
+    <ion-row>
+      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson['LeaveFromDate']}}</ion-col>
+      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-2> to </ion-col>
+      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson['LeaveToDate']}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="margin-top: 13px !important" col-6> Upload Document 1 : </ion-col>
+      <ion-col col-3> <button ion-button outline (click)="getImage1()">
+        <ion-icon name="camera"></ion-icon></button>
+      </ion-col>
+      <ion-col col-3>
+        <img [src]="documentImage1" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage1)"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="margin-top: 13px !important" col-6> Upload Document 2 : </ion-col>
+      <ion-col col-3>  
+        <button ion-button outline (click)="getImage2()"><ion-icon name="camera"></ion-icon></button>
+      </ion-col>
+        <ion-col col-3>
+        <img [src]="documentImage2" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage2)"/>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label floating>Comments</ion-label>
+      <ion-textarea rows=4 columns=10 [(ngModel)]="comment" style="color: #666 !important;"></ion-textarea>
+    </ion-item>
+
+    <p style="text-align:center !important;">
+    <button ion-button clear (click)="applyForLeave()">Apply for leave</button>
+    </p>
+  </ion-card> 
+
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button clear full (click)="closeModal();" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-footer>

@@ -1,17 +1,14 @@
 webpackJsonp([9],{
 
-/***/ 438:
+/***/ 439:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home__ = __webpack_require__(455);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LeaveApplyPageModule", function() { return LeaveApplyPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__leave_apply__ = __webpack_require__(457);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21,41 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-var HomePageModule = /** @class */ (function () {
-    function HomePageModule() {
+var LeaveApplyPageModule = /** @class */ (function () {
+    function LeaveApplyPageModule() {
     }
-    HomePageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+    LeaveApplyPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_2__leave_apply__["a" /* LeaveApplyPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */]),
-                __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_0__components_components_module__["a" /* ComponentsModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__leave_apply__["a" /* LeaveApplyPage */]),
             ],
         })
-    ], HomePageModule);
-    return HomePageModule;
+    ], LeaveApplyPageModule);
+    return LeaveApplyPageModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=leave-apply.module.js.map
 
 /***/ }),
 
-/***/ 455:
+/***/ 457:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeaveApplyPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(344);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -73,146 +67,191 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
+var LeaveApplyPage = /** @class */ (function () {
+    function LeaveApplyPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController, camera) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
+        this.msgHelper = msgHelper;
         this.httpCall = httpCall;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.msgHelper = msgHelper;
+        this.actionSheet = actionSheet;
         this.alertController = alertController;
-        this.loadingStatus = 'Getting the list of users';
-        this.userList = null;
+        this.camera = camera;
+        this.requestJson = null;
+        this.documentImage1 = null;
+        this.documentImage2 = null;
+        this.comment = null;
     }
-    HomePage.prototype.ionViewDidLoad = function () {
+    LeaveApplyPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LeaveApplyPage');
+        this.requestJson = this.navParams.get('RequestJson');
+    };
+    LeaveApplyPage.prototype.getImage1 = function () {
         var _this = this;
-        console.log('ionViewDidLoad HomePage');
-        //Start calling the API's
-        //Get user list
-        var requestJson = {
-            'AppType': 'W'
-        };
-        this.httpCall.callApi(requestJson, this.codes.API_GET_USER_DETAILS).then(function (responseJson) {
-            //Validate
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
-                return;
-            }
-            _this.userList = responseJson['resultData'];
-            //Get the user mapped list
-            _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_MAP_LIST).then(function (getUserMappedListJson) {
-                //Validate
-                if (_this.dataValidation.isEmptyJson(getUserMappedListJson)) {
-                    _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
-                    return;
-                }
-                if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
-                    var listOfMappings = getUserMappedListJson['resultData'];
-                    //Fetch the list of group ids
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_GROUP).then(function (usergroupjson) {
-                        if (_this.dataValidation.isEmptyJson(usergroupjson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Group List API !!!');
-                            return;
-                        }
-                        var userGroups = usergroupjson['resultData'];
-                        console.error(userGroups);
-                        for (var i = 0; i <= _this.userList.length - 1; i++) {
-                            _this.userList[i]['UserTypeName'] = _this.getUserTypeName(listOfMappings, _this.userList[i]['UserId']);
-                            _this.userList[i]['GroupName'] = _this.getUserGroupId(listOfMappings, _this.userList[i]['UserId'], userGroups);
-                        }
-                    });
-                }
-            });
-        });
-    };
-    HomePage.prototype.getUserGroupId = function (resultData, userId, userGroup) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                for (var j = 0; j < userGroup.length; j++) {
-                    // alert(userGroup[j]['GroupId']+' '+ resultData[i]['UserGroupIds']);
-                    if (userGroup[j]['UserGroupId'] == resultData[i]['UserGroupIds']) {
-                        return userGroup[j]['UserGroupName'];
-                    }
-                }
-            }
-        }
-        return null;
-    };
-    HomePage.prototype.getUserTypeName = function (resultData, userId) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                return resultData[i]['UserTypeName'];
-            }
-        }
-        return null;
-    };
-    HomePage.prototype.goToUserMessages = function () {
-        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
-        userModal.present();
-    };
-    HomePage.prototype.goToProjectSelection = function () {
-        var projectSelectionModal = this.modalCtrl.create('ProjectInformationPage');
-        projectSelectionModal.present();
-    };
-    HomePage.prototype.editUser = function (user) {
-        var userModal = this.modalCtrl.create('UpdateUserPage', { 'userinfo': user });
-        userModal.present();
-    };
-    HomePage.prototype.deleteUser = function (user) {
-        var _this = this;
-        var alert = this.alertController.create({
-            title: 'User to be deleted',
-            message: 'User is to be deleted. <strong>Are you sure</strong>!!!',
+        var actionSheet = this.actionSheet.create({
+            title: 'Update your document',
             buttons: [
                 {
-                    text: 'No',
-                    role: 'no',
+                    text: 'Capture an image',
+                    role: 'camera',
+                    icon: 'camera',
                     handler: function () {
-                    }
-                }, {
-                    text: 'Yes',
-                    handler: function () {
-                        //Call the delete user API
-                        var requestJson = {
-                            "UserId": user['UserId'],
-                            "AppType": "W"
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.CAMERA,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
                         };
-                        var loading = _this.msgHelper.showWorkingDialog('Deleting the user ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_DELETE_USER).then(function (responseJson) {
-                            loading.dismiss();
-                            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
-                                return;
-                            }
-                            if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('User deleted !!!');
-                                _this.ionViewDidLoad();
-                            }
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):             
+                            console.error(imageData);
+                            _this.documentImage1 = 'data:image/jpeg;base64,' + imageData;
+                            //  this.brandImage  = base64Image;
+                            //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
+                        }, function (err) {
+                            // Handle error
                         });
+                    }
+                },
+                {
+                    text: 'Select from gallery',
+                    role: 'gallery',
+                    icon: 'image',
+                    handler: function () {
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
+                        };
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):
+                            console.error(imageData);
+                            _this.documentImage1 = 'data:image/jpeg;base64,' + imageData;
+                            //  this.brandImage  = base64Image;
+                            //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
+                        }, function (err) {
+                            // Handle error
+                        });
+                    }
+                },
+                {
+                    text: 'Close',
+                    role: 'close',
+                    icon: 'close',
+                    handler: function () {
+                        actionSheet.dismiss();
                     }
                 }
             ]
         });
-        alert.present();
+        actionSheet.present();
     };
-    HomePage.prototype.addUser = function () {
-        var userModal = this.modalCtrl.create('AddUserPage');
-        userModal.present();
+    LeaveApplyPage.prototype.getImage2 = function () {
+        var _this = this;
+        var actionSheet = this.actionSheet.create({
+            title: 'Update your document',
+            buttons: [
+                {
+                    text: 'Capture an image',
+                    role: 'camera',
+                    icon: 'camera',
+                    handler: function () {
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.CAMERA,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
+                        };
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):             
+                            console.error(imageData);
+                            _this.documentImage2 = 'data:image/jpeg;base64,' + imageData;
+                            //  this.brandImage  = base64Image;
+                            //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
+                        }, function (err) {
+                            // Handle error
+                        });
+                    }
+                },
+                {
+                    text: 'Select from gallery',
+                    role: 'gallery',
+                    icon: 'image',
+                    handler: function () {
+                        var options = {
+                            quality: 100,
+                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
+                            destinationType: _this.camera.DestinationType.DATA_URL,
+                            encodingType: _this.camera.EncodingType.JPEG,
+                            mediaType: _this.camera.MediaType.PICTURE
+                        };
+                        _this.camera.getPicture(options).then(function (imageData) {
+                            // imageData is either a base64 encoded string or a file URI
+                            // If it's base64 (DATA_URL):
+                            console.error(imageData);
+                            _this.documentImage2 = 'data:image/jpeg;base64,' + imageData;
+                            //  this.brandImage  = base64Image;
+                            //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
+                        }, function (err) {
+                            // Handle error
+                        });
+                    }
+                },
+                {
+                    text: 'Close',
+                    role: 'close',
+                    icon: 'close',
+                    handler: function () {
+                        actionSheet.dismiss();
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
     };
-    HomePage = __decorate([
+    LeaveApplyPage.prototype.removeNull = function (string) {
+        if (string == null || string == undefined)
+            return "";
+    };
+    LeaveApplyPage.prototype.applyForLeave = function () {
+        var requestAPI = "Leave/LeaveApply?" +
+            "leavetypeyearlycountid=1" +
+            "&leavetakencount=" + this.requestJson['LeaveTakeCount'] +
+            "&leavefromdate=" + this.requestJson['LeaveFromDate'] +
+            "&leavetodate=" + this.requestJson['LeaveToDate'] +
+            "&leavecomments=" + this.removeNull(this.comment) +
+            "&AppType=W" +
+            "&insertwithimagestatus=N";
+        this.httpCall.callApi("", requestAPI).then(function (responseJson) {
+            console.error(responseJson);
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    LeaveApplyPage.prototype.closeModal = function () {
+        this.navCtrl.pop();
+    };
+    LeaveApplyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n   <!--header starts here-->\n   <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n      position: absolute;\n      top: 7px !important;\n      left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n     <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n    </ion-col>\n\n  </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n  \n\n\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'LeaveSelectionPage\')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/,
+            selector: 'page-leave-apply',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/leave-apply/leave-apply.html"*/'<ion-content padding class="custom-popup">\n\n  <ion-card *ngIf="!dataValidation.isEmptyJson(requestJson)">\n    <ion-card-header>Apply leave</ion-card-header>\n    <ion-row>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveFromDate\']}}</ion-col>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-2> to </ion-col>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveToDate\']}}</ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 1 : </ion-col>\n      <ion-col col-3> <button ion-button outline (click)="getImage1()">\n        <ion-icon name="camera"></ion-icon></button>\n      </ion-col>\n      <ion-col col-3>\n        <img [src]="documentImage1" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage1)"/>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 2 : </ion-col>\n      <ion-col col-3>  \n        <button ion-button outline (click)="getImage2()"><ion-icon name="camera"></ion-icon></button>\n      </ion-col>\n        <ion-col col-3>\n        <img [src]="documentImage2" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage2)"/>\n      </ion-col>\n    </ion-row>\n\n    <ion-item>\n      <ion-label floating>Comments</ion-label>\n      <ion-textarea rows=4 columns=10 [(ngModel)]="comment" style="color: #666 !important;"></ion-textarea>\n    </ion-item>\n\n    <p style="text-align:center !important;">\n    <button ion-button clear (click)="applyForLeave()">Apply for leave</button>\n    </p>\n  </ion-card> \n\n\n</ion-content>\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/leave-apply/leave-apply.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ModalController"],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"]])
-    ], HomePage);
-    return HomePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
+    ], LeaveApplyPage);
+    return LeaveApplyPage;
 }());
 
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=leave-apply.js.map
 
 /***/ })
 

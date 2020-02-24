@@ -1,6 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 440:
+/***/ 441:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11,7 +11,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__leave_selection__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__leave_selection__ = __webpack_require__(459);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,7 +45,7 @@ var LeaveSelectionPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 457:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -252,58 +252,34 @@ var LeaveSelectionPage = /** @class */ (function () {
                 _this.msgHelper.showToast('You have only ' + leave['RemaningLeave'] + ' ' + leave['LeaveTypeName'] + ' leaves left !!!', false);
                 return;
             }
-            var alt = _this.alert.create({
-                title: 'Apply Leave',
-                message: 'Do you really want to apply leave from <strong>' + _this.datePipe.transform(date.from["string"], 'd-MMM yyyy') + '</strong> to <strong>' + _this.datePipe.transform(date.to["string"], 'd-MMM yyyy') + '</strong> ?',
-                buttons: [
-                    {
-                        text: 'No',
-                        role: 'no',
-                        handler: function () {
-                        }
-                    }, {
-                        text: 'Yes',
-                        handler: function () {
-                            var currentUserInfo = JSON.parse(localStorage.getItem(_this.codes.LSK_USER_INFORMATION_JSON));
-                            if (_this.dataValidation.isEmptyJson(currentUserInfo)) {
-                                _this.msgHelper.showToast('Could not fetch user id');
-                                return;
-                            }
-                            //Apply for leaves
-                            var requestJson = {
-                                "UserId": currentUserInfo[0]['UserId'],
-                                "LeaveTypeId": leave['LeaveTypeId'],
-                                "FinancialYearId": 1,
-                                "LeaveTakeCount": differenceInDays,
-                                "LeaveApplyDate": _this.datePipe.transform(new Date(), 'YYYY-MM-DD'),
-                                "LeaveFromDate": date.from['string'],
-                                "LeaveToDate": date.to['string'],
-                                "AppType": "W"
-                            };
-                            console.error(requestJson);
-                            _this.http.callApi(requestJson, _this.codes.API_LEAVE_APPLY).then(function (responseJson) {
-                                if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                    _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
-                                    return;
-                                }
-                                _this.msgHelper.showToast(responseJson['resMessage'], false);
-                                _this.ionViewDidLoad();
-                            });
-                        }
-                    }
-                ]
-            });
-            alt.present();
+            var currentUserInfo = JSON.parse(localStorage.getItem(_this.codes.LSK_USER_INFORMATION_JSON));
+            if (_this.dataValidation.isEmptyJson(currentUserInfo)) {
+                _this.msgHelper.showToast('Could not fetch user id');
+                return;
+            }
+            var requestJson = {
+                "UserId": currentUserInfo[0]['UserId'],
+                "LeaveTypeId": leave['LeaveTypeId'],
+                "FinancialYearId": 1,
+                "LeaveTakeCount": differenceInDays,
+                "LeaveApplyDate": _this.datePipe.transform(new Date(), 'YYYY-MM-DD'),
+                "LeaveFromDate": date.from['string'],
+                "LeaveToDate": date.to['string'],
+                "AppType": "W"
+            };
+            var applyModal = _this.modalCtrl.create('LeaveApplyPage', { "RequestJson": requestJson });
+            applyModal.present();
         });
     };
     LeaveSelectionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
             selector: 'page-leave-selection',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/leave-selection/leave-selection.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n  <!--header starts here-->\n  <ion-row>\n   <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n     <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n     <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n     position: absolute;\n     top: 7px !important;\n     left: 7px !important;" />\n   </ion-col>\n\n   <ion-col class="nopadding mt-20">\n     <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n   </ion-col>\n\n   <ion-col class="nopadding">\n    <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n   </ion-col>\n\n </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n  \n  <ion-list *ngFor="let leave of leaves">\n      <ion-card style="width: 100% !important; max-width: none !important; min-width: none !important;">\n        <ion-row>\n        <ion-col col-5 class="pt-15 ta-left">\n          <span>\n          <ion-icon name="information-circle" style="color: rgb(12, 80, 107) !important;" *ngIf="dataValidation.isEmptyJson(leave[\'TakenLeave\']) || dataValidation.isEmptyJson(leave[\'RemainingLeave\'])" (click)="getInformation(leave[\'LeaveTypeId\'],leave)"></ion-icon>\n          &nbsp;\n          <span style="color: rgb(12, 80, 107) !important;">{{leave[\'LeaveTypeName\']}} Leave</span>\n        </span>\n        </ion-col>\n        <ion-col col-2 class="pt-15" *ngIf="!dataValidation.isEmptyJson(leave[\'TakenLeave\']) || leave[\'TakenLeave\'] == \'0\'" >\n          <ion-badge color="danger">Taken : {{leave[\'TakenLeave\']}}</ion-badge>\n        </ion-col>\n        <ion-col col-2 class="pt-15" *ngIf="!dataValidation.isEmptyJson(leave[\'RemaningLeave\']) || leave[\'RemaningLeave\'] == \'0\'">\n          <ion-badge color="secondary">Left : {{leave[\'RemaningLeave\']}}</ion-badge>\n        </ion-col>\n        <ion-col col-3>\n          <button ion-button clear (click)="openCalendar(leave)">Apply</button>\n        </ion-col>\n      </ion-row>\n        </ion-card>    \n  </ion-list>\n\n  <!-- <ion-title class="color-header">Applied leaves</ion-title> -->\n  <ion-list *ngFor="let apLeave of appliedLeaves">\n    <p  class="" style="padding-bottom: 5px !important; border-bottom: 1px solid #ddd !important">\n      <ion-row>\n    <ion-col col-2 *ngIf="!dataValidation.isEmptyJson(apLeave[\'UserImagePath\'])">\n      <img [src]="apLeave[\'UserImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n        <ion-col col-8>\n    <ion-row>\n      <ion-col class="subtitle-1 ta-left" col-4>\n        <strong>{{apLeave[\'LeaveTypeName\']}} Leave</strong>\n      </ion-col>\n      <ion-col class="subtitle-2" col-3><strong>{{datePipe.transform(apLeave[\'LeaveFromDate\'],\'d-MMM\')}}</strong></ion-col>\n      <ion-col class="subtitle-1" col-2> to </ion-col>\n      <ion-col class="subtitle-2" col-3><strong>{{datePipe.transform(apLeave[\'LeaveToDate\'],\'d-MMM\')}}</strong></ion-col>\n    </ion-row>\n    <ion-row class="subtitle-1" style="padding-left: 2% !important;margin-top:4px !important">\n      <ion-icon name="checkmark-circle" mode="ios">&nbsp;</ion-icon>Approved by &nbsp; <strong>{{apLeave[\'ApprovedOrRejectedByName\']}}</strong>\n    </ion-row>\n    <ion-row class="subtitle-1" style="padding-left: 2% !important;margin-top:4px !important" *ngIf="!dataValidation.isEmptyJson(apLeave[\'ApprovedOrRejectedLeaveComments\'])">\n      <strong>{{apLeave[\'ApprovedOrRejectedByName\']}} : </strong> &nbsp; {{apLeave[\'ApprovedOrRejectedLeaveComments\']}}\n    </ion-row>\n  </ion-col>\n  <ion-col col-2 *ngIf="!dataValidation.isEmptyJson(apLeave[\'ApprovedOrRejectedByImagePath\'])">\n    <img [src]="apLeave[\'ApprovedOrRejectedByImagePath\']" class="camera-img-wrapper" />\n  </ion-col>\n  </ion-row>\n  </p>\n  </ion-list>\n\n\n\n  <ion-list *ngFor="let apLeave of rejectedLeaves">\n    <p  class="" style="padding-bottom: 5px !important; border-bottom: 1px solid #ddd !important">\n      <ion-row>\n    <ion-col col-2 *ngIf="!dataValidation.isEmptyJson(apLeave[\'UserImagePath\'])">\n      <img [src]="apLeave[\'UserImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n        <ion-col col-8>\n    <ion-row>\n      <ion-col class="subtitle-1 ta-left" col-4>\n        <strong>{{apLeave[\'LeaveTypeName\']}} Leave</strong>\n      </ion-col>\n      <ion-col class="subtitle-2" col-3><strong>{{datePipe.transform(apLeave[\'LeaveFromDate\'],\'d-MMM\')}}</strong></ion-col>\n      <ion-col class="subtitle-1" col-2> to </ion-col>\n      <ion-col class="subtitle-2" col-3><strong>{{datePipe.transform(apLeave[\'LeaveToDate\'],\'d-MMM\')}}</strong></ion-col>\n    </ion-row>\n    <ion-row class="subtitle-1" style="padding-left: 2% !important;margin-top:4px !important">\n      <ion-icon name="close-circle" mode="ios">&nbsp;</ion-icon>Rejected by &nbsp; <strong>{{apLeave[\'ApprovedOrRejectedByName\']}}</strong>\n    </ion-row>\n  </ion-col>\n  <ion-col col-2 *ngIf="!dataValidation.isEmptyJson(apLeave[\'ApprovedOrRejectedByImagePath\'])">\n    <img [src]="apLeave[\'ApprovedOrRejectedByImagePath\']" class="camera-img-wrapper" />\n  </ion-col>\n  </ion-row>\n  </p>\n  </ion-list>\n\n\n  <ion-fab bottom right>\n    <button ion-fab (click)="navCtrl.setRoot(\'LeaveApprovalPage\')"><ion-icon name="checkmark-circle"></ion-icon></button>\n  </ion-fab>\n\n\n  \n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n <button ion-button clear><img src="../../assets/imgs/menu_calendario_on.png" style="width: 15px !important;"/></button>\n <button ion-button clear (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/leave-selection/leave-selection.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]) === "function" && _j || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]])
     ], LeaveSelectionPage);
     return LeaveSelectionPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=leave-selection.js.map

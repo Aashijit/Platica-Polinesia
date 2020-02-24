@@ -1,17 +1,14 @@
 webpackJsonp([6],{
 
-/***/ 294:
+/***/ 442:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GeneralSettingsPageModule", function() { return GeneralSettingsPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__general_settings__ = __webpack_require__(306);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(460);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21,41 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-
-var GeneralSettingsPageModule = /** @class */ (function () {
-    function GeneralSettingsPageModule() {
+var LoginPageModule = /** @class */ (function () {
+    function LoginPageModule() {
     }
-    GeneralSettingsPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
+    LoginPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__general_settings__["a" /* GeneralSettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_4__general_settings__["a" /* GeneralSettingsPage */]),
-                __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__["RoundProgressModule"],
-                __WEBPACK_IMPORTED_MODULE_0__components_components_module__["a" /* ComponentsModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
             ],
         })
-    ], GeneralSettingsPageModule);
-    return GeneralSettingsPageModule;
+    ], LoginPageModule);
+    return LoginPageModule;
 }());
 
-//# sourceMappingURL=general-settings.module.js.map
+//# sourceMappingURL=login.module.js.map
 
 /***/ }),
 
-/***/ 306:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GeneralSettingsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_data_data__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -71,270 +64,196 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-var GeneralSettingsPage = /** @class */ (function () {
-    function GeneralSettingsPage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, dataValidation, msgHelper, codes, httpCall, modalCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.httpCall = httpCall;
-        this.codes = codes;
         this.dataValidation = dataValidation;
         this.msgHelper = msgHelper;
-        this.alertController = alertController;
-        //Add the Log Out Confirmation -->
-        this.loadingStatus = 'Getting the business units ...';
-        this.userList = null;
-        this.businessunitList = null;
-        this.brandList = null;
-        this.segment = 'businessunits';
-        this.groupList = null;
-        //FIXME: Call the API to get this list
-        this.userTypes = [
-            {
-                "UserTypeId": 1,
-                "UserTypeName": "Super Admin",
-                "CanAdd": true,
-                "CanModify": true,
-                "CanDelete": true,
-                "CanViewOnly": true
-            },
-            {
-                "UserTypeId": 2,
-                "UserTypeName": "Admin",
-                "CanAdd": true,
-                "CanModify": true,
-                "CanDelete": false,
-                "CanViewOnly": true
-            },
-            {
-                "UserTypeId": 3,
-                "UserTypeName": "Generic User",
-                "CanAdd": false,
-                "CanModify": false,
-                "CanDelete": false,
-                "CanViewOnly": true
-            },
-            {
-                "UserTypeId": 4,
-                "UserTypeName": "Specific Role User",
-                "CanAdd": true,
-                "CanModify": false,
-                "CanDelete": false,
-                "CanViewOnly": true
-            },
-            {
-                "UserTypeId": 5,
-                "UserTypeName": "Collaborator",
-                "CanAdd": true,
-                "CanModify": true,
-                "CanDelete": false,
-                "CanViewOnly": true
-            }
-        ];
+        this.codes = codes;
+        this.httpCall = httpCall;
+        this.modalCtrl = modalCtrl;
+        this.authenticationSent = false;
+        this.emailId = "";
+        this.mobileNumber = "";
+        this.password = "";
+        this.verificationCode = "";
     }
-    GeneralSettingsPage.prototype.ionViewDidLoad = function () {
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage.prototype.verify = function () {
+        if (!this.dataValidation.isEmptyJson(this.userInformation)) {
+            this.navCtrl.push('HomePage', this.userInformation);
+        }
+        else {
+            this.msgHelper.showToast('User information could not be fetched', false);
+            return;
+        }
+    };
+    LoginPage.prototype.login = function () {
+        // if(this.emailId == 'aashijitM@gmail.com'){
+        //   var permissions = [
+        //     {
+        //       "_MenuId":"1",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"2",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"3",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"4",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"5",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"6",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"7",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"8",
+        //       "_CanView":"1",
+        //     },
+        //     {
+        //       "_MenuId":"9",
+        //       "_CanView":"1",
+        //     }
+        //   ];
+        //   this.navCtrl.setRoot('PermissionsHomeTempPage',{"Permissions":permissions});
+        //   return;
+        // }
         var _this = this;
-        console.log('ionViewDidLoad GeneralSettingsPage');
-        //Start calling the API's
-        //Get user list
-        var requestJson = {
-            'AppType': 'W'
+        // if(this.emailId == 'bidyutr@gmail.com'){
+        //   var permissionList = JSON.parse(localStorage.getItem('Permission'));
+        //   permissions = [];
+        //   for(let i=0;i<permissionList.length;i++){
+        //     var permission = {
+        //       "_MenuId":String(i+1),
+        //       "_CanView":permissionList[i]['_CanView']
+        //     };
+        //     permissions[i] = permission;
+        //   }
+        // // var permissions = [
+        //   //   {
+        //   //     "_MenuId":"1",
+        //   //     "_CanView":"0",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"2",
+        //   //     "_CanView":"1",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"3",
+        //   //     "_CanView":"1",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"4",
+        //   //     "_CanView":"1",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"5",
+        //   //     "_CanView":"0",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"6",
+        //   //     "_CanView":"1",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"7",
+        //   //     "_CanView":"1",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"8",
+        //   //     "_CanView":"0",
+        //   //   },
+        //   //   {
+        //   //     "_MenuId":"9",
+        //   //     "_CanView":"1",
+        //   //   }
+        //   // ];
+        //   this.navCtrl.setRoot('PermissionsHomeTempPage',{"Permissions":permissions});
+        //   return;
+        // }
+        //Step 1 : Validate the mobile number TODO:
+        // if (!this.dataValidation.isValidMobileNumber(this.mobileNumber)) {
+        //   this.msgHelper.showToast(this.codes.EM_INVALID_MOBILE_NUMBER);
+        //   return;
+        // }
+        //Step 2 : Validate the email id
+        if (!this.dataValidation.isValidEmailId(this.emailId)) {
+            this.msgHelper.showToast(this.codes.EM_INVALID_EMAILID);
+            return;
+        }
+        //Step 3 : Validate the password
+        if (this.dataValidation.isEmptyJson(this.password)) {
+            this.msgHelper.showToast(this.codes.EM_INVALID_PASSWORD);
+            return;
+        }
+        //Step 4 : Make the API call for logging in
+        //Create the json
+        var getLoginDetailsApiRequestJson = {
+            "email": this.emailId,
+            "password": this.password,
+            "apptype": "W"
         };
-        this.httpCall.callApi(requestJson, this.codes.API_GET_USER_DETAILS).then(function (responseJson) {
+        //start the loading controller
+        var loading = this.msgHelper.showWorkingDialog("Sending verification message");
+        //Call the API
+        this.httpCall.callApi(getLoginDetailsApiRequestJson, this.codes.API_GET_LOGIN_DETAILS).then(function (getLoginDetailsApiResponseJson) {
+            //Dismiss the loader
+            loading.dismiss();
             //Validate
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
+            if (_this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson)) {
                 _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
                 return;
             }
-            _this.userList = responseJson['resultData'];
-            //Get the user mapped list
-            _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_MAP_LIST).then(function (getUserMappedListJson) {
-                //Validate
-                if (_this.dataValidation.isEmptyJson(getUserMappedListJson)) {
-                    _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
+            //Check for response
+            if (getLoginDetailsApiResponseJson['status'] == 1) {
+                _this.authenticationSent = true;
+                if (_this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson['resultData'])) {
+                    _this.msgHelper.showErrorDialog('Alert', 'No user information fetched !!!');
                     return;
                 }
-                if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
-                    var listOfMappings = getUserMappedListJson['resultData'];
-                    //Fetch the list of group ids
-                    var requestJson = {
-                        'AppType': 'W'
-                    };
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_GROUP).then(function (usergroupjson) {
-                        if (_this.dataValidation.isEmptyJson(usergroupjson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Group List API !!!');
-                            return;
-                        }
-                        var userGroups = usergroupjson['resultData'];
-                        if (_this.dataValidation.isEmptyJson(userGroups)) {
-                            _this.msgHelper.showErrorDialog('Error !!', usergroupjson['resMessage']);
-                            return;
-                        }
-                        _this.groupList = userGroups;
-                        console.error(_this.groupList);
-                        for (var i = 0; i <= _this.userList.length - 1; i++) {
-                            _this.userList[i]['UserTypeName'] = _this.getUserTypeName(listOfMappings, _this.userList[i]['UserId']);
-                            _this.userList[i]['GroupName'] = _this.getUserGroupId(listOfMappings, _this.userList[i]['UserId'], userGroups);
-                        }
-                    });
-                    //Call the business units and brands API
-                    var requestJson = {
-                        'AppType': 'W'
-                    };
-                    _this.httpCall.callApi(responseJson, _this.codes.API_GET_BUSINESS_UNIT_LIST).then(function (getbusinessListJson) {
-                        if (_this.dataValidation.isEmptyJson(getbusinessListJson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get Business List API !!!');
-                            return;
-                        }
-                        _this.businessunitList = getbusinessListJson['resultData'];
-                        for (var i = 0; i <= _this.businessunitList.length - 1; i++) {
-                            _this.businessunitList[i]['OwnerName'] = _this.getOwnerName(_this.userList, _this.businessunitList[i]['BusinessUnitOwnerID']);
-                        }
-                    });
-                    //Call the Brand List
-                    var requestJson = {
-                        'AppType': 'W'
-                    };
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_BRAND_LIST).then(function (brandListResponse) {
-                        if (_this.dataValidation.isEmptyJson(brandListResponse)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get Brand List API !!!');
-                            return;
-                        }
-                        _this.brandList = brandListResponse['resultData'];
-                        for (var i = 0; i <= _this.brandList.length - 1; i++) {
-                            _this.brandList[i]['OwnerName'] = _this.getBrandOwnerName(_this.userList, _this.brandList[i]['BrandOwnerID']);
-                        }
-                    });
-                }
-            });
+                _this.userInformation = getLoginDetailsApiResponseJson['resultData'];
+                //Keep the user password 
+                localStorage.setItem(_this.codes.LSK_USER_PASSWORD, _this.password);
+                //Keep the user info in the user info key
+                localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
+            }
+            else {
+                _this.msgHelper.showErrorDialog('Error !!!', getLoginDetailsApiResponseJson['resMessage']);
+                return;
+            }
         });
     };
-    GeneralSettingsPage.prototype.getBrandOwnerName = function (resultData, ownerId) {
-        for (var i = 0; i < resultData.length; i++) {
-            if (resultData[i]['UserId'] == ownerId) {
-                return resultData[i]['FirstName'] + ' ' + resultData[i]['LastName'];
-            }
-        }
-        return null;
-    };
-    GeneralSettingsPage.prototype.getUserGroupId = function (resultData, userId, userGroup) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                for (var j = 0; j < userGroup.length; j++) {
-                    // alert(userGroup[j]['GroupId']+' '+ resultData[i]['UserGroupIds']);
-                    if (userGroup[j]['UserGroupId'] == resultData[i]['UserGroupIds']) {
-                        return userGroup[j]['UserGroupName'];
-                    }
-                }
-            }
-        }
-        return null;
-    };
-    GeneralSettingsPage.prototype.getOwnerName = function (resultData, ownerId) {
-        for (var i = 0; i < resultData.length; i++) {
-            if (resultData[i]['UserId'] == ownerId) {
-                return resultData[i]['FirstName'] + ' ' + resultData[i]['LastName'];
-            }
-        }
-        return null;
-    };
-    GeneralSettingsPage.prototype.getUserTypeName = function (resultData, userId) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                return resultData[i]['UserTypeName'];
-            }
-        }
-        return null;
-    };
-    GeneralSettingsPage.prototype.addBusinessUnit = function () {
-        var userModal = this.modalCtrl.create('AddBusinessUnitPage', { 'userList': this.userList });
+    LoginPage.prototype.forgotPassword = function () {
+        var userModal = this.modalCtrl.create('ForgotPasswordPage');
         userModal.present();
     };
-    GeneralSettingsPage.prototype.addUser = function () {
-        var userModal = this.modalCtrl.create('AddUserPage');
-        userModal.present();
-    };
-    GeneralSettingsPage.prototype.editUser = function (user) {
-        var userModal = this.modalCtrl.create('UpdateUserPage', { 'userinfo': user, 'UserTypes': this.userTypes, 'GroupList': this.groupList });
-        userModal.present();
-    };
-    GeneralSettingsPage.prototype.deleteUser = function (user) {
-        var _this = this;
-        var alert = this.alertController.create({
-            title: 'User to be deleted',
-            message: 'User is to be deleted. <strong>Are you sure</strong>!!!',
-            buttons: [
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                    }
-                }, {
-                    text: 'Yes',
-                    handler: function () {
-                        //Call the delete user API
-                        var requestJson = {
-                            "UserId": user['UserId'],
-                            "AppType": "W"
-                        };
-                        var loading = _this.msgHelper.showWorkingDialog('Deleting the user ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_DELETE_USER).then(function (responseJson) {
-                            loading.dismiss();
-                            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
-                                return;
-                            }
-                            if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('User deleted !!!');
-                                _this.ionViewDidLoad();
-                            }
-                        });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    GeneralSettingsPage.prototype.doRefresh = function (refresher) {
-        console.log('Begin async operation', refresher);
-        setTimeout(function () {
-            console.log('Async operation has ended');
-            refresher.complete();
-        }, 2000);
-    };
-    GeneralSettingsPage.prototype.addBrands = function () {
-        var userModal = this.modalCtrl.create('AddBrandPage', { 'userList': this.userList });
-        userModal.present();
-    };
-    GeneralSettingsPage.prototype.ionViewWillEnter = function () {
-        this.ionViewDidLoad();
-    };
-    GeneralSettingsPage.prototype.editBusinessUnit = function (businessunit) {
-        var userModal = this.modalCtrl.create('UpdateBusinessUnitPage', { 'businessUnit': businessunit, 'userList': this.userList });
-        userModal.present();
-    };
-    GeneralSettingsPage.prototype.editBrand = function (brand) {
-        var userModal = this.modalCtrl.create('EditBrandPage', { 'brand': brand, 'userList': this.userList });
-        userModal.present();
-    };
-    GeneralSettingsPage.prototype.goToUserMessages = function () {
-        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
-        userModal.present();
-    };
-    GeneralSettingsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-general-settings',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/general-settings/general-settings.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n  <!--header starts here-->\n  <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n     position: absolute;\n     top: 7px !important;\n     left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n      <user-info [messageNumber]="10" [notificationNumber]="15" (click)="goToUserMessages()"\n        style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>\n    </ion-col>\n\n  </ion-row>\n\n\n  <ion-segment [(ngModel)]="segment" mode="ios" style="margin-top: 13px !important; padding: 3% !important;">\n\n    <ion-segment-button value="businessunits">\n      Business Units\n    </ion-segment-button>\n    <ion-segment-button value="brands">\n      Brands\n    </ion-segment-button>\n    <ion-segment-button value="users">\n      Users\n    </ion-segment-button>\n\n  </ion-segment>\n\n\n  <!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66"\n  style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  \n  <p style=" margin-top: 10% !important;"></p>\n  <div [ngSwitch]="segment">\n    <p *ngSwitchCase="\'businessunits\'">\n      <ion-list *ngFor=\'let businessunit of businessunitList\' class="nomargin nopadding">\n        <ion-item class="nopadding">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-12 class="underline">\n                <p><strong style="color: dodgerblue !important;">{{businessunit[\'BusinessUnitName\']}}</strong> <span\n                    style="font-size: 12px !important;" (click)="editBusinessUnit(businessunit)">\n                    <ion-icon name="create"></ion-icon>\n                  </span>\n                  <!-- <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode=\'ios\'></ion-icon></span> -->\n                </p>\n                <p class="subtitle-1">\n                  <ion-icon name="pin"></ion-icon>\n                  {{businessunit[\'Address1\'] +\' \'+businessunit[\'Address2\']}}\n                </p>\n                <p class="subtitle-2">\n                  <ion-icon name="phone-portrait"></ion-icon> <a href="tel:{{businessunit[\'Phone\']}}"\n                    style="text-decoration: none !important;">{{businessunit[\'Phone\']}}</a>\n                </p>\n                <p *ngIf="!dataValidation.isEmptyJson(businessunit[\'OwnerName\'])" style="font-size: 12px !important;">\n                  <ion-icon name="person"></ion-icon>&nbsp;{{businessunit[\'OwnerName\']}}\n                </p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n      <ion-fab bottom right>\n        <button ion-fab (click)="addBusinessUnit()">\n          <ion-icon name="add"></ion-icon>\n        </button>\n      </ion-fab>\n    </p>\n\n    <p *ngSwitchCase="\'brands\'">\n      <ion-list *ngFor=\'let brand of brandList\' class="nomargin nopadding">\n        <ion-item class="nopadding">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 style="margin-top: 2% !important;"> \n                <img [src]="brand[\'BrandImagePath\']" class="camera-img-wrapper" />\n              </ion-col>\n              <ion-col col-10 class="underline">\n                <p><strong style="color: dodgerblue !important;">{{brand[\'BrandName\']}}</strong> <span\n                    style="font-size: 12px !important;" (click)="editBrand(brand)">\n                    <ion-icon name="create"></ion-icon>\n                  </span>\n                  <!-- <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)"><ion-icon name="trash" mode=\'ios\'></ion-icon></span> -->\n                </p>\n                <p class="subtitle-1">\n                  <ion-icon name="list-box"></ion-icon>\n                  {{brand[\'BrandDescription\']}}\n                </p>\n                <p *ngIf="!dataValidation.isEmptyJson(brand[\'OwnerName\'])" style="font-size: 12px !important;">\n                  <ion-icon name="person"></ion-icon>&nbsp;{{brand[\'OwnerName\']}}\n                </p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n      <ion-fab bottom right>\n        <button ion-fab (click)="addBrands()">\n          <ion-icon name="add"></ion-icon>\n        </button>\n      </ion-fab>\n    </p>\n\n\n    <!-- <p *ngSwitchCase="\'users\'"> -->\n      <div  *ngSwitchCase="\'users\'">\n      <p *ngIf=\'userList == null\'>\n        <ion-spinner name=\'ios\' style="margin-top: 40% !important;"></ion-spinner>\n        <ion-label style="color: #999 !important;">{{loadingStatus}}</ion-label>\n      </p>\n      <!--Break Gap-->\n      <p class="mt-10"></p>\n      <!--Break Gap-->\n      <ion-list *ngFor=\'let user of userList\' class="nomargin nopadding">\n        <ion-item class="nopadding">\n          <ion-grid>\n            <ion-row>\n              <ion-col col-2 style="margin-top: 2% !important;"> \n                <img [src]="user[\'UserImagePath\']" class="camera-img-wrapper" />\n              </ion-col>\n              <ion-col col-10 class="underline">\n                <p><strong style="color: dodgerblue !important;">{{user[\'FirstName\'] + \' \'+user[\'LastName\']}}</strong>\n                  <span style="font-size: 12px !important;" (click)="editUser(user)">\n                    <ion-icon name="create"></ion-icon>\n                  </span>\n                  <span style="float:right !important;color:#700000 !important;" (click)="deleteUser(user)">\n                    <ion-icon name="trash" mode=\'ios\'></ion-icon>\n                  </span>\n                </p>\n                <p class="subtitle-1">\n                  <ion-icon name="pin"></ion-icon> {{user[\'Address1\'] +\' \'+user[\'Address2\']}}\n                </p>\n                <p class="subtitle-2">\n                  <ion-icon name="phone-portrait"></ion-icon> <a href="tel:{{user[\'Mobile\']}}"\n                    style="text-decoration: none !important;">{{user[\'Mobile\']}}</a>\n                  <span> &nbsp;&nbsp;\n                    <ion-icon name="mail"></ion-icon> <a href="mailto:{{user[\'Email\']}}"\n                      style="text-decoration: none !important;">{{user[\'Email\']}}</a></span>\n                </p>\n                <p>\n                  <ion-badge color="dark">{{user[\'GroupName\']}}</ion-badge>\n                  <ion-badge color="success">{{user[\'UserTypeName\']}}</ion-badge>\n                </p>\n              </ion-col>\n            </ion-row>\n          </ion-grid>\n        </ion-item>\n      </ion-list>\n      <ion-fab bottom right>\n        <button ion-fab (click)="addUser()">\n          <ion-icon name="person-add"></ion-icon>\n        </button>\n      </ion-fab>\n    </div>\n  </div>\n\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear><img src="../../assets/imgs/menu_proyectos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_calendario_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear><img src="../../assets/imgs/menu_configuracion_on.png"\n      style="width: 15px !important;" /></button>\n</ion-footer>\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/general-settings/general-settings.html"*/,
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+            selector: 'page-login',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/'<ion-content padding class="background">\n\n  <p class="image-middle-card nomargin">\n    \n  </p>\n  <ion-card id="content">\n    <ion-avatar id="user-info">\n      <img id="user-image" src="../../assets/imgs/user.png" />\n    </ion-avatar>\n    <!-- <ion-card-header class="primary-header">Authentication Gate</ion-card-header> -->\n    <ion-card-content>\n          <!-- <ion-item class="mt-10">\n            <ion-label color="primary" stacked>Phone Number</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline" [(ngModel)]="mobileNumber">\n            </ion-input>\n          </ion-item> -->\n\n          <ion-item>\n            <ion-label color="primary" stacked>Email Id</ion-label>\n            <ion-input type="email" placeholder="Your registered email id" class="input-underline" [(ngModel)]="emailId">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Password</ion-label>\n            <ion-input type="password" placeholder="Your password" class="input-underline" [(ngModel)]="password"></ion-input>\n          </ion-item>\n          <p style="text-align: right !important;" *ngIf=\'authenticationSent\'>\n            <ion-item>\n              <ion-label color="primary" stacked>Verification Code</ion-label>\n              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline" [(ngModel)]="verificationCode"></ion-input>\n            </ion-item>            \n            <ion-spinner name="dots"\n              style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>\n          </p>\n        \n    </ion-card-content>\n    <p style="text-align: right !important; margin-right: 20px !important;">\n      <button ion-button clear *ngIf=\'!authenticationSent\' (click)="login()">Login</button>\n      <button ion-button clear *ngIf=\'authenticationSent\' (click)="verify()">Verify</button>\n    </p>\n    <p style="font-size:10px !important">\n      <button ion-button clear (click)="forgotPassword()">Forgot Password?</button>\n    </p>\n  </ion-card>\n \n\n  <p class="small-text mt-10">\n    Platica Polinesia\n  </p>\n</ion-content>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* NavController */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["h" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* AlertController */]])
-    ], GeneralSettingsPage);
-    return GeneralSettingsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"],
+            __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__["a" /* DataValidation */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"]])
+    ], LoginPage);
+    return LoginPage;
 }());
 
-//# sourceMappingURL=general-settings.js.map
+//# sourceMappingURL=login.js.map
 
 /***/ })
 

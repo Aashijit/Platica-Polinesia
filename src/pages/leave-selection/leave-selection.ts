@@ -249,60 +249,27 @@ export class LeaveSelectionPage {
         return;
       }
 
+      var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
+        
+      if(this.dataValidation.isEmptyJson(currentUserInfo)){
+       this.msgHelper.showToast('Could not fetch user id');
+       return;
+      }
+        
+      var requestJson = {
+        "UserId": currentUserInfo[0]['UserId'],
+        "LeaveTypeId": leave['LeaveTypeId'],
+        "FinancialYearId": 1,
+        "LeaveTakeCount": differenceInDays,
+        "LeaveApplyDate": this.datePipe.transform(new Date(),'YYYY-MM-DD'),
+        "LeaveFromDate": date.from['string'],
+        "LeaveToDate": date.to['string'],
+        "AppType": "W"
+      };
 
-      const alt = this.alert.create({
-        title: 'Apply Leave',
-        message: 'Do you really want to apply leave from <strong>'+this.datePipe.transform(date.from["string"],'d-MMM yyyy')+'</strong> to <strong>'+this.datePipe.transform(date.to["string"],'d-MMM yyyy')+'</strong> ?',
-        buttons: [
-          {
-            text: 'No',
-            role: 'no',
-            handler: () => {
-              
-            }
-          }, {
-            text: 'Yes',
-            handler: () => {
-
-
-            var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-        
-        
-            if(this.dataValidation.isEmptyJson(currentUserInfo)){
-              this.msgHelper.showToast('Could not fetch user id');
-              return;
-            }
-        
-              //Apply for leaves
-              var requestJson = {
-                  "UserId": currentUserInfo[0]['UserId'],
-                  "LeaveTypeId": leave['LeaveTypeId'],
-                  "FinancialYearId": 1,
-                  "LeaveTakeCount": differenceInDays,
-                  "LeaveApplyDate": this.datePipe.transform(new Date(),'YYYY-MM-DD'),
-                  "LeaveFromDate": date.from['string'],
-                  "LeaveToDate": date.to['string'],
-                  "AppType": "W"
-              };
-        
-              console.error(requestJson);
-        
-              this.http.callApi(requestJson,this.codes.API_LEAVE_APPLY).then(responseJson=>{
-        
-                if(this.dataValidation.isEmptyJson(responseJson)){
-                  this.msgHelper.showErrorDialog('Error !!!','Empty response received from Get Leave Type API');
-                  return;
-                }
-                
-                this.msgHelper.showToast(responseJson['resMessage'],false);
-        
-                this.ionViewDidLoad();
-              });
-            }
-          }
-        ]
-      });
-       alt.present();
+      let applyModal = this.modalCtrl.create('LeaveApplyPage',{"RequestJson":requestJson});
+      applyModal.present();
+      
     });
   }
 }

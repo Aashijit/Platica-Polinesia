@@ -28419,6 +28419,26 @@ page-home .alert-md .alert-message, page-home .alert-md .alert-input-group {
   padding: 2px !important;
 }
 
+page-leave-apply .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-leave-apply .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-leave-apply .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-leave-apply .camera-img-wrapper {
+  width: 30px !important;
+  height: 30px !important;
+  margin-top: 12px !important;
+}
+
 page-leave-approval .background-content {
   background-color: #fff;
   border-radius: 10px !important;

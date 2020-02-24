@@ -1,4 +1,4 @@
-webpackJsonp([17],{
+webpackJsonp([18],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -184,70 +184,74 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-brand/add-brand.module": [
 		431,
-		16
+		17
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		432,
-		15
+		16
 	],
 	"../pages/add-user/add-user.module": [
 		433,
-		14
+		15
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
 		434,
-		13
+		14
 	],
 	"../pages/edit-brand/edit-brand.module": [
 		435,
-		12
+		13
 	],
 	"../pages/forgot-password/forgot-password.module": [
 		436,
-		11
+		12
 	],
 	"../pages/general-settings/general-settings.module": [
 		437,
-		10
+		11
 	],
 	"../pages/home/home.module": [
 		438,
+		10
+	],
+	"../pages/leave-apply/leave-apply.module": [
+		439,
 		9
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		439,
+		440,
 		8
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		440,
+		441,
 		7
 	],
 	"../pages/login/login.module": [
-		441,
+		442,
 		6
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		442,
+		443,
 		5
 	],
 	"../pages/permissions/permissions.module": [
-		443,
+		444,
 		4
 	],
 	"../pages/project-information/project-information.module": [
-		444,
+		445,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		445,
+		446,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		446,
+		447,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		447,
+		448,
 		0
 	]
 };
@@ -632,6 +636,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-approval/leave-approval.module#LeaveApprovalPageModule', name: 'LeaveApprovalPage', segment: 'leave-approval', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
