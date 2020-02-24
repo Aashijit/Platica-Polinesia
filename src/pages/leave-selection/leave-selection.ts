@@ -235,6 +235,21 @@ export class LeaveSelectionPage {
       //Check if the user will be able to apply for the leave
       //Calculate the difference
 
+
+      var differenceInDays = (date.to['time'] - date.from['time']) / (1000 * 60 * 60 * 24);
+
+      if(this.dataValidation.isEmptyJson(leave['RemaningLeave'])){
+        this.getInformation(leave['LeaveTypeId'],leave);
+        this.msgHelper.showToast('Please select the dates again !!!',false);
+        return;
+      }
+
+      if(differenceInDays > Number(leave['RemaningLeave'])){
+        this.msgHelper.showToast('You have only '+leave['RemaningLeave']+' '+ leave['LeaveTypeName']+' leaves left !!!',false);
+        return;
+      }
+
+
       const alt = this.alert.create({
         title: 'Apply Leave',
         message: 'Do you really want to apply leave from <strong>'+this.datePipe.transform(date.from["string"],'d-MMM yyyy')+'</strong> to <strong>'+this.datePipe.transform(date.to["string"],'d-MMM yyyy')+'</strong> ?',
@@ -249,19 +264,7 @@ export class LeaveSelectionPage {
             text: 'Yes',
             handler: () => {
 
-              var differenceInDays = (date.to['time'] - date.from['time']) / (1000 * 60 * 60 * 24);
 
-              if(this.dataValidation.isEmptyJson(leave['RemaningLeave'])){
-                this.getInformation(leave['LeaveTypeId'],leave);
-                this.msgHelper.showToast('Please select the dates again !!!',false);
-                return;
-              }
-        
-              if(differenceInDays > Number(leave['RemaningLeave'])){
-                this.msgHelper.showToast('You have only '+leave['RemaningLeave']+' '+ leave['LeaveTypeName']+' leaves left !!!',false);
-                return;
-              }
-        
             var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
         
         

@@ -1,0 +1,19 @@
+<ion-content padding class="custom-popup">
+
+  <ion-card>
+    <ion-card-header>{{approveTitle}} this leave?</ion-card-header>
+    <ion-item>
+      <ion-label stacked>{{approveTitle}} comments</ion-label>
+      <ion-textarea rows=3 columns=12 [(ngModel)]="comment" style="color: #000 !important;">   
+      </ion-textarea>
+    </ion-item>
+
+  <p style="text-align: right !important;">
+  <span>
+    <button ion-button clear (click)="goBack()">No</button>
+    <button ion-button clear (click)="approveOrReject()">Yes</button>
+  </span>
+  </p>
+  </ion-card>
+
+</ion-content>

@@ -29,7 +29,7 @@
     <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
       <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
     </ion-col>
-    <ion-col col-10 class="underline ta-left nopadding"> 
+    <ion-col col-10 class="ta-left nopadding"> 
     <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
     <p style="font-size:12px !important; color: #888 !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
     <p *ngIf="leave['LeaveStatus'] == 'A' && !dataValidation.isEmptyJson(leave['ApproveOrRejectedBy'])"><ion-badge color="secondary">Approved</ion-badge></p>
@@ -39,9 +39,10 @@
     <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>
   </span>
     </ion-col>
-  </ion-header>
-  <ion-row>
-    <ion-col>
+  </ion-row>
+  <ion-row class="underline">
+    <ion-col col-2></ion-col>
+    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">
     {{leave['ApprovedOrRejectedLeaveComments']}}
   </ion-col>
   </ion-row>
@@ -55,7 +56,7 @@
     <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
       <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
     </ion-col>
-    <ion-col col-8 class="underline ta-left nopadding"> 
+    <ion-col col-8 class="ta-left nopadding"> 
     <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
     <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
     <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="secondary">Approved by {{leave['ApprovedOrRejectedByName']}}</ion-badge></p>
@@ -68,9 +69,10 @@
     <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
       <img [src]="leave['ApprovedOrRejectedByImagePath']" class="camera-img-wrapper" />
     </ion-col>
-  </ion-header>
-  <ion-row>
-    <ion-col>
+  </ion-row>
+  <ion-row class="underline">
+    <ion-col col-2></ion-col>
+    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">
     {{leave['ApprovedOrRejectedLeaveComments']}}
   </ion-col>
   </ion-row>
@@ -85,7 +87,7 @@
     <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
       <img [src]="leave['UserImagePath']" class="camera-img-wrapper" />
     </ion-col>
-    <ion-col col-8 class="underline ta-left nopadding"> 
+    <ion-col col-8 class="ta-left nopadding"> 
     <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave['UserName']}}</p>
     <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave['LeaveFromDate'],'d-MMM,yyyy')}}&nbsp;to&nbsp;{{datePipe.transform(leave['LeaveToDate'],'d-MMM,yyyy')}}</p>
     <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="danger">Rejected by {{leave['ApprovedOrRejectedByName']}}</ion-badge></p>
@@ -98,9 +100,10 @@
     <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> 
       <img [src]="leave['ApprovedOrRejectedByImagePath']" class="camera-img-wrapper" />
     </ion-col>
-  </ion-header>
-  <ion-row>
-    <ion-col>
+  </ion-row>
+  <ion-row class="underline">
+    <ion-col col-2></ion-col>
+    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">
     {{leave['ApprovedOrRejectedLeaveComments']}}
   </ion-col>
   </ion-row>

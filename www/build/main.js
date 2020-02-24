@@ -1,4 +1,4 @@
-webpackJsonp([16],{
+webpackJsonp([17],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -184,66 +184,70 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-brand/add-brand.module": [
 		431,
-		15
+		16
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		432,
-		14
+		15
 	],
 	"../pages/add-user/add-user.module": [
 		433,
+		14
+	],
+	"../pages/approve-leave-comments/approve-leave-comments.module": [
+		434,
 		13
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		434,
+		435,
 		12
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		435,
+		436,
 		11
 	],
 	"../pages/general-settings/general-settings.module": [
-		436,
+		437,
 		10
 	],
 	"../pages/home/home.module": [
-		437,
+		438,
 		9
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		438,
+		439,
 		8
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		439,
+		440,
 		7
 	],
 	"../pages/login/login.module": [
-		440,
+		441,
 		6
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		441,
+		442,
 		5
 	],
 	"../pages/permissions/permissions.module": [
-		442,
+		443,
 		4
 	],
 	"../pages/project-information/project-information.module": [
-		443,
+		444,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		444,
+		445,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		445,
+		446,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		446,
+		447,
 		0
 	]
 };
@@ -623,6 +627,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },

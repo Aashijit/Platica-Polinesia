@@ -186,122 +186,17 @@ export class LeaveApprovalPage {
         });
       }
     });
-
-
-
-
-
-
-
-
-
   }
-
 
   approve(leave) {
-
-    var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-
-
-    if (this.dataValidation.isEmptyJson(currentUserInfo)) {
-      this.msgHelper.showToast('Could not fetch user id');
-      return;
-    }
-
-
-    const alt = this.alert.create({
-      title: 'Approve Leave',
-      message: 'Do you want to approve this leave?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'no',
-          handler: () => {
-
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-
-            var requestJson = {
-              "LeaveBalanceId": leave['LeaveBalanceId'],
-              "LeaveStatus": "A",
-              "ApprovedBy": currentUserInfo[0]['UserId'],
-              "AppType": "W"
-            };
-
-            console.error(requestJson);
-
-            this.http.callApi(requestJson, this.codes.API_APPROVE_LEAVE).then(responseJson => {
-              if (this.dataValidation.isEmptyJson(responseJson)) {
-                this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
-                return;
-              }
-              if (responseJson['status'] == 1) {
-                this.msgHelper.showToast('Leave have been approved !!!');
-                this.ionViewDidLoad();
-                return;
-              }
-            });
-          }
-        }
-      ]
-    });
-    alt.present();
+    leave['Status']="A";
+    let approveModal = this.modalCtrl.create('ApproveLeaveCommentsPage',{"Leave":leave});
+    approveModal.present();
   }
 
-
-
-
   reject(leave) {
-
-    var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-
-
-    if (this.dataValidation.isEmptyJson(currentUserInfo)) {
-      this.msgHelper.showToast('Could not fetch user id');
-      return;
-    }
-
-
-    const alt = this.alert.create({
-      title: 'Reject Leave',
-      message: 'Do you want to reject this leave?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'no',
-          handler: () => {
-
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-
-            var requestJson = {
-              "LeaveBalanceId": leave['LeaveBalanceId'],
-              "LeaveStatus": "R",
-              "ApprovedBy": currentUserInfo[0]['UserId'],
-              "AppType": "W"
-            };
-
-            console.error(requestJson);
-
-            this.http.callApi(requestJson, this.codes.API_APPROVE_LEAVE).then(responseJson => {
-              if (this.dataValidation.isEmptyJson(responseJson)) {
-                this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
-                return;
-              }
-              if (responseJson['status'] == 1) {
-                this.msgHelper.showToast('Leave have been rejected !!!');
-                this.ionViewDidLoad();
-                return;
-              }
-            });
-          }
-        }
-      ]
-    });
-    alt.present();
+    leave['Status']="R";
+    let approveModal = this.modalCtrl.create('ApproveLeaveCommentsPage',{"Leave":leave});
+    approveModal.present();
   }
 }

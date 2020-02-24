@@ -28144,6 +28144,26 @@ page-add-user .list-underline {
   margin-left: 16px !important;
 }
 
+page-approve-leave-comments .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-approve-leave-comments .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-approve-leave-comments .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-approve-leave-comments .camera-img-wrapper {
+  width: 30px !important;
+  height: 30px !important;
+  margin-top: 12px !important;
+}
+
 page-edit-brand .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -28523,6 +28543,10 @@ page-leave-approval .button-inner {
 
 page-leave-approval .list-md {
   margin: 0px !important;
+}
+
+page-leave-approval .col {
+  padding: 0px !important;
 }
 
 page-leave-selection .background-content {
