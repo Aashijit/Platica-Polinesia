@@ -8,7 +8,7 @@ It also has capability to manage a projects, activities. Managing material inven
 
 
 ## Screenshots
-[](Page_001.png)
+[Home Page](Page_001.png)
 [User Management Page](Page_002.png)
 [Personal Profile Management Page](Page_003.png)
 [Projects Completion Percentage Page](Page_004.png)
