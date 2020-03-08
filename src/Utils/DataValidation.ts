@@ -116,6 +116,7 @@ export class DataValidation {
 
     }
 
+
     isValidNumber(number:any)
     {
         if(number != null || number != undefined || number != "")

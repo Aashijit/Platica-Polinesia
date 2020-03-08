@@ -20,13 +20,13 @@ export class LoginPage {
   password: any = "";
   verificationCode: any = "";
 
-  userInformation : any;
+  userInformation: any;
 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public dataValidation: DataValidation, public msgHelper: MessageHelper, public codes: Codes,
-    public httpCall : HttpProvider,public modalCtrl : ModalController) {
+    public httpCall: HttpProvider, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -35,10 +35,10 @@ export class LoginPage {
 
   verify() {
 
-    if(!this.dataValidation.isEmptyJson(this.userInformation)){
-      this.navCtrl.push('HomePage',this.userInformation);
-    }else{
-      this.msgHelper.showToast('User information could not be fetched',false);
+    if (!this.dataValidation.isEmptyJson(this.userInformation)) {
+      this.navCtrl.push('HomePage', this.userInformation);
+    } else {
+      this.msgHelper.showToast('User information could not be fetched', false);
       return;
     }
   }
@@ -100,7 +100,7 @@ export class LoginPage {
     //     };
     //     permissions[i] = permission;
     //   }
-      
+
     // // var permissions = [
     //   //   {
     //   //     "_MenuId":"1",
@@ -151,65 +151,86 @@ export class LoginPage {
     // }
     //Step 2 : Validate the email id
     if (!this.dataValidation.isValidEmailId(this.emailId)) {
-      this.msgHelper.showToast(this.codes.EM_INVALID_EMAILID);
-      return;
+
+      //Check for valid phone number
+      if (!this.dataValidation.isValidMobileNumber(this.emailId)) {
+        this.msgHelper.showToast("Invalid Login Credentials");
+        return;
+      }
+
+
+
     }
 
     //Step 3 : Validate the password
-    if(this.dataValidation.isEmptyJson(this.password)){
+    if (this.dataValidation.isEmptyJson(this.password)) {
       this.msgHelper.showToast(this.codes.EM_INVALID_PASSWORD);
       return;
     }
 
-    //Step 4 : Make the API call for logging in
+
     //Create the json
-    var getLoginDetailsApiRequestJson = {
-      "email" :this.emailId,
-      "password" : this.password,
-      "apptype" : "W"
+    getLoginDetailsApiRequestJson = {
+      "mobile": null,
+      "email": this.emailId,
+      "password": this.password,
+      "apptype": "W"
     };
+
+
+    //Check if the emailid is phone number / email id
+    if (this.dataValidation.isValidMobileNumber(this.emailId)) {
+      var getLoginDetailsApiRequestJson = {
+        "mobile": this.emailId,
+        "email": null,
+        "password": this.password,
+        "apptype": "W"
+      };
+    }
+
+    //Step 4 : Make the API call for logging in
+
 
     //start the loading controller
     var loading = this.msgHelper.showWorkingDialog("Sending verification message");
 
     //Call the API
 
-    this.httpCall.callApi(getLoginDetailsApiRequestJson,this.codes.API_GET_LOGIN_DETAILS).then(getLoginDetailsApiResponseJson => {
+    this.httpCall.callApi(getLoginDetailsApiRequestJson, this.codes.API_GET_LOGIN_DETAILS).then(getLoginDetailsApiResponseJson => {
       //Dismiss the loader
       loading.dismiss();
 
       //Validate
-      if(this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson)){
-        this.msgHelper.showErrorDialog('Error !!','Empty response received from server !!!');
+      if (this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson)) {
+        this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
         return;
       }
 
       //Check for response
-      if(getLoginDetailsApiResponseJson['status'] == 1){
+      if (getLoginDetailsApiResponseJson['status'] == 1) {
         this.authenticationSent = true;
 
-        if(this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson['resultData']))
-        {
-          this.msgHelper.showErrorDialog('Alert','No user information fetched !!!');
+        if (this.dataValidation.isEmptyJson(getLoginDetailsApiResponseJson['resultData'])) {
+          this.msgHelper.showErrorDialog('Alert', 'No user information fetched !!!');
           return;
         }
 
         this.userInformation = getLoginDetailsApiResponseJson['resultData'];
         //Keep the user password 
-        localStorage.setItem(this.codes.LSK_USER_PASSWORD,this.password);
+        localStorage.setItem(this.codes.LSK_USER_PASSWORD, this.password);
         //Keep the user info in the user info key
-        localStorage.setItem(this.codes.LSK_USER_INFORMATION_JSON,JSON.stringify(this.userInformation));
+        localStorage.setItem(this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(this.userInformation));
       }
-      else{
-        this.msgHelper.showErrorDialog('Error !!!',getLoginDetailsApiResponseJson['resMessage']);
-          return;
+      else {
+        this.msgHelper.showErrorDialog('Error !!!', getLoginDetailsApiResponseJson['resMessage']);
+        return;
       }
     });
 
   }
 
 
-  forgotPassword(){
+  forgotPassword() {
     let userModal = this.modalCtrl.create('ForgotPasswordPage');
     userModal.present();
   }

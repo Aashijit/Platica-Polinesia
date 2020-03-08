@@ -191,11 +191,11 @@ var map = {
 		16
 	],
 	"../pages/add-user/add-user.module": [
-		433,
+		434,
 		15
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		434,
+		433,
 		14
 	],
 	"../pages/edit-brand/edit-brand.module": [
@@ -630,8 +630,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },

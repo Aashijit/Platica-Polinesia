@@ -193,21 +193,34 @@ var LoginPage = /** @class */ (function () {
         // }
         //Step 2 : Validate the email id
         if (!this.dataValidation.isValidEmailId(this.emailId)) {
-            this.msgHelper.showToast(this.codes.EM_INVALID_EMAILID);
-            return;
+            //Check for valid phone number
+            if (!this.dataValidation.isValidMobileNumber(this.emailId)) {
+                this.msgHelper.showToast("Invalid Login Credentials");
+                return;
+            }
         }
         //Step 3 : Validate the password
         if (this.dataValidation.isEmptyJson(this.password)) {
             this.msgHelper.showToast(this.codes.EM_INVALID_PASSWORD);
             return;
         }
-        //Step 4 : Make the API call for logging in
         //Create the json
-        var getLoginDetailsApiRequestJson = {
+        getLoginDetailsApiRequestJson = {
+            "mobile": null,
             "email": this.emailId,
             "password": this.password,
             "apptype": "W"
         };
+        //Check if the emailid is phone number / email id
+        if (this.dataValidation.isValidMobileNumber(this.emailId)) {
+            var getLoginDetailsApiRequestJson = {
+                "mobile": this.emailId,
+                "email": null,
+                "password": this.password,
+                "apptype": "W"
+            };
+        }
+        //Step 4 : Make the API call for logging in
         //start the loading controller
         var loading = this.msgHelper.showWorkingDialog("Sending verification message");
         //Call the API
@@ -244,7 +257,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/'<ion-content padding class="background">\n\n  <p class="image-middle-card nomargin">\n    \n  </p>\n  <ion-card id="content">\n    <ion-avatar id="user-info">\n      <img id="user-image" src="../../assets/imgs/user.png" />\n    </ion-avatar>\n    <!-- <ion-card-header class="primary-header">Authentication Gate</ion-card-header> -->\n    <ion-card-content>\n          <!-- <ion-item class="mt-10">\n            <ion-label color="primary" stacked>Phone Number</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline" [(ngModel)]="mobileNumber">\n            </ion-input>\n          </ion-item> -->\n\n          <ion-item>\n            <ion-label color="primary" stacked>Email Id</ion-label>\n            <ion-input type="email" placeholder="Your registered email id" class="input-underline" [(ngModel)]="emailId">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Password</ion-label>\n            <ion-input type="password" placeholder="Your password" class="input-underline" [(ngModel)]="password"></ion-input>\n          </ion-item>\n          <p style="text-align: right !important;" *ngIf=\'authenticationSent\'>\n            <ion-item>\n              <ion-label color="primary" stacked>Verification Code</ion-label>\n              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline" [(ngModel)]="verificationCode"></ion-input>\n            </ion-item>            \n            <ion-spinner name="dots"\n              style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>\n          </p>\n        \n    </ion-card-content>\n    <p style="text-align: right !important; margin-right: 20px !important;">\n      <button ion-button clear *ngIf=\'!authenticationSent\' (click)="login()">Login</button>\n      <button ion-button clear *ngIf=\'authenticationSent\' (click)="verify()">Verify</button>\n    </p>\n    <p style="font-size:10px !important">\n      <button ion-button clear (click)="forgotPassword()">Forgot Password?</button>\n    </p>\n  </ion-card>\n \n\n  <p class="small-text mt-10">\n    Platica Polinesia\n  </p>\n</ion-content>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/'<ion-content padding class="background">\n\n  <p class="image-middle-card nomargin">\n    \n  </p>\n  <ion-card id="content">\n    <ion-avatar id="user-info">\n      <img id="user-image" src="../../assets/imgs/user.png" />\n    </ion-avatar>\n    <!-- <ion-card-header class="primary-header">Authentication Gate</ion-card-header> -->\n    <ion-card-content>\n          <!-- <ion-item class="mt-10">\n            <ion-label color="primary" stacked>Phone Number</ion-label>\n            <ion-input type="tel" maxlength=10 placeholder="Your registered mobile number" class="input-underline" [(ngModel)]="mobileNumber">\n            </ion-input>\n          </ion-item> -->\n\n          <ion-item>\n            <ion-label color="primary" stacked>Email Id or Mobile Number</ion-label>\n            <ion-input type="email" placeholder="Your registered email id/mobile number" class="input-underline" [(ngModel)]="emailId">\n            </ion-input>\n          </ion-item>\n\n          <ion-item>\n            <ion-label color="primary" stacked>Password</ion-label>\n            <ion-input type="password" placeholder="Your password" class="input-underline" [(ngModel)]="password"></ion-input>\n          </ion-item>\n          <p style="text-align: right !important;" *ngIf=\'authenticationSent\'>\n            <ion-item>\n              <ion-label color="primary" stacked>Verification Code</ion-label>\n              <ion-input type="tel" maxlength=6 placeholder="Enter verfication code" class="input-underline" [(ngModel)]="verificationCode"></ion-input>\n            </ion-item>            \n            <ion-spinner name="dots"\n              style="z-index: 10 !important; bottom: 32px !important;margin-right: 10px !important;"></ion-spinner>\n          </p>\n        \n    </ion-card-content>\n    <p style="text-align: right !important; margin-right: 20px !important;">\n      <button ion-button clear *ngIf=\'!authenticationSent\' (click)="login()">Login</button>\n      <button ion-button clear *ngIf=\'authenticationSent\' (click)="verify()">Verify</button>\n    </p>\n    <p style="font-size:10px !important">\n      <button ion-button clear (click)="forgotPassword()">Forgot Password?</button>\n    </p>\n  </ion-card>\n \n\n  <p class="small-text mt-10">\n    Platica Polinesia\n  </p>\n</ion-content>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"],
             __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__["a" /* DataValidation */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */],
