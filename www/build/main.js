@@ -191,11 +191,11 @@ var map = {
 		16
 	],
 	"../pages/add-user/add-user.module": [
-		434,
+		433,
 		15
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		433,
+		434,
 		14
 	],
 	"../pages/edit-brand/edit-brand.module": [
@@ -247,11 +247,11 @@ var map = {
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		447,
+		448,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		448,
+		447,
 		0
 	]
 };
@@ -463,6 +463,7 @@ var HttpProvider = /** @class */ (function () {
             //data['Auth_Token'] = (tokenId == null) ? 1 : tokenId;
             //data['U_Type'] = 'D';
             console.log(JSON.stringify(data));
+            console.error(_this.codes.API_ENDPOINT + apiName);
             _this.http.post(_this.codes.API_ENDPOINT + apiName, JSON.stringify(data), { headers: headers }).map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 console.log(data);
@@ -630,8 +631,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
@@ -644,8 +645,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -1193,7 +1194,9 @@ var Codes = /** @class */ (function () {
         this.API_LEAVE_APPLY = "Leave/LeaveApply";
         this.API_GET_LEAVE_BALANCE_INFORMATION = "Leave/GetLeaveBalanceInformation";
         this.API_APPROVE_LEAVE = "Leave/LeaveApproval";
+        this.API_GET_MESSAGES_NOTIFICATIONS = "Messages/GetMessageTypeList";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
+        //    http://101.53.145.231:8053/Messages/GetMessageTypeList
     }
     return Codes;
 }());

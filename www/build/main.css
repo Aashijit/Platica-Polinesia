@@ -29056,5 +29056,9 @@ page-user-message-notification-list .list-underline {
 page-user-message-notification-list .camera-img-wrapper {
   width: 30px !important;
   height: 30px !important;
-  margin-top: 12px !important;
+  margin-top: 2px !important;
+}
+
+page-user-message-notification-list .label-md {
+  margin: 0px !important;
 }

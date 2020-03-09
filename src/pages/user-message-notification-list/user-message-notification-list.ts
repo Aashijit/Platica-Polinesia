@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,  ActionSheetController } from 'ionic-angular';
 import { HttpProvider } from '../../providers/data/data';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { DatePipe } from '@angular/common';
 
 
 @IonicPage()
@@ -20,11 +21,14 @@ export class UserMessageNotificationListPage {
   showUserInformation : boolean = false;
   newPassword : string = null;
   profileImage : any = '../../assets/imgs/user.png';
+  messageList : any =  null;
+  notificationList : any =  null;
+  segment : any = 'messages';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public codes : Codes,
     public msgHelper : MessageHelper,public httpCall : HttpProvider,public dataValidation : DataValidation,
     public actionSheet : ActionSheetController,public alertController : AlertController,
-    public camera : Camera) {
+    public camera : Camera, public datePipe : DatePipe) {
 
      //Get the  parameter from the local storage
     
@@ -35,6 +39,59 @@ export class UserMessageNotificationListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserMessageNotificationListPage');
+
+    // Call the messages and Notifications API parallely
+    var requestJson = {
+      "RecipientuserId":this.userInformation[0]['UserId'],
+       "MessageType": "M", 
+       "AppType": "W"
+       };     
+
+       console.error(requestJson);
+      
+
+       this.httpCall.callApi(requestJson,this.codes.API_GET_MESSAGES_NOTIFICATIONS).then(responseJson => {
+
+        if(this.dataValidation.isEmptyJson(responseJson)){
+          this.msgHelper.showErrorDialog('Error !!!',"Empty response received from GetMessageTypeList API");
+          return;          
+        }
+
+        if(responseJson['status'] != 1){
+          this.msgHelper.showErrorDialog('Error !!!',responseJson['resMessage']);
+          return;
+        }
+
+        this.messageList = responseJson['resultData'];
+      });
+
+
+
+      //Get Notifications
+      var requestJson = {
+        "RecipientuserId":this.userInformation[0]['UserId'],
+         "MessageType": "N", 
+         "AppType": "W"
+         };     
+  
+         console.error(requestJson);
+        
+  
+         this.httpCall.callApi(requestJson,this.codes.API_GET_MESSAGES_NOTIFICATIONS).then(responseJson => {
+  
+          if(this.dataValidation.isEmptyJson(responseJson)){
+            this.msgHelper.showErrorDialog('Error !!!',"Empty response received from GetMessageTypeList API");
+            return;          
+          }
+  
+          if(responseJson['status'] != 1){
+            this.msgHelper.showErrorDialog('Error !!!',responseJson['resMessage']);
+            return;
+          }
+          
+          this.notificationList = responseJson['resultData'];
+        });
+
   }
 
   closeModal(){

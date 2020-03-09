@@ -40,8 +40,11 @@ export class Codes{
     public API_LEAVE_APPLY="Leave/LeaveApply";
     public API_GET_LEAVE_BALANCE_INFORMATION="Leave/GetLeaveBalanceInformation";
     public API_APPROVE_LEAVE="Leave/LeaveApproval";
+    public API_GET_MESSAGES_NOTIFICATIONS="Messages/GetMessageTypeList";
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 
+
+//    http://101.53.145.231:8053/Messages/GetMessageTypeList
 
 }

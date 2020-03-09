@@ -102,28 +102,103 @@
 </p>
   <!--User information to be present here-->
 
-  
+  <ion-segment mode="ios" [(ngModel)]="segment">
+    <ion-segment-button value="messages">
+      <ion-label>Messages</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="notifications">
+      <ion-label>Notifications</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
 <!--Message, Notification number-->
-<ion-row class="list-underline" *ngIf='!showUserInformation'>
+<!-- <ion-row class="list-underline" *ngIf='!showUserInformation'>
   <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;
     position: absolute;
     font-size: 11px !important;
     top: 7px !important;
-    left: 27px !important;"></span></ion-col>
+    left: 27px !important;">20</span></ion-col>
   <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;
     position: absolute;
     font-size: 11px !important;
     top: 9px !important;
-    left: 10px !important;"></span></ion-col>
-</ion-row>
+    left: 10px !important;">15</span></ion-col>
+</ion-row> -->
 <!--Message, Notification number-->
 
- <ion-list style=" text-align: center !important;" *ngIf='!showUserInformation'>
+ <!-- <ion-list style=" text-align: center !important;" *ngIf='!showUserInformation'>
   <img src='../../assets/imgs/no_message.svg' style="width: 30% !important;margin-top: 40% !important;" />
   <ion-label style="color: darksalmon !important;">No message/notifications</ion-label>
- </ion-list>
+ </ion-list> -->
+
+ <div [ngSwitch]="segment">
+<!--Messages Start-->
+  <p *ngSwitchCase="'messages'">
+
+    
+      <ion-item *ngFor="let message of messageList">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+              <img src="../../assets/imgs/user.png" class="camera-img-wrapper" *ngIf="dataValidation.isEmptyJson(message['SenderUserImagePath'])" />
+              <img [src]="message['SenderUserImagePath']" class="camera-img-wrapper" *ngIf="!dataValidation.isEmptyJson(message['SenderUserImagePath'])" />
+            </ion-col>
+            <ion-col col-10>
+              <ion-grid>
+                <ion-row class="nopadding">
+                  <h2 style="white-space: normal;">{{message['MessageName']}}</h2>
+                </ion-row>
+                <ion-row>
+                  <h3 style="white-space: normal; color:ddd !important">{{message['MessageDescription']}}</h3>
+                </ion-row>
+                <ion-row class="nopadding">
+                  <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message['MessageSendDate'],'d, MMM yyyy')}}</h6>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    
+  </p>
 
 
+
+
+
+  <p *ngSwitchCase="'notifications'">
+
+    
+    <ion-item *ngFor="let message of notificationList">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <img src="../../assets/imgs/user.png" class="camera-img-wrapper" *ngIf="dataValidation.isEmptyJson(message['SenderUserImagePath'])" />
+            <img [src]="message['SenderUserImagePath']" class="camera-img-wrapper" *ngIf="!dataValidation.isEmptyJson(message['SenderUserImagePath'])" />
+          </ion-col>
+          <ion-col col-10>
+            <ion-grid>
+              <ion-row class="nopadding">
+                <h2 style="white-space: normal;">{{message['MessageName']}}</h2>
+              </ion-row>
+              <ion-row >
+                <h3 style="white-space: normal; color:ddd !important">{{message['MessageDescription']}}</h3>
+              </ion-row>
+              <ion-row class="nopadding">
+                <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message['MessageSendDate'],'d, MMM yyyy')}}</h6>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  
+</p>
+
+
+  
+<!--Messages End-->
+</div>
 </ion-content>
 
 

@@ -25,6 +25,7 @@ export class HttpProvider {
         //data['Auth_Token'] = (tokenId == null) ? 1 : tokenId;
         //data['U_Type'] = 'D';
       console.log(JSON.stringify(data));
+      console.error(this.codes.API_ENDPOINT+apiName);
       this.http.post(this.codes.API_ENDPOINT+apiName, JSON.stringify(data)
         , {headers: headers}).map(res => res.json())
         .subscribe((data:any) => {
