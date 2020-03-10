@@ -2,8 +2,9 @@ page-general-settings {
 
     .background-content{
         background-color: #fff;
-        border-radius: 10px !important;
-        border:1px solid #ddd;
+        // border-radius: 10px !important;
+        // border:1px solid #ddd;
+        border: 2px solid dodgerblue;
     }
    
     ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page 
@@ -22,12 +23,42 @@ page-general-settings {
     .card-content-md{
         padding: 0px !important;
     }
+    .segment-ios .segment-button{
+        font-size:10px !important;
+    }
+    .item-md{
+        padding: 0px !important;
+    }
+    ion-card img{
+        display: inline !important;
+    }
+
+    .card-header-md{
+    font-size: 16px !important;
+    font-weight: 800;
+    color: #888;
+    padding: 8px;
+    text-align: left !important;
+    }
+
+
+    .card-md p{
+        margin: 0 0 2px !important;
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        color: dodgerblue !important;
+    }
+
+
    
     .card-md{
-        min-width: 160px !important;
-        max-width: 162px !important;
+        min-width: 143px !important;
+        max-width: 145px !important;
+        min-height: 140px !important;
+        max-height: 145px !important;
         margin:0px !important;
-        border:1px solid #ddd !important;
+        border:2px solid dodgerblue !important;
+        border-radius:5px !important;
         background: #ddd !important;
     }
    
@@ -111,13 +142,15 @@ page-general-settings {
        padding:2px !important;
    }
 
-   .segment-md .segment-button{
-       font-size: 10px !important;
+   .segment-ios .segment-md .segment-button{
+       font-size: 9px !important;
+   }
+   .segment-ios .segment-button{
+    font-size: 9px !important;
    }
 
    .camera-img-wrapper{
     width: 40px !important;
     height: 40px !important;
 }
-
 }

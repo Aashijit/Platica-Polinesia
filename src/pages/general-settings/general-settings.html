@@ -21,16 +21,22 @@
   </ion-row>
 
 
-  <ion-segment [(ngModel)]="segment" mode="ios" style="margin-top: 13px !important; padding: 3% !important;">
+  <ion-segment [(ngModel)]="segment" mode="ios" style="margin-top: 13px !important;background: white !important;">
 
     <ion-segment-button value="businessunits">
-      Business Units
+      Business Unit
     </ion-segment-button>
     <ion-segment-button value="brands">
-      Brands
+      Brand
     </ion-segment-button>
     <ion-segment-button value="users">
-      Users
+      User
+    </ion-segment-button>
+    <ion-segment-button value="usertypes">
+      User Type
+    </ion-segment-button>
+    <ion-segment-button value="activities">
+      Activity
     </ion-segment-button>
 
   </ion-segment>
@@ -48,8 +54,46 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <!--Fab Buttons-->
+  <ion-fab right bottom *ngIf="segment == 'businessunits'">
+    <button ion-fab (click)="addBusinessUnit()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+
+  <ion-fab right bottom *ngIf="segment == 'brands'">
+    <button ion-fab (click)="addBrands()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <ion-fab right bottom *ngIf="segment == 'users'">
+    <button ion-fab (click)="addUser()">
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <ion-fab right bottom *ngIf="segment == 'usertypes'">
+    <button ion-fab (click)="addUserType()">
+      <ion-icon name="add" mode="ios"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <ion-fab right bottom *ngIf="segment == 'activities'">
+    <button ion-fab (click)="addActivity()">
+      <ion-icon name="add" mode="ios"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <!--Fab Buttons-->
+
   
-  <p style=" margin-top: 10% !important;"></p>
+  <p style=" margin-top: 4% !important;"></p>
   <div [ngSwitch]="segment">
     <p *ngSwitchCase="'businessunits'">
       <ion-list *ngFor='let businessunit of businessunitList' class="nomargin nopadding">
@@ -79,11 +123,7 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-fab bottom right>
-        <button ion-fab (click)="addBusinessUnit()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-fab>
+ 
     </p>
 
     <p *ngSwitchCase="'brands'">
@@ -113,11 +153,7 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-fab bottom right>
-        <button ion-fab (click)="addBrands()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-fab>
+
     </p>
 
 
@@ -165,12 +201,74 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-      <ion-fab bottom right>
-        <button ion-fab (click)="addUser()">
-          <ion-icon name="person-add"></ion-icon>
-        </button>
-      </ion-fab>
+
     </div>
+
+    <p *ngSwitchCase="'usertypes'">
+      
+      <ion-item *ngFor="let userType of userTypes">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2 >
+              <p style="font-size: 10px !important; padding-top:13px !important;border: dodgerblue 2px solid; width:40px !important; height:40px !important; border-radius: 50% !important; background-color: #ddd !important; color: #999 !important;font-weight: 600 !important; text-align: center !important;">{{userType['UserTypeAlias']}}</p>
+            </ion-col>
+            <ion-col col-9 style="margin-top:10px !important;color: dodgerblue !important; font-size: 20px !important; font-weight: 600 !important;">
+              {{userType['UserTypeName']}}
+            </ion-col>
+            <ion-col col-1 style="margin-top:10px !important; color: #919191 !important;" (click)="editUserType(userType)">
+              <ion-icon name="create"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </p>
+
+
+    <p *ngSwitchCase="'activities'" style="margin-top: 28px !important;">
+      <ion-row>
+        <ion-col *ngFor="let activity of activities">
+          <ion-card >
+            <ion-card-header>{{activity['ActivityName']}} <button ion-button clear style="float: right !important; padding-top: 0px !important; padding-right:0px !important; margin-top: 0px !important;margin-right:0px !important;padding-bottom: 0px !important;margin-bottom: 0px !important;
+                height: 20px !important;" (click)="editActivity(activity)">
+                <ion-icon name="create" style="font-size: 12px !important;"></ion-icon>
+              </button></ion-card-header>
+            <ion-card-content>
+              <p style="text-align: justify !important;font-size: 12px !important; color: #888 !important;padding: 5px !important;height:43px !important">
+                {{activity['ActivityDescription']}}
+              </p>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-3 style="text-align: center !important;">
+                    <p><img src="../../assets/imgs/trophy.svg" style="width: 15px !important;" /></p>
+                    <p>{{activity['CoinRewardQuantity']}}</p>
+                  </ion-col>
+                  <ion-col col-3 style="text-align: center !important;">
+                    <p><img src="../../assets/imgs/diamond.svg" style="width: 15px !important;" /></p>
+                    <p>{{activity['DiamondRewardQuantity']}}</p>
+                  </ion-col>
+                  <ion-col col-3 style="text-align: center !important;">
+                    <p><img src="../../assets/imgs/coin.png" style="width: 15px !important;" /></p>
+                    <p>{{activity['CouponRewardQuantity']}}</p>
+                  </ion-col>
+                  <ion-col col-3 style="text-align: center !important;">
+                    <p><img src="../../assets/imgs/coupon.png" style="width: 15px !important;" /></p>
+                    <p>{{activity['TrophyRewardQuantity']}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    
+    </p>
+
+
+
+
+
+
   </div>
 
 </ion-content>

@@ -1,0 +1,23 @@
+
+<ion-content padding class="custom-popup">
+  <ion-title style="color: whitesmoke;">Add User Type</ion-title>
+  <br/>
+  <br/>
+  <ion-item>
+    <ion-label floating> User type name</ion-label> 
+    <ion-input [(ngModel)]="userTypeName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating> User type alias</ion-label> 
+    <ion-input [(ngModel)]="userTypeAlias"></ion-input>
+  </ion-item>
+
+  <button ion-button clear (click)="addUserType()">Add user type &nbsp;<ion-icon name="create"></ion-icon></button>
+
+</ion-content>
+<ion-footer>
+  <button ion-button clear full (click)="closeModal();" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-footer>

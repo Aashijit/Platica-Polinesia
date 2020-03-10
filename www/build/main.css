@@ -28102,6 +28102,20 @@ user-info .noti-image-size {
   height: 15px !important;
 }
 
+page-add-activity .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-activity .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-activity .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-add-brand .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -28144,6 +28158,30 @@ page-add-user .list-underline {
   margin-left: 16px !important;
 }
 
+page-add-user-type .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-user-type .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-user-type .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-add-user-type .camera-img-wrapper {
+  width: 30px !important;
+  height: 30px !important;
+  margin-top: 2px !important;
+}
+
+page-add-user-type .label-md {
+  margin: 0px !important;
+}
+
 page-approve-leave-comments .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -28164,6 +28202,20 @@ page-approve-leave-comments .camera-img-wrapper {
   margin-top: 12px !important;
 }
 
+page-edit-activity .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-edit-activity .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-edit-activity .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-edit-brand .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -28176,6 +28228,30 @@ page-edit-brand .item-md {
 page-edit-brand .list-underline {
   border-bottom: 1px solid #fff;
   margin-left: 16px !important;
+}
+
+page-edit-user-type .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-edit-user-type .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-edit-user-type .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
+page-edit-user-type .camera-img-wrapper {
+  width: 30px !important;
+  height: 30px !important;
+  margin-top: 2px !important;
+}
+
+page-edit-user-type .label-md {
+  margin: 0px !important;
 }
 
 page-forgot-password .custom-popup {
@@ -28194,8 +28270,7 @@ page-forgot-password .list-underline {
 
 page-general-settings .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-general-settings ion-app, page-general-settings ion-nav, page-general-settings ion-tab, page-general-settings ion-tabs, page-general-settings .app-root, page-general-settings .ion-page {
@@ -28219,11 +28294,41 @@ page-general-settings .card-content-md {
   padding: 0px !important;
 }
 
+page-general-settings .segment-ios .segment-button {
+  font-size: 10px !important;
+}
+
+page-general-settings .item-md {
+  padding: 0px !important;
+}
+
+page-general-settings ion-card img {
+  display: inline !important;
+}
+
+page-general-settings .card-header-md {
+  font-size: 16px !important;
+  font-weight: 800;
+  color: #888;
+  padding: 8px;
+  text-align: left !important;
+}
+
+page-general-settings .card-md p {
+  margin: 0 0 2px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: dodgerblue !important;
+}
+
 page-general-settings .card-md {
-  min-width: 160px !important;
-  max-width: 162px !important;
+  min-width: 143px !important;
+  max-width: 145px !important;
+  min-height: 140px !important;
+  max-height: 145px !important;
   margin: 0px !important;
-  border: 1px solid #ddd !important;
+  border: 2px solid dodgerblue !important;
+  border-radius: 5px !important;
   background: #ddd !important;
 }
 
@@ -28301,8 +28406,12 @@ page-general-settings .alert-md .alert-message, page-general-settings .alert-md 
   padding: 2px !important;
 }
 
-page-general-settings .segment-md .segment-button {
-  font-size: 10px !important;
+page-general-settings .segment-ios .segment-md .segment-button {
+  font-size: 9px !important;
+}
+
+page-general-settings .segment-ios .segment-button {
+  font-size: 9px !important;
 }
 
 page-general-settings .camera-img-wrapper {

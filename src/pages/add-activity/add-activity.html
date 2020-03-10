@@ -1,0 +1,60 @@
+<ion-content padding class="custom-popup">
+
+  <h1 style="color: wheat;">Add Activity</h1>
+
+  <ion-list style="text-align: center !important;">
+
+    
+  <ion-item class="no-underline">
+    <ion-label color="primary">Activity Name</ion-label>
+    <ion-input [(ngModel)]="activityName">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary" stacked>Activity Description</ion-label>
+    <ion-textarea [(ngModel)]="activityDescription">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Coin Reward Quantity</ion-label>
+    <ion-input [(ngModel)]="coinRewardQuantity">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Diamond Reward Quantity</ion-label>
+    <ion-input [(ngModel)]="diamondRewardQuantity">
+    </ion-input>
+  </ion-item>
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Coupon Reward Quantity</ion-label>
+    <ion-input [(ngModel)]="couponRewardQuantity">
+    </ion-input>
+  </ion-item>
+
+
+  <ion-item class="no-underline">
+    <ion-label color="primary">Trophy Reward Quantity</ion-label>
+    <ion-input [(ngModel)]="trophyRewardQuantity">
+    </ion-input>
+  </ion-item>
+
+
+
+  <p style="text-align: center;">
+  <button ion-button clear class="capitalize" (click)="addActivity()">Add Activity &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>
+  </p>  
+
+
+
+</ion-list> 
+
+
+<ion-footer>
+  <button ion-button clear full (click)="closeModal();" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-footer>

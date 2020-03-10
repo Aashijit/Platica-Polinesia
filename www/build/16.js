@@ -1,14 +1,14 @@
 webpackJsonp([16],{
 
-/***/ 432:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddBusinessUnitPageModule", function() { return AddBusinessUnitPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApproveLeaveCommentsPageModule", function() { return ApproveLeaveCommentsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_business_unit__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__ = __webpack_require__(458);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddBusinessUnitPageModule = /** @class */ (function () {
-    function AddBusinessUnitPageModule() {
+var ApproveLeaveCommentsPageModule = /** @class */ (function () {
+    function ApproveLeaveCommentsPageModule() {
     }
-    AddBusinessUnitPageModule = __decorate([
+    ApproveLeaveCommentsPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__add_business_unit__["a" /* AddBusinessUnitPage */],
+                __WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__["a" /* ApproveLeaveCommentsPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__add_business_unit__["a" /* AddBusinessUnitPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__["a" /* ApproveLeaveCommentsPage */]),
             ],
         })
-    ], AddBusinessUnitPageModule);
-    return AddBusinessUnitPageModule;
+    ], ApproveLeaveCommentsPageModule);
+    return ApproveLeaveCommentsPageModule;
 }());
 
-//# sourceMappingURL=add-business-unit.module.js.map
+//# sourceMappingURL=approve-leave-comments.module.js.map
 
 /***/ }),
 
-/***/ 450:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddBusinessUnitPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(53);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApproveLeaveCommentsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,33 +66,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AddBusinessUnitPage = /** @class */ (function () {
-    function AddBusinessUnitPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController) {
+var ApproveLeaveCommentsPage = /** @class */ (function () {
+    function ApproveLeaveCommentsPage(navCtrl, navParams, modalCtrl, http, msgHelper, codes, dataValidation, datePipe, alert) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
+        this.http = http;
         this.msgHelper = msgHelper;
-        this.httpCall = httpCall;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.actionSheet = actionSheet;
-        this.alertController = alertController;
-        this.businessUnitName = null;
-        this.businessUnitAlias = null;
-        this.Phone = null;
-        this.Address1 = null;
-        this.Adderss2 = null;
-        this.City = null;
-        this.State = null;
-        this.Zip = null;
-        this.BusinessUnitOwnerId = null;
-        this.UserList = null;
+        this.datePipe = datePipe;
+        this.alert = alert;
+        this.comment = null;
+        this.approveTitle = null;
+        this.leave = null;
     }
-    AddBusinessUnitPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddBusinessUnitPage');
-        this.UserList = this.navParams.get('userList');
+    ApproveLeaveCommentsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ApproveLeaveCommentsPage');
+        this.leave = this.navParams.get('Leave');
+        if (this.leave['Status'] == 'R') {
+            this.approveTitle = "Reject ";
+        }
+        else {
+            this.approveTitle = "Approve ";
+        }
     };
-    AddBusinessUnitPage.prototype.addBusinessUnit = function () {
-        //TODO: Validations to be done 
+    ApproveLeaveCommentsPage.prototype.approveOrReject = function () {
         var _this = this;
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
         if (this.dataValidation.isEmptyJson(currentUserInfo)) {
@@ -99,47 +99,40 @@ var AddBusinessUnitPage = /** @class */ (function () {
             return;
         }
         var requestJson = {
-            "BusinessUnitName": this.businessUnitName,
-            "BusinessUnitAlias": this.businessUnitAlias,
-            "Phone": this.Phone,
-            "Address1": this.Address1,
-            "Address2": this.Adderss2,
-            "City": this.City,
-            "State": this.State,
-            "Zip": this.Zip,
-            "BusinessUnitOwnerID": this.BusinessUnitOwnerId,
-            "CreatedByID": currentUserInfo['UserId'],
+            "LeaveBalanceId": this.leave['LeaveBalanceId'],
+            "LeaveStatus": this.leave['Status'],
+            "ApprovedOrRejectedById": currentUserInfo[0]['UserId'],
+            "ApprovedOrRejectedLeaveComments": this.comment,
             "AppType": "W"
         };
-        var loading = this.msgHelper.showWorkingDialog('Inserting Business Unit ...');
-        this.httpCall.callApi(requestJson, this.codes.API_INSERT_BUSINESS_UNIT).then(function (responseJson) {
-            loading.dismiss();
+        console.error(requestJson);
+        this.http.callApi(requestJson, this.codes.API_APPROVE_LEAVE).then(function (responseJson) {
             if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showAlert('Error !!', 'Empty response received');
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
                 return;
             }
-            if (responseJson['status'] == '1') {
-                _this.msgHelper.showToast('Business Unit Inserted !!!');
+            if (responseJson['status'] == 1) {
+                _this.msgHelper.showToast('Leave have been approved !!!');
                 _this.navCtrl.pop();
                 return;
             }
         });
     };
-    AddBusinessUnitPage.prototype.closeModal = function () {
+    ApproveLeaveCommentsPage.prototype.goBack = function () {
         this.navCtrl.pop();
     };
-    AddBusinessUnitPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-add-business-unit',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-business-unit/add-business-unit.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Business Unit</h1>\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">Business Unit Name</ion-label>\n    <ion-input [(ngModel)]="businessUnitName">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Business Unit Alias</ion-label>\n    <ion-input [(ngModel)]="businessUnitAlias">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Phone</ion-label>\n    <ion-input [(ngModel)]="Phone">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="Address1">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="Adderss2">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="City">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="State">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="Zip">\n    </ion-input>\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary" floating>Business Owner</ion-label>\n    <ion-select [(ngModel)]="BusinessUnitOwnerId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n      <p *ngFor=\'let user of UserList\'>\n    <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n    </p>\n    </ion-select>\n\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="addBusinessUnit()">Add Business Unit &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-business-unit/add-business-unit.html"*/,
+    ApproveLeaveCommentsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+            selector: 'page-approve-leave-comments',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/approve-leave-comments/approve-leave-comments.html"*/'<ion-content padding class="custom-popup">\n\n  <ion-card>\n    <ion-card-header>{{approveTitle}} this leave?</ion-card-header>\n    <ion-item>\n      <ion-label stacked>{{approveTitle}} comments</ion-label>\n      <ion-textarea rows=3 columns=12 [(ngModel)]="comment" style="color: #000 !important;">   \n      </ion-textarea>\n    </ion-item>\n\n  <p style="text-align: right !important;">\n  <span>\n    <button ion-button clear (click)="goBack()">No</button>\n    <button ion-button clear (click)="approveOrReject()">Yes</button>\n  </span>\n  </p>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/approve-leave-comments/approve-leave-comments.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"]])
-    ], AddBusinessUnitPage);
-    return AddBusinessUnitPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common__["DatePipe"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]])
+    ], ApproveLeaveCommentsPage);
+    return ApproveLeaveCommentsPage;
 }());
 
-//# sourceMappingURL=add-business-unit.js.map
+//# sourceMappingURL=approve-leave-comments.js.map
 
 /***/ })
 

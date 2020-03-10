@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 434:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApproveLeaveCommentsPageModule", function() { return ApproveLeaveCommentsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditBrandPageModule", function() { return EditBrandPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_brand__ = __webpack_require__(460);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ApproveLeaveCommentsPageModule = /** @class */ (function () {
-    function ApproveLeaveCommentsPageModule() {
+var EditBrandPageModule = /** @class */ (function () {
+    function EditBrandPageModule() {
     }
-    ApproveLeaveCommentsPageModule = __decorate([
+    EditBrandPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__["a" /* ApproveLeaveCommentsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__edit_brand__["a" /* EditBrandPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__approve_leave_comments__["a" /* ApproveLeaveCommentsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__edit_brand__["a" /* EditBrandPage */]),
             ],
         })
-    ], ApproveLeaveCommentsPageModule);
-    return ApproveLeaveCommentsPageModule;
+    ], EditBrandPageModule);
+    return EditBrandPageModule;
 }());
 
-//# sourceMappingURL=approve-leave-comments.module.js.map
+//# sourceMappingURL=edit-brand.module.js.map
 
 /***/ }),
 
-/***/ 452:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApproveLeaveCommentsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(341);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditBrandPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,73 +65,65 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ApproveLeaveCommentsPage = /** @class */ (function () {
-    function ApproveLeaveCommentsPage(navCtrl, navParams, modalCtrl, http, msgHelper, codes, dataValidation, datePipe, alert) {
+var EditBrandPage = /** @class */ (function () {
+    function EditBrandPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.http = http;
         this.msgHelper = msgHelper;
+        this.httpCall = httpCall;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.datePipe = datePipe;
-        this.alert = alert;
-        this.comment = null;
-        this.approveTitle = null;
-        this.leave = null;
+        this.actionSheet = actionSheet;
+        this.alertController = alertController;
+        this.brand = null;
+        this.userList = null;
+        this.brand = this.navParams.get('brand');
+        this.userList = this.navParams.get('userList');
     }
-    ApproveLeaveCommentsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ApproveLeaveCommentsPage');
-        this.leave = this.navParams.get('Leave');
-        if (this.leave['Status'] == 'R') {
-            this.approveTitle = "Reject ";
-        }
-        else {
-            this.approveTitle = "Approve ";
-        }
+    EditBrandPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad EditBrandPage');
     };
-    ApproveLeaveCommentsPage.prototype.approveOrReject = function () {
+    EditBrandPage.prototype.updateBrand = function () {
         var _this = this;
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
         if (this.dataValidation.isEmptyJson(currentUserInfo)) {
             this.msgHelper.showToast('Could not fetch user id');
             return;
         }
-        var requestJson = {
-            "LeaveBalanceId": this.leave['LeaveBalanceId'],
-            "LeaveStatus": this.leave['Status'],
-            "ApprovedOrRejectedById": currentUserInfo[0]['UserId'],
-            "ApprovedOrRejectedLeaveComments": this.comment,
-            "AppType": "W"
-        };
-        console.error(requestJson);
-        this.http.callApi(requestJson, this.codes.API_APPROVE_LEAVE).then(function (responseJson) {
+        var reqestApiString = "?brid=" + this.brand['BrandId'] +
+            "&brdesc=" + this.brand['BrandDescription'] +
+            "&brownerid=" + this.brand['BrandOwnerID'] +
+            "&brmodifybyid=" + currentUserInfo[0]['UserId'] +
+            "&AppType=W&updateWithImageStatus=N";
+        var loading = this.msgHelper.showWorkingDialog('Updating Brand ...');
+        this.httpCall.callApi('', this.codes.API_UPDATE_BRAND + reqestApiString).then(function (responseJson) {
+            loading.dismiss();
             if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
+                _this.msgHelper.showAlert('Error !!', 'Empty response received');
                 return;
             }
-            if (responseJson['status'] == 1) {
-                _this.msgHelper.showToast('Leave have been approved !!!');
+            if (responseJson['status'] == '1') {
+                _this.msgHelper.showToast('Brand Updated !!!');
                 _this.navCtrl.pop();
                 return;
             }
         });
     };
-    ApproveLeaveCommentsPage.prototype.goBack = function () {
+    EditBrandPage.prototype.closeModal = function () {
         this.navCtrl.pop();
     };
-    ApproveLeaveCommentsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-            selector: 'page-approve-leave-comments',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/approve-leave-comments/approve-leave-comments.html"*/'<ion-content padding class="custom-popup">\n\n  <ion-card>\n    <ion-card-header>{{approveTitle}} this leave?</ion-card-header>\n    <ion-item>\n      <ion-label stacked>{{approveTitle}} comments</ion-label>\n      <ion-textarea rows=3 columns=12 [(ngModel)]="comment" style="color: #000 !important;">   \n      </ion-textarea>\n    </ion-item>\n\n  <p style="text-align: right !important;">\n  <span>\n    <button ion-button clear (click)="goBack()">No</button>\n    <button ion-button clear (click)="approveOrReject()">Yes</button>\n  </span>\n  </p>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/approve-leave-comments/approve-leave-comments.html"*/,
+    EditBrandPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
+            selector: 'page-edit-brand',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/edit-brand/edit-brand.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Brand</h1>\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;"> \n\n    <p style="text-align: center;">\n      <img [src]="brand[\'BrandImagePath\']" class="camera-img-wrapper" />\n    </p> \n\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">Brand Name</ion-label>\n    <ion-input [(ngModel)]="brand[\'BrandName\']" [disabled]=true>\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary" floating>Brand Description</ion-label>\n    <ion-textarea [(ngModel)]="brand[\'BrandDescription\']">\n    </ion-textarea>\n  </ion-item>\n\n  \n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary" floating>Brand Owner</ion-label>\n    <ion-select [(ngModel)]="brand[\'BrandOwnerID\']"  interface="popover" [selectOptions]="{ mode: \'ios\' }">\n      <p *ngFor=\'let user of userList\'>\n    <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n    </p>\n    </ion-select>\n\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateBrand()">Update Brand &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal()" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/edit-brand/edit-brand.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"],
-            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_common__["DatePipe"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]])
-    ], ApproveLeaveCommentsPage);
-    return ApproveLeaveCommentsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"]])
+    ], EditBrandPage);
+    return EditBrandPage;
 }());
 
-//# sourceMappingURL=approve-leave-comments.js.map
+//# sourceMappingURL=edit-brand.js.map
 
 /***/ })
 

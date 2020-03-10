@@ -41,6 +41,12 @@ export class Codes{
     public API_GET_LEAVE_BALANCE_INFORMATION="Leave/GetLeaveBalanceInformation";
     public API_APPROVE_LEAVE="Leave/LeaveApproval";
     public API_GET_MESSAGES_NOTIFICATIONS="Messages/GetMessageTypeList";
+    public API_GET_USER_TYPE_LIST="UserType/GetUserTypeList";
+    public API_INSERT_USER_TYPE="UserType/InsertUserType";
+    public API_UPDATE_USER_TYPE="UserType/UpdateUserType";
+    public API_GET_ACTIVITY="Activity/GetActivityList";
+    public API_INSERT_ACTIVITY="Activity/InsertActivity";
+    public API_UPDATE_ACTIVITY="Activity/UpdateActivity";
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 
