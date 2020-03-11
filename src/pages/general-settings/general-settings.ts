@@ -29,6 +29,8 @@ export class GeneralSettingsPage {
 
   activities : any = null;
 
+  materials : any = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
     public httpCall: HttpProvider, public codes: Codes, public dataValidation: DataValidation,
     public msgHelper: MessageHelper, public alertController: AlertController) {
@@ -187,6 +189,31 @@ export class GeneralSettingsPage {
         this.activities[i]['ProjectTypeImage'] = this.getProjectTypeImage(this.activities[i]['ProjectTypeName']);
       }
     });
+
+    //Get All material information
+    var requestJson = {
+      "AppType": "W"
+    };
+    this.httpCall.callApi(requestJson,"Material/GetMaterialList").then(responseJson => {
+     
+     
+      if (this.dataValidation.isEmptyJson(responseJson)) {
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Material list");
+        return;
+      }
+
+      if (responseJson['status'] != 1) {
+        this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+        return;
+      }
+
+      this.materials = responseJson['resultData'];
+      
+    });
+
+
+
+    
   }
 
   getPhaseName(phaseId){

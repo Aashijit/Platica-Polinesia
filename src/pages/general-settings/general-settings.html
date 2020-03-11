@@ -24,22 +24,22 @@
   <ion-segment [(ngModel)]="segment" mode="ios" style="margin-top: 13px !important;background: white !important;">
 
     <ion-segment-button value="businessunits">
-      Business Unit
+      <img src="../../assets/imgs/capitol.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
     <ion-segment-button value="brands">
-      Brand
+      <img src="../../assets/imgs/tamiya.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
     <ion-segment-button value="users">
-      User
+      <img src="../../assets/imgs/friend.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
     <ion-segment-button value="usertypes">
-      User Type
+      <img src="../../assets/imgs/security.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
     <ion-segment-button value="activities">
-      Activity
+      <img src="../../assets/imgs/work-time.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
     <ion-segment-button value="materials">
-      Material
+      <img src="../../assets/imgs/documents.svg" style="width: 20px !important; margin-top:5px !important" />
     </ion-segment-button>
 
   </ion-segment>
@@ -291,7 +291,30 @@
 
 
     <p *ngSwitchCase="'materials'">
-      
+
+      <ion-item *ngFor="let material of materials" >
+        <ion-grid>
+          <ion-row>
+            <ion-col style="float: right !important;"><ion-badge>{{material['MaterialName']}}</ion-badge></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col><h2 style="font-weight: 600 !important;">{{material['MaterialMake']}}</h2></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col><h3 style="color: dodgerblue !important;">{{material['MaterialModel']}}</h3></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6><h6 style="white-space: normal !important; color: #919191 !important;">{{material['MaterialDescription']}}</h6></ion-col>
+            <ion-col style="padding:0px !important;" col-4>
+              <ion-badge color="light">Total Quantity : {{material['OpeningQuantity']}}</ion-badge>
+            </ion-col>
+            <ion-col style="padding:0px !important;" col-2>
+              <ion-badge color="dark">Left : {{material['MaterialQuantity']}} </ion-badge>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
     </p>
   </div>
 

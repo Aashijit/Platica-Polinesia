@@ -239,11 +239,11 @@ var map = {
 		8
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		446,
+		445,
 		7
 	],
 	"../pages/login/login.module": [
-		445,
+		446,
 		6
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
@@ -659,8 +659,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-approval/leave-approval.module#LeaveApprovalPageModule', name: 'LeaveApprovalPage', segment: 'leave-approval', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
@@ -729,7 +729,7 @@ var UserInfoComponent = /** @class */ (function () {
     ], UserInfoComponent.prototype, "notificationNumber", void 0);
     UserInfoComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'user-info',template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\user-info\user-info.html"*/'<div>\n\n\n\n  <span>\n\n    \n\n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n\n    <span style="position: absolute;\n\n    left: 13px !important;\n\n    font-size: 9px !important;\n\n    top: 13px !important;\n\n    color: white;">{{messageNumber}}</span>\n\n  </button> -->\n\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n\n    <img src="../../assets/imgs/user.png" class="user-image-size" />\n\n  </p>\n\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n\n  <!-- <button ion-button clear >\n\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n\n    <span style="position: absolute;\n\n    left: 13px !important;\n\n    top: 15px !important;\n\n    font-size: 8px !important;\n\n    color: white;">{{notificationNumber}}</span>\n\n  </button> -->\n\n</p>\n\n  </span>\n\n  <!-- {{text}} -->\n\n</div>'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\user-info\user-info.html"*/
+            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;">{{messageNumber}}</span>\n  </button> -->\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n    <img src="../../assets/imgs/user.png" class="user-image-size" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <!-- <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;">{{notificationNumber}}</span>\n  </button> -->\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], UserInfoComponent);
@@ -763,7 +763,7 @@ var ProjectModuleComponent = /** @class */ (function () {
     }
     ProjectModuleComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'project-module',template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\project-module\project-module.html"*/'<div style="width: 200px !important;">\n\n  <span>\n\n  <round-progress [current]="50" [max]="100" [radius]="30" [stroke]="8"></round-progress>\n\n  <img src="../../assets/imgs/icon_video.png" style="    width: 30px !important;\n\n  height: 30px !important;\n\n  top: 125px !important;\n\n  position: absolute;\n\n  left: 31px !important;"\n\n  />\n\n  <span style="font-size: 8px !important;\n\n  position: absolute;\n\n  top: 117px !important;\n\n  left: 66px !important;\n\n  background: white;\n\n  border: 1px solid #ddd;\n\n  padding: 9px !important;\n\n  padding-left: 15px !important;\n\n  z-index: -1 !important;\n\n  border-radius: 14px !important;">\n\n    <p class="nomargin">Allejandro wants something</p>\n\n    <p class="nomargin">2019/12/21 - 2019/12/22</p>\n\n    <p class="nomargin">Owner : Allejandro</p>\n\n  </span>\n\n</span>\n\n</div>'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\project-module\project-module.html"*/
+            selector: 'project-module',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/project-module/project-module.html"*/'<div style="width: 200px !important;">\n  <span>\n  <round-progress [current]="50" [max]="100" [radius]="30" [stroke]="8"></round-progress>\n  <img src="../../assets/imgs/icon_video.png" style="    width: 30px !important;\n  height: 30px !important;\n  top: 125px !important;\n  position: absolute;\n  left: 31px !important;"\n  />\n  <span style="font-size: 8px !important;\n  position: absolute;\n  top: 117px !important;\n  left: 66px !important;\n  background: white;\n  border: 1px solid #ddd;\n  padding: 9px !important;\n  padding-left: 15px !important;\n  z-index: -1 !important;\n  border-radius: 14px !important;">\n    <p class="nomargin">Allejandro wants something</p>\n    <p class="nomargin">2019/12/21 - 2019/12/22</p>\n    <p class="nomargin">Owner : Allejandro</p>\n  </span>\n</span>\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/project-module/project-module.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], ProjectModuleComponent);
@@ -812,7 +812,7 @@ var StarProviderComponent = /** @class */ (function () {
     ], StarProviderComponent.prototype, "videos", void 0);
     StarProviderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'star-provider',template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\star-provider\star-provider.html"*/'<div class="background">\n\n    <span>\n\n      <img src="../../assets/imgs/coin.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{coins}}</sup>\n\n      <img src="../../assets/imgs/star.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important; ">{{stars}}</sup>\n\n      <img src="../../assets/imgs/movie-symbol-of-video-camera.png" style="width: 15px !important; margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{videos}}</sup>\n\n    </span>\n\n</div>\n\n'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\components\star-provider\star-provider.html"*/
+            selector: 'star-provider',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/star-provider/star-provider.html"*/'<div class="background">\n    <span>\n      <img src="../../assets/imgs/coin.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{coins}}</sup>\n      <img src="../../assets/imgs/star.png" style="width: 15px !important;  margin-left:2px !important"/> <sup style="font-size: 7px !important; ">{{stars}}</sup>\n      <img src="../../assets/imgs/movie-symbol-of-video-camera.png" style="width: 15px !important; margin-left:2px !important"/> <sup style="font-size: 7px !important;">{{videos}}</sup>\n    </span>\n</div>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/star-provider/star-provider.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], StarProviderComponent);
@@ -1164,7 +1164,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["Nav"])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\app\app.html"*/'<ion-menu [content]="content" type="overlay">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    \n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/app/app.html"*/'<ion-menu [content]="content" type="overlay">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    \n  </ion-content>\n\n</ion-menu>\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */], __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__["a" /* Codes */]])
