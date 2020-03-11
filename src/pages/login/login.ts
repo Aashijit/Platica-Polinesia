@@ -31,6 +31,40 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+
+    //Get Phases and Get Project Type
+    var requestJson = {
+      "AppType": "W"
+    };    
+
+    this.httpCall.callApi(requestJson,this.codes.API_GET_PHASES).then(responseJson => {
+     
+      if (this.dataValidation.isEmptyJson(responseJson)) {
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Phases list");
+        return;
+      }
+
+      if (responseJson['status'] != 1) {
+        this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+        return;
+      }
+      localStorage.setItem(this.codes.LSK_PHASES,JSON.stringify(responseJson['resultData']));
+    });
+
+    this.httpCall.callApi(requestJson,this.codes.API_GET_PROJECT_TYPE).then(responseJson => {
+     
+      if (this.dataValidation.isEmptyJson(responseJson)) {
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Project Type list");
+        return;
+      }
+
+      if (responseJson['status'] != 1) {
+        this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+        return;
+      }
+      localStorage.setItem(this.codes.LSK_PROJECT_TYPE,JSON.stringify(responseJson['resultData']));
+    });
+    
   }
 
   verify() {

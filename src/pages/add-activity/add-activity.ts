@@ -19,10 +19,17 @@ export class AddActivityPage {
   diamondRewardQuantity : any = null;
   couponRewardQuantity : any = null;
   trophyRewardQuantity : any = null;
+  projectTypeId : any = null;
+  phaseId : any = null;
+  projectTypes : any = null;
+  phases : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
     public actionSheet : ActionSheetController,public alertController : AlertController) {
+
+      this.projectTypes = JSON.parse(localStorage.getItem(this.codes.LSK_PROJECT_TYPE));
+      this.phases = JSON.parse(localStorage.getItem(this.codes.LSK_PHASES));
   }
 
   ionViewDidLoad() {
@@ -44,14 +51,14 @@ export class AddActivityPage {
     var requestJson = {
       "ActivityName": this.activityName,
       "ActivityDescription": this.activityDescription,
-      "PhaseId": 1,
+      "PhaseId": this.phaseId,
       "CoinRewardQuantity": this.coinRewardQuantity,
       "DiamondRewardQuantity": this.diamondRewardQuantity,
       "CouponRewardQuantity": this.couponRewardQuantity,
       "TrophyRewardQuantity": this.trophyRewardQuantity,
       "CreatedByID": currentUserInfo[0]['UserId'],
       "AppType": "W",
-      "ProjectTypeId": 1
+      "ProjectTypeId": this.projectTypeId
     };
     var loading = this.msgHelper.showWorkingDialog('Inserting Activity ...');
     this.httpCall.callApi(requestJson,this.codes.API_INSERT_ACTIVITY).then(responseJson => {

@@ -81,6 +81,12 @@ var AddActivityPage = /** @class */ (function () {
         this.diamondRewardQuantity = null;
         this.couponRewardQuantity = null;
         this.trophyRewardQuantity = null;
+        this.projectTypeId = null;
+        this.phaseId = null;
+        this.projectTypes = null;
+        this.phases = null;
+        this.projectTypes = JSON.parse(localStorage.getItem(this.codes.LSK_PROJECT_TYPE));
+        this.phases = JSON.parse(localStorage.getItem(this.codes.LSK_PHASES));
     }
     AddActivityPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad AddActivityPage');
@@ -95,14 +101,14 @@ var AddActivityPage = /** @class */ (function () {
         var requestJson = {
             "ActivityName": this.activityName,
             "ActivityDescription": this.activityDescription,
-            "PhaseId": 1,
+            "PhaseId": this.phaseId,
             "CoinRewardQuantity": this.coinRewardQuantity,
             "DiamondRewardQuantity": this.diamondRewardQuantity,
             "CouponRewardQuantity": this.couponRewardQuantity,
             "TrophyRewardQuantity": this.trophyRewardQuantity,
             "CreatedByID": currentUserInfo[0]['UserId'],
             "AppType": "W",
-            "ProjectTypeId": 1
+            "ProjectTypeId": this.projectTypeId
         };
         var loading = this.msgHelper.showWorkingDialog('Inserting Activity ...');
         this.httpCall.callApi(requestJson, this.codes.API_INSERT_ACTIVITY).then(function (responseJson) {
@@ -124,7 +130,7 @@ var AddActivityPage = /** @class */ (function () {
     };
     AddActivityPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-add-activity',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-activity/add-activity.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Add Activity</h1>\n\n  <ion-list style="text-align: center !important;">\n\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">Activity Name</ion-label>\n    <ion-input [(ngModel)]="activityName">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary" stacked>Activity Description</ion-label>\n    <ion-textarea [(ngModel)]="activityDescription">\n    </ion-textarea>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Coin Reward Quantity</ion-label>\n    <ion-input [(ngModel)]="coinRewardQuantity">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Diamond Reward Quantity</ion-label>\n    <ion-input [(ngModel)]="diamondRewardQuantity">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Coupon Reward Quantity</ion-label>\n    <ion-input [(ngModel)]="couponRewardQuantity">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Trophy Reward Quantity</ion-label>\n    <ion-input [(ngModel)]="trophyRewardQuantity">\n    </ion-input>\n  </ion-item>\n\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="addActivity()">Add Activity &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-activity/add-activity.html"*/,
+            selector: 'page-add-activity',template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\pages\add-activity\add-activity.html"*/'<ion-content padding class="custom-popup">\n\n\n\n  <h1 style="color: wheat;">Add Activity</h1>\n\n\n\n  <ion-list style="text-align: center !important;">\n\n\n\n    \n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary">Activity Name</ion-label>\n\n    <ion-input [(ngModel)]="activityName">\n\n    </ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary" stacked>Activity Description</ion-label>\n\n    <ion-textarea [(ngModel)]="activityDescription">\n\n    </ion-textarea>\n\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label floating>Phase</ion-label>\n\n    <ion-select [(ngModel)]="phaseId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n\n      <p *ngFor=\'let type of phases\'>\n\n    <ion-option [value]="type[\'PhaseId\']">{{type[\'PhaseName\']}}</ion-option>\n\n    </p>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label floating>Project Type</ion-label>\n\n    <ion-select [(ngModel)]="projectTypeId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n\n      <p *ngFor=\'let type of projectTypes\'>\n\n    <ion-option [value]="type[\'ProjectTypeId\']">{{type[\'ProjectTypeName\']}}</ion-option>\n\n    </p>\n\n    </ion-select>\n\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary">Coin Reward Quantity</ion-label>\n\n    <ion-input [(ngModel)]="coinRewardQuantity">\n\n    </ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary">Diamond Reward Quantity</ion-label>\n\n    <ion-input [(ngModel)]="diamondRewardQuantity">\n\n    </ion-input>\n\n  </ion-item>\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary">Coupon Reward Quantity</ion-label>\n\n    <ion-input [(ngModel)]="couponRewardQuantity">\n\n    </ion-input>\n\n  </ion-item>\n\n\n\n\n\n  <ion-item class="no-underline">\n\n    <ion-label color="primary">Trophy Reward Quantity</ion-label>\n\n    <ion-input [(ngModel)]="trophyRewardQuantity">\n\n    </ion-input>\n\n  </ion-item>\n\n\n\n\n\n\n\n  <p style="text-align: center;">\n\n  <button ion-button clear class="capitalize" (click)="addActivity()">Add Activity &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n\n  </p>  \n\n\n\n\n\n\n\n</ion-list> \n\n\n\n\n\n<ion-footer>\n\n  <button ion-button clear full (click)="closeModal();" color="light">\n\n    <ion-icon name="close-circle" color="white"></ion-icon>\n\n  </button>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\pages\add-activity\add-activity.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],

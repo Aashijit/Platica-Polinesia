@@ -18,6 +18,25 @@
   </ion-item>
 
   <ion-item class="no-underline">
+    <ion-label floating>Phase</ion-label>
+    <ion-select [(ngModel)]="phaseId" interface="popover" [selectOptions]="{ mode: 'ios' }">
+      <p *ngFor='let type of phases'>
+    <ion-option [value]="type['PhaseId']">{{type['PhaseName']}}</ion-option>
+    </p>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-item class="no-underline">
+    <ion-label floating>Project Type</ion-label>
+    <ion-select [(ngModel)]="projectTypeId" interface="popover" [selectOptions]="{ mode: 'ios' }">
+      <p *ngFor='let type of projectTypes'>
+    <ion-option [value]="type['ProjectTypeId']">{{type['ProjectTypeName']}}</ion-option>
+    </p>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="no-underline">
     <ion-label color="primary">Coin Reward Quantity</ion-label>
     <ion-input [(ngModel)]="coinRewardQuantity">
     </ion-input>

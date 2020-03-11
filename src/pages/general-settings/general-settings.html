@@ -38,6 +38,9 @@
     <ion-segment-button value="activities">
       Activity
     </ion-segment-button>
+    <ion-segment-button value="materials">
+      Material
+    </ion-segment-button>
 
   </ion-segment>
 
@@ -86,6 +89,12 @@
 
   <ion-fab right bottom *ngIf="segment == 'activities'">
     <button ion-fab (click)="addActivity()">
+      <ion-icon name="add" mode="ios"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab right bottom *ngIf="segment == 'materials'">
+    <button ion-fab [disabled]=true>
       <ion-icon name="add" mode="ios"></ion-icon>
     </button>
   </ion-fab>
@@ -228,7 +237,22 @@
     <p *ngSwitchCase="'activities'" style="margin-top: 28px !important;">
       <ion-row>
         <ion-col *ngFor="let activity of activities">
-          <ion-card >
+          <ion-card>
+            <img [src]="activity['ProjectTypeImage']" style="height: 30px !important;
+            width: 30px !important;
+            position: absolute;
+            top: -5px !important;
+            left: -11px !important;
+            border: 2px dodgerblue solid;
+            border-radius: 50%;"/>
+            <span>
+              <ion-badge  *ngIf="activity['PhaseName'] == 'Production'" style="font-size : 8px !important;">{{activity['PhaseName']}}</ion-badge>
+              <ion-badge color="dark" *ngIf="activity['PhaseName'] == 'Pre Production'" style="font-size : 8px !important;">{{activity['PhaseName']}}</ion-badge>
+              <ion-badge color="success" *ngIf="activity['PhaseName'] == 'Post Production'" style="font-size : 8px !important;">{{activity['PhaseName']}}</ion-badge>
+              <ion-badge color="danger" *ngIf="activity['PhaseName'] == 'Analysis'" style="font-size : 8px !important;">{{activity['PhaseName']}}</ion-badge>
+
+              <ion-badge color="light" style="font-size : 8px !important;">{{activity['ProjectTypeName']}}</ion-badge></span>
+
             <ion-card-header>{{activity['ActivityName']}} <button ion-button clear style="float: right !important; padding-top: 0px !important; padding-right:0px !important; margin-top: 0px !important;margin-right:0px !important;padding-bottom: 0px !important;margin-bottom: 0px !important;
                 height: 20px !important;" (click)="editActivity(activity)">
                 <ion-icon name="create" style="font-size: 12px !important;"></ion-icon>
@@ -266,9 +290,9 @@
 
 
 
-
-
-
+    <p *ngSwitchCase="'materials'">
+      
+    </p>
   </div>
 
 </ion-content>

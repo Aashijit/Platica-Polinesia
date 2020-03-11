@@ -171,7 +171,7 @@ export class GeneralSettingsPage {
     this.httpCall.callApi(requestJson,this.codes.API_GET_ACTIVITY).then(responseJson => {
      
       if (this.dataValidation.isEmptyJson(responseJson)) {
-        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get user type list");
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Activity list");
         return;
       }
 
@@ -181,9 +181,51 @@ export class GeneralSettingsPage {
       }
 
       this.activities = responseJson['resultData'];
-
+      for(let i=0;i<this.activities.length;i++){
+        this.activities[i]['PhaseName'] = this.getPhaseName(this.activities[i]['PhaseId']);
+        this.activities[i]['ProjectTypeName'] = this.getProjectTypeName(this.activities[i]['ProjectTypeId']);
+        this.activities[i]['ProjectTypeImage'] = this.getProjectTypeImage(this.activities[i]['ProjectTypeName']);
+      }
     });
   }
+
+  getPhaseName(phaseId){
+    //Check if the phase id is present
+    if(this.dataValidation.isEmptyJson(localStorage.getItem(this.codes.LSK_PHASES))){
+      return null;
+    }
+    var phaseInfo = JSON.parse(localStorage.getItem(this.codes.LSK_PHASES));
+    for(let i=0 ;i<phaseInfo.length;i++){
+      if(phaseInfo[i]['PhaseId'] == phaseId)
+        return phaseInfo[i]['PhaseName'];
+    }
+  }
+
+
+  getProjectTypeName(projectTypeId){
+    //Check if the phase is present
+    if(this.dataValidation.isEmptyJson(localStorage.getItem(this.codes.LSK_PROJECT_TYPE))){
+      return null;
+    }
+    var projectInfo = JSON.parse(localStorage.getItem(this.codes.LSK_PROJECT_TYPE));
+    for(let i=0 ;i<projectInfo.length;i++){
+      if(projectInfo[i]['ProjectTypeId'] == projectTypeId)
+        return projectInfo[i]['ProjectTypeName'];
+    }
+  }
+
+  getProjectTypeImage(projectTypeName){
+      if(projectTypeName == "Music Audio"){
+        return "../../assets/imgs/icon_mic.png";
+      }else if(projectTypeName == "Music Video"){
+        return "../../assets/imgs/icon_video.png";
+      }else if(projectTypeName == "Still Photographs"){
+        return "../../assets/imgs/icon_image.png";
+      }else if(projectTypeName == "Videlo Store"){
+        return "../../assets/imgs/icon_doc.png";
+      }
+  }
+
 
   editActivity(activity){
     let activityModal = this.modalCtrl.create('EditActivityPage', { 'activity':activity });

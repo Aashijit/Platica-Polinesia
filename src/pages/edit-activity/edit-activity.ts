@@ -21,6 +21,10 @@ export class EditActivityPage {
   diamondRewardQuantity : any = null;
   couponRewardQuantity : any = null;
   trophyRewardQuantity : any = null;
+  projectTypeId : any = null;
+  phaseId : any = null;
+  projectTypes : any = null;
+  phases : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -33,9 +37,11 @@ export class EditActivityPage {
       this.diamondRewardQuantity = this.navParams.get('activity')['DiamondRewardQuantity'];
       this.couponRewardQuantity = this.navParams.get('activity')['CouponRewardQuantity'];
       this.trophyRewardQuantity = this.navParams.get('activity')['TrophyRewardQuantity'];
-      
+      this.phaseId = this.navParams.get('activity')['PhaseId'];
+      this.projectTypeId = this.navParams.get('activity')['ProjectTypeId'];
 
-
+      this.projectTypes = JSON.parse(localStorage.getItem(this.codes.LSK_PROJECT_TYPE));
+      this.phases = JSON.parse(localStorage.getItem(this.codes.LSK_PHASES));
 
   }
 
@@ -59,14 +65,14 @@ export class EditActivityPage {
       "ActivityId": this.activityId,
       "ActivityName": this.activityName,
       "ActivityDescription": this.activityDescription,
-      "PhaseId": 1,
+      "PhaseId": this.phaseId,
       "CoinRewardQuantity": Number(this.coinRewardQuantity),
       "DiamondRewardQuantity": Number(this.diamondRewardQuantity),
       "CouponRewardQuantity": Number(this.couponRewardQuantity),
       "TrophyRewardQuantity": Number(this.trophyRewardQuantity),
       "ModifiedByID": currentUserInfo[0]['UserId'],
       "AppType": "W",
-      "ProjectTypeId": 1
+      "ProjectTypeId": this.projectTypeId
     };
     var loading = this.msgHelper.showWorkingDialog('Updating Activity ...');
     this.httpCall.callApi(requestJson,this.codes.API_UPDATE_ACTIVITY).then(responseJson => {

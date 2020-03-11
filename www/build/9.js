@@ -1,6 +1,6 @@
 webpackJsonp([9],{
 
-/***/ 452:
+/***/ 443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LeaveApplyPageModule", function() { return LeaveApplyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__leave_apply__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__leave_apply__ = __webpack_require__(465);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var LeaveApplyPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 474:
+/***/ 465:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -241,7 +241,7 @@ var LeaveApplyPage = /** @class */ (function () {
     };
     LeaveApplyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-leave-apply',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/leave-apply/leave-apply.html"*/'<ion-content padding class="custom-popup">\n\n  <ion-card *ngIf="!dataValidation.isEmptyJson(requestJson)">\n    <ion-card-header>Apply leave</ion-card-header>\n    <ion-row>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveFromDate\']}}</ion-col>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-2> to </ion-col>\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveToDate\']}}</ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 1 : </ion-col>\n      <ion-col col-3> <button ion-button outline (click)="getImage1()">\n        <ion-icon name="camera"></ion-icon></button>\n      </ion-col>\n      <ion-col col-3>\n        <img [src]="documentImage1" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage1)"/>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 2 : </ion-col>\n      <ion-col col-3>  \n        <button ion-button outline (click)="getImage2()"><ion-icon name="camera"></ion-icon></button>\n      </ion-col>\n        <ion-col col-3>\n        <img [src]="documentImage2" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage2)"/>\n      </ion-col>\n    </ion-row>\n\n    <ion-item>\n      <ion-label floating>Comments</ion-label>\n      <ion-textarea rows=4 columns=10 [(ngModel)]="comment" style="color: #666 !important;"></ion-textarea>\n    </ion-item>\n\n    <p style="text-align:center !important;">\n    <button ion-button clear (click)="applyForLeave()">Apply for leave</button>\n    </p>\n  </ion-card> \n\n\n</ion-content>\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/leave-apply/leave-apply.html"*/,
+            selector: 'page-leave-apply',template:/*ion-inline-start:"C:\Users\edot3\Documents\Platica-Polinesia\src\pages\leave-apply\leave-apply.html"*/'<ion-content padding class="custom-popup">\n\n\n\n  <ion-card *ngIf="!dataValidation.isEmptyJson(requestJson)">\n\n    <ion-card-header>Apply leave</ion-card-header>\n\n    <ion-row>\n\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveFromDate\']}}</ion-col>\n\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-2> to </ion-col>\n\n      <ion-col style="text-align: center !important; font-weight: 800 !important;" col-5>{{requestJson[\'LeaveToDate\']}}</ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 1 : </ion-col>\n\n      <ion-col col-3> <button ion-button outline (click)="getImage1()">\n\n        <ion-icon name="camera"></ion-icon></button>\n\n      </ion-col>\n\n      <ion-col col-3>\n\n        <img [src]="documentImage1" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage1)"/>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row>\n\n      <ion-col style="margin-top: 13px !important" col-6> Upload Document 2 : </ion-col>\n\n      <ion-col col-3>  \n\n        <button ion-button outline (click)="getImage2()"><ion-icon name="camera"></ion-icon></button>\n\n      </ion-col>\n\n        <ion-col col-3>\n\n        <img [src]="documentImage2" style="width: 40px !important; height: 40px !important; border: 1px #ddd solid !important;" *ngIf="!dataValidation.isEmptyJson(documentImage2)"/>\n\n      </ion-col>\n\n    </ion-row>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Comments</ion-label>\n\n      <ion-textarea rows=4 columns=10 [(ngModel)]="comment" style="color: #666 !important;"></ion-textarea>\n\n    </ion-item>\n\n\n\n    <p style="text-align:center !important;">\n\n    <button ion-button clear (click)="applyForLeave()">Apply for leave</button>\n\n    </p>\n\n  </ion-card> \n\n\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <button ion-button clear full (click)="closeModal();" color="light">\n\n    <ion-icon name="close-circle" color="white"></ion-icon>\n\n  </button>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\edot3\Documents\Platica-Polinesia\src\pages\leave-apply\leave-apply.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],

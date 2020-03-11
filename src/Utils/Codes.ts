@@ -14,6 +14,8 @@ export class Codes{
 
     public LSK_USER_PASSWORD="userpassword";
     public LSK_USER_INFORMATION_JSON="userinfo";
+    public LSK_PHASES="phases";
+    public LSK_PROJECT_TYPE="project_type";
     
     
     public  API_GET_TOKEN="Login/GetToken";
@@ -47,6 +49,8 @@ export class Codes{
     public API_GET_ACTIVITY="Activity/GetActivityList";
     public API_INSERT_ACTIVITY="Activity/InsertActivity";
     public API_UPDATE_ACTIVITY="Activity/UpdateActivity";
+    public API_GET_PHASES="Phase/GetPhase";
+    public API_GET_PROJECT_TYPE="ProjectType/GetProjectType";
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 
