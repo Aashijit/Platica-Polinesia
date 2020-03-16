@@ -210,11 +210,8 @@ export class GeneralSettingsPage {
       this.materials = responseJson['resultData'];
       
     });
-
-
-
-    
   }
+
 
   getPhaseName(phaseId){
     //Check if the phase id is present
@@ -386,9 +383,8 @@ export class GeneralSettingsPage {
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-
+    this.ionViewDidLoad();
     setTimeout(() => {
-      console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
   }
@@ -397,9 +393,9 @@ export class GeneralSettingsPage {
     userModal.present();
   }
 
-  ionViewWillEnter() {
-    this.ionViewDidLoad();
-  }
+  // ionViewWillEnter() {
+  //   this.ionViewDidLoad();
+  // }
 
   editBusinessUnit(businessunit) {
     let userModal = this.modalCtrl.create('UpdateBusinessUnitPage', { 'businessUnit': businessunit, 'userList': this.userList });
