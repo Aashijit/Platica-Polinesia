@@ -29109,6 +29109,168 @@ page-permissions-home-temp .alert-md .alert-message, page-permissions-home-temp 
   padding: 2px !important;
 }
 
+page-project-home .background-content {
+  background-color: #fff;
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+}
+
+page-project-home ion-app, page-project-home ion-nav, page-project-home ion-tab, page-project-home ion-tabs, page-project-home .app-root, page-project-home .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-project-home .header-md::after {
+  background-image: none !important;
+}
+
+page-project-home .button-md {
+  padding: 11px !important;
+}
+
+page-project-home .scroll-content {
+  margin: 0px !important;
+}
+
+page-project-home .card-content-md {
+  padding: 0px !important;
+}
+
+page-project-home .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-project-home .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-project-home .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-project-home ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-project-home .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-project-home .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-project-home .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-project-home .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-project-home .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-project-home .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-project-home .label-md {
+  margin: 0px !important;
+}
+
+page-project-home .grid {
+  padding: 0px !important;
+}
+
+page-project-home .alert-md .alert-message, page-project-home .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
+page-project-home body {
+  font: 13px Arial, Helvetica, sans-serif;
+  color: #1e1e1e;
+}
+
+page-project-home #container {
+  margin: 20px auto;
+}
+
+page-project-home #accordion {
+  margin-top: 20px;
+}
+
+page-project-home #accordion .item {
+  height: 30px;
+  /* height = total height of A child element */
+  overflow: hidden;
+  transition: height ease-in-out 500ms;
+  /* css3 transition */
+  -o-transition: height ease-in-out 500ms;
+  -moz-transition: height ease-in-out 500ms;
+  -webkit-transition: height ease-in-out 500ms;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin-bottom: 2px;
+}
+
+page-project-home #accordion a {
+  display: block;
+  line-height: 20px;
+  background: #e6e6e6;
+  padding: 5px;
+  color: dodgerblue !important;
+  font-weight: 600 !important;
+  text-decoration: none;
+}
+
+page-project-home #accordion p {
+  height: 150px;
+  padding: 5px;
+}
+
+page-project-home #accordion div:hover {
+  height: 180px;
+  /* height = total height of A and P elements */
+}
+
+page-project-home #accordion div:hover a {
+  border-bottom: 1px solid #ccc;
+}
+
 page-project-information .custom-popup {
   background-color: rgba(0, 0, 0, 0.9);
 }

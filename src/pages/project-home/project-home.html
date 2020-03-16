@@ -1,0 +1,91 @@
+<ion-header style="padding-left:10px !important; padding-right:10px !important">
+  <!--header starts here-->
+  <ion-row>
+   <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">
+     <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="'#00ff00'"></round-progress>
+     <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;
+     position: absolute;
+     top: 7px !important;
+     left: 7px !important;" />
+   </ion-col>
+
+   <ion-col class="nopadding mt-20">
+     <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>
+   </ion-col>
+
+   <ion-col class="nopadding">
+    <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      
+   </ion-col>
+
+ </ion-row>
+<!--header ends here-->
+</ion-header>
+
+<!--Body starts here-->
+<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
+
+  <div id="container">
+    <div id="accordion">
+      <div class="item">
+        <a> <img src="../../assets/imgs/user.png" style="width: 20px !important; float: left  !important;"/>Project Members</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+          Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+          Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+          Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.
+        </p>
+      </div>
+      <div class="item">
+        <a> <img src="../../assets/imgs/tamiya.svg" style="width: 20px !important; float: left  !important;"/>Brands</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/capitol.svg" style="width: 20px !important; float: left  !important;"/> Business Units</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/demographic.svg" style="width: 20px !important; float: left  !important;"/>Areas</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/project.svg" style="width: 20px !important; float: left  !important;"/>Project Types</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/quarter.svg" style="width: 20px !important; float: left  !important;"/>Phases</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/project.svg" style="width: 20px !important; float: left  !important;"/>Materials</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/friend.svg" style="width: 20px !important; float: left  !important;"/>User Types</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+      <div class="item">
+        <a><img src="../../assets/imgs/work-time.svg" style="width: 20px !important; float: left  !important;"/>Activities</a>
+        <p>Lorem ipsum nec ex prompta tractatos. Ea elit sale admodum vim, at velit nemore rationibus per. Ullum qualisque dissentias ei qui, in putent doctus cotidieque mei. Mel legere mucius ne, adhuc impetus signiferumque cu eos. Has an zzril soluta impetus. An nisl graece inciderint nec, ea per rebum animal, prodesset accommodare ex eam.</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+</ion-content>
+<!--Body ends here-->
+
+<!--Footer starts here-->
+<ion-footer style="background-color: #efefef; text-align: center;">
+ <button ion-button clear (click)="navCtrl.setRoot('ProjectHomePage')"><img src="../../assets/imgs/menu_proyectos_on.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear (click)="navCtrl.setRoot('LeaveSelectionPage')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
+ <button ion-button clear (click)="navCtrl.setRoot('GeneralSettingsPage')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>
+</ion-footer>
+<!--Footer ends here-->
