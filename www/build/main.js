@@ -5,6 +5,8 @@ webpackJsonp([23],{
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataValidation; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Codes__ = __webpack_require__(43);
+
 var DataValidation = /** @class */ (function () {
     function DataValidation() {
     }
@@ -104,6 +106,22 @@ var DataValidation = /** @class */ (function () {
         if (value == undefined) {
             return true;
         }
+    };
+    /**
+     *
+     * @param menuName The menu name whose permission is to be checked
+     */
+    DataValidation.prototype.doesContainMenu = function (menuName) {
+        var codes = new __WEBPACK_IMPORTED_MODULE_0__Codes__["a" /* Codes */]();
+        //Fetch the storage information
+        var menuPermission = JSON.parse(localStorage.getItem(codes.LSK_PERMISSION_MENU));
+        if (this.isEmptyJson(menuPermission))
+            return true;
+        for (var i = 0; i < menuPermission.length; i++) {
+            if (menuPermission[i]['MenuName'] == menuName)
+                return true;
+        }
+        return false;
     };
     DataValidation.prototype.isValidNumber = function (number) {
         if (number != null || number != undefined || number != "") {
@@ -211,59 +229,59 @@ var map = {
 		16
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		441,
+		438,
 		15
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
-		448,
+		442,
 		14
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		438,
+		439,
 		13
 	],
 	"../pages/general-settings/general-settings.module": [
-		453,
+		440,
 		12
 	],
 	"../pages/home/home.module": [
-		439,
+		441,
 		11
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		440,
+		443,
 		10
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		442,
+		444,
 		9
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		443,
+		445,
 		8
 	],
 	"../pages/login/login.module": [
-		444,
+		453,
 		7
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		445,
+		450,
 		6
 	],
 	"../pages/permissions/permissions.module": [
-		446,
+		447,
 		5
 	],
 	"../pages/project-home/project-home.module": [
-		447,
+		448,
 		4
 	],
 	"../pages/project-information/project-information.module": [
-		449,
+		446,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		450,
+		449,
 		2
 	],
 	"../pages/update-user/update-user.module": [
@@ -443,7 +461,7 @@ var MessageHelper = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(378);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
@@ -598,7 +616,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_camera__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Utils_DataValidation__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(23);
@@ -656,22 +674,22 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-approval/leave-approval.module#LeaveApprovalPageModule', name: 'LeaveApprovalPage', segment: 'leave-approval', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -1105,12 +1123,73 @@ webpackContext.id = 409;
 
 /***/ }),
 
+/***/ 43:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Codes; });
+var Codes = /** @class */ (function () {
+    function Codes() {
+        this.EM_INVALID_MOBILE_NUMBER = "Invalid mobile number";
+        this.EM_INVALID_EMAILID = "Invalid email id";
+        this.EM_INVALID_PASSWORD = "Invalid password";
+        this.EM_INVALID_VERIFICATION_ID = "Invalid verification id";
+        this.API_ERROR = "500";
+        this.LSK_USER_PASSWORD = "userpassword";
+        this.LSK_USER_INFORMATION_JSON = "userinfo";
+        this.LSK_PHASES = "phases";
+        this.LSK_PROJECT_TYPE = "project_type";
+        this.LSK_PERMISSION_MENU = "permission_menu";
+        this.API_GET_TOKEN = "Login/GetToken";
+        this.API_GET_LOGIN_DETAILS = "Login/GetLoginDetails";
+        this.API_GET_USER_DETAILS = "User/GetUserList";
+        this.API_INSERT_USER = "User/InsertUser";
+        this.API_UPDATE_USER = "User/UpdateUser";
+        this.API_DELETE_USER = "User/DeleteUser";
+        this.API_GET_PARTICULAR_USER_INFORMATION = "User/GetUserInformation";
+        this.API_CHANGE_USER_PASSWORD = "User/ChangeUserPassword";
+        this.API_FORGOT_PASSWORD = "Login/ForgotPassword";
+        this.API_GET_USER_GROUP = "UserGroup/GetUserGroup";
+        this.API_GET_USER_MAP_LIST = "UserMap/GetUserMapList";
+        this.API_GET_BUSINESS_UNIT_LIST = "BusinessUnit/GetBusinessUnitList";
+        this.API_GET_BRAND_LIST = "Brand/GetBrandList";
+        this.API_INSERT_BUSINESS_UNIT = "BusinessUnit/InsertBusinessUnit";
+        this.API_UPDATE_BUSINESS_UNIT = "BusinessUnit/UpdateBusinessUnit";
+        this.API_INSERT_BRAND = "Brand/InsertBrand";
+        this.API_UPDATE_BRAND = "Brand/UpdateBrand";
+        this.API_INSERT_USER_MAP = "UserMap/InsertUserMap";
+        this.API_GET_LEAVE_TYPE = "Leave/GetLeaveType";
+        this.API_GET_LEAVE_INFORMATION_COUNT = "Leave/GetLeaveTypeCountInformation";
+        this.API_GET_USER_LEAVE_BALANCE_INFORMATION = "Leave/GetUserLeaveBalanceInformation";
+        this.API_LEAVE_APPLY = "Leave/LeaveApply";
+        this.API_GET_LEAVE_BALANCE_INFORMATION = "Leave/GetLeaveBalanceInformation";
+        this.API_APPROVE_LEAVE = "Leave/LeaveApproval";
+        this.API_GET_MESSAGES_NOTIFICATIONS = "Messages/GetMessageTypeList";
+        this.API_GET_USER_TYPE_LIST = "UserType/GetUserTypeList";
+        this.API_INSERT_USER_TYPE = "UserType/InsertUserType";
+        this.API_UPDATE_USER_TYPE = "UserType/UpdateUserType";
+        this.API_GET_ACTIVITY = "Activity/GetActivityList";
+        this.API_INSERT_ACTIVITY = "Activity/InsertActivity";
+        this.API_UPDATE_ACTIVITY = "Activity/UpdateActivity";
+        this.API_GET_PHASES = "Phase/GetPhase";
+        this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
+        this.API_GET_PERMISSION_INFORMATION = "Permission/GetPermissionInformation";
+        this.API_ENDPOINT = "http://101.53.145.231:8053/";
+        //    http://101.53.145.231:8053/Messages/GetMessageTypeList
+    }
+    return Codes;
+}());
+
+//# sourceMappingURL=Codes.js.map
+
+/***/ }),
+
 /***/ 430:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
@@ -1178,65 +1257,6 @@ var MyApp = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Codes; });
-var Codes = /** @class */ (function () {
-    function Codes() {
-        this.EM_INVALID_MOBILE_NUMBER = "Invalid mobile number";
-        this.EM_INVALID_EMAILID = "Invalid email id";
-        this.EM_INVALID_PASSWORD = "Invalid password";
-        this.EM_INVALID_VERIFICATION_ID = "Invalid verification id";
-        this.API_ERROR = "500";
-        this.LSK_USER_PASSWORD = "userpassword";
-        this.LSK_USER_INFORMATION_JSON = "userinfo";
-        this.LSK_PHASES = "phases";
-        this.LSK_PROJECT_TYPE = "project_type";
-        this.API_GET_TOKEN = "Login/GetToken";
-        this.API_GET_LOGIN_DETAILS = "Login/GetLoginDetails";
-        this.API_GET_USER_DETAILS = "User/GetUserList";
-        this.API_INSERT_USER = "User/InsertUser";
-        this.API_UPDATE_USER = "User/UpdateUser";
-        this.API_DELETE_USER = "User/DeleteUser";
-        this.API_GET_PARTICULAR_USER_INFORMATION = "User/GetUserInformation";
-        this.API_CHANGE_USER_PASSWORD = "User/ChangeUserPassword";
-        this.API_FORGOT_PASSWORD = "Login/ForgotPassword";
-        this.API_GET_USER_GROUP = "UserGroup/GetUserGroup";
-        this.API_GET_USER_MAP_LIST = "UserMap/GetUserMapList";
-        this.API_GET_BUSINESS_UNIT_LIST = "BusinessUnit/GetBusinessUnitList";
-        this.API_GET_BRAND_LIST = "Brand/GetBrandList";
-        this.API_INSERT_BUSINESS_UNIT = "BusinessUnit/InsertBusinessUnit";
-        this.API_UPDATE_BUSINESS_UNIT = "BusinessUnit/UpdateBusinessUnit";
-        this.API_INSERT_BRAND = "Brand/InsertBrand";
-        this.API_UPDATE_BRAND = "Brand/UpdateBrand";
-        this.API_INSERT_USER_MAP = "UserMap/InsertUserMap";
-        this.API_GET_LEAVE_TYPE = "Leave/GetLeaveType";
-        this.API_GET_LEAVE_INFORMATION_COUNT = "Leave/GetLeaveTypeCountInformation";
-        this.API_GET_USER_LEAVE_BALANCE_INFORMATION = "Leave/GetUserLeaveBalanceInformation";
-        this.API_LEAVE_APPLY = "Leave/LeaveApply";
-        this.API_GET_LEAVE_BALANCE_INFORMATION = "Leave/GetLeaveBalanceInformation";
-        this.API_APPROVE_LEAVE = "Leave/LeaveApproval";
-        this.API_GET_MESSAGES_NOTIFICATIONS = "Messages/GetMessageTypeList";
-        this.API_GET_USER_TYPE_LIST = "UserType/GetUserTypeList";
-        this.API_INSERT_USER_TYPE = "UserType/InsertUserType";
-        this.API_UPDATE_USER_TYPE = "UserType/UpdateUserType";
-        this.API_GET_ACTIVITY = "Activity/GetActivityList";
-        this.API_INSERT_ACTIVITY = "Activity/InsertActivity";
-        this.API_UPDATE_ACTIVITY = "Activity/UpdateActivity";
-        this.API_GET_PHASES = "Phase/GetPhase";
-        this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
-        this.API_ENDPOINT = "http://101.53.145.231:8053/";
-        //    http://101.53.145.231:8053/Messages/GetMessageTypeList
-    }
-    return Codes;
-}());
-
-//# sourceMappingURL=Codes.js.map
 
 /***/ })
 

@@ -191,9 +191,6 @@ export class LoginPage {
         this.msgHelper.showToast("Invalid Login Credentials");
         return;
       }
-
-
-
     }
 
     //Step 3 : Validate the password

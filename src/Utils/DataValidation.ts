@@ -1,3 +1,4 @@
+import { Codes } from './Codes';
 export class DataValidation {
     
     isValidMobileNumber(mobileNumber: any) {
@@ -114,6 +115,25 @@ export class DataValidation {
             return true;
         }
 
+    }
+
+    /**
+     * 
+     * @param menuName The menu name whose permission is to be checked
+     */
+    doesContainMenu(menuName){
+        var codes = new Codes();
+        //Fetch the storage information
+        var menuPermission = JSON.parse(localStorage.getItem(codes.LSK_PERMISSION_MENU));
+
+        if(this.isEmptyJson(menuPermission))
+            return true;
+        
+        for(let i=0;i<menuPermission.length;i++){
+            if(menuPermission[i]['MenuName'] == menuName)
+                return true;
+        }
+         return false;
     }
 
 
