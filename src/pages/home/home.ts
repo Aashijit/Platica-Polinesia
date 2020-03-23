@@ -52,6 +52,9 @@ export class HomePage {
           return;
         }
 
+        //Store the user map list
+        localStorage.setItem(this.codes.LSK_USER_MAP_LIST,JSON.stringify(responseJson['resultData']));
+
 
         if (!this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
 

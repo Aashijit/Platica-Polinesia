@@ -23,6 +23,8 @@ export class UpdateUserPage {
   UserTypes : any = null;
   groupList : any = null;
   groupIds : any = null;
+  toUpdateUserMap : boolean = false;
+  readyToUpdate : boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -34,12 +36,46 @@ export class UpdateUserPage {
       this.UserTypes = this.navParams.get('UserTypes');
       this.groupList = this.navParams.get('GroupList');
 
-      console.error(this.userInformation);
+      //Fetch the user type ids
+      var userMapList = JSON.parse(localStorage.getItem(this.codes.LSK_USER_MAP_LIST));
+
+      //Check if the user is previously present in the user map list
+      for(let i=0;i<userMapList.length;i++){
+        if(userMapList[i]['UserId']==this.userInformation['UserId'])
+        {
+          this.toUpdateUserMap = true;
+          break;
+        }
+      }
+
+      if(!this.toUpdateUserMap)
+       this.readyToUpdate = true;
+
+
+      //Check if the user has mapped list
+      for(let i=0;i<userMapList.length;i++){
+        if(userMapList[i]['UserId']==this.userInformation['UserId']){
+          var requestJson={
+          "AppType": "W",
+          "UserMapId": userMapList[i]['UserMapId']
+          };
+          this.httpCall.callApi(requestJson,this.codes.API_GET_USER_MAP_INFORMATION).then(responseJson => {
+
+            if(this.dataValidation.isEmptyJson(responseJson)){
+              this.msgHelper.showErrorDialog('Error !!!','Empty response message !!!');
+              return;
+            }
+            this.userTypeId = responseJson['resultData'][0]['UserMapIds'].split(",");
+          });
+        }
+      }
+      console.error(JSON.stringify(this.userInformation));
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UpdateUserPage');
   }
+
 
   updateUserMapping(){
       var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
@@ -49,13 +85,22 @@ export class UpdateUserPage {
         this.msgHelper.showToast('Could not fetch user id');
         return;
       }
+
+      
+
+
       //Insert into the database
+
+      if(this.dataValidation.isEmptyJson(this.userTypeId)){
+        this.msgHelper.showErrorDialog('Alert !!!','Please select the user types to map.');
+        return;
+      }
+
       var requestJson ={
         "AppType": "W",
          "UserId":this.userInformation['UserId'],
-         "UserGroupIds" : this.groupIds,
          "CreatedByID" : currentUserInfo[0]['UserId'],
-         "UserTypeId" : this.userTypeId
+         "UserTypeIds" : this.convertArrayToString(this.userTypeId)
       };
 
       var loading = this.msgHelper.showWorkingDialog('Mapping User ...');
@@ -76,6 +121,20 @@ export class UpdateUserPage {
         
       });
   }
+
+
+  convertArrayToString(array){
+
+    var str="";
+
+    for(let i=0;i<array.length;i++){
+      str = str+array[i]+",";
+    }
+
+    return str.substring(0,str.length-1);
+
+  }
+
 
 
   updateUserInformation(){

@@ -17,19 +17,20 @@ export class Codes{
     public LSK_PHASES="phases";
     public LSK_PROJECT_TYPE="project_type";
     public LSK_PERMISSION_MENU="permission_menu";
+    public LSK_USER_MAP_LIST="user_map";
     
     
-    public  API_GET_TOKEN="Login/GetToken";
-    public  API_GET_LOGIN_DETAILS="Login/GetLoginDetails";
-    public  API_GET_USER_DETAILS="User/GetUserList";
-    public  API_INSERT_USER="User/InsertUser";
-    public  API_UPDATE_USER="User/UpdateUser";
-    public  API_DELETE_USER="User/DeleteUser";
-    public  API_GET_PARTICULAR_USER_INFORMATION="User/GetUserInformation";
-    public  API_CHANGE_USER_PASSWORD="User/ChangeUserPassword";
-    public  API_FORGOT_PASSWORD="Login/ForgotPassword";
-    public  API_GET_USER_GROUP="UserGroup/GetUserGroup";
-    public  API_GET_USER_MAP_LIST="UserMap/GetUserMapList";
+    public API_GET_TOKEN="Login/GetToken";
+    public API_GET_LOGIN_DETAILS="Login/GetLoginDetails";
+    public API_GET_USER_DETAILS="User/GetUserList";
+    public API_INSERT_USER="User/InsertUser";
+    public API_UPDATE_USER="User/UpdateUser";
+    public API_DELETE_USER="User/DeleteUser";
+    public API_GET_PARTICULAR_USER_INFORMATION="User/GetUserInformation";
+    public API_CHANGE_USER_PASSWORD="User/ChangeUserPassword";
+    public API_FORGOT_PASSWORD="Login/ForgotPassword";
+    public API_GET_USER_GROUP="UserGroup/GetUserGroup";
+    public API_GET_USER_MAP_LIST="UserMap/GetUserMapList";
     public API_GET_BUSINESS_UNIT_LIST="BusinessUnit/GetBusinessUnitList";
     public API_GET_BRAND_LIST="Brand/GetBrandList";
     public API_INSERT_BUSINESS_UNIT="BusinessUnit/InsertBusinessUnit";
@@ -53,6 +54,7 @@ export class Codes{
     public API_GET_PHASES="Phase/GetPhase";
     public API_GET_PROJECT_TYPE="ProjectType/GetProjectType";
     public API_GET_PERMISSION_INFORMATION="Permission/GetPermissionInformation";
+    public API_GET_USER_MAP_INFORMATION="UserMap/GetUserMapInformation";
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 

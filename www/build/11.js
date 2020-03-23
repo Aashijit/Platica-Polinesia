@@ -109,6 +109,8 @@ var HomePage = /** @class */ (function () {
                     _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
                     return;
                 }
+                //Store the user map list
+                localStorage.setItem(_this.codes.LSK_USER_MAP_LIST, JSON.stringify(responseJson['resultData']));
                 if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
                     var listOfMappings = getUserMappedListJson['resultData'];
                     //Fetch the list of group ids
