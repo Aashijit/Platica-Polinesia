@@ -1175,7 +1175,7 @@ var Codes = /** @class */ (function () {
         this.API_GET_PHASES = "Phase/GetPhase";
         this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
         this.API_GET_PERMISSION_INFORMATION = "Permission/GetPermissionInformation";
-        this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUserMapInformation";
+        this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUerMapInformation";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
         //    http://101.53.145.231:8053/Messages/GetMessageTypeList
     }
