@@ -56,6 +56,10 @@ export class Codes{
     public API_GET_PERMISSION_INFORMATION="Permission/GetPermissionInformation";
     public API_GET_USER_MAP_INFORMATION="UserMap/GetUserMapInformation";
 
+    public API_GET_EVENTS_LIST="Event/GetEventList";
+    public API_GET_COLOUR_LIST="Color/GetColorList";
+
+
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 
 

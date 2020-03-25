@@ -1,4 +1,4 @@
-webpackJsonp([23],{
+webpackJsonp([24],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -202,94 +202,98 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-activity/add-activity.module": [
 		431,
-		22
+		23
 	],
 	"../pages/add-brand/add-brand.module": [
 		432,
-		21
+		22
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		433,
-		20
+		21
 	],
 	"../pages/add-user-type/add-user-type.module": [
 		434,
-		19
+		20
 	],
 	"../pages/add-user/add-user.module": [
 		435,
-		18
+		19
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		453,
-		17
+		454,
+		18
 	],
 	"../pages/edit-activity/edit-activity.module": [
 		436,
-		16
+		17
 	],
 	"../pages/edit-brand/edit-brand.module": [
 		437,
-		15
+		16
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
 		438,
+		15
+	],
+	"../pages/event-list/event-list.module": [
+		439,
 		14
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		439,
+		440,
 		13
 	],
 	"../pages/general-settings/general-settings.module": [
-		440,
+		441,
 		12
 	],
 	"../pages/home/home.module": [
-		441,
+		442,
 		11
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		442,
+		443,
 		10
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		443,
+		444,
 		9
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		444,
+		445,
 		8
 	],
 	"../pages/login/login.module": [
-		445,
+		446,
 		7
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		446,
+		447,
 		6
 	],
 	"../pages/permissions/permissions.module": [
-		447,
+		448,
 		5
 	],
 	"../pages/project-home/project-home.module": [
-		448,
+		449,
 		4
 	],
 	"../pages/project-information/project-information.module": [
-		449,
+		450,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		450,
+		451,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		451,
+		452,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		452,
+		453,
 		0
 	]
 };
@@ -675,6 +679,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/event-list/event-list.module#EventListPageModule', name: 'EventListPage', segment: 'event-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
@@ -1175,7 +1180,9 @@ var Codes = /** @class */ (function () {
         this.API_GET_PHASES = "Phase/GetPhase";
         this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
         this.API_GET_PERMISSION_INFORMATION = "Permission/GetPermissionInformation";
-        this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUerMapInformation";
+        this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUserMapInformation";
+        this.API_GET_EVENTS_LIST = "Event/GetEventList";
+        this.API_GET_COLOUR_LIST = "Color/GetColorList";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
         //    http://101.53.145.231:8053/Messages/GetMessageTypeList
     }
