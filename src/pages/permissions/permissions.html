@@ -26,35 +26,30 @@
 
   <ion-item>
     <ion-label floating>Select user type</ion-label>
-    <ion-select interface="popover">
-      <ion-option value="sa">Super Admin</ion-option>
-      <ion-option value="a" selected>Admin</ion-option>
-      <ion-option value="gu">General User</ion-option>
-      <ion-option value="sra">SRA</ion-option>
-      <ion-option value="c">Collaborator</ion-option>
-      <ion-option value="es">Editor-Senior</ion-option>
-      <ion-option value="ej">Editor-Junior</ion-option>
-      <ion-option value="ei">Editor-Intern</ion-option>
+    <ion-select interface="popover" [(ngModel)]="selectedUserTypeId" (ionChange)="recallPermission()">
+      <p *ngFor="let userType of userTypes">
+      <ion-option value="{{userType['UserTypeId']}}">{{userType['UserTypeName']}}</ion-option>
+      </p>
     </ion-select>
   </ion-item>
 
 
 
-  <ion-list style="margin-top: 10% !important;">
+  <ion-list style="margin-top: 10% !important;" *ngIf="!dataValidation.isEmptyJson(permissionList)">
 
     <ion-item>
-      <ion-row>
+      <ion-row >
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Projects</strong></ion-col>
 
-        <ion-col col-1 (click)="change(0,'_CanAdd')" [ngClass]="permissionList[0]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(0,'CanAdd')"  [ngClass]="permissionList[0]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(0,'_CanModify')" [ngClass]="permissionList[0]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(0,'CanModify')" [ngClass]="permissionList[0]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(0,'_CanDelete')" [ngClass]="permissionList[0]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(0,'CanDelete')" [ngClass]="permissionList[0]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1  (click)="change(0,'_CanView')" [ngClass]="permissionList[0]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(0,'CanView')" [ngClass]="permissionList[0]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(0,'_HisOnlyUser')" [ngClass]="permissionList[0]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(0,'CanOnlyHisUser')" [ngClass]="permissionList[0]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -63,15 +58,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Recognition</strong></ion-col>
 
-        <ion-col col-1 (click)="change(1,'_CanAdd')" [ngClass]="permissionList[1]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(1,'CanAdd')"  [ngClass]="permissionList[1]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(1,'_CanModify')" [ngClass]="permissionList[1]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(1,'CanModify')" [ngClass]="permissionList[1]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(1,'_CanDelete')" [ngClass]="permissionList[1]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(1,'CanDelete')" [ngClass]="permissionList[1]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1  (click)="change(1,'_CanView')" [ngClass]="permissionList[1]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(1,'CanView')" [ngClass]="permissionList[1]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(1,'_HisOnlyUser')" [ngClass]="permissionList[1]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(1,'CanOnlyHisUser')" [ngClass]="permissionList[1]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -79,15 +74,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Rewards</strong></ion-col>
 
-        <ion-col col-1 (click)="change(2,'_CanAdd')" [ngClass]="permissionList[2]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(2,'CanAdd')"  [ngClass]="permissionList[2]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(2,'_CanModify')" [ngClass]="permissionList[2]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(2,'CanModify')" [ngClass]="permissionList[2]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(2,'_CanDelete')" [ngClass]="permissionList[2]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(2,'CanDelete')" [ngClass]="permissionList[2]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(2,'_CanView')" [ngClass]="permissionList[2]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(2,'CanView')" [ngClass]="permissionList[2]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1  (click)="change(2,'_HisOnlyUser')" [ngClass]="permissionList[2]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(2,'CanOnlyHisUser')" [ngClass]="permissionList[2]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -95,15 +90,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Talents</strong></ion-col>
 
-        <ion-col col-1 (click)="change(3,'_CanAdd')" [ngClass]="permissionList[3]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(3,'CanAdd')"  [ngClass]="permissionList[3]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(3,'_CanModify')" [ngClass]="permissionList[3]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(3,'CanModify')" [ngClass]="permissionList[3]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(3,'_CanDelete')" [ngClass]="permissionList[3]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(3,'CanDelete')" [ngClass]="permissionList[3]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(3,'_CanView')" [ngClass]="permissionList[3]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(3,'CanView')" [ngClass]="permissionList[3]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(3,'_HisOnlyUser')" [ngClass]="permissionList[3]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(3,'CanOnlyHisUser')" [ngClass]="permissionList[3]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -111,15 +106,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Collaborator</strong></ion-col>
 
-        <ion-col col-1 (click)="change(4,'_CanAdd')" [ngClass]="permissionList[4]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(4,'CanAdd')"  [ngClass]="permissionList[4]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(4,'_CanModify')" [ngClass]="permissionList[4]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(4,'CanModify')" [ngClass]="permissionList[4]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(4,'_CanDelete')"  [ngClass]="permissionList[4]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(4,'CanDelete')" [ngClass]="permissionList[4]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(4,'_CanView')" [ngClass]="permissionList[4]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(4,'CanView')" [ngClass]="permissionList[4]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(4,'_HisOnlyUser')" [ngClass]="permissionList[4]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(4,'CanOnlyHisUser')" [ngClass]="permissionList[4]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -127,15 +122,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Permissions</strong></ion-col>
 
-        <ion-col col-1 (click)="change(5,'_CanAdd')"  [ngClass]="permissionList[5]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(5,'CanAdd')"  [ngClass]="permissionList[5]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(5,'_CanModify')"  [ngClass]="permissionList[5]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(5,'CanModify')" [ngClass]="permissionList[5]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(5,'_CanDelete')" [ngClass]="permissionList[5]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(5,'CanDelete')" [ngClass]="permissionList[5]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(5,'_CanView')" [ngClass]="permissionList[5]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(5,'CanView')" [ngClass]="permissionList[5]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(5,'_HisOnlyUser')" [ngClass]="permissionList[5]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(5,'CanOnlyHisUser')" [ngClass]="permissionList[5]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -143,15 +138,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Calendar</strong></ion-col>
 
-        <ion-col col-1  (click)="change(6,'_CanAdd')"  [ngClass]="permissionList[6]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(6,'CanAdd')"  [ngClass]="permissionList[6]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(6,'_CanModify')" [ngClass]="permissionList[6]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(6,'CanModify')" [ngClass]="permissionList[6]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(6,'_CanDelete')" [ngClass]="permissionList[6]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(6,'CanDelete')" [ngClass]="permissionList[6]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1  (click)="change(6,'_CanView')" [ngClass]="permissionList[6]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(6,'CanView')" [ngClass]="permissionList[6]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(6,'_HisOnlyUser')" [ngClass]="permissionList[6]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(6,'CanOnlyHisUser')" [ngClass]="permissionList[6]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 
@@ -159,15 +154,15 @@
       <ion-row>
         <ion-col col-6><strong style="color: rgb(3, 93, 116) !important;">Configuration</strong></ion-col>
 
-        <ion-col col-1  (click)="change(7,'_CanAdd')"  [ngClass]="permissionList[7]['_CanAdd']=='1' ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
+        <ion-col col-1  (click)="change(7,'CanAdd')"  [ngClass]="permissionList[7]['CanAdd']==true ? 'selected' : 'unselected'"><ion-icon name="add"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(7,'_CanModify')" [ngClass]="permissionList[7]['_CanModify']=='1' ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(7,'CanModify')" [ngClass]="permissionList[7]['CanModify']==true ? 'selected' : 'unselected'"><ion-icon name="create"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(7,'_CanDelete')" [ngClass]="permissionList[7]['_CanDelete']=='1' ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(7,'CanDelete')" [ngClass]="permissionList[7]['CanDelete']==true ? 'selected' : 'unselected'"><ion-icon name="trash"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(7,'_CanView')" [ngClass]="permissionList[7]['_CanView']=='1' ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(7,'CanView')" [ngClass]="permissionList[7]['CanView']==true ? 'selected' : 'unselected'"><ion-icon name="eye"></ion-icon></ion-col>
         &nbsp;
-        <ion-col col-1 (click)="change(7,'_HisOnlyUser')" [ngClass]="permissionList[7]['_HisOnlyUser']=='1' ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
+        <ion-col col-1 (click)="change(7,'CanOnlyHisUser')" [ngClass]="permissionList[7]['CanOnlyHisUser']==true ? 'selected' : 'unselected'"><ion-icon name="contact"></ion-icon></ion-col>
       </ion-row>
     </ion-item>
 

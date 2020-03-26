@@ -55,6 +55,7 @@ export class Codes{
     public API_GET_PROJECT_TYPE="ProjectType/GetProjectType";
     public API_GET_PERMISSION_INFORMATION="Permission/GetPermissionInformation";
     public API_GET_USER_MAP_INFORMATION="UserMap/GetUserMapInformation";
+    public API_UPDATE_PERMISSION="Permission/UpdatePermission";
 
     public API_GET_EVENTS_LIST="Event/GetEventList";
     public API_GET_COLOUR_LIST="Color/GetColorList";

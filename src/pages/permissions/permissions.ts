@@ -1,6 +1,11 @@
+import { AlertController, Loading } from 'ionic-angular';
 import { MessageHelper } from './../../providers/message-helper';
+import { DataValidation } from './../../Utils/DataValidation';
+import { Codes } from './../../Utils/Codes';
+import { HttpProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Grid } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,141 +15,127 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PermissionsPage {
 
   permissionList : any = null;
-
+  userTypes : any = null;
+  selectedUserTypeId : any = 1; //Default
 
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper) {
-
-    this.permissionList = [
-      {
-        "_MenuId":"0",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"0",
-        "_CanModify":"0",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"1",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"2",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"0",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"3",
-        "_CanView":"0",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"5",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"6",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"7",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      },
-      {
-        "_MenuId":"8",
-        "_CanView":"1",
-        "_CanAdd":"1",
-        "_CanDelete":"1",
-        "_CanModify":"1",
-        "_HisOnlyUser":"1"
-      }
-    ];
-
-    //Check if it is present in the local storage
-    this.permissionList = JSON.parse(localStorage.getItem('Permission'));
-
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
+    public httpCall: HttpProvider, public codes: Codes, public dataValidation: DataValidation,
+    public msgHelper: MessageHelper, public alertController: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionsPage');
+
+
+    //Get the User Types
+    var requestJson = {
+      "AppType": "W"
+    };
+
+
+    this.httpCall.callApi(requestJson, this.codes.API_GET_USER_TYPE_LIST).then(responseJson => {
+
+      if (this.dataValidation.isEmptyJson(responseJson)) {
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get user type list");
+        return;
+      }
+
+      if (responseJson['status'] != 1) {
+        this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+        return;
+      }
+
+      this.userTypes = responseJson['resultData'];
+
+    });
+
+    var permissionRequestJson = {
+      "UserTypeId":this.selectedUserTypeId,
+      "AppType": "W"
+    };
+
+    this.httpCall.callApi(permissionRequestJson,this.codes.API_GET_PERMISSION_INFORMATION).then(responseJson => {
+
+      if(this.dataValidation.isEmptyJson(responseJson)){
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Permission Information");
+        return;
+      }
+
+      this.permissionList = responseJson['resultData'];
+
+      console.warn("Permission List : "+JSON.stringify(this.permissionList));
+
+    });
+
   }
 
+  
+
   change(k,string){
-    if(this.permissionList[k][string] == '1')
-    this.permissionList[k][string] = '0';
+    if(this.permissionList[k][string] == false)
+    this.permissionList[k][string] = true;
     else
-    this.permissionList[k][string] = '1';
+    this.permissionList[k][string] = false;
+  }
+
+  recallPermission(){
+    var permissionRequestJson = {
+      "UserTypeId":this.selectedUserTypeId,
+      "AppType": "W"
+    };
+
+    this.httpCall.callApi(permissionRequestJson,this.codes.API_GET_PERMISSION_INFORMATION).then(responseJson => {
+
+      if(this.dataValidation.isEmptyJson(responseJson)){
+        this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Permission Information");
+        return;
+      }
+
+      this.permissionList = responseJson['resultData'];
+
+      // console.warn("Permission List : "+JSON.stringify(this.permissionList));
+
+    });
   }
 
   updatePermission(){
-    localStorage.setItem('Permission',JSON.stringify(this.permissionList));
+    var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
 
-    if(localStorage.getItem('Permission') != null){
-      var permissions = [
-        {
-          "_MenuId":"1",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"2",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"3",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"4",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"5",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"6",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"7",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"8",
-          "_CanView":"1",
-        },
-        {
-          "_MenuId":"9",
-          "_CanView":"1",
-        }
-      ];
-      this.navCtrl.setRoot('PermissionsHomeTempPage',{'Permissions':permissions});
-      this.msgHelper.showToast('Permissions updated !!!');
+
+    if(this.dataValidation.isEmptyJson(currentUserInfo)){
+      this.msgHelper.showToast('Could not fetch user id');
+      return;
     }
-  }
+    //Udpate all the persmissions one by one
+    var loading = this.msgHelper.showWorkingDialog('Started Updating Permission ...');
+   for(let i=0;i<this.permissionList.length;i++){
+     
+      var requestJson={
+        "MenuId":this.permissionList[i]['MenuId'],
+        "MenuPermissionId":this.permissionList[i]['MenuPermissionId'],
+        "UserTypeId":this.selectedUserTypeId,
+        "CanAdd":this.permissionList[i]['CanAdd'],
+        "CanModify":this.permissionList[i]['CanModify'],
+        "CanDelete":this.permissionList[i]['CanDelete'],
+        "CanView":this.permissionList[i]['CanView'],
+        "CanOnlyHisUser":this.permissionList[i]['CanOnlyHisUser'],
+        "ModifiedByID": currentUserInfo[0]['UserId'],
+        "AppType": "W"
+      }
+      
+      
 
+      this.httpCall.callApi(requestJson,this.codes.API_UPDATE_PERMISSION).then(responseJson => {
+        if(this.dataValidation.isEmptyJson(responseJson)){
+          this.msgHelper.showErrorDialog("Error !!!", "Empty response reeceived from Get Permission Information");
+          return;
+        }
+
+      });
+
+   }
+   loading.dismiss();
+  }
 }

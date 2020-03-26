@@ -6,7 +6,6 @@ import { HttpProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Grid } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { TitleCasePipe } from '@angular/common';
 
 @IonicPage()
 @Component({
