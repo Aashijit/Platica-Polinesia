@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 448:
+/***/ 453:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10,7 +10,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__ = __webpack_require__(466);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_message_notification_list__ = __webpack_require__(477);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -42,18 +42,19 @@ var UserMessageNotificationListPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 466:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserMessageNotificationListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_data_data__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_data_data__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__(28);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -71,8 +72,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UserMessageNotificationListPage = /** @class */ (function () {
-    function UserMessageNotificationListPage(navCtrl, navParams, codes, msgHelper, httpCall, dataValidation, actionSheet, alertController, camera) {
+    function UserMessageNotificationListPage(navCtrl, navParams, codes, msgHelper, httpCall, dataValidation, actionSheet, alertController, camera, datePipe) {
         //Get the  parameter from the local storage
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -83,17 +85,58 @@ var UserMessageNotificationListPage = /** @class */ (function () {
         this.actionSheet = actionSheet;
         this.alertController = alertController;
         this.camera = camera;
+        this.datePipe = datePipe;
         this.userName = 'User';
         this.userInformation = null;
         this.showUserInformation = false;
         this.newPassword = null;
         this.profileImage = '../../assets/imgs/user.png';
+        this.messageList = null;
+        this.notificationList = null;
+        this.segment = 'messages';
         this.userInformation = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
         console.error(this.userInformation[0]);
         this.userName = this.userInformation[0]['FirstName'];
     }
     UserMessageNotificationListPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         console.log('ionViewDidLoad UserMessageNotificationListPage');
+        // Call the messages and Notifications API parallely
+        var requestJson = {
+            "RecipientuserId": this.userInformation[0]['UserId'],
+            "MessageType": "M",
+            "AppType": "W"
+        };
+        console.error(requestJson);
+        this.httpCall.callApi(requestJson, this.codes.API_GET_MESSAGES_NOTIFICATIONS).then(function (responseJson) {
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', "Empty response received from GetMessageTypeList API");
+                return;
+            }
+            if (responseJson['status'] != 1) {
+                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+                return;
+            }
+            _this.messageList = responseJson['resultData'];
+        });
+        //Get Notifications
+        var requestJson = {
+            "RecipientuserId": this.userInformation[0]['UserId'],
+            "MessageType": "N",
+            "AppType": "W"
+        };
+        console.error(requestJson);
+        this.httpCall.callApi(requestJson, this.codes.API_GET_MESSAGES_NOTIFICATIONS).then(function (responseJson) {
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', "Empty response received from GetMessageTypeList API");
+                return;
+            }
+            if (responseJson['status'] != 1) {
+                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+                return;
+            }
+            _this.notificationList = responseJson['resultData'];
+        });
     };
     UserMessageNotificationListPage.prototype.closeModal = function () {
         this.navCtrl.pop();
@@ -277,12 +320,12 @@ var UserMessageNotificationListPage = /** @class */ (function () {
     };
     UserMessageNotificationListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-            selector: 'page-user-message-notification-list',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/'<ion-header style="padding-top: 10px !important;">\n  <!--Header-->\n  <ion-row>\n    <ion-col col-10 style="text-align: right !important;">\n      <p style="color: white;" class="nomargin">\n        Welcome <strong (click)="showUserEditInformation()">{{userName}}</strong>\n      </p>\n      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="logOut()">\n        Log Out <ion-icon name="log-out"></ion-icon>\n      </p>\n      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="navCtrl.setRoot(\'HomePage\')">\n        Go Home <ion-icon name="home"></ion-icon>\n      </p>\n    </ion-col>\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n  </ion-row>\n  <!--Header-->\n\n  \n</ion-header>\n\n\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list *ngIf=\'showUserInformation\'>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Middle Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Last Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<!--Change Password-->\n<p *ngIf=\'showUserInformation\' style="text-align: center;">\n<ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n  \n<!--Message, Notification number-->\n<ion-row class="list-underline" *ngIf=\'!showUserInformation\'>\n  <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 7px !important;\n    left: 27px !important;"></span></ion-col>\n  <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 9px !important;\n    left: 10px !important;"></span></ion-col>\n</ion-row>\n<!--Message, Notification number-->\n\n <ion-list style=" text-align: center !important;" *ngIf=\'!showUserInformation\'>\n  <img src=\'../../assets/imgs/no_message.svg\' style="width: 30% !important;margin-top: 40% !important;" />\n  <ion-label style="color: darksalmon !important;">No message/notifications</ion-label>\n </ion-list>\n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/,
+            selector: 'page-user-message-notification-list',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/'<ion-header style="padding-top: 10px !important;">\n  <!--Header-->\n  <ion-row>\n    <ion-col col-10 style="text-align: right !important;">\n      <p style="color: white;" class="nomargin">\n        Welcome <strong (click)="showUserEditInformation()">{{userName}}</strong>\n      </p>\n      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="logOut()">\n        Log Out <ion-icon name="log-out"></ion-icon>\n      </p>\n      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="navCtrl.setRoot(\'HomePage\')">\n        Go Home <ion-icon name="home"></ion-icon>\n      </p>\n    </ion-col>\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n  </ion-row>\n  <!--Header-->\n\n  \n</ion-header>\n\n\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list *ngIf=\'showUserInformation\'>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Middle Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Last Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[0][\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n\n\n<!--Change Password-->\n<p *ngIf=\'showUserInformation\' style="text-align: center;">\n<ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n  <ion-segment mode="ios" [(ngModel)]="segment">\n    <ion-segment-button value="messages">\n      <ion-label>Messages</ion-label>\n    </ion-segment-button>\n    <ion-segment-button value="notifications">\n      <ion-label>Notifications</ion-label>\n    </ion-segment-button>\n  </ion-segment>\n\n<!--Message, Notification number-->\n<!-- <ion-row class="list-underline" *ngIf=\'!showUserInformation\'>\n  <ion-col col-2 style="text-align: right;"> <img src="../../assets/imgs/profile_ballon1.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 7px !important;\n    left: 27px !important;">20</span></ion-col>\n  <ion-col col-2> <img src="../../assets/imgs/profile_ballon2.png" style="width: 25px !important;" /> <span style="color: #fff;\n    position: absolute;\n    font-size: 11px !important;\n    top: 9px !important;\n    left: 10px !important;">15</span></ion-col>\n</ion-row> -->\n<!--Message, Notification number-->\n\n <!-- <ion-list style=" text-align: center !important;" *ngIf=\'!showUserInformation\'>\n  <img src=\'../../assets/imgs/no_message.svg\' style="width: 30% !important;margin-top: 40% !important;" />\n  <ion-label style="color: darksalmon !important;">No message/notifications</ion-label>\n </ion-list> -->\n\n <div [ngSwitch]="segment">\n<!--Messages Start-->\n  <p *ngSwitchCase="\'messages\'">\n\n    \n      <ion-item *ngFor="let message of messageList">\n        <ion-grid>\n          <ion-row>\n            <ion-col col-2>\n              <img src="../../assets/imgs/user.png" class="camera-img-wrapper" *ngIf="dataValidation.isEmptyJson(message[\'SenderUserImagePath\'])" />\n              <img [src]="message[\'SenderUserImagePath\']" class="camera-img-wrapper" *ngIf="!dataValidation.isEmptyJson(message[\'SenderUserImagePath\'])" />\n            </ion-col>\n            <ion-col col-10>\n              <ion-grid>\n                <ion-row class="nopadding">\n                  <h2 style="white-space: normal;">{{message[\'MessageName\']}}</h2>\n                </ion-row>\n                <ion-row>\n                  <h3 style="white-space: normal; color:ddd !important">{{message[\'MessageDescription\']}}</h3>\n                </ion-row>\n                <ion-row class="nopadding">\n                  <ion-col>\n                  <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message[\'MessageSendDate\'],\'d, MMM yyyy\')}}</h6>\n                  <span style="float: right !important;">\n                    <ion-badge color="light">Read</ion-badge>\n                  </span>\n                </ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    \n  </p>\n\n\n\n\n\n  <p *ngSwitchCase="\'notifications\'">\n\n    \n    <ion-item *ngFor="let message of notificationList">\n      <ion-grid>\n        <ion-row>\n          <ion-col col-2>\n            <img src="../../assets/imgs/user.png" class="camera-img-wrapper" *ngIf="dataValidation.isEmptyJson(message[\'SenderUserImagePath\'])" />\n            <img [src]="message[\'SenderUserImagePath\']" class="camera-img-wrapper" *ngIf="!dataValidation.isEmptyJson(message[\'SenderUserImagePath\'])" />\n          </ion-col>\n          <ion-col col-10>\n            <ion-grid>\n              <ion-row class="nopadding">\n                <h2 style="white-space: normal;">{{message[\'MessageName\']}}</h2>\n              </ion-row>\n              <ion-row >\n                <h3 style="white-space: normal; color:ddd !important">{{message[\'MessageDescription\']}}</h3>\n              </ion-row>\n              <ion-row class="nopadding">\n                <ion-col>\n                <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message[\'MessageSendDate\'],\'d, MMM yyyy\')}}</h6>\n                <span style="float: right !important;">\n                  <ion-badge color="light">Read</ion-badge>\n                </span>\n              </ion-col>\n              </ion-row>\n            </ion-grid>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n  \n</p>\n\n\n  \n<!--Messages End-->\n</div>\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/user-message-notification-list/user-message-notification-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */],
             __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_5__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
             __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"]])
     ], UserMessageNotificationListPage);
     return UserMessageNotificationListPage;
 }());

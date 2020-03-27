@@ -28256,8 +28256,7 @@ page-edit-user-type .label-md {
 
 page-event-list .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-event-list ion-app, page-event-list ion-nav, page-event-list ion-tab, page-event-list ion-tabs, page-event-list .app-root, page-event-list .ion-page {
@@ -28571,8 +28570,7 @@ page-general-settings .camera-img-wrapper {
 
 page-home .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-home ion-app, page-home ion-nav, page-home ion-tab, page-home ion-tabs, page-home .app-root, page-home .ion-page {
@@ -28700,8 +28698,7 @@ page-leave-apply .camera-img-wrapper {
 
 page-leave-approval .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-leave-approval ion-app, page-leave-approval ion-nav, page-leave-approval ion-tab, page-leave-approval ion-tabs, page-leave-approval .app-root, page-leave-approval .ion-page {
@@ -29027,8 +29024,7 @@ page-login .small-text {
 
 page-permissions .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-permissions ion-app, page-permissions ion-nav, page-permissions ion-tab, page-permissions ion-tabs, page-permissions .app-root, page-permissions .ion-page {
@@ -29377,6 +29373,222 @@ page-project-information .item-md {
 
 page-project-information .list-md .item-block .item-inner {
   border: none !important;
+}
+
+page-recognitions .background-content {
+  background-color: #fff;
+  border: 2px solid dodgerblue;
+}
+
+page-recognitions ion-app, page-recognitions ion-nav, page-recognitions ion-tab, page-recognitions ion-tabs, page-recognitions .app-root, page-recognitions .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-recognitions .header-md::after {
+  background-image: none !important;
+}
+
+page-recognitions .button-md {
+  padding: 11px !important;
+}
+
+page-recognitions .scroll-content {
+  margin: 0px !important;
+}
+
+page-recognitions .card-content-md {
+  padding: 0px !important;
+}
+
+page-recognitions .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-recognitions .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-recognitions .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-recognitions ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-recognitions .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-recognitions .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-recognitions .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-recognitions .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-recognitions .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-recognitions .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-recognitions .label-md {
+  margin: 0px !important;
+}
+
+page-recognitions .grid {
+  padding: 0px !important;
+}
+
+page-recognitions .alert-md .alert-message, page-recognitions .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
+page-rewards .background-content {
+  background-color: #fff;
+  border: 2px solid dodgerblue;
+}
+
+page-rewards ion-app, page-rewards ion-nav, page-rewards ion-tab, page-rewards ion-tabs, page-rewards .app-root, page-rewards .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-rewards .header-md::after {
+  background-image: none !important;
+}
+
+page-rewards .button-md {
+  padding: 11px !important;
+}
+
+page-rewards .scroll-content {
+  margin: 0px !important;
+}
+
+page-rewards .card-content-md {
+  padding: 0px !important;
+}
+
+page-rewards .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-rewards .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-rewards .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-rewards ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-rewards .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-rewards .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-rewards .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-rewards .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-rewards .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-rewards .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-rewards .label-md {
+  margin: 0px !important;
+}
+
+page-rewards .grid {
+  padding: 0px !important;
+}
+
+page-rewards .alert-md .alert-message, page-rewards .alert-md .alert-input-group {
+  padding: 2px !important;
 }
 
 page-update-business-unit .custom-popup {

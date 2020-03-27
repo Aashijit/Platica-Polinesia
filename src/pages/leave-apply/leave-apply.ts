@@ -19,6 +19,8 @@ export class LeaveApplyPage {
   requestJson : any = null;
   documentImage1 : any = null;
   documentImage2 : any = null;
+  documentImage1Blob : any = null;
+  documentImage2Blob : any = null;
   comment :any = null;
 
 
@@ -56,6 +58,7 @@ export class LeaveApplyPage {
              // If it's base64 (DATA_URL):             
              console.error(imageData);
              this.documentImage1 = 'data:image/jpeg;base64,' + imageData;
+             this.documentImage1Blob=  this.convertBase64ToBlob(this.documentImage1);
             //  this.brandImage  = base64Image;
             //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
 
@@ -83,7 +86,7 @@ export class LeaveApplyPage {
              // If it's base64 (DATA_URL):
              console.error(imageData);
              this.documentImage1 = 'data:image/jpeg;base64,' + imageData;
-             
+             this.documentImage1Blob=  this.convertBase64ToBlob(this.documentImage1);
             //  this.brandImage  = base64Image;
             //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
             }, (err) => {
@@ -127,6 +130,8 @@ export class LeaveApplyPage {
              // If it's base64 (DATA_URL):             
              console.error(imageData);
              this.documentImage2 = 'data:image/jpeg;base64,' + imageData;
+
+             this.documentImage2Blob = this.convertBase64ToBlob(this.documentImage2);
             //  this.brandImage  = base64Image;
             //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
 
@@ -154,7 +159,7 @@ export class LeaveApplyPage {
              // If it's base64 (DATA_URL):
              console.error(imageData);
              this.documentImage2 = 'data:image/jpeg;base64,' + imageData;
-             
+             this.documentImage2Blob = this.convertBase64ToBlob(this.documentImage2);
             //  this.brandImage  = base64Image;
             //  this.brandImageBlob = this.convertBase64ToBlob(base64Image);
             }, (err) => {
@@ -185,6 +190,9 @@ export class LeaveApplyPage {
 
   applyForLeave(){
 
+    //Check if the images are present
+    if(this.dataValidation.isEmptyJson(this.documentImage1) && this.dataValidation.isEmptyJson(this.documentImage2)){
+
     var requestAPI = "Leave/LeaveApply?"+
     "leavetypeyearlycountid=1"+
     "&leavetakencount="+this.requestJson['LeaveTakeCount']+
@@ -194,17 +202,102 @@ export class LeaveApplyPage {
     "&AppType=W"+
     "&insertwithimagestatus=N";
 
-    this.httpCall.callApi("",requestAPI).then(responseJson => {
-      console.error(responseJson);
-    },error=>{
-      console.error(error);
-    });
+    var formData : any= new FormData();
+      var loading = this.msgHelper.showWorkingDialog('Applying for leave ...');
+    this.httpCall.uploadFile(formData,requestAPI).then(responseJson => {
+      //Dismiss the loader
+      loading.dismiss();
+
+      //Validate
+      if(this.dataValidation.isEmptyJson(responseJson)){
+        this.msgHelper.showErrorDialog('Error !!','Empty response received from server !!!');
+        return;
+      }
+
+      // if(responseJson['status'] == 1){
+       this.msgHelper.showToast('Leave Applied');
+       this.navCtrl.pop();
+      // }
+   });
+
+
+
   }
+  else {
+
+    var requestAPI = "Leave/LeaveApply?"+
+    "leavetypeyearlycountid=1"+
+    "&leavetakencount="+this.requestJson['LeaveTakeCount']+
+    "&leavefromdate="+this.requestJson['LeaveFromDate']+
+    "&leavetodate="+this.requestJson['LeaveToDate']+
+    "&leavecomments="+this.removeNull(this.comment)+
+    "&AppType=W"+
+    "&insertwithimagestatus=Y";
+
+    //Convert the images to blob objects from base64 to upload them
+    var loading = this.msgHelper.showWorkingDialog('Applying for leave ...');
+    var formData : any= new FormData();
+    formData.append("", this.documentImage1Blob);
+    formData.append("", this.documentImage2Blob);
+
+    this.httpCall.uploadFile(formData,requestAPI).then(responseJson => {
+      //Dismiss the loader
+      loading.dismiss();
+
+      //Validate
+      if(this.dataValidation.isEmptyJson(responseJson)){
+        this.msgHelper.showErrorDialog('Error !!','Empty response received from server !!!');
+        return;
+      }
+
+      // if(responseJson['status'] == 1){
+       this.msgHelper.showToast('Leave Applied');
+       this.navCtrl.pop();
+      // }
+   });
+  }
+}
 
 
 
   closeModal(){
     this.navCtrl.pop();
   }
+
+
+  private convertBase64ToBlob(base64: string) {
+    const info = this.getInfoFromBase64(base64);
+    const sliceSize = 512;
+    const byteCharacters = window.atob(info.rawBase64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+
+    return new Blob(byteArrays, { type: info.mime });
+  }
+
+  private getInfoFromBase64(base64: string) {
+    const meta = base64.split(',')[0];
+    const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
+    const mime = /:([^;]+);/.exec(meta)[1];
+    const extension = /\/([^;]+);/.exec(meta)[1];
+
+    return {
+      mime,
+      extension,
+      meta,
+      rawBase64
+    };
+  }
+
 
 }

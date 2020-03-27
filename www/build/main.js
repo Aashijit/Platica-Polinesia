@@ -1,4 +1,4 @@
-webpackJsonp([24],{
+webpackJsonp([26],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -202,98 +202,106 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-activity/add-activity.module": [
 		431,
-		23
+		25
 	],
 	"../pages/add-brand/add-brand.module": [
 		432,
-		22
+		24
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		433,
-		21
+		23
 	],
 	"../pages/add-user-type/add-user-type.module": [
-		435,
-		20
+		436,
+		22
 	],
 	"../pages/add-user/add-user.module": [
-		454,
-		19
+		435,
+		21
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
 		434,
-		18
+		20
 	],
 	"../pages/edit-activity/edit-activity.module": [
-		436,
-		17
+		437,
+		19
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		437,
-		16
+		438,
+		18
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
-		438,
-		15
+		439,
+		17
 	],
 	"../pages/event-list/event-list.module": [
-		439,
-		14
+		440,
+		16
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		440,
-		13
+		441,
+		15
 	],
 	"../pages/general-settings/general-settings.module": [
-		441,
-		12
+		442,
+		14
 	],
 	"../pages/home/home.module": [
 		443,
-		11
+		13
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		442,
-		10
+		444,
+		12
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		444,
-		9
+		445,
+		11
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		445,
-		8
+		446,
+		10
 	],
 	"../pages/login/login.module": [
-		446,
-		7
+		447,
+		9
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		447,
-		6
+		448,
+		8
 	],
 	"../pages/permissions/permissions.module": [
-		448,
-		5
+		449,
+		7
 	],
 	"../pages/project-home/project-home.module": [
-		449,
-		4
+		451,
+		6
 	],
 	"../pages/project-information/project-information.module": [
 		450,
+		5
+	],
+	"../pages/recognitions/recognitions.module": [
+		452,
+		4
+	],
+	"../pages/rewards/rewards.module": [
+		453,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		451,
+		454,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		452,
+		455,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		453,
+		456,
 		0
 	]
 };
@@ -675,6 +683,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
@@ -682,19 +691,20 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/event-list/event-list.module#EventListPageModule', name: 'EventListPage', segment: 'event-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-approval/leave-approval.module#LeaveApprovalPageModule', name: 'LeaveApprovalPage', segment: 'leave-approval', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/recognitions/recognitions.module#RecognitionsPageModule', name: 'RecognitionsPage', segment: 'recognitions', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/rewards/rewards.module#RewardsPageModule', name: 'RewardsPage', segment: 'rewards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -1182,6 +1192,9 @@ var Codes = /** @class */ (function () {
         this.API_GET_PERMISSION_INFORMATION = "Permission/GetPermissionInformation";
         this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUserMapInformation";
         this.API_UPDATE_PERMISSION = "Permission/UpdatePermission";
+        this.API_GET_USER_WISE_PROJECT_REPORT = "Project/GetUserWiseProjectList";
+        this.API_GET_USER_WISE_REWARD_COUNT = "Rewards/GetUserWiseRewardCount";
+        this.API_GET_USER_WISE_RECOGNITION = "Rewards/GetUserWiseRecognition";
         this.API_GET_EVENTS_LIST = "Event/GetEventList";
         this.API_GET_COLOUR_LIST = "Color/GetColorList";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
