@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 450:
+/***/ 454:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpdateUserPageModule", function() { return UpdateUserPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_user__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__update_user__ = __webpack_require__(480);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,16 +38,16 @@ var UpdateUserPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 472:
+/***/ 480:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateUserPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(344);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -69,6 +69,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var UpdateUserPage = /** @class */ (function () {
     function UpdateUserPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController, camera) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.msgHelper = msgHelper;
@@ -83,11 +84,40 @@ var UpdateUserPage = /** @class */ (function () {
         this.UserTypes = null;
         this.groupList = null;
         this.groupIds = null;
+        this.toUpdateUserMap = false;
+        this.readyToUpdate = false;
         this.userInformation = this.navParams.get(this.codes.LSK_USER_INFORMATION_JSON);
         this.profileImage = this.userInformation['UserImagePath'];
         this.UserTypes = this.navParams.get('UserTypes');
         this.groupList = this.navParams.get('GroupList');
-        console.error(this.userInformation);
+        //Fetch the user type ids
+        var userMapList = JSON.parse(localStorage.getItem(this.codes.LSK_USER_MAP_LIST));
+        //Check if the user is previously present in the user map list
+        for (var i = 0; i < userMapList.length; i++) {
+            if (userMapList[i]['UserId'] == this.userInformation['UserId']) {
+                this.toUpdateUserMap = true;
+                break;
+            }
+        }
+        if (!this.toUpdateUserMap)
+            this.readyToUpdate = true;
+        //Check if the user has mapped list
+        for (var i = 0; i < userMapList.length; i++) {
+            if (userMapList[i]['UserId'] == this.userInformation['UserId']) {
+                var requestJson = {
+                    "AppType": "W",
+                    "UserMapId": userMapList[i]['UserMapId']
+                };
+                this.httpCall.callApi(requestJson, this.codes.API_GET_USER_MAP_INFORMATION).then(function (responseJson) {
+                    if (_this.dataValidation.isEmptyJson(responseJson)) {
+                        _this.msgHelper.showErrorDialog('Error !!!', 'Empty response message !!!');
+                        return;
+                    }
+                    _this.userTypeId = responseJson['resultData'][0]['UserMapIds'].split(",");
+                });
+            }
+        }
+        console.error(JSON.stringify(this.userInformation));
     }
     UpdateUserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad UpdateUserPage');
@@ -100,12 +130,15 @@ var UpdateUserPage = /** @class */ (function () {
             return;
         }
         //Insert into the database
+        if (this.dataValidation.isEmptyJson(this.userTypeId)) {
+            this.msgHelper.showErrorDialog('Alert !!!', 'Please select the user types to map.');
+            return;
+        }
         var requestJson = {
             "AppType": "W",
             "UserId": this.userInformation['UserId'],
-            "UserGroupIds": this.groupIds,
             "CreatedByID": currentUserInfo[0]['UserId'],
-            "UserTypeId": this.userTypeId
+            "UserTypeIds": this.convertArrayToString(this.userTypeId)
         };
         var loading = this.msgHelper.showWorkingDialog('Mapping User ...');
         this.httpCall.callApi(requestJson, this.codes.API_INSERT_USER_MAP).then(function (responseJson) {
@@ -120,6 +153,13 @@ var UpdateUserPage = /** @class */ (function () {
                 return;
             }
         });
+    };
+    UpdateUserPage.prototype.convertArrayToString = function (array) {
+        var str = "";
+        for (var i = 0; i < array.length; i++) {
+            str = str + array[i] + ",";
+        }
+        return str.substring(0, str.length - 1);
     };
     UpdateUserPage.prototype.updateUserInformation = function () {
         var _this = this;
@@ -284,7 +324,7 @@ var UpdateUserPage = /** @class */ (function () {
     };
     UpdateUserPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-update-user',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/'\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Father\'s Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Mother\'s Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n<p style="text-align: center !important;">\n<ion-label style="color: white !important; font-size: 20px !important;">User Mapping</ion-label>\n</p>\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>User Group</ion-label>\n  <ion-select [(ngModel)]="groupIds" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n    <p *ngFor=\'let group of groupList\'>\n  <ion-option [value]="group[\'UserGroupId\']">{{group[\'UserGroupName\']}}</ion-option>\n  </p>\n  </ion-select>\n\n</ion-item>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>User Type</ion-label>\n  <ion-select [(ngModel)]="userTypeId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n    <p *ngFor=\'let type of UserTypes\'>\n  <ion-option [value]="type[\'UserTypeId\']">{{type[\'UserTypeName\']}}</ion-option>\n  </p>\n  </ion-select>\n\n</ion-item>\n\n\n<p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserMapping()">Update Mapping &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n<ion-list>\n\n\n\n\n\n\n</ion-list>\n\n\n<!--Change Password-->\n<p  style="text-align: center;">\n  <ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>Old Password</ion-label>\n  <ion-input [(ngModel)]="oldPassword">\n  </ion-input>\n</ion-item>\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/,
+            selector: 'page-update-user',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/'\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'FirstName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Father\'s Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'MiddleName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Mother\'s Name</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'LastName\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address1\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Address2\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'City\']">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'State\']">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="userInformation[\'Pincode\']">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserInformation()">Update Information &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n\n</ion-list> \n<p style="text-align: center !important;">\n<ion-label style="color: white !important; font-size: 20px !important;">User Mapping</ion-label>\n</p>\n\n<!-- <ion-item class="no-underline">\n  <ion-label color="primary" floating>User Group</ion-label>\n  <ion-select [(ngModel)]="groupIds" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n    <p *ngFor=\'let group of groupList\'>\n  <ion-option [value]="group[\'UserGroupId\']">{{group[\'UserGroupName\']}}</ion-option>\n  </p>\n  </ion-select>\n\n</ion-item> -->\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>User Type</ion-label>\n  <ion-select [(ngModel)]="userTypeId" interface="popover" multiple="true">\n    <p *ngFor=\'let type of UserTypes\'>\n  <ion-option [value]="type[\'UserTypeId\']">{{type[\'UserTypeName\']}}</ion-option>\n  </p>\n  </ion-select>\n\n</ion-item>\n\n\n<p style="text-align: center;">\n  <button ion-button clear class="capitalize" (click)="updateUserMapping()" [disabled]="!readyToUpdate">Update Mapping &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n\n<ion-list>\n\n\n\n\n\n\n</ion-list>\n\n\n<!--Change Password-->\n<p  style="text-align: center;">\n  <ion-label style="color: white !important; font-size: 20px !important;">Change Password</ion-label>\n\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>Old Password</ion-label>\n  <ion-input [(ngModel)]="oldPassword">\n  </ion-input>\n</ion-item>\n\n<ion-item class="no-underline">\n  <ion-label color="primary" floating>New Password</ion-label>\n  <ion-input [(ngModel)]="newPassword">\n  </ion-input>\n</ion-item>\n\n<button ion-button clear (click)="changePassword()">Update Password &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n  <!--User information to be present here-->\n\n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/update-user/update-user.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
             __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],

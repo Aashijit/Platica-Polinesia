@@ -28102,6 +28102,11 @@ user-info .noti-image-size {
   height: 15px !important;
 }
 
+user-info .camera-img-wrapper {
+  width: 35px !important;
+  height: 35px !important;
+}
+
 page-add-activity .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -29255,8 +29260,7 @@ page-permissions-home-temp .alert-md .alert-message, page-permissions-home-temp 
 
 page-project-home .background-content {
   background-color: #fff;
-  border-radius: 10px !important;
-  border: 1px solid #ddd;
+  border: 2px solid dodgerblue;
 }
 
 page-project-home ion-app, page-project-home ion-nav, page-project-home ion-tab, page-project-home ion-tabs, page-project-home .app-root, page-project-home .ion-page {
@@ -29483,9 +29487,17 @@ page-recognitions .alert-md .alert-message, page-recognitions .alert-md .alert-i
   padding: 2px !important;
 }
 
+page-recognitions .item-md {
+  padding: 0px !important;
+}
+
 page-rewards .background-content {
   background-color: #fff;
   border: 2px solid dodgerblue;
+}
+
+page-rewards .card-md {
+  min-width: 134px !important;
 }
 
 page-rewards ion-app, page-rewards ion-nav, page-rewards ion-tab, page-rewards ion-tabs, page-rewards .app-root, page-rewards .ion-page {

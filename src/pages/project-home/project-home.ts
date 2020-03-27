@@ -6,6 +6,7 @@ import { HttpProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Grid } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
+import { DatePipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,7 @@ export class ProjectHomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
-    public msgHelper : MessageHelper,public alertController : AlertController) {
+    public msgHelper : MessageHelper,public alertController : AlertController, public datePipe : DatePipe) {
   }
 
   ionViewDidLoad() {

@@ -107,6 +107,16 @@ var DataValidation = /** @class */ (function () {
             return true;
         }
     };
+    DataValidation.prototype.roundOff = function (string) {
+        var number = Number(string);
+        var temp = number;
+        while (number >= 1)
+            number--;
+        temp = temp - number;
+        if (number >= 0.5)
+            return temp + 1;
+        return temp;
+    };
     /**
      *
      * @param menuName The menu name whose permission is to be checked
@@ -213,63 +223,63 @@ var map = {
 		23
 	],
 	"../pages/add-user-type/add-user-type.module": [
-		436,
+		456,
 		22
 	],
 	"../pages/add-user/add-user.module": [
-		435,
+		434,
 		21
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		434,
+		435,
 		20
 	],
 	"../pages/edit-activity/edit-activity.module": [
-		437,
+		436,
 		19
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		438,
+		437,
 		18
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
-		439,
+		438,
 		17
 	],
 	"../pages/event-list/event-list.module": [
-		440,
+		439,
 		16
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		441,
+		440,
 		15
 	],
 	"../pages/general-settings/general-settings.module": [
-		442,
+		441,
 		14
 	],
 	"../pages/home/home.module": [
-		443,
+		442,
 		13
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		444,
+		443,
 		12
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		445,
+		444,
 		11
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		446,
+		445,
 		10
 	],
 	"../pages/login/login.module": [
-		447,
+		446,
 		9
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		448,
+		447,
 		8
 	],
 	"../pages/permissions/permissions.module": [
@@ -277,7 +287,7 @@ var map = {
 		7
 	],
 	"../pages/project-home/project-home.module": [
-		451,
+		448,
 		6
 	],
 	"../pages/project-information/project-information.module": [
@@ -285,23 +295,23 @@ var map = {
 		5
 	],
 	"../pages/recognitions/recognitions.module": [
-		452,
+		451,
 		4
 	],
 	"../pages/rewards/rewards.module": [
-		453,
+		452,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		454,
+		453,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		455,
+		454,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		456,
+		455,
 		0
 	]
 };
@@ -682,9 +692,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-activity/add-activity.module#AddActivityPageModule', name: 'AddActivityPage', segment: 'add-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
@@ -697,14 +706,15 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recognitions/recognitions.module#RecognitionsPageModule', name: 'RecognitionsPage', segment: 'recognitions', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/rewards/rewards.module#RewardsPageModule', name: 'RewardsPage', segment: 'rewards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -755,7 +765,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var UserInfoComponent = /** @class */ (function () {
     function UserInfoComponent() {
+        this.userImage = "../../assets/imgs/user.png";
         console.log('Hello UserInfoComponent Component');
+        //Fetch the user image from the local storage
+        var userInfo = JSON.parse(localStorage.getItem('userinfo'));
+        this.userImage = userInfo[0]['UserImagePath'];
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
@@ -767,7 +781,7 @@ var UserInfoComponent = /** @class */ (function () {
     ], UserInfoComponent.prototype, "notificationNumber", void 0);
     UserInfoComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;">{{messageNumber}}</span>\n  </button> -->\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n    <img src="../../assets/imgs/user.png" class="user-image-size" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <!-- <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;">{{notificationNumber}}</span>\n  </button> -->\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
+            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;">{{messageNumber}}</span>\n  </button> -->\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n    <img [src]="userImage" class="camera-img-wrapper" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <!-- <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;">{{notificationNumber}}</span>\n  </button> -->\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], UserInfoComponent);

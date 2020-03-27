@@ -8,7 +8,7 @@
       <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="logOut()">
         Log Out <ion-icon name="log-out"></ion-icon>
       </p>
-      <p style="color: white;margin-top: 2px !important;" class="nomargin" (click)="navCtrl.setRoot('HomePage')">
+      <p style="color: white;margin-top: 5px !important;" class="nomargin" (click)="navCtrl.setRoot('HomePage')">
         Go Home <ion-icon name="home"></ion-icon>
       </p>
     </ion-col>
@@ -154,7 +154,7 @@
                 <ion-row class="nopadding">
                   <ion-col>
                   <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message['MessageSendDate'],'d, MMM yyyy')}}</h6>
-                  <span style="float: right !important;">
+                  <span style="float: right !important;"  *ngIf="message['MessageRead']=='Y'">
                     <ion-badge color="light">Read</ion-badge>
                   </span>
                 </ion-col>
@@ -192,7 +192,7 @@
               <ion-row class="nopadding">
                 <ion-col>
                 <h6 style="font-size: 10px !important; color: #999 !important;">{{datePipe.transform(message['MessageSendDate'],'d, MMM yyyy')}}</h6>
-                <span style="float: right !important;">
+                <span style="float: right !important;" *ngIf="message['MessageRead']=='Y'">
                   <ion-badge color="light">Read</ion-badge>
                 </span>
               </ion-col>

@@ -1,10 +1,12 @@
-webpackJsonp([22],{
+webpackJsonp([26],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataValidation; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Codes__ = __webpack_require__(43);
+
 var DataValidation = /** @class */ (function () {
     function DataValidation() {
     }
@@ -105,6 +107,32 @@ var DataValidation = /** @class */ (function () {
             return true;
         }
     };
+    DataValidation.prototype.roundOff = function (string) {
+        var number = Number(string);
+        var temp = number;
+        while (number >= 1)
+            number--;
+        temp = temp - number;
+        if (number >= 0.5)
+            return temp + 1;
+        return temp;
+    };
+    /**
+     *
+     * @param menuName The menu name whose permission is to be checked
+     */
+    DataValidation.prototype.doesContainMenu = function (menuName) {
+        var codes = new __WEBPACK_IMPORTED_MODULE_0__Codes__["a" /* Codes */]();
+        //Fetch the storage information
+        var menuPermission = JSON.parse(localStorage.getItem(codes.LSK_PERMISSION_MENU));
+        if (this.isEmptyJson(menuPermission))
+            return true;
+        for (var i = 0; i < menuPermission.length; i++) {
+            if (menuPermission[i]['MenuName'] == menuName)
+                return true;
+        }
+        return false;
+    };
     DataValidation.prototype.isValidNumber = function (number) {
         if (number != null || number != undefined || number != "") {
             var nameRegex = new RegExp("[0-9]+");
@@ -184,90 +212,106 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-activity/add-activity.module": [
 		431,
-		21
+		25
 	],
 	"../pages/add-brand/add-brand.module": [
 		432,
-		20
+		24
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		433,
-		19
+		23
 	],
 	"../pages/add-user-type/add-user-type.module": [
-		434,
-		18
+		456,
+		22
 	],
 	"../pages/add-user/add-user.module": [
-		435,
-		17
+		434,
+		21
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		436,
-		16
+		435,
+		20
 	],
 	"../pages/edit-activity/edit-activity.module": [
-		437,
-		15
+		436,
+		19
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		438,
-		14
+		437,
+		18
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
+		438,
+		17
+	],
+	"../pages/event-list/event-list.module": [
 		439,
-		13
+		16
 	],
 	"../pages/forgot-password/forgot-password.module": [
 		440,
-		12
+		15
 	],
 	"../pages/general-settings/general-settings.module": [
 		441,
-		11
+		14
 	],
 	"../pages/home/home.module": [
 		442,
-		10
+		13
 	],
 	"../pages/leave-apply/leave-apply.module": [
 		443,
-		9
+		12
 	],
 	"../pages/leave-approval/leave-approval.module": [
 		444,
-		8
+		11
 	],
 	"../pages/leave-selection/leave-selection.module": [
 		445,
-		7
+		10
 	],
 	"../pages/login/login.module": [
 		446,
-		6
+		9
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
 		447,
-		5
+		8
 	],
 	"../pages/permissions/permissions.module": [
+		449,
+		7
+	],
+	"../pages/project-home/project-home.module": [
 		448,
-		4
+		6
 	],
 	"../pages/project-information/project-information.module": [
+		450,
+		5
+	],
+	"../pages/recognitions/recognitions.module": [
+		451,
+		4
+	],
+	"../pages/rewards/rewards.module": [
 		452,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		449,
+		453,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		450,
+		454,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		451,
+		455,
 		0
 	]
 };
@@ -288,6 +332,101 @@ module.exports = webpackAsyncContext;
 /***/ }),
 
 /***/ 341:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(127);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var HttpProvider = /** @class */ (function () {
+    function HttpProvider(http, codes, httpClient) {
+        this.http = http;
+        this.codes = codes;
+        this.httpClient = httpClient;
+    }
+    /**
+     *
+     * @param data  the json data
+     * @param apiName the api name
+     */
+    HttpProvider.prototype.callApi = function (data, apiName) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
+            headers.append('Content-Type', 'application/json');
+            //data['action'] = action;
+            //data['Auth_Token'] = (tokenId == null) ? 1 : tokenId;
+            //data['U_Type'] = 'D';
+            console.log(JSON.stringify(data));
+            console.error(_this.codes.API_ENDPOINT + apiName);
+            _this.http.post(_this.codes.API_ENDPOINT + apiName, JSON.stringify(data), { headers: headers }).map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                console.log(data);
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+                resolve({ status: _this.codes.API_ERROR });
+            });
+        });
+    };
+    HttpProvider.prototype.uploadFile = function (data, apiName) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            console.log(data.get("file"));
+            _this.httpClient.post(_this.codes.API_ENDPOINT + apiName, data).subscribe(function (res) {
+                console.log("Success: " + JSON.stringify(res));
+                resolve(res);
+            }, function (err) {
+                console.log(err);
+                resolve(err);
+            });
+        });
+    };
+    HttpProvider.prototype.isNullOrEmpty = function (str) {
+        return typeof str === 'undefined' || str === null || (typeof str === 'string' && str.length <= 0);
+    };
+    HttpProvider.prototype.convertToArray = function (object) {
+        if (this.isArray(object))
+            return object;
+        else
+            return [object];
+    };
+    HttpProvider.prototype.isArray = function (object) {
+        if (typeof object === 'undefined')
+            return false;
+        return Object.prototype.toString.call(object).slice(8, -1) === 'Array';
+    };
+    HttpProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__["a" /* Codes */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]])
+    ], HttpProvider);
+    return HttpProvider;
+}());
+
+//# sourceMappingURL=data.js.map
+
+/***/ }),
+
+/***/ 342:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -434,101 +573,6 @@ var MessageHelper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 342:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(127);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var HttpProvider = /** @class */ (function () {
-    function HttpProvider(http, codes, httpClient) {
-        this.http = http;
-        this.codes = codes;
-        this.httpClient = httpClient;
-    }
-    /**
-     *
-     * @param data  the json data
-     * @param apiName the api name
-     */
-    HttpProvider.prototype.callApi = function (data, apiName) {
-        var _this = this;
-        return new Promise(function (resolve) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]();
-            headers.append('Content-Type', 'application/json');
-            //data['action'] = action;
-            //data['Auth_Token'] = (tokenId == null) ? 1 : tokenId;
-            //data['U_Type'] = 'D';
-            console.log(JSON.stringify(data));
-            console.error(_this.codes.API_ENDPOINT + apiName);
-            _this.http.post(_this.codes.API_ENDPOINT + apiName, JSON.stringify(data), { headers: headers }).map(function (res) { return res.json(); })
-                .subscribe(function (data) {
-                console.log(data);
-                resolve(data);
-            }, function (err) {
-                console.log(err);
-                resolve({ status: _this.codes.API_ERROR });
-            });
-        });
-    };
-    HttpProvider.prototype.uploadFile = function (data, apiName) {
-        var _this = this;
-        return new Promise(function (resolve) {
-            console.log(data.get("file"));
-            _this.httpClient.post(_this.codes.API_ENDPOINT + apiName, data).subscribe(function (res) {
-                console.log("Success: " + JSON.stringify(res));
-                resolve(res);
-            }, function (err) {
-                console.log(err);
-                resolve(err);
-            });
-        });
-    };
-    HttpProvider.prototype.isNullOrEmpty = function (str) {
-        return typeof str === 'undefined' || str === null || (typeof str === 'string' && str.length <= 0);
-    };
-    HttpProvider.prototype.convertToArray = function (object) {
-        if (this.isArray(object))
-            return object;
-        else
-            return [object];
-    };
-    HttpProvider.prototype.isArray = function (object) {
-        if (typeof object === 'undefined')
-            return false;
-        return Object.prototype.toString.call(object).slice(8, -1) === 'Array';
-    };
-    HttpProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__["a" /* Codes */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]])
-    ], HttpProvider);
-    return HttpProvider;
-}());
-
-//# sourceMappingURL=data.js.map
-
-/***/ }),
-
 /***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -593,9 +637,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_camera__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Utils_DataValidation__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_core__ = __webpack_require__(0);
@@ -648,12 +692,12 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-activity/add-activity.module#AddActivityPageModule', name: 'AddActivityPage', segment: 'add-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/event-list/event-list.module#EventListPageModule', name: 'EventListPage', segment: 'event-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
@@ -662,11 +706,15 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/project-home/project-home.module#ProjectHomePageModule', name: 'ProjectHomePage', segment: 'project-home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions/permissions.module#PermissionsPageModule', name: 'PermissionsPage', segment: 'permissions', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/recognitions/recognitions.module#RecognitionsPageModule', name: 'RecognitionsPage', segment: 'recognitions', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/rewards/rewards.module#RewardsPageModule', name: 'RewardsPage', segment: 'rewards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/project-information/project-information.module#ProjectInformationPageModule', name: 'ProjectInformationPage', segment: 'project-information', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -717,7 +765,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var UserInfoComponent = /** @class */ (function () {
     function UserInfoComponent() {
+        this.userImage = "../../assets/imgs/user.png";
         console.log('Hello UserInfoComponent Component');
+        //Fetch the user image from the local storage
+        var userInfo = JSON.parse(localStorage.getItem('userinfo'));
+        this.userImage = userInfo[0]['UserImagePath'];
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
@@ -729,7 +781,7 @@ var UserInfoComponent = /** @class */ (function () {
     ], UserInfoComponent.prototype, "notificationNumber", void 0);
     UserInfoComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;">{{messageNumber}}</span>\n  </button> -->\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n    <img src="../../assets/imgs/user.png" class="user-image-size" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <!-- <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;">{{notificationNumber}}</span>\n  </button> -->\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
+            selector: 'user-info',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/'<div>\n\n  <span>\n    \n  <!-- <button ion-button clear ><img src="../../assets/imgs/profile_ballon1.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    font-size: 9px !important;\n    top: 13px !important;\n    color: white;">{{messageNumber}}</span>\n  </button> -->\n  <p style="margin-left: 26px !important; margin-top: 17px !important;">\n    <img [src]="userImage" class="camera-img-wrapper" />\n  </p>\n  <p style="margin-top: -43px !important;margin-left: 8px !important;">\n  <!-- <button ion-button clear >\n    <img src="../../assets/imgs/profile_ballon2.png" class="noti-image-size"/>\n    <span style="position: absolute;\n    left: 13px !important;\n    top: 15px !important;\n    font-size: 8px !important;\n    color: white;">{{notificationNumber}}</span>\n  </button> -->\n</p>\n  </span>\n  <!-- {{text}} -->\n</div>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/components/user-info/user-info.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], UserInfoComponent);
@@ -1100,12 +1152,81 @@ webpackContext.id = 409;
 
 /***/ }),
 
+/***/ 43:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Codes; });
+var Codes = /** @class */ (function () {
+    function Codes() {
+        this.EM_INVALID_MOBILE_NUMBER = "Invalid mobile number";
+        this.EM_INVALID_EMAILID = "Invalid email id";
+        this.EM_INVALID_PASSWORD = "Invalid password";
+        this.EM_INVALID_VERIFICATION_ID = "Invalid verification id";
+        this.API_ERROR = "500";
+        this.LSK_USER_PASSWORD = "userpassword";
+        this.LSK_USER_INFORMATION_JSON = "userinfo";
+        this.LSK_PHASES = "phases";
+        this.LSK_PROJECT_TYPE = "project_type";
+        this.LSK_PERMISSION_MENU = "permission_menu";
+        this.LSK_USER_MAP_LIST = "user_map";
+        this.API_GET_TOKEN = "Login/GetToken";
+        this.API_GET_LOGIN_DETAILS = "Login/GetLoginDetails";
+        this.API_GET_USER_DETAILS = "User/GetUserList";
+        this.API_INSERT_USER = "User/InsertUser";
+        this.API_UPDATE_USER = "User/UpdateUser";
+        this.API_DELETE_USER = "User/DeleteUser";
+        this.API_GET_PARTICULAR_USER_INFORMATION = "User/GetUserInformation";
+        this.API_CHANGE_USER_PASSWORD = "User/ChangeUserPassword";
+        this.API_FORGOT_PASSWORD = "Login/ForgotPassword";
+        this.API_GET_USER_GROUP = "UserGroup/GetUserGroup";
+        this.API_GET_USER_MAP_LIST = "UserMap/GetUserMapList";
+        this.API_GET_BUSINESS_UNIT_LIST = "BusinessUnit/GetBusinessUnitList";
+        this.API_GET_BRAND_LIST = "Brand/GetBrandList";
+        this.API_INSERT_BUSINESS_UNIT = "BusinessUnit/InsertBusinessUnit";
+        this.API_UPDATE_BUSINESS_UNIT = "BusinessUnit/UpdateBusinessUnit";
+        this.API_INSERT_BRAND = "Brand/InsertBrand";
+        this.API_UPDATE_BRAND = "Brand/UpdateBrand";
+        this.API_INSERT_USER_MAP = "UserMap/InsertUserMap";
+        this.API_GET_LEAVE_TYPE = "Leave/GetLeaveType";
+        this.API_GET_LEAVE_INFORMATION_COUNT = "Leave/GetLeaveTypeCountInformation";
+        this.API_GET_USER_LEAVE_BALANCE_INFORMATION = "Leave/GetUserLeaveBalanceInformation";
+        this.API_LEAVE_APPLY = "Leave/LeaveApply";
+        this.API_GET_LEAVE_BALANCE_INFORMATION = "Leave/GetLeaveBalanceInformation";
+        this.API_APPROVE_LEAVE = "Leave/LeaveApproval";
+        this.API_GET_MESSAGES_NOTIFICATIONS = "Messages/GetMessageTypeList";
+        this.API_GET_USER_TYPE_LIST = "UserType/GetUserTypeList";
+        this.API_INSERT_USER_TYPE = "UserType/InsertUserType";
+        this.API_UPDATE_USER_TYPE = "UserType/UpdateUserType";
+        this.API_GET_ACTIVITY = "Activity/GetActivityList";
+        this.API_INSERT_ACTIVITY = "Activity/InsertActivity";
+        this.API_UPDATE_ACTIVITY = "Activity/UpdateActivity";
+        this.API_GET_PHASES = "Phase/GetPhase";
+        this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
+        this.API_GET_PERMISSION_INFORMATION = "Permission/GetPermissionInformation";
+        this.API_GET_USER_MAP_INFORMATION = "UserMap/GetUserMapInformation";
+        this.API_UPDATE_PERMISSION = "Permission/UpdatePermission";
+        this.API_GET_USER_WISE_PROJECT_REPORT = "Project/GetUserWiseProjectList";
+        this.API_GET_USER_WISE_REWARD_COUNT = "Rewards/GetUserWiseRewardCount";
+        this.API_GET_USER_WISE_RECOGNITION = "Rewards/GetUserWiseRecognition";
+        this.API_GET_EVENTS_LIST = "Event/GetEventList";
+        this.API_GET_COLOUR_LIST = "Color/GetColorList";
+        this.API_ENDPOINT = "http://101.53.145.231:8053/";
+        //    http://101.53.145.231:8053/Messages/GetMessageTypeList
+    }
+    return Codes;
+}());
+
+//# sourceMappingURL=Codes.js.map
+
+/***/ }),
+
 /***/ 430:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
@@ -1173,65 +1294,6 @@ var MyApp = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Codes; });
-var Codes = /** @class */ (function () {
-    function Codes() {
-        this.EM_INVALID_MOBILE_NUMBER = "Invalid mobile number";
-        this.EM_INVALID_EMAILID = "Invalid email id";
-        this.EM_INVALID_PASSWORD = "Invalid password";
-        this.EM_INVALID_VERIFICATION_ID = "Invalid verification id";
-        this.API_ERROR = "500";
-        this.LSK_USER_PASSWORD = "userpassword";
-        this.LSK_USER_INFORMATION_JSON = "userinfo";
-        this.LSK_PHASES = "phases";
-        this.LSK_PROJECT_TYPE = "project_type";
-        this.API_GET_TOKEN = "Login/GetToken";
-        this.API_GET_LOGIN_DETAILS = "Login/GetLoginDetails";
-        this.API_GET_USER_DETAILS = "User/GetUserList";
-        this.API_INSERT_USER = "User/InsertUser";
-        this.API_UPDATE_USER = "User/UpdateUser";
-        this.API_DELETE_USER = "User/DeleteUser";
-        this.API_GET_PARTICULAR_USER_INFORMATION = "User/GetUserInformation";
-        this.API_CHANGE_USER_PASSWORD = "User/ChangeUserPassword";
-        this.API_FORGOT_PASSWORD = "Login/ForgotPassword";
-        this.API_GET_USER_GROUP = "UserGroup/GetUserGroup";
-        this.API_GET_USER_MAP_LIST = "UserMap/GetUserMapList";
-        this.API_GET_BUSINESS_UNIT_LIST = "BusinessUnit/GetBusinessUnitList";
-        this.API_GET_BRAND_LIST = "Brand/GetBrandList";
-        this.API_INSERT_BUSINESS_UNIT = "BusinessUnit/InsertBusinessUnit";
-        this.API_UPDATE_BUSINESS_UNIT = "BusinessUnit/UpdateBusinessUnit";
-        this.API_INSERT_BRAND = "Brand/InsertBrand";
-        this.API_UPDATE_BRAND = "Brand/UpdateBrand";
-        this.API_INSERT_USER_MAP = "UserMap/InsertUserMap";
-        this.API_GET_LEAVE_TYPE = "Leave/GetLeaveType";
-        this.API_GET_LEAVE_INFORMATION_COUNT = "Leave/GetLeaveTypeCountInformation";
-        this.API_GET_USER_LEAVE_BALANCE_INFORMATION = "Leave/GetUserLeaveBalanceInformation";
-        this.API_LEAVE_APPLY = "Leave/LeaveApply";
-        this.API_GET_LEAVE_BALANCE_INFORMATION = "Leave/GetLeaveBalanceInformation";
-        this.API_APPROVE_LEAVE = "Leave/LeaveApproval";
-        this.API_GET_MESSAGES_NOTIFICATIONS = "Messages/GetMessageTypeList";
-        this.API_GET_USER_TYPE_LIST = "UserType/GetUserTypeList";
-        this.API_INSERT_USER_TYPE = "UserType/InsertUserType";
-        this.API_UPDATE_USER_TYPE = "UserType/UpdateUserType";
-        this.API_GET_ACTIVITY = "Activity/GetActivityList";
-        this.API_INSERT_ACTIVITY = "Activity/InsertActivity";
-        this.API_UPDATE_ACTIVITY = "Activity/UpdateActivity";
-        this.API_GET_PHASES = "Phase/GetPhase";
-        this.API_GET_PROJECT_TYPE = "ProjectType/GetProjectType";
-        this.API_ENDPOINT = "http://101.53.145.231:8053/";
-        //    http://101.53.145.231:8053/Messages/GetMessageTypeList
-    }
-    return Codes;
-}());
-
-//# sourceMappingURL=Codes.js.map
 
 /***/ })
 

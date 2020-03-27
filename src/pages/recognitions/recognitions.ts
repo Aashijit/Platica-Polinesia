@@ -6,6 +6,7 @@ import { HttpProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Grid } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
+import { DatePipe } from '@angular/common';
 
 
 @IonicPage()
@@ -20,7 +21,7 @@ export class RecognitionsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
     public httpCall: HttpProvider, public codes: Codes, public dataValidation: DataValidation,
-    public msgHelper: MessageHelper, public alertController: AlertController) {
+    public msgHelper: MessageHelper, public alertController: AlertController, public datePipe : DatePipe) {
   }
 
   ionViewDidLoad() {
@@ -75,6 +76,15 @@ export class RecognitionsPage {
       console.warn(JSON.stringify(this.projects));
     });
   }
+
+
+  //TODO: Fix this
+  getProjectTypeImage(projectImage){
+    if(projectImage == "Icons/microphone.png"){
+      return "../../assets/imgs/icon_mic.png";
+    }
+    return "../../assets/imgs/icon_image.png";
+}
 
   goToUserMessages() {
     let userModal = this.modalCtrl.create('UserMessageNotificationListPage');

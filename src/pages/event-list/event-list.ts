@@ -37,6 +37,8 @@ export class EventListPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventListPage');
 
+    
+
     var requestJson = {
       "AppType": "W"
     };

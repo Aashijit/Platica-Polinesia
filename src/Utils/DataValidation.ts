@@ -117,6 +117,20 @@ export class DataValidation {
 
     }
 
+    roundOff(string){
+        var number = Number(string);
+
+        var temp = number;
+
+        while(number >= 1)
+            number--;   
+        temp = temp - number;
+        if(number >= 0.5)    
+            return temp+1;
+            
+        return temp;
+    }
+
     /**
      * 
      * @param menuName The menu name whose permission is to be checked
