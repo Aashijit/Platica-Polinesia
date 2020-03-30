@@ -1,14 +1,14 @@
 webpackJsonp([24],{
 
-/***/ 432:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddBrandPageModule", function() { return AddBrandPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddProjectPageModule", function() { return AddProjectPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_brand__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_project__ = __webpack_require__(463);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddBrandPageModule = /** @class */ (function () {
-    function AddBrandPageModule() {
+var AddProjectPageModule = /** @class */ (function () {
+    function AddProjectPageModule() {
     }
-    AddBrandPageModule = __decorate([
+    AddProjectPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__add_brand__["a" /* AddBrandPage */],
+                __WEBPACK_IMPORTED_MODULE_2__add_project__["a" /* AddProjectPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__add_brand__["a" /* AddBrandPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__add_project__["a" /* AddProjectPage */]),
             ],
         })
-    ], AddBrandPageModule);
-    return AddBrandPageModule;
+    ], AddProjectPageModule);
+    return AddProjectPageModule;
 }());
 
-//# sourceMappingURL=add-brand.module.js.map
+//# sourceMappingURL=add-project.module.js.map
 
 /***/ }),
 
-/***/ 458:
+/***/ 463:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddBrandPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddProjectPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(344);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,177 +66,195 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AddBrandPage = /** @class */ (function () {
-    function AddBrandPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController, camera) {
+var AddProjectPage = /** @class */ (function () {
+    function AddProjectPage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.msgHelper = msgHelper;
+        this.modalCtrl = modalCtrl;
         this.httpCall = httpCall;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.actionSheet = actionSheet;
+        this.msgHelper = msgHelper;
         this.alertController = alertController;
-        this.camera = camera;
-        this.brandImage = '../../assets/imgs/user.png';
-        this.brandImageBlob = null;
-        this.UserList = '';
-        this.UserList = this.navParams.get('userList');
+        this.projectName = null;
+        this.projectAlias = null;
+        this.projectDescription = null;
+        this.businessUnitId = null;
+        this.brandId = null;
+        this.projectTypeId = null;
+        this.nVideos = null;
+        this.nPhotos = null;
+        this.nWallpapers = null;
+        this.nOthers = null;
+        this.eStartDate = '2020-03-30';
+        this.eEndDate = '2020-03-30';
+        this.aStartDate = '2020-03-30';
+        this.aEndDate = '2020-03-30';
+        this.projectTypes = null;
+        this.businessUnits = null;
+        this.brands = null;
+        this.users = null;
+        this.areas = null;
+        this.materials = null;
+        this.activites = null;
+        this.roles = null;
+        this.areaIds = null;
     }
-    AddBrandPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddBrandPage');
-    };
-    AddBrandPage.prototype.addBrand = function () {
+    AddProjectPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        //Call the change password API
+        console.log('ionViewDidLoad AddProjectPage');
+        //Load the project phases
+        var requestJson = {
+            "ProjectStatus": 4,
+            "AppType": "W"
+        };
+        this.httpCall.callApi(requestJson, this.codes.API_GET_PROJECT_INFO).then(function (responseJson) {
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Server !!!');
+                return;
+            }
+            _this.users = responseJson['resultData']['ProjectUserLookup'];
+            _this.businessUnits = responseJson['resultData']['BULookup'];
+            _this.areas = responseJson['resultData']['AreaLookup'];
+            _this.brands = responseJson['resultData']['BrandLookup'];
+            _this.projectTypes = responseJson['resultData']['ProjectTypeLookup'];
+            _this.materials = responseJson['resultData']['MaterialLookup'];
+            _this.roles = responseJson['resultData']['RoleLookup'];
+        });
+        var reqJson = {
+            "AppType": "W"
+        };
+        this.httpCall.callApi(reqJson, this.codes.API_GET_ACTIVITY).then(function (respJson) {
+            if (_this.dataValidation.isEmptyJson(respJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Server !!!');
+                return;
+            }
+            _this.activites = respJson['resultData'];
+            for (var i = 0; i < _this.activites.length; i++) {
+                _this.activites[i]['PhaseName'] = _this.getPhaseNameByPhaseId(_this.activites[i]['PhaseId']);
+                _this.activites[i]['userIds'] = [];
+                _this.activites[i]['materialId'] = 1;
+                _this.activites[i]['roleId'] = 1;
+                _this.activites[i]['eStartDate'] = '2020-03-30';
+                _this.activites[i]['aStartDate'] = '2020-03-30';
+                _this.activites[i]['eEndDate'] = '2020-03-30';
+                _this.activites[i]['aEndDate'] = '2020-03-30';
+            }
+        });
+    };
+    AddProjectPage.prototype.closeModal = function () {
+        this.navCtrl.pop();
+    };
+    //TODO: Make this server driven
+    AddProjectPage.prototype.getPhaseNameByPhaseId = function (phaseId) {
+        if (phaseId == 1)
+            return "Pre Production";
+        if (phaseId == 2)
+            return "Production";
+        if (phaseId == 3)
+            return "Post Production";
+        if (phaseId == 4)
+            return "Analysis";
+    };
+    AddProjectPage.prototype.addProject = function () {
+        var _this = this;
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-        console.error(JSON.stringify(currentUserInfo));
         if (this.dataValidation.isEmptyJson(currentUserInfo)) {
             this.msgHelper.showToast('Could not fetch user id');
             return;
         }
-        //Inserting a new user profile
-        var loading = this.msgHelper.showWorkingDialog('Creating your brand ...');
-        var apiUpdateString = this.codes.API_INSERT_BRAND +
-            '?brname=' + this.removeNull(this.brandName) +
-            '&brdesc=' + this.removeNull(this.brandDescription) +
-            '&brownerid=' + this.removeNull(this.brandOwnerId) +
-            '&brcreatebyid=' + currentUserInfo[0]['UserId'] +
-            '&AppType=W';
-        //TODO: Fix this
-        if (this.brandImageBlob == null) {
-            this.msgHelper.showErrorDialog('Error !!!', 'Brand Image is mandatory');
-            return;
+        //Create the json for activity
+        var projectPhases = [];
+        for (var i = 0; i < this.activites.length; i++) {
+            projectPhases[i] = this.getActivityInPostFormat(this.activites[i]);
         }
-        var formData = new FormData();
-        formData.append("file", this.brandImageBlob);
-        console.error(apiUpdateString);
-        this.httpCall.uploadFile(formData, apiUpdateString).then(function (responseJson) {
-            //Dismiss the loader
+        var requestData = {
+            "ProjectMode": 1,
+            "SelectedArea": this.areaIds,
+            "ProjectName": this.projectName,
+            "ProjectAlias": this.projectAlias,
+            "ProjectDescription": this.projectDescription,
+            "BusinessUnitID": this.businessUnitId,
+            "ProjectTypeID": this.projectTypeId,
+            "ExpectedStartDate": this.eStartDate,
+            "ActualStartDate": this.aStartDate,
+            "ExpectedEndDate": this.eEndDate,
+            "ActualEndDate": this.aEndDate,
+            "IsBranded": false,
+            "BrandID": this.brandId,
+            "ProjectIcon": null,
+            "ProjectStatus": 0,
+            "CompletePer": 0.0,
+            "ProjectOwner": currentUserInfo[0]['UserId'],
+            "ProjectOwnerName": null,
+            "NoOfVideos": this.nVideos,
+            "NoOfWallPapers": this.nWallpapers,
+            "NoOfPhotos": this.nPhotos,
+            "NoOfOthers": this.nOthers,
+            "CreatedByID": currentUserInfo[0]['UserId'],
+            "BrandImagePath": null,
+            "CreatedOn": '2020-03-30',
+            "CreatedBy": currentUserInfo[0]['UserId'],
+            "CreatedByUserName": null,
+            "ModifiedOn": '2020-03-30',
+            "LastModifiedBy": 0,
+            "LastModifiedByUserName": null,
+            "ProjectPhases": projectPhases
+        };
+        console.warn('To Post this data : ' + JSON.stringify(requestData));
+        var loading = this.msgHelper.showWorkingDialog('Adding Project ...');
+        this.httpCall.callApi(requestData, this.codes.API_ADD_PROJECT).then(function (responseJson) {
             loading.dismiss();
-            //Validate
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
+            if (_this.dataValidation.isEmptyJson(requestData)) {
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received !!!');
                 return;
             }
             if (responseJson['status'] == 1) {
-                _this.msgHelper.showToast('Brand Added !!!');
+                _this.msgHelper.showToast('Added Project Successfully !!!!');
                 _this.navCtrl.pop();
             }
         });
     };
-    AddBrandPage.prototype.removeNull = function (variable) {
-        if (variable == null || variable == undefined || variable == 0)
-            return '';
-        return variable;
-    };
-    AddBrandPage.prototype.presentActionSheetToUpdateImage = function () {
-        var _this = this;
-        var actionSheet = this.actionSheet.create({
-            title: 'Update your brand picture',
-            buttons: [
-                {
-                    text: 'Capture an image',
-                    role: 'camera',
-                    icon: 'camera',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.CAMERA,
-                            destinationType: _this.camera.DestinationType.DATA_URL,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):             
-                            console.error(imageData);
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.brandImage = base64Image;
-                            _this.brandImageBlob = _this.convertBase64ToBlob(base64Image);
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Select from gallery',
-                    role: 'gallery',
-                    icon: 'image',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
-                            destinationType: _this.camera.DestinationType.DATA_URL,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):
-                            console.error(imageData);
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.brandImage = base64Image;
-                            _this.brandImageBlob = _this.convertBase64ToBlob(base64Image);
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Close',
-                    role: 'close',
-                    icon: 'close',
-                    handler: function () {
-                        actionSheet.dismiss();
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    AddBrandPage.prototype.convertBase64ToBlob = function (base64) {
-        var info = this.getInfoFromBase64(base64);
-        var sliceSize = 512;
-        var byteCharacters = window.atob(info.rawBase64);
-        var byteArrays = [];
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-            byteArrays.push(new Uint8Array(byteNumbers));
-        }
-        return new Blob(byteArrays, { type: info.mime });
-    };
-    AddBrandPage.prototype.getInfoFromBase64 = function (base64) {
-        var meta = base64.split(',')[0];
-        var rawBase64 = base64.split(',')[1].replace(/\s/g, '');
-        var mime = /:([^;]+);/.exec(meta)[1];
-        var extension = /\/([^;]+);/.exec(meta)[1];
-        return {
-            mime: mime,
-            extension: extension,
-            meta: meta,
-            rawBase64: rawBase64
+    AddProjectPage.prototype.getActivityInPostFormat = function (activity) {
+        var json = {
+            "Activity": {
+                "AssignedUserID": activity['userIds'],
+                "ProjectID": 0,
+                "ProjectTypeID": this.projectTypeId,
+                "PhaseID": activity['PhaseId'],
+                "ActivityID": activity['ActivityId'],
+                "EndDate": activity['aEndDate'],
+                "AssignedMaterialID": activity['materialId'],
+                "ActivityRoleID": activity['roleId'],
+                "CoinRewardQuantity": activity['CoinRewardQuantity'],
+                "DiamondRewardQuantity": activity['DiamondRewardQuantity'],
+                "CouponRewardQuantity": activity['CouponRewardQuantity'],
+                "TrophyRewardQuantity": activity['TrophyRewardQuantity'],
+                "IsFinished": false
+            },
+            "ProjectID": 0,
+            "PhaseID": activity['PhaseId'],
+            "PhaseName": activity['PhaseName'],
+            "PhaseDescription": activity['PhaseName'],
+            "ExpectedStartDate": activity['eStartDate'],
+            "ActualStartDate": activity['aStartDate'],
+            "ExpectedEndDate": activity['eEndDate'],
+            "ActualEndDate": activity['aEndDate']
         };
+        return json;
     };
-    AddBrandPage.prototype.closeModal = function () {
-        this.navCtrl.pop();
-    };
-    AddBrandPage = __decorate([
+    AddProjectPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-add-brand',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Brand</h1>\n\n  <ion-list style="text-align: center !important;">\n    \n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="brandImage" class="camera-img-wrapper" />\n    </ion-col>\n  \n    <ion-item class="no-underline">\n      <ion-label color="primary">Brand Name</ion-label>\n      <ion-input [(ngModel)]="brandName">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary">Brand Description</ion-label>\n      <ion-textarea [(ngModel)]="brandDescription">\n      </ion-textarea>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Brand Owner</ion-label>\n      <ion-select [(ngModel)]="brandOwnerId" interface="popover" [selectOptions]="{ mode: \'ios\' }">\n        <p *ngFor=\'let user of UserList\'>\n      <ion-option [value]="user[\'UserId\']">{{user[\'FirstName\']+\' \'+user[\'LastName\']}}</ion-option>\n      </p>\n      </ion-select>\n  \n    </ion-item>\n    \n    <p style="text-align: center;">\n      <button ion-button clear class="capitalize" (click)="addBrand()">Add Brand &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n    </p>  \n  \n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-brand/add-brand.html"*/,
+            selector: 'page-add-project',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-project/add-project.html"*/'<ion-content padding class="custom-popup">\n\n  <h1 style="color: wheat;">Add Project</h1>\n\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Project Name</ion-label>\n      <ion-input [(ngModel)]="projectName"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Project Alias</ion-label>\n      <ion-input [(ngModel)]="projectAlias"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Project Description</ion-label>\n      <ion-textarea [(ngModel)]="projectDescription" rows="3"></ion-textarea>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Number of Videos</ion-label>\n      <ion-input [(ngModel)]="nVideos"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Number of Wallpapers</ion-label>\n      <ion-input [(ngModel)]="nWallpapers"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Number of Photos</ion-label>\n      <ion-input [(ngModel)]="nPhotos"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Others</ion-label>\n      <ion-input [(ngModel)]="nOthers"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Expectected Start Date</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="eStartDate" mode="ios"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Actual Start Date</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="aStartDate" mode="ios"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Expectected End Date</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="eEndDate" mode="ios"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Actual Start Date</ion-label>\n      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="aEndDate" mode="ios"></ion-datetime>\n    </ion-item>\n\n\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Project Type</ion-label>\n      <ion-select [(ngModel)]="projectTypeId" interface="popover">\n        <p *ngFor=\'let pt of projectTypes\'>\n          <ion-option [value]="pt[\'ID\']">{{pt[\'TypeName\']}}</ion-option>\n        </p>\n      </ion-select>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Business Units</ion-label>\n      <ion-select [(ngModel)]="businessUnitId" interface="popover">\n        <p *ngFor=\'let bu of businessUnits\'>\n          <ion-option [value]="bu[\'BUID\']">{{bu[\'BUName\']}}</ion-option>\n        </p>\n      </ion-select>\n    </ion-item>\n\n\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Brands</ion-label>\n      <ion-select [(ngModel)]="brandId" interface="popover">\n        <p *ngFor=\'let br of brands\'>\n          <ion-option [value]="br[\'BrandId\']">{{br[\'BrandName\']}}</ion-option>\n        </p>\n      </ion-select>\n    </ion-item>\n\n\n    <ion-item class="no-underline">\n      <ion-label color="primary" floating>Areas</ion-label>\n      <ion-select [(ngModel)]="areaIds" interface="popover" multiple="true">\n        <p *ngFor=\'let ar of areas\'>\n          <ion-option [value]="ar[\'AreaID\']">{{ar[\'AreaName\']}}</ion-option>\n        </p>\n      </ion-select>\n    </ion-item>\n\n\n\n    <p *ngFor="let activity of activites">\n      <ion-grid style="border: 1px solid #ddd !important; border-radius: 5px !important; padding: 5px !important;">\n        <ion-row>\n          <ion-col style="color: dodgerblue !important; font-size: 15px !important;" col-7>{{activity[\'ActivityName\']}}\n          </ion-col>\n          <ion-col col-5>\n            <ion-badge color="light">{{activity[\'PhaseName\']}}</ion-badge>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col style="font-size: 10px !important; color: #919191 !important;">{{activity[\'ActivityDescription\']}}\n          </ion-col>\n        </ion-row>\n\n        <ion-item class="no-underline">\n          <ion-label color="primary" floating>Users</ion-label>\n          <ion-select [(ngModel)]="activity[\'userIds\']" multiple="true">\n            <p *ngFor=\'let user of users\'>\n              <ion-option [value]="user[\'UserID\']">{{user[\'UserName\']}}</ion-option>\n            </p>\n          </ion-select>\n        </ion-item>\n\n\n        <ion-item class="no-underline">\n          <ion-label color="primary" floating>Materials</ion-label>\n          <ion-select [(ngModel)]="activity[\'materialId\']" interface="popover">\n            <p *ngFor=\'let material of materials\'>\n              <ion-option [value]="material[\'MaterialID\']">{{material[\'MaterialName\']}}</ion-option>\n            </p>\n          </ion-select>\n        </ion-item>\n\n        <ion-item class="no-underline">\n          <ion-label color="primary" floating>Roles</ion-label>\n          <ion-select [(ngModel)]="activity[\'roleId\']" interface="popover">\n            <p *ngFor=\'let role of roles\'>\n              <ion-option [value]="role[\'RoleID\']">{{role[\'RoleName\']}}</ion-option>\n            </p>\n          </ion-select>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Expectected Start Date</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity[\'eStartDate\']" mode="ios"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Actual Start Date</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity[\'aStartDate\']" mode="ios"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Expectected End Date</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity[\'eEndDate\']" mode="ios"></ion-datetime>\n        </ion-item>\n\n        <ion-item>\n          <ion-label>Actual Start Date</ion-label>\n          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity[\'aEndDate\']" mode="ios"></ion-datetime>\n        </ion-item>\n\n\n      </ion-grid>\n    </p>\n\n  </ion-list>\n\n  <p style="text-align: center !important;">\n    <button ion-button outline (click)="addProject()"> Add Project &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>\n\n\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-content>\n\n<ion-footer>\n\n</ion-footer>'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-project/add-project.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
-    ], AddBrandPage);
-    return AddBrandPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"]])
+    ], AddProjectPage);
+    return AddProjectPage;
 }());
 
-//# sourceMappingURL=add-brand.js.map
+//# sourceMappingURL=add-project.js.map
 
 /***/ })
 

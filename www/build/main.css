@@ -28226,6 +28226,16 @@ page-collaborator .background-content {
   border: 2px solid dodgerblue;
 }
 
+page-collaborator .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
+page-collaborator .progress-outer[_ngcontent-c1] {
+  margin: 0px !important;
+}
+
 page-collaborator ion-app, page-collaborator ion-nav, page-collaborator ion-tab, page-collaborator ion-tabs, page-collaborator .app-root, page-collaborator .ion-page {
   background-image: radial-gradient(#fff, #ccc);
   text-align: center !important;

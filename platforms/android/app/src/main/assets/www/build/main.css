@@ -28149,6 +28149,20 @@ page-add-business-unit .list-underline {
   margin-left: 16px !important;
 }
 
+page-add-project .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-project .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-project .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-add-user .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -28205,6 +28219,124 @@ page-approve-leave-comments .camera-img-wrapper {
   width: 30px !important;
   height: 30px !important;
   margin-top: 12px !important;
+}
+
+page-collaborator .background-content {
+  background-color: #fff;
+  border: 2px solid dodgerblue;
+}
+
+page-collaborator .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
+page-collaborator .progress-outer[_ngcontent-c1] {
+  margin: 0px !important;
+}
+
+page-collaborator ion-app, page-collaborator ion-nav, page-collaborator ion-tab, page-collaborator ion-tabs, page-collaborator .app-root, page-collaborator .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-collaborator .header-md::after {
+  background-image: none !important;
+}
+
+page-collaborator .button-md {
+  padding: 11px !important;
+}
+
+page-collaborator .scroll-content {
+  margin: 0px !important;
+}
+
+page-collaborator .card-content-md {
+  padding: 0px !important;
+}
+
+page-collaborator .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-collaborator .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-collaborator .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-collaborator ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-collaborator .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-collaborator .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-collaborator .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-collaborator .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-collaborator .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-collaborator .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-collaborator .label-md {
+  margin: 0px !important;
+}
+
+page-collaborator .grid {
+  padding: 0px !important;
+}
+
+page-collaborator .alert-md .alert-message, page-collaborator .alert-md .alert-input-group {
+  padding: 2px !important;
 }
 
 page-edit-activity .custom-popup {
@@ -29284,6 +29416,12 @@ page-project-home .card-content-md {
   padding: 0px !important;
 }
 
+page-project-home .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
 page-project-home .card-md {
   min-width: 160px !important;
   max-width: 162px !important;
@@ -29366,6 +29504,10 @@ page-project-home .alert-md .alert-message, page-project-home .alert-md .alert-i
   padding: 2px !important;
 }
 
+page-project-home ion-item {
+  padding: 0px !important;
+}
+
 page-project-information .custom-popup {
   background-color: rgba(0, 0, 0, 0.9);
 }
@@ -29382,6 +29524,16 @@ page-project-information .list-md .item-block .item-inner {
 page-recognitions .background-content {
   background-color: #fff;
   border: 2px solid dodgerblue;
+}
+
+page-recognitions .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
+page-recognitions .progress-outer[_ngcontent-c1] {
+  margin: 0px !important;
 }
 
 page-recognitions ion-app, page-recognitions ion-nav, page-recognitions ion-tab, page-recognitions ion-tabs, page-recognitions .app-root, page-recognitions .ion-page {
