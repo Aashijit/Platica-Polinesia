@@ -91,7 +91,7 @@
       style="width: 15px !important;" /></button>
   <button ion-button clear *ngIf="dataValidation.doesContainMenu('Talents')" [disabled]=true><img
       src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;" /></button>
-  <button ion-button clear *ngIf="dataValidation.doesContainMenu('Collaborators')" [disabled]=true><img
+  <button ion-button clear (click)="navCtrl.setRoot('CollaboratorPage')" *ngIf="dataValidation.doesContainMenu('Collaborators')"><img
       src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;" /></button>
   <button ion-button clear (click)="navCtrl.setRoot('PermissionsPage')"
     *ngIf="dataValidation.doesContainMenu('Permissions')"><img src="../../assets/imgs/menu_permisos_off.png"

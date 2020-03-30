@@ -36,7 +36,7 @@
   <button ion-button clear (click)="navCtrl.setRoot('RecognitionsPage')" *ngIf="dataValidation.doesContainMenu('Recognition')"><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear (click)="navCtrl.setRoot('RewardsPage')" *ngIf="dataValidation.doesContainMenu('Rewards')"><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear *ngIf="dataValidation.doesContainMenu('Talents')" [disabled]=true><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>
-  <button ion-button clear *ngIf="dataValidation.doesContainMenu('Collaborators')" [disabled]=true><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
+  <button ion-button clear (click)="navCtrl.setRoot('CollaboratorPage')" *ngIf="dataValidation.doesContainMenu('Collaborators')"><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear (click)="navCtrl.setRoot('PermissionsPage')" *ngIf="dataValidation.doesContainMenu('Permissions')"><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear *ngIf="dataValidation.doesContainMenu('Calendar')" (click)="navCtrl.setRoot('EventListPage')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>
   <button ion-button clear *ngIf="dataValidation.doesContainMenu('Configuration')" (click)="navCtrl.setRoot('GeneralSettingsPage')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>

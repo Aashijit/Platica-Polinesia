@@ -28221,6 +28221,114 @@ page-approve-leave-comments .camera-img-wrapper {
   margin-top: 12px !important;
 }
 
+page-collaborator .background-content {
+  background-color: #fff;
+  border: 2px solid dodgerblue;
+}
+
+page-collaborator ion-app, page-collaborator ion-nav, page-collaborator ion-tab, page-collaborator ion-tabs, page-collaborator .app-root, page-collaborator .ion-page {
+  background-image: radial-gradient(#fff, #ccc);
+  text-align: center !important;
+}
+
+page-collaborator .header-md::after {
+  background-image: none !important;
+}
+
+page-collaborator .button-md {
+  padding: 11px !important;
+}
+
+page-collaborator .scroll-content {
+  margin: 0px !important;
+}
+
+page-collaborator .card-content-md {
+  padding: 0px !important;
+}
+
+page-collaborator .card-md {
+  min-width: 160px !important;
+  max-width: 162px !important;
+  margin: 0px !important;
+  border: 1px solid #ddd !important;
+  background: #ddd !important;
+}
+
+page-collaborator .button-info {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  height: 15px !important;
+  font-size: 10px !important;
+  margin-top: 1px !important;
+  text-transform: capitalize !important;
+}
+
+page-collaborator .phase-title {
+  font-size: 10px !important;
+  text-align: center !important;
+}
+
+page-collaborator ion-badge {
+  padding: 3px !important;
+  font-size: 9px !important;
+}
+
+page-collaborator .circle-image {
+  width: 45px !important;
+  height: 45px !important;
+  border: 1px solid #000;
+  border-radius: 50px !important;
+  padding: 10px !important;
+  background: #fff;
+}
+
+page-collaborator .circle-image-buttom {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #42fa0a;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-collaborator .circle-image-buttom-incomplete {
+  width: 35px !important;
+  height: 35px !important;
+  border: 1px solid #333;
+  border-radius: 100px !important;
+  padding: 5px !important;
+  background: #fff;
+}
+
+page-collaborator .subtitle-1 {
+  font-size: 11px !important;
+  color: #555 !important;
+  font-weight: 300 !important;
+}
+
+page-collaborator .subtitle-2 {
+  font-size: 9px !important;
+  color: #1f7efb !important;
+  font-weight: 400 !important;
+}
+
+page-collaborator .underline {
+  border-bottom: 1px solid #ddd;
+}
+
+page-collaborator .label-md {
+  margin: 0px !important;
+}
+
+page-collaborator .grid {
+  padding: 0px !important;
+}
+
+page-collaborator .alert-md .alert-message, page-collaborator .alert-md .alert-input-group {
+  padding: 2px !important;
+}
+
 page-edit-activity .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }

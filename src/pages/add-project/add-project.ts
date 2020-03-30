@@ -125,11 +125,23 @@ export class AddProjectPage {
 
   addProject() {
 
+
+    var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
+
+
+    if(this.dataValidation.isEmptyJson(currentUserInfo)){
+      this.msgHelper.showToast('Could not fetch user id');
+      return;
+    }
+
+
     //Create the json for activity
     var projectPhases = [];
     for (let i = 0; i < this.activites.length; i++) {
       projectPhases[i] = this.getActivityInPostFormat(this.activites[i]);
     }
+
+
 
 
     var requestData = {
@@ -149,16 +161,16 @@ export class AddProjectPage {
       "ProjectIcon": null,
       "ProjectStatus": 0,
       "CompletePer": 0.0,
-      "ProjectOwner": 0,
+      "ProjectOwner": currentUserInfo[0]['UserId'],
       "ProjectOwnerName": null,
       "NoOfVideos": this.nVideos,
       "NoOfWallPapers": this.nWallpapers,
       "NoOfPhotos": this.nPhotos,
       "NoOfOthers": this.nOthers,
-      "CreatedByID": 0,
+      "CreatedByID": currentUserInfo[0]['UserId'],
       "BrandImagePath": null,
       "CreatedOn": '2020-03-30', //TODO: Change This
-      "CreatedBy": 0,
+      "CreatedBy": currentUserInfo[0]['UserId'],
       "CreatedByUserName": null,
       "ModifiedOn": '2020-03-30', //TODO: Change This
       "LastModifiedBy": 0,

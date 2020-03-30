@@ -58,6 +58,7 @@ export class Codes{
     public API_UPDATE_PERMISSION="Permission/UpdatePermission";
     public API_GET_PROJECT_INFO="Project/SelectedProjectInfo";
     public API_ADD_PROJECT="Project/SaveProjectInfo";
+    public API_GET_COLLABORATORS="Collaborator/GetUserWiseCollaboratorDetails";
 
 
     public API_GET_USER_WISE_PROJECT_REPORT="Project/GetUserWiseProjectList";

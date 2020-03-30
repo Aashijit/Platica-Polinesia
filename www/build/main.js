@@ -1,4 +1,4 @@
-webpackJsonp([27],{
+webpackJsonp([28],{
 
 /***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -212,30 +212,34 @@ webpackEmptyAsyncContext.id = 123;
 var map = {
 	"../pages/add-activity/add-activity.module": [
 		432,
-		26
+		27
 	],
 	"../pages/add-brand/add-brand.module": [
 		433,
-		25
+		26
 	],
 	"../pages/add-business-unit/add-business-unit.module": [
 		434,
-		24
+		25
 	],
 	"../pages/add-project/add-project.module": [
-		436,
-		23
+		435,
+		24
 	],
 	"../pages/add-user-type/add-user-type.module": [
-		438,
-		22
+		459,
+		23
 	],
 	"../pages/add-user/add-user.module": [
-		435,
-		21
+		436,
+		22
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
 		437,
+		21
+	],
+	"../pages/collaborator/collaborator.module": [
+		438,
 		20
 	],
 	"../pages/edit-activity/edit-activity.module": [
@@ -259,19 +263,19 @@ var map = {
 		15
 	],
 	"../pages/general-settings/general-settings.module": [
-		444,
+		445,
 		14
 	],
 	"../pages/home/home.module": [
-		445,
+		444,
 		13
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		446,
+		447,
 		12
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		447,
+		446,
 		11
 	],
 	"../pages/leave-selection/leave-selection.module": [
@@ -698,19 +702,19 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-activity/add-activity.module#AddActivityPageModule', name: 'AddActivityPage', segment: 'add-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-project/add-project.module#AddProjectPageModule', name: 'AddProjectPage', segment: 'add-project', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/collaborator/collaborator.module#CollaboratorPageModule', name: 'CollaboratorPage', segment: 'collaborator', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-activity/edit-activity.module#EditActivityPageModule', name: 'EditActivityPage', segment: 'edit-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-brand/edit-brand.module#EditBrandPageModule', name: 'EditBrandPage', segment: 'edit-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-user-type/edit-user-type.module#EditUserTypePageModule', name: 'EditUserTypePage', segment: 'edit-user-type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/event-list/event-list.module#EventListPageModule', name: 'EventListPage', segment: 'event-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot-password/forgot-password.module#ForgotPasswordPageModule', name: 'ForgotPasswordPage', segment: 'forgot-password', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/general-settings/general-settings.module#GeneralSettingsPageModule', name: 'GeneralSettingsPage', segment: 'general-settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-approval/leave-approval.module#LeaveApprovalPageModule', name: 'LeaveApprovalPage', segment: 'leave-approval', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/leave-apply/leave-apply.module#LeaveApplyPageModule', name: 'LeaveApplyPage', segment: 'leave-apply', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/leave-selection/leave-selection.module#LeaveSelectionPageModule', name: 'LeaveSelectionPage', segment: 'leave-selection', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/permissions-home-temp/permissions-home-temp.module#PermissionsHomeTempPageModule', name: 'PermissionsHomeTempPage', segment: 'permissions-home-temp', priority: 'low', defaultHistory: [] },
@@ -721,7 +725,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/rewards/rewards.module#RewardsPageModule', name: 'RewardsPage', segment: 'rewards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -1216,6 +1221,7 @@ var Codes = /** @class */ (function () {
         this.API_UPDATE_PERMISSION = "Permission/UpdatePermission";
         this.API_GET_PROJECT_INFO = "Project/SelectedProjectInfo";
         this.API_ADD_PROJECT = "Project/SaveProjectInfo";
+        this.API_GET_COLLABORATORS = "Collaborator/GetUserWiseCollaboratorDetails";
         this.API_GET_USER_WISE_PROJECT_REPORT = "Project/GetUserWiseProjectList";
         this.API_GET_USER_WISE_REWARD_COUNT = "Rewards/GetUserWiseRewardCount";
         this.API_GET_USER_WISE_RECOGNITION = "Rewards/GetUserWiseRecognition";
