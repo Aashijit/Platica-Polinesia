@@ -1,3 +1,4 @@
+import { ProgressBarModule } from 'angular-progress-bar';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { RecognitionsPage } from './recognitions';
   imports: [
     IonicPageModule.forChild(RecognitionsPage),
     RoundProgressModule,
-    ComponentsModule
+    ComponentsModule,
+    ProgressBarModule
   ],
 })
 export class RecognitionsPageModule {}

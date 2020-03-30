@@ -1,0 +1,184 @@
+<ion-content padding class="custom-popup">
+
+  <h1 style="color: wheat;">Add Project</h1>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Project Name</ion-label>
+      <ion-input [(ngModel)]="projectName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Project Alias</ion-label>
+      <ion-input [(ngModel)]="projectAlias"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Project Description</ion-label>
+      <ion-textarea [(ngModel)]="projectDescription" rows="3"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Number of Videos</ion-label>
+      <ion-input [(ngModel)]="nVideos"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Number of Wallpapers</ion-label>
+      <ion-input [(ngModel)]="nWallpapers"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Number of Photos</ion-label>
+      <ion-input [(ngModel)]="nPhotos"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Others</ion-label>
+      <ion-input [(ngModel)]="nOthers"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Expectected Start Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="eStartDate" mode="ios"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Actual Start Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="aStartDate" mode="ios"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Expectected End Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="eEndDate" mode="ios"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Actual Start Date</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="aEndDate" mode="ios"></ion-datetime>
+    </ion-item>
+
+
+
+    <ion-item class="no-underline">
+      <ion-label color="primary" floating>Project Type</ion-label>
+      <ion-select [(ngModel)]="projectTypeId" interface="popover">
+        <p *ngFor='let pt of projectTypes'>
+          <ion-option [value]="pt['ID']">{{pt['TypeName']}}</ion-option>
+        </p>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="no-underline">
+      <ion-label color="primary" floating>Business Units</ion-label>
+      <ion-select [(ngModel)]="businessUnitId" interface="popover">
+        <p *ngFor='let bu of businessUnits'>
+          <ion-option [value]="bu['BUID']">{{bu['BUName']}}</ion-option>
+        </p>
+      </ion-select>
+    </ion-item>
+
+
+
+    <ion-item class="no-underline">
+      <ion-label color="primary" floating>Brands</ion-label>
+      <ion-select [(ngModel)]="brandId" interface="popover">
+        <p *ngFor='let br of brands'>
+          <ion-option [value]="br['BrandId']">{{br['BrandName']}}</ion-option>
+        </p>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item class="no-underline">
+      <ion-label color="primary" floating>Areas</ion-label>
+      <ion-select [(ngModel)]="areaIds" interface="popover" multiple="true">
+        <p *ngFor='let ar of areas'>
+          <ion-option [value]="ar['AreaID']">{{ar['AreaName']}}</ion-option>
+        </p>
+      </ion-select>
+    </ion-item>
+
+
+
+    <p *ngFor="let activity of activites">
+      <ion-grid style="border: 1px solid #ddd !important; border-radius: 5px !important; padding: 5px !important;">
+        <ion-row>
+          <ion-col style="color: dodgerblue !important; font-size: 15px !important;" col-7>{{activity['ActivityName']}}
+          </ion-col>
+          <ion-col col-5>
+            <ion-badge color="light">{{activity['PhaseName']}}</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style="font-size: 10px !important; color: #919191 !important;">{{activity['ActivityDescription']}}
+          </ion-col>
+        </ion-row>
+
+        <ion-item class="no-underline">
+          <ion-label color="primary" floating>Users</ion-label>
+          <ion-select [(ngModel)]="activity['userIds']" multiple="true">
+            <p *ngFor='let user of users'>
+              <ion-option [value]="user['UserID']">{{user['UserName']}}</ion-option>
+            </p>
+          </ion-select>
+        </ion-item>
+
+
+        <ion-item class="no-underline">
+          <ion-label color="primary" floating>Materials</ion-label>
+          <ion-select [(ngModel)]="activity['materialId']" interface="popover">
+            <p *ngFor='let material of materials'>
+              <ion-option [value]="material['MaterialID']">{{material['MaterialName']}}</ion-option>
+            </p>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="no-underline">
+          <ion-label color="primary" floating>Roles</ion-label>
+          <ion-select [(ngModel)]="activity['roleId']" interface="popover">
+            <p *ngFor='let role of roles'>
+              <ion-option [value]="role['RoleID']">{{role['RoleName']}}</ion-option>
+            </p>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Expectected Start Date</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity['eStartDate']" mode="ios"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Actual Start Date</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity['aStartDate']" mode="ios"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Expectected End Date</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity['eEndDate']" mode="ios"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Actual Start Date</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="activity['aEndDate']" mode="ios"></ion-datetime>
+        </ion-item>
+
+
+      </ion-grid>
+    </p>
+
+  </ion-list>
+
+  <p style="text-align: center !important;">
+    <button ion-button outline (click)="addProject()"> Add Project &nbsp;<ion-icon name="create"></ion-icon></button>
+  </p>
+
+
+  <button ion-button clear full (click)="closeModal();" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>

@@ -57,6 +57,8 @@ export class RecognitionsPage {
 
       for (let i = 0; i < this.projects.length; i++) {
 
+        this.projects[i]['imagePath'] = this.getProjectTypeImage(this.projects[i]['ProjectImage']);
+
         var reqJson = {
           "ProjectId": this.projects[i]['ProjectId'],
           "AssignedUserId": currentUserInfo[0]['UserId'],
@@ -71,9 +73,13 @@ export class RecognitionsPage {
             return;
           }
           this.projects[i]['recognitions'] = respJson['resultData'];
+
+          for(let j=0;j<this.projects[i]['recognitions'].length;j++){
+            this.projects[i]['recognitions'][j]['progress'] = this.getProgress(this.projects[i]['recognitions'][j]['AchievePercentage'],this.projects[i]['recognitions'][j]['ProgressionLevel']);
+          }
         });
       }
-      console.warn(JSON.stringify(this.projects));
+    
     });
   }
 
@@ -89,5 +95,13 @@ export class RecognitionsPage {
   goToUserMessages() {
     let userModal = this.modalCtrl.create('UserMessageNotificationListPage');
     userModal.present();
+  } 
+
+  getProgress(total, perUnit){
+    console.error('Get Progresss : '+total+", "+perUnit);
+    var act = perUnit.split("/");
+    var percentage = (Number(act[0]) / Number(act[1])) * Number(total);
+    console.error('Progresss : '+percentage);
+    return percentage;
   }
 }

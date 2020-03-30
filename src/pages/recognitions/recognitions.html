@@ -24,9 +24,18 @@
 <!--Body starts here-->
 <ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">
 
+
+
   <ion-list *ngIf="!dataValidation.isEmptyJson(projects)">
     <ion-item *ngFor="let project of projects">
     <ion-grid>
+
+      <ion-row>
+        <ion-col col-2 style="margin-top: 20px !important;">
+          <img [src]="project['imagePath']" class="camera-img-wrapper" />
+        </ion-col>
+        <ion-col col-10>
+
       <ion-row>
         <ion-col style="text-align: left !important;"><ion-badge color="light">{{project['ProjectOwnerName']}}</ion-badge></ion-col>
         <ion-col style="text-align: right !important;">
@@ -40,21 +49,69 @@
         <ion-col><h3 style="color: #8f1f1f !important; font-weight: 800 !important;font-size: 12px !important;">{{project['ActivityName']}}</h3></ion-col>
       </ion-row>
       <ion-row>
-        <span style="color: dodgerblue !important; font-size: 12px !important;">Project Date : </span> &nbsp; &nbsp;&nbsp; &nbsp;<span style="color: #919191 !important; font-weight: 600 !important; font-size: 12px !important;">{{datePipe.transform(project['ProjectExpectedStartDate'],'d,MMM')}}</span>
-        &nbsp; &nbsp; <span style="color: dodgerblue !important; margin-top: 2px !important; font-size: 10px !important;">to</span> &nbsp; &nbsp;
+        <span style="color: dodgerblue !important; font-size: 12px !important;"><ion-icon name="calendar"></ion-icon> </span>
+        &nbsp;
+        <span style="color: dodgerblue !important; font-size: 12px !important;">Project Date : </span> &nbsp;<span style="color: #919191 !important; font-weight: 600 !important; font-size: 12px !important;">{{datePipe.transform(project['ProjectExpectedStartDate'],'d,MMM')}}</span>
+        &nbsp;<span style="color: dodgerblue !important; margin-top: 2px !important; font-size: 10px !important;">to</span> &nbsp;
         <span style="color: #919191 !important; font-weight: 600 !important; font-size: 12px !important;">{{datePipe.transform(project['ProjectExpectedEndDate'],'d,MMM')}}</span>
       </ion-row>
+      </ion-col>
+      </ion-row>
       
-   <p *ngIf="dataValidation.isEmptyJson(project['recognitions'])">
+   <p *ngIf="!dataValidation.isEmptyJson(project['recognitions'])">
       <ion-row *ngFor="let recognition of project['recognitions']">
         <ion-grid>
           <ion-row>
-            <ion-col style="color: dodgerblue !important; font-size: 12px !important;">
-              {{recognition['PhaseName']}}
+            <ion-col style="font-size:12px !important; font-weight: 500 !important ;">
+              <span><ion-icon name="calendar"></ion-icon> </span>
+              <span style="color: #919191 !important;">Completion Date:</span>
+              <span style="color: dodgerblue !important;"> {{datePipe.transform(recognition['ProjectCloserDate'],'d,MMM')}}</span>
             </ion-col>
-            <ion-col style="color: dodgerblue !important; font-size: 12px !important;">
-              {{recognition['ActivityName']}}
+            <ion-col style="font-size: 12px !important;font-weight: 500 !important;">
+              <span><ion-icon name="calendar"></ion-icon> </span>
+              <span style="color: #919191 !important;">Finish Date:</span> 
+              <span style="color: dodgerblue !important;">{{datePipe.transform(recognition['FinishedDate'],'d,MMM')}}</span>
             </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="text-align:center !important">
+              <div style="width:35px !important; height:35px !important; ">
+                <img src="../../assets/imgs/coupon.png" style="margin-top:2px !important; width: 15px !important; height: 15px !important; margin-left:20% !important;"  />
+                <div style="margin-top:2px !important; margin-left: 21% !important;">
+                  <h2 style="color: #919191 !important;  font-size:12px !important; font-weight:800 !important">{{dataValidation.roundOff(recognition['AchieveCouponRewardQuantity'])}}</h2>
+                </div>
+              </div>    
+            </ion-col>
+            <ion-col style="text-align:center !important">
+              <div style="width:35px !important; height:35px !important; ">
+                <img src="../../assets/imgs/coin.png" style="margin-top:2px !important; width: 15px !important; height: 15px !important; margin-left:20% !important;"  />
+                <div style="margin-top:2px !important; margin-left: 21% !important;">
+                  <h2 style="color: #919191 !important;  font-size:12px !important; font-weight:800 !important">{{dataValidation.roundOff(recognition['AchieveCoinRewardQuantity'])}}</h2>
+                </div>
+              </div>    
+            </ion-col>
+            <ion-col style="text-align:center !important">
+              <div style="width:35px !important; height:35px !important; ">
+                <img src="../../assets/imgs/diamond.svg" style="margin-top:2px !important; width: 15px !important; height: 15px !important; margin-left:20% !important;"  />
+                <div style="margin-top:2px !important; margin-left: 21% !important;">
+                  <h2 style="color: #919191 !important;  font-size:12px !important; font-weight:800 !important">{{dataValidation.roundOff(recognition['AchieveDiamondRewardQuantity'])}}</h2>
+                </div>
+              </div>    
+            </ion-col>
+            <ion-col style="text-align:center !important">
+              <div style="width:35px !important; height:35px !important; ">
+                <img src="../../assets/imgs/trophy.svg" style="margin-top:2px !important; width: 15px !important; height: 15px !important; margin-left:20% !important;"  />
+                <div style="margin-top:2px !important; margin-left: 21% !important;">
+                  <h2 style="color: #919191 !important;  font-size:12px !important; font-weight:800 !important">{{dataValidation.roundOff(recognition['AchieveTrophyRewardQuantity'])}}</h2>
+                </div>
+              </div>    
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+            <progress-bar [progress]="recognition['progress']" [color-degraded]="{'0': '#fd4c4c',  '15': '#d87b24', '25': '#d89924', '50' : '#d8bd24', '75' : '#d3d022', '100' : '69d322'}">
+            </progress-bar>
+          </ion-col>
           </ion-row>
 
         </ion-grid>

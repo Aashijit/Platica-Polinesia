@@ -25,6 +25,9 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
 import { CalendarModule, CalendarModal } from 'ion2-calendar';
 import { DatePipe } from '@angular/common';
 
+import {ProgressBarModule} from "angular-progress-bar"
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,6 +40,7 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     ComponentsModule,
     CalendarModule,
+    ProgressBarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

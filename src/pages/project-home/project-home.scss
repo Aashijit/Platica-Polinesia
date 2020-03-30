@@ -24,6 +24,12 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page
     padding: 0px !important;
 }
 
+.camera-img-wrapper{
+   width: 40px !important;
+   height: 40px !important;
+   border:2px solid #ddd !important
+}
+
 .card-md{
     min-width: 160px !important;
     max-width: 162px !important;
@@ -110,6 +116,10 @@ ion-badge{
 
 .alert-md .alert-message, .alert-md .alert-input-group{
    padding:2px !important;
+}
+
+ion-item {
+   padding: 0px !important;
 }
 
 

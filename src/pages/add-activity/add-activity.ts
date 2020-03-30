@@ -23,6 +23,15 @@ export class AddActivityPage {
   phaseId : any = null;
   projectTypes : any = null;
   phases : any = null;
+  achieveDay1: any = null;
+  achieveDay2: any = null;
+  achieveDay3: any = null;
+  achieveDay4: any = null;
+
+  achievePercentage1: any = null;
+  achievePercentage2: any = null;
+  achievePercentage3: any = null;
+  achievePercentage4: any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
@@ -57,6 +66,14 @@ export class AddActivityPage {
       "CouponRewardQuantity": this.couponRewardQuantity,
       "TrophyRewardQuantity": this.trophyRewardQuantity,
       "CreatedByID": currentUserInfo[0]['UserId'],
+      "AchieveDay1": this.achieveDay1,
+      "AchieveDay2": this.achieveDay2,
+      "AchieveDay3": this.achieveDay3,
+      "AchieveDay4": this.achieveDay4,
+      "AchievePercentage1" : this.achievePercentage1,
+      "AchievePercentage2" : this.achievePercentage2,
+      "AchievePercentage3" :this.achievePercentage3, 
+      "AchievePercentage4" :this.achievePercentage4, 
       "AppType": "W",
       "ProjectTypeId": this.projectTypeId
     };

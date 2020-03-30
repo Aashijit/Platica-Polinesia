@@ -28149,6 +28149,20 @@ page-add-business-unit .list-underline {
   margin-left: 16px !important;
 }
 
+page-add-project .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-add-project .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-add-project .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-add-user .custom-popup {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -29284,6 +29298,12 @@ page-project-home .card-content-md {
   padding: 0px !important;
 }
 
+page-project-home .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
 page-project-home .card-md {
   min-width: 160px !important;
   max-width: 162px !important;
@@ -29366,6 +29386,10 @@ page-project-home .alert-md .alert-message, page-project-home .alert-md .alert-i
   padding: 2px !important;
 }
 
+page-project-home ion-item {
+  padding: 0px !important;
+}
+
 page-project-information .custom-popup {
   background-color: rgba(0, 0, 0, 0.9);
 }
@@ -29382,6 +29406,16 @@ page-project-information .list-md .item-block .item-inner {
 page-recognitions .background-content {
   background-color: #fff;
   border: 2px solid dodgerblue;
+}
+
+page-recognitions .camera-img-wrapper {
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid #ddd !important;
+}
+
+page-recognitions .progress-outer[_ngcontent-c1] {
+  margin: 0px !important;
 }
 
 page-recognitions ion-app, page-recognitions ion-nav, page-recognitions ion-tab, page-recognitions ion-tabs, page-recognitions .app-root, page-recognitions .ion-page {

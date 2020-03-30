@@ -26,6 +26,16 @@ export class EditActivityPage {
   projectTypes : any = null;
   phases : any = null;
 
+  achieveDay1: any = null;
+  achieveDay2: any = null;
+  achieveDay3: any = null;
+  achieveDay4: any = null;
+
+  achievePercentage1: any = null;
+  achievePercentage2: any = null;
+  achievePercentage3: any = null;
+  achievePercentage4: any = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public msgHelper : MessageHelper,
     public httpCall : HttpProvider,public codes : Codes,public dataValidation : DataValidation,
     public actionSheet : ActionSheetController,public alertController : AlertController) {
@@ -37,6 +47,19 @@ export class EditActivityPage {
       this.diamondRewardQuantity = this.navParams.get('activity')['DiamondRewardQuantity'];
       this.couponRewardQuantity = this.navParams.get('activity')['CouponRewardQuantity'];
       this.trophyRewardQuantity = this.navParams.get('activity')['TrophyRewardQuantity'];
+
+      this.achieveDay1 = this.navParams.get('activity')['AchieveDay1'];
+      this.achieveDay2 = this.navParams.get('activity')['AchieveDay2'];
+      this.achieveDay3 = this.navParams.get('activity')['AchieveDay3'];
+      this.achieveDay4 = this.navParams.get('activity')['AchieveDay4'];
+
+
+      this.achievePercentage1 = this.navParams.get('activity')['AchievePercentage1'];
+      this.achievePercentage2 = this.navParams.get('activity')['AchievePercentage2'];
+      this.achievePercentage2 = this.navParams.get('activity')['AchievePercentage3'];
+      this.achievePercentage2 = this.navParams.get('activity')['AchievePercentage4'];
+
+
       this.phaseId = this.navParams.get('activity')['PhaseId'];
       this.projectTypeId = this.navParams.get('activity')['ProjectTypeId'];
 
@@ -71,6 +94,14 @@ export class EditActivityPage {
       "CouponRewardQuantity": Number(this.couponRewardQuantity),
       "TrophyRewardQuantity": Number(this.trophyRewardQuantity),
       "ModifiedByID": currentUserInfo[0]['UserId'],
+      "AchieveDay1": this.achieveDay1,
+      "AchieveDay2": this.achieveDay2,
+      "AchieveDay3": this.achieveDay3,
+      "AchieveDay4": this.achieveDay4,
+      "AchievePercentage1" : this.achievePercentage1,
+      "AchievePercentage2" : this.achievePercentage2,
+      "AchievePercentage3" :this.achievePercentage3, 
+      "AchievePercentage4" :this.achievePercentage4, 
       "AppType": "W",
       "ProjectTypeId": this.projectTypeId
     };
