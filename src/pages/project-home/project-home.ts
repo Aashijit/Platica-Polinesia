@@ -17,6 +17,7 @@ export class ProjectHomePage {
 
   projects: any = null;
   materials : any = null;
+  materialIssues : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
     public httpCall: HttpProvider, public codes: Codes, public dataValidation: DataValidation,
@@ -55,6 +56,7 @@ export class ProjectHomePage {
 
       for (let i = 0; i < this.projects.length; i++) {
         this.projects[i]['materialShow'] = false;
+        this.projects[i]['materialIssueListShow']  = false;
         this.projects[i]['imagePath'] = this.getProjectTypeImage(this.projects[i]['ProjectImage']);
       }
 
@@ -78,24 +80,65 @@ export class ProjectHomePage {
 
         //Get the material issue list
 
-        
+        var reqJson = {
+          "FinancialYear": new Date().getFullYear(),
+          "AppType": "W"
+        };
 
-
-
-
-            //Update the projects
-            for(let i=0;i<this.projects.length;i++){
-              var material = this.getMaterialByProjectId(this.projects[i]['ProjectId'], this.materials);
-              if(!this.dataValidation.isEmptyJson(material)){
-                this.projects[i]['materials'] = material;
-              }   
+        this.httpCall.callApi(reqJson, this.codes.API_GET_MATERIAL_REQUISITION_LIST).then(matRespJson => {
+          
+          if (this.dataValidation.isEmptyJson(matRespJson)) {
+            this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server (Get Material Issue List) !!!');
+            return;
           }
+
+          this.materialIssues = matRespJson['resultData'];
+
+
+
+              //Update the projects
+              for(let i=0;i<this.projects.length;i++){
+                var material = this.getMaterialByProjectId(this.projects[i]['ProjectId'], this.materials);
+                var materialIssueList = this.getMaterialIssueByProjectId(this.projects[i]['ProjectId'],this.materialIssues);
+                if(!this.dataValidation.isEmptyJson(material)){
+                  this.projects[i]['materials'] = material;
+                }   
+                if(!this.dataValidation.isEmptyJson(materialIssueList)){
+                  this.projects[i]['materialIssues'] = material;
+                }   
+            }
+          
+
+          
+
+
+
+        });
+
+
+
+
+        
   
       });
     });
 
     //Get the material requisition list
    
+  }
+
+  refundMaterial(materialIssue){
+
+  }
+
+
+  getMaterialIssueByProjectId(projectId, materialList){
+    var material = [];
+    for(let i=0;i<materialList.length;i++){
+      if(materialList[i]['ProjectId'] == projectId)
+        material.push(materialList[i]);
+    }
+    return material;
   }
 
 

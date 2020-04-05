@@ -133,8 +133,31 @@
 
 
       <ion-row *ngIf="project['materialIssueListShow'] == true">
+        <ion-col>
+        <ion-list *ngIf="!dataValidation.isEmptyJson(project['materialIssues'])">
+          <ion-item *ngFor="let materialIssue of project['materialIssues']">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-9>
+                    <h3 style="color: dodgerblue !important;">{{materialIssue['MaterialName']}}</h3>
+                </ion-col>
+                <ion-col col-3 style="padding: 0px !important; text-align: right !important;">
+                  <button ion-button outline (click)="refundMaterial(materialIssue)">Refund</button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8>
+                  <h5 style="font-size:12px !important;font-weight: 500 !important; color: #919191 !important;">Assigned to: {{materialIssue['AssignedUserName']}}</h5>
+                </ion-col>
+                <ion-col col-4>
+                  <ion-badge color="dark">Issue Quantity : {{materialIssue['IssueQuantity']}}</ion-badge>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
         
-
+      </ion-col>
       </ion-row>
 
 

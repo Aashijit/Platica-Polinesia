@@ -223,107 +223,107 @@ var map = {
 		26
 	],
 	"../pages/add-project/add-project.module": [
-		460,
+		435,
 		25
 	],
 	"../pages/add-user-type/add-user-type.module": [
-		459,
+		436,
 		24
 	],
 	"../pages/add-user/add-user.module": [
-		435,
+		437,
 		23
 	],
 	"../pages/approve-leave-comments/approve-leave-comments.module": [
-		436,
+		438,
 		22
 	],
 	"../pages/collaborator/collaborator.module": [
-		437,
+		439,
 		21
 	],
 	"../pages/edit-activity/edit-activity.module": [
-		438,
+		440,
 		20
 	],
 	"../pages/edit-brand/edit-brand.module": [
-		439,
+		441,
 		19
 	],
 	"../pages/edit-user-type/edit-user-type.module": [
-		440,
+		442,
 		18
 	],
 	"../pages/event-list/event-list.module": [
-		441,
+		443,
 		17
 	],
 	"../pages/forgot-password/forgot-password.module": [
-		442,
+		444,
 		16
 	],
 	"../pages/general-settings/general-settings.module": [
-		443,
+		445,
 		15
 	],
 	"../pages/home/home.module": [
-		444,
+		446,
 		14
 	],
 	"../pages/leave-apply/leave-apply.module": [
-		445,
+		447,
 		13
 	],
 	"../pages/leave-approval/leave-approval.module": [
-		446,
+		448,
 		12
 	],
 	"../pages/leave-selection/leave-selection.module": [
-		447,
+		449,
 		11
 	],
 	"../pages/login/login.module": [
-		448,
+		450,
 		10
 	],
 	"../pages/material-issue/material-issue.module": [
-		449,
+		451,
 		9
 	],
 	"../pages/permissions-home-temp/permissions-home-temp.module": [
-		450,
+		452,
 		8
 	],
 	"../pages/permissions/permissions.module": [
-		451,
+		453,
 		7
 	],
 	"../pages/project-home/project-home.module": [
-		452,
+		454,
 		6
 	],
 	"../pages/project-information/project-information.module": [
-		453,
+		455,
 		5
 	],
 	"../pages/recognitions/recognitions.module": [
-		454,
+		456,
 		4
 	],
 	"../pages/rewards/rewards.module": [
-		455,
+		457,
 		3
 	],
 	"../pages/update-business-unit/update-business-unit.module": [
-		456,
+		458,
 		2
 	],
 	"../pages/update-user/update-user.module": [
-		457,
+		459,
 		1
 	],
 	"../pages/user-message-notification-list/user-message-notification-list.module": [
-		458,
+		460,
 		0
 	]
 };
@@ -706,6 +706,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/add-activity/add-activity.module#AddActivityPageModule', name: 'AddActivityPage', segment: 'add-activity', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-brand/add-brand.module#AddBrandPageModule', name: 'AddBrandPage', segment: 'add-brand', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-business-unit/add-business-unit.module#AddBusinessUnitPageModule', name: 'AddBusinessUnitPage', segment: 'add-business-unit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-project/add-project.module#AddProjectPageModule', name: 'AddProjectPage', segment: 'add-project', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/add-user/add-user.module#AddUserPageModule', name: 'AddUserPage', segment: 'add-user', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/approve-leave-comments/approve-leave-comments.module#ApproveLeaveCommentsPageModule', name: 'ApproveLeaveCommentsPage', segment: 'approve-leave-comments', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/collaborator/collaborator.module#CollaboratorPageModule', name: 'CollaboratorPage', segment: 'collaborator', priority: 'low', defaultHistory: [] },
@@ -729,9 +731,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/rewards/rewards.module#RewardsPageModule', name: 'RewardsPage', segment: 'rewards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-business-unit/update-business-unit.module#UpdateBusinessUnitPageModule', name: 'UpdateBusinessUnitPage', segment: 'update-business-unit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/update-user/update-user.module#UpdateUserPageModule', name: 'UpdateUserPage', segment: 'update-user', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-user-type/add-user-type.module#AddUserTypePageModule', name: 'AddUserTypePage', segment: 'add-user-type', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-project/add-project.module#AddProjectPageModule', name: 'AddProjectPage', segment: 'add-project', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/user-message-notification-list/user-message-notification-list.module#UserMessageNotificationListPageModule', name: 'UserMessageNotificationListPage', segment: 'user-message-notification-list', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_12_angular_svg_round_progressbar__["RoundProgressModule"],
@@ -1233,6 +1233,8 @@ var Codes = /** @class */ (function () {
         this.API_GET_EVENTS_LIST = "Event/GetEventList";
         this.API_GET_COLOUR_LIST = "Color/GetColorList";
         this.API_GET_MATERIAL_REQUISITION_LIST = "Material/GetMaterialRequisitionList";
+        this.API_ISSUE_MATERIAL = "Material/MaterialIssue";
+        this.API_LIST_ISSUE_MATERIAL = "";
         this.API_ENDPOINT = "http://101.53.145.231:8053/";
         //    http://101.53.145.231:8053/Messages/GetMessageTypeList
     }
