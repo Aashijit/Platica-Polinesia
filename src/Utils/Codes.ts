@@ -68,6 +68,10 @@ export class Codes{
     public API_GET_EVENTS_LIST="Event/GetEventList";
     public API_GET_COLOUR_LIST="Color/GetColorList";
 
+    public API_GET_MATERIAL_REQUISITION_LIST="Material/GetMaterialRequisitionList";
+    public API_ISSUE_MATERIAL="Material/MaterialIssue";
+    public API_LIST_ISSUE_MATERIAL="";
+
 
     public  API_ENDPOINT="http://101.53.145.231:8053/";
 

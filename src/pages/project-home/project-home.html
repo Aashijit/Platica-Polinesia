@@ -64,6 +64,84 @@
         </ion-row>
       </ion-col>
       </ion-row>
+      <ion-row [ngClass]="!dataValidation.isEmptyJson(project['materials']) ? 'material-button' : 'materail-button-disabled'"   (click)="project['materialShow'] = !project['materialShow']">
+        <ion-col col-1>
+          <img src="../../assets/imgs/documents.svg" style="width: 15px !important;margin-top:2px !important"/>
+        </ion-col>
+        <ion-col col-10 class="mtp">
+            <h2>Material Requisition</h2> 
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="arrow-forward" *ngIf="project['materialShow'] == false || dataValidation.isEmptyJson(project['materialShow'])"></ion-icon>
+          <ion-icon name="arrow-down" *ngIf="project['materialShow'] == true"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+
+
+
+      <!--Hidden -- Collapsible -->
+     
+      <ion-row *ngIf="project['materialShow'] == true">
+        <ion-col>
+        <ion-list *ngIf="!dataValidation.isEmptyJson(project['materials'])">
+          <ion-item *ngFor="let material of project['materials']">
+            <ion-grid>
+              <ion-row style="border-bottom: 1px solid #eee !important;">
+                <ion-col col-1>
+                  <img [src]="material['AssignedUserPicPath']" class="camera-img-wrapper" style="width: 20px !important; height: 20px !important" /> 
+                </ion-col>
+                <ion-col col-11>
+              <ion-row>
+                <ion-col col-10>
+                  <h2 style="color: dodgerblue !important;">{{material['MaterialName']}}</h2>
+                </ion-col>
+                <ion-col col-2>
+                  <ion-note style="font-size: 12px !important;">{{material['RequisitionSrlNo']}}</ion-note>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-8 class="mtp">
+                  <h5 style="font-weight: 500 !important; color: #919191 !important;">Assigned to: {{material['AssignedUserName']}}</h5>
+                </ion-col>
+                <ion-col col-4 style="padding: 0px !important; text-align: right !important;">
+                  <button ion-button outline (click)="issueMaterial(material)">Issue</button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      </ion-row>
+
+
+      <ion-row [ngClass]="!dataValidation.isEmptyJson(project['materialIssueListShow']) ? 'material-button' : 'materail-button-disabled'"   (click)="project['materialIssueListShow'] = !project['materialIssueListShow']">
+        <ion-col col-1>
+          <img src="../../assets/imgs/documents.svg" style="width: 15px !important;margin-top:2px !important"/>
+        </ion-col>
+        <ion-col col-10 class="mtp">
+            <h2>Material Issue List</h2> 
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="arrow-forward" *ngIf="project['materialIssueListShow'] == false || dataValidation.isEmptyJson(project['materialIssueListShow'])"></ion-icon>
+          <ion-icon name="arrow-down" *ngIf="project['materialIssueListShow'] == true"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row *ngIf="project['materialIssueListShow'] == true">
+        
+
+      </ion-row>
+
+
+
+
+
+      <!--Hidden -- Collapsible-->
       </ion-grid>
     </ion-item>
   </ion-list>

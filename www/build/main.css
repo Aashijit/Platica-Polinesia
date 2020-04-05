@@ -29159,6 +29159,20 @@ page-login .small-text {
   color: #919191;
 }
 
+page-material-issue .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-material-issue .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-material-issue .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-permissions .background-content {
   background-color: #fff;
   border: 2px solid dodgerblue;
@@ -29506,6 +29520,31 @@ page-project-home .alert-md .alert-message, page-project-home .alert-md .alert-i
 
 page-project-home ion-item {
   padding: 0px !important;
+}
+
+page-project-home .material-button {
+  border: 2px solid #478eff;
+  border-radius: 5px !important;
+  background: #eee !important;
+  color: #478eff !important;
+  margin-bottom: 5px !important;
+}
+
+page-project-home .materail-button-disabled {
+  border: 2px solid #919191;
+  border-radius: 5px !important;
+  background: #eee !important;
+  color: #999 !important;
+  margin-bottom: 5px !important;
+}
+
+page-project-home .mtp {
+  margin-top: 1.09% !important;
+}
+
+page-project-home .button-md {
+  height: 2.0rem !important;
+  text-transform: capitalize !important;
 }
 
 page-project-information .custom-popup {

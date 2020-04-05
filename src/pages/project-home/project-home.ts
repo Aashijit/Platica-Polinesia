@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 export class ProjectHomePage {
 
   projects: any = null;
+  materials : any = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
     public httpCall: HttpProvider, public codes: Codes, public dataValidation: DataValidation,
@@ -53,11 +54,66 @@ export class ProjectHomePage {
       this.projects = responseJson['resultData'];
 
       for (let i = 0; i < this.projects.length; i++) {
+        this.projects[i]['materialShow'] = false;
         this.projects[i]['imagePath'] = this.getProjectTypeImage(this.projects[i]['ProjectImage']);
       }
 
+
+
+      var reqJson = {
+        "FinancialYear": new Date().getFullYear(),
+        "AppType": "W"
+      };
+  
+      this.httpCall.callApi(reqJson,this.codes.API_GET_MATERIAL_REQUISITION_LIST).then(respJson => {
+  
+  
+        if (this.dataValidation.isEmptyJson(respJson)) {
+          this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server (Get Material Requisition List) !!!');
+          return;
+        }
+  
+        this.materials = respJson['resultData'];
+
+
+        //Get the material issue list
+
+        
+
+
+
+
+            //Update the projects
+            for(let i=0;i<this.projects.length;i++){
+              var material = this.getMaterialByProjectId(this.projects[i]['ProjectId'], this.materials);
+              if(!this.dataValidation.isEmptyJson(material)){
+                this.projects[i]['materials'] = material;
+              }   
+          }
+  
+      });
     });
+
+    //Get the material requisition list
+   
   }
+
+
+  getMaterialByProjectId(projectId, materials){
+    var material = [];
+    for(let i=0;i<materials.length;i++){
+      if(materials[i]['ProjectId'] == projectId)
+        material.push(materials[i]);
+    }
+    return material;
+  }
+
+
+  issueMaterial(material){
+    let materialModal = this.modalCtrl.create('MaterialIssuePage',{'material' : material});
+    materialModal.present();
+  }
+  
 
   addProject(){
     let userModal = this.modalCtrl.create('AddProjectPage');
