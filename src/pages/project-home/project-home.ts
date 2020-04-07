@@ -85,7 +85,7 @@ export class ProjectHomePage {
           "AppType": "W"
         };
 
-        this.httpCall.callApi(reqJson, this.codes.API_GET_MATERIAL_REQUISITION_LIST).then(matRespJson => {
+        this.httpCall.callApi(reqJson, this.codes.API_LIST_ISSUE_MATERIAL).then(matRespJson => {
           
           if (this.dataValidation.isEmptyJson(matRespJson)) {
             this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server (Get Material Issue List) !!!');
@@ -93,6 +93,7 @@ export class ProjectHomePage {
           }
 
           this.materialIssues = matRespJson['resultData'];
+          console.warn('Issue Materials : '+JSON.stringify(this.materialIssues));
 
 
 
@@ -104,31 +105,17 @@ export class ProjectHomePage {
                   this.projects[i]['materials'] = material;
                 }   
                 if(!this.dataValidation.isEmptyJson(materialIssueList)){
-                  this.projects[i]['materialIssues'] = material;
+                  this.projects[i]['materialIssues'] = materialIssueList;
                 }   
             }
-          
-
-          
-
-
-
         });
-
-
-
-
-        
-  
       });
-    });
-
-    //Get the material requisition list
-   
+    });   
   }
 
   refundMaterial(materialIssue){
-
+    let materialModal = this.modalCtrl.create('MaterialRefundPage',{'material' : materialIssue});
+    materialModal.present();
   }
 
 

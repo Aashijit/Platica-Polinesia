@@ -1,14 +1,17 @@
 webpackJsonp([22],{
 
-/***/ 437:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddUserPageModule", function() { return AddUserPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_user__ = __webpack_require__(465);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CollaboratorPageModule", function() { return CollaboratorPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_components_module__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__collaborator__ = __webpack_require__(468);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,38 +21,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddUserPageModule = /** @class */ (function () {
-    function AddUserPageModule() {
+
+
+var CollaboratorPageModule = /** @class */ (function () {
+    function CollaboratorPageModule() {
     }
-    AddUserPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+    CollaboratorPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__add_user__["a" /* AddUserPage */],
+                __WEBPACK_IMPORTED_MODULE_4__collaborator__["a" /* CollaboratorPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__add_user__["a" /* AddUserPage */]),
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_4__collaborator__["a" /* CollaboratorPage */]),
+                __WEBPACK_IMPORTED_MODULE_0_angular_svg_round_progressbar__["RoundProgressModule"],
+                __WEBPACK_IMPORTED_MODULE_1__components_components_module__["a" /* ComponentsModule */]
             ],
         })
-    ], AddUserPageModule);
-    return AddUserPageModule;
+    ], CollaboratorPageModule);
+    return CollaboratorPageModule;
 }());
 
-//# sourceMappingURL=add-user.module.js.map
+//# sourceMappingURL=collaborator.module.js.map
 
 /***/ }),
 
-/***/ 465:
+/***/ 468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUserPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollaboratorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,192 +74,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AddUserPage = /** @class */ (function () {
-    function AddUserPage(navCtrl, navParams, msgHelper, httpCall, codes, dataValidation, actionSheet, alertController, camera) {
+
+var CollaboratorPage = /** @class */ (function () {
+    function CollaboratorPage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController, datePipe) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.msgHelper = msgHelper;
+        this.modalCtrl = modalCtrl;
         this.httpCall = httpCall;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.actionSheet = actionSheet;
+        this.msgHelper = msgHelper;
         this.alertController = alertController;
-        this.camera = camera;
-        this.profileImage = '../../assets/imgs/user.png';
-        this.profileImageBlob = null;
+        this.datePipe = datePipe;
+        this.collaborators = null;
     }
-    AddUserPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddUserPage');
-    };
-    AddUserPage.prototype.update = function () {
-        this.msgHelper.showToast('Creating your user ...');
-        this.navCtrl.pop();
-    };
-    AddUserPage.prototype.createUserInformation = function () {
+    CollaboratorPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        //Call the change password API
+        console.log('ionViewDidLoad CollaboratorPage');
         var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-        console.error(JSON.stringify(currentUserInfo));
         if (this.dataValidation.isEmptyJson(currentUserInfo)) {
             this.msgHelper.showToast('Could not fetch user id');
             return;
         }
-        //Inserting a new user profile
-        var loading = this.msgHelper.showWorkingDialog('Creating your profile');
-        /*
-        &ucreatebyid=10007&uparentbyid=10007&upwd=123&AppType=W
-        */
-        var apiUpdateString = this.codes.API_INSERT_USER +
-            '?ufname=' + this.removeNull(this.firstName) +
-            '&umname=' + this.removeNull(this.middleName) +
-            '&ulname=' + this.removeNull(this.lastName) +
-            '&uemail=' + this.removeNull(this.email) +
-            '&umobile=' + this.removeNull(this.phone) +
-            '&uadd1=' + this.removeNull(this.address1) +
-            '&uadd2=' + this.removeNull(this.address2) +
-            '&ucity=' + this.removeNull(this.city) +
-            '&ustate=' + this.removeNull(this.state) +
-            '&uzip=' + this.removeNull(this.pincode) +
-            '&ucreatebyid=' + currentUserInfo[0]['UserId'] +
-            '&uparentbyid=0' +
-            '&upwd=' + this.removeNull(this.password) +
-            '&AppType=W';
-        //TODO: Fix this
-        if (this.profileImageBlob == null) {
-            this.msgHelper.showErrorDialog('Error !!!', 'Profile Image is mandatory');
-            return;
-        }
-        var formData = new FormData();
-        formData.append("file", this.profileImageBlob);
-        this.httpCall.uploadFile(formData, apiUpdateString).then(function (responseJson) {
-            //Dismiss the loader
-            loading.dismiss();
-            //Validate
+        var requestJson = {
+            "AssignedUserId": currentUserInfo[0]['UserId'],
+            "AppType": "W"
+        };
+        this.httpCall.callApi(requestJson, this.codes.API_GET_COLLABORATORS).then(function (responseJson) {
             if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Server !!!');
                 return;
             }
-            if (responseJson['status'] == 1) {
-                _this.msgHelper.showToast('Profile Added !!!');
-                localStorage.removeItem(_this.codes.LSK_USER_INFORMATION_JSON);
-                localStorage.setItem(_this.codes.LSK_USER_INFORMATION_JSON, JSON.stringify(_this.userInformation));
-                _this.navCtrl.pop();
+            _this.collaborators = responseJson['resultData'];
+            for (var i = 0; i < _this.collaborators.length; i++) {
+                _this.collaborators[i]['imagePath'] = _this.getProjectTypeImage(_this.collaborators[i]['ProjectImage']);
             }
         });
     };
-    AddUserPage.prototype.removeNull = function (variable) {
-        if (variable == null || variable == undefined || variable == 0)
-            return '';
-        return variable;
+    CollaboratorPage.prototype.goToUserMessages = function () {
+        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
+        userModal.present();
     };
-    AddUserPage.prototype.presentActionSheetToUpdateImage = function () {
-        var _this = this;
-        var actionSheet = this.actionSheet.create({
-            title: 'Update your profile picture',
-            buttons: [
-                {
-                    text: 'Capture an image',
-                    role: 'camera',
-                    icon: 'camera',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.CAMERA,
-                            destinationType: _this.camera.DestinationType.DATA_URL,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):             
-                            console.error(imageData);
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
-                            _this.profileImageBlob = _this.convertBase64ToBlob(base64Image);
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Select from gallery',
-                    role: 'gallery',
-                    icon: 'image',
-                    handler: function () {
-                        var options = {
-                            quality: 100,
-                            sourceType: _this.camera.PictureSourceType.PHOTOLIBRARY,
-                            destinationType: _this.camera.DestinationType.DATA_URL,
-                            encodingType: _this.camera.EncodingType.JPEG,
-                            mediaType: _this.camera.MediaType.PICTURE
-                        };
-                        _this.camera.getPicture(options).then(function (imageData) {
-                            // imageData is either a base64 encoded string or a file URI
-                            // If it's base64 (DATA_URL):
-                            console.error(imageData);
-                            var base64Image = 'data:image/jpeg;base64,' + imageData;
-                            _this.profileImage = base64Image;
-                            _this.profileImageBlob = _this.convertBase64ToBlob(base64Image);
-                        }, function (err) {
-                            // Handle error
-                        });
-                    }
-                },
-                {
-                    text: 'Close',
-                    role: 'close',
-                    icon: 'close',
-                    handler: function () {
-                        actionSheet.dismiss();
-                    }
-                }
-            ]
-        });
-        actionSheet.present();
-    };
-    AddUserPage.prototype.convertBase64ToBlob = function (base64) {
-        var info = this.getInfoFromBase64(base64);
-        var sliceSize = 512;
-        var byteCharacters = window.atob(info.rawBase64);
-        var byteArrays = [];
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-            byteArrays.push(new Uint8Array(byteNumbers));
+    CollaboratorPage.prototype.getProjectTypeImage = function (projectImage) {
+        if (projectImage == "Icons/microphone.png") {
+            return "../../assets/imgs/icon_mic.png";
         }
-        return new Blob(byteArrays, { type: info.mime });
+        if (projectImage == "Icons/music.png") {
+            return "../../assets/imgs/icon_music.png";
+        }
+        if (projectImage == "Icons/gallery.png") {
+            return "../../assets/imgs/icon_gallery.png";
+        }
+        return "../../assets/imgs/icon_image.png";
     };
-    AddUserPage.prototype.getInfoFromBase64 = function (base64) {
-        var meta = base64.split(',')[0];
-        var rawBase64 = base64.split(',')[1].replace(/\s/g, '');
-        var mime = /:([^;]+);/.exec(meta)[1];
-        var extension = /\/([^;]+);/.exec(meta)[1];
-        return {
-            mime: mime,
-            extension: extension,
-            meta: meta,
-            rawBase64: rawBase64
-        };
-    };
-    AddUserPage.prototype.closeModal = function () {
-        this.navCtrl.pop();
-    };
-    AddUserPage = __decorate([
+    CollaboratorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-add-user',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/add-user/add-user.html"*/'\n<ion-content padding class="custom-popup">\n\n  <!--User information to be present here-->\n  <ion-list style="text-align: center !important;">\n\n    <ion-col col-2 (click)="presentActionSheetToUpdateImage()">\n      <img [src]="profileImage" class="camera-img-wrapper" />\n    </ion-col>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary">Email</ion-label>\n      <ion-input [(ngModel)]="email">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary">Phone</ion-label>\n      <ion-input [(ngModel)]="phone">\n      </ion-input>\n    </ion-item>\n\n    <ion-item class="no-underline">\n      <ion-label color="primary">Password</ion-label>\n      <ion-input type="password" [(ngModel)]="password">\n      </ion-input>\n    </ion-item>\n    \n  <ion-item class="no-underline">\n    <ion-label color="primary">First Name</ion-label>\n    <ion-input [(ngModel)]="firstName">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Middle Name</ion-label>\n    <ion-input [(ngModel)]="middleName">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Last Name</ion-label>\n    <ion-input [(ngModel)]="lastName">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 1</ion-label>\n    <ion-input [(ngModel)]="address1">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Address Line 2</ion-label>\n    <ion-input [(ngModel)]="address2">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">City</ion-label>\n    <ion-input [(ngModel)]="city">\n    </ion-input>\n  </ion-item>\n\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">State</ion-label>\n    <ion-input [(ngModel)]="state">\n    </ion-input>\n  </ion-item>\n\n  <ion-item class="no-underline">\n    <ion-label color="primary">Zipcode</ion-label>\n    <ion-input [(ngModel)]="pincode">\n    </ion-input>\n  </ion-item>\n\n\n  <p style="text-align: center;">\n    <button ion-button clear class="capitalize" (click)="createUserInformation()">Create User &nbsp; &nbsp;<ion-icon name="create"></ion-icon></button>\n  </p>  \n\n</ion-list> \n\n\n</ion-content>\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/add-user/add-user.html"*/,
+            selector: 'page-collaborator',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/collaborator/collaborator.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n  <!--header starts here-->\n  <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n     position: absolute;\n     top: 7px !important;\n     left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n      <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()"\n        style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>\n    </ion-col>\n\n  </ion-row>\n  <!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66"\n  style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n  <p style="text-align: center !important;" *ngIf="dataValidation.isEmptyJson(collaborators)">\n      <img src="../../assets/imgs/na.svg" style="width: 60px !important; height: 60px !important;" />\n\n      <ion-list style="color: #919191  !important; margin-top: 5px !important;">No Collaborators !!!</ion-list>\n  </p>\n\n  <ion-list *ngIf="!dataValidation.isEmptyJson(collaborators)">\n    <ion-item *ngFor="let c of collaborators">\n      <ion-row>\n        <ion-col col-2 style="margin-top: 20px !important;">\n          <img [src]="c[\'imagePath\']" class="camera-img-wrapper" />\n        </ion-col>\n        <ion-col col-10>\n          <ion-row>\n            <ion-col style="text-align: left !important;">\n              <ion-badge color="light">{{c[\'ProjectOwnerName\']}}</ion-badge>\n            </ion-col>\n            <ion-col style="text-align: right !important;">\n              <ion-badge color="dark">{{c[\'PhaseName\']}}</ion-badge>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <h2 style="color: dodgerblue !important; font-weight: 600 !important;margin-top:-2px !important">\n              {{c[\'ProjectName\']}}</h2>\n          </ion-row>\n          <ion-row style="padding-top: 5px !important; padding-bottom: 5px !important;">\n            <ion-col>\n              <h3 style="color: #8f1f1f !important; font-weight: 800 !important;font-size: 12px !important;">\n                {{c[\'ActivityName\']}}</h3>\n            </ion-col>\n          </ion-row>\n          <!-- <ion-row>\n            <span style="color: dodgerblue !important; font-size: 12px !important;">\n              <ion-icon name="calendar"></ion-icon>\n            </span>\n            &nbsp;\n            <span style="color: dodgerblue !important; font-size: 12px !important;">Project Date : </span> &nbsp;<span\n              style="color: #919191 !important; font-weight: 600 !important; font-size: 12px !important;">{{datePipe.transform(c[\'ProjectExpectedStartDate\'],\'d,MMM\')}}</span>\n            &nbsp;<span\n              style="color: dodgerblue !important; margin-top: 2px !important; font-size: 10px !important;">to</span>\n            &nbsp;\n            <span\n              style="color: #919191 !important; font-weight: 600 !important; font-size: 12px !important;">{{datePipe.transform(c[\'ProjectExpectedEndDate\'],\'d,MMM\')}}</span>\n          </ion-row> -->\n        </ion-col>\n      </ion-row>\n    </ion-item>\n  </ion-list>\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear (click)="navCtrl.setRoot(\'ProjectHomePage\')"\n    *ngIf="dataValidation.doesContainMenu(\'Projects\')"><img src="../../assets/imgs/menu_proyectos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RecognitionsPage\')"\n    *ngIf="dataValidation.doesContainMenu(\'Recognition\')"><img src="../../assets/imgs/menu_reconocimientos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RewardsPage\')"\n    *ngIf="dataValidation.doesContainMenu(\'Rewards\')"><img src="../../assets/imgs/menu_recompensas_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Talents\')" [disabled]=true><img\n      src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;" /></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Collaborators\')"><img\n      src="../../assets/imgs/menu_colaboradores_on.png" style="width: 15px !important;" /></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'PermissionsPage\')"\n    *ngIf="dataValidation.doesContainMenu(\'Permissions\')"><img src="../../assets/imgs/menu_permisos_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Calendar\')"\n    (click)="navCtrl.setRoot(\'EventListPage\')"><img src="../../assets/imgs/menu_calendario_off.png"\n      style="width: 15px !important;" /></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Configuration\')"\n    (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png"\n      style="width: 15px !important;" /></button>\n</ion-footer>\n\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/collaborator/collaborator.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_4__providers_message_helper__["a" /* MessageHelper */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_1__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ActionSheetController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_camera__["a" /* Camera */]])
-    ], AddUserPage);
-    return AddUserPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_6__angular_common__["DatePipe"]])
+    ], CollaboratorPage);
+    return CollaboratorPage;
 }());
 
-//# sourceMappingURL=add-user.js.map
+//# sourceMappingURL=collaborator.js.map
 
 /***/ })
 

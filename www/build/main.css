@@ -29173,6 +29173,20 @@ page-material-issue .list-underline {
   margin-left: 16px !important;
 }
 
+page-material-refund .custom-popup {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+page-material-refund .item-md {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+page-material-refund .list-underline {
+  border-bottom: 1px solid #fff;
+  margin-left: 16px !important;
+}
+
 page-permissions .background-content {
   background-color: #fff;
   border: 2px solid dodgerblue;

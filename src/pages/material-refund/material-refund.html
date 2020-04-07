@@ -1,0 +1,40 @@
+<ion-content padding class="custom-popup">
+
+  <h1 style="color: wheat;">Refund Material</h1>
+
+
+  <ion-list style="text-align: center !important;">
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Quantity</ion-label>
+      <ion-input [(ngModel)]="quantity">
+      </ion-input>
+    </ion-item>
+
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Remarks</ion-label>
+      <ion-input [(ngModel)]="remarks">
+      </ion-input>
+    </ion-item>
+    
+
+
+    <ion-item class="no-underline">
+      <ion-label color="primary">Refund Date</ion-label>
+      <ion-datetime [(ngModel)]="refundDate" picker-format="yyy-MM-dd">
+      </ion-datetime>
+    </ion-item>
+
+    <button ion-button clear (click)="refund()"> Refund Material &nbsp;<ion-icon name="create"></ion-icon> </button>
+
+    </ion-list>
+
+
+</ion-content>
+
+<ion-footer>
+  <button ion-button clear full (click)="closeModal()" color="light">
+    <ion-icon name="close-circle" color="white"></ion-icon>
+  </button>
+</ion-footer>

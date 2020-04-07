@@ -1,17 +1,17 @@
 webpackJsonp([13],{
 
-/***/ 458:
+/***/ 447:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LeaveApprovalPageModule", function() { return LeaveApprovalPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_components_module__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__leave_approval__ = __webpack_require__(477);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,39 +23,40 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var HomePageModule = /** @class */ (function () {
-    function HomePageModule() {
+var LeaveApprovalPageModule = /** @class */ (function () {
+    function LeaveApprovalPageModule() {
     }
-    HomePageModule = __decorate([
+    LeaveApprovalPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */],
+                __WEBPACK_IMPORTED_MODULE_4__leave_approval__["a" /* LeaveApprovalPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_4__home__["a" /* HomePage */]),
+                __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_4__leave_approval__["a" /* LeaveApprovalPage */]),
                 __WEBPACK_IMPORTED_MODULE_1_angular_svg_round_progressbar__["RoundProgressModule"],
                 __WEBPACK_IMPORTED_MODULE_0__components_components_module__["a" /* ComponentsModule */]
             ],
         })
-    ], HomePageModule);
-    return HomePageModule;
+    ], LeaveApprovalPageModule);
+    return LeaveApprovalPageModule;
 }());
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=leave-approval.module.js.map
 
 /***/ }),
 
-/***/ 486:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_data__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LeaveApprovalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_data_data__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -72,170 +73,176 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, navParams, modalCtrl, httpCall, codes, dataValidation, msgHelper, alertController) {
+var LeaveApprovalPage = /** @class */ (function () {
+    function LeaveApprovalPage(navCtrl, navParams, modalCtrl, http, msgHelper, codes, dataValidation, datePipe, alert) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
-        this.httpCall = httpCall;
+        this.http = http;
+        this.msgHelper = msgHelper;
         this.codes = codes;
         this.dataValidation = dataValidation;
-        this.msgHelper = msgHelper;
-        this.alertController = alertController;
-        this.loadingStatus = 'Getting the list of users';
-        this.userList = null;
-        this.userMenus = null;
+        this.datePipe = datePipe;
+        this.alert = alert;
+        this.leaves = null;
+        this.appleaves = null;
+        this.rejleaves = null;
     }
-    HomePage.prototype.ionViewDidLoad = function () {
+    LeaveApprovalPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        console.log('ionViewDidLoad HomePage');
-        //Start calling the API's
-        //Get user list
+        console.log('ionViewDidLoad LeaveApprovalPage');
         var requestJson = {
-            'AppType': 'W'
+            "YearValue": String(new Date().getFullYear()),
+            "LeaveStatus": "P",
+            "AppType": "W"
         };
-        this.httpCall.callApi(requestJson, this.codes.API_GET_USER_DETAILS).then(function (responseJson) {
-            //Validate
+        this.http.callApi(requestJson, this.codes.API_GET_LEAVE_BALANCE_INFORMATION).then(function (responseJson) {
             if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server !!!');
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
                 return;
             }
-            _this.userList = responseJson['resultData'];
-            //Get the user mapped list
-            _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_MAP_LIST).then(function (getUserMappedListJson) {
-                //Validate
-                if (_this.dataValidation.isEmptyJson(getUserMappedListJson)) {
-                    _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Map List API !!!');
-                    return;
-                }
-                //Store the user map list
-                localStorage.setItem(_this.codes.LSK_USER_MAP_LIST, JSON.stringify(responseJson['resultData']));
-                if (!_this.dataValidation.isEmptyJson(getUserMappedListJson['resultData'])) {
-                    var listOfMappings = getUserMappedListJson['resultData'];
-                    //Fetch the list of group ids
-                    _this.httpCall.callApi(requestJson, _this.codes.API_GET_USER_GROUP).then(function (usergroupjson) {
-                        if (_this.dataValidation.isEmptyJson(usergroupjson)) {
-                            _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get User Group List API !!!');
-                            return;
-                        }
-                        var userGroups = usergroupjson['resultData'];
-                        console.error(userGroups);
-                        for (var i = 0; i <= _this.userList.length - 1; i++) {
-                            _this.userList[i]['UserTypeName'] = _this.getUserTypeName(listOfMappings, _this.userList[i]['UserId']);
-                            _this.userList[i]['GroupName'] = _this.getUserGroupId(listOfMappings, _this.userList[i]['UserId'], userGroups);
-                        }
-                    });
-                }
-            });
-        });
-        //Get user permission using user type id
-        var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-        console.error(JSON.stringify(currentUserInfo));
-        if (this.dataValidation.isEmptyJson(currentUserInfo)) {
-            this.msgHelper.showToast('Could not fetch user id');
-            return;
-        }
-        var permissionRequestJson = {
-            "AppType": "W",
-            "UserTypeId": currentUserInfo[0]['UserTypeIds']
-        };
-        this.httpCall.callApi(permissionRequestJson, this.codes.API_GET_PERMISSION_INFORMATION).then(function (responseJson) {
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server in Get Permission Information API !!!');
+            if (_this.dataValidation.isEmptyJson(responseJson['resultData'])) {
+                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
                 return;
             }
-            _this.userMenus = responseJson['resultData'];
-            // console.error("Menus "+this.userMenus);
-            localStorage.setItem(_this.codes.LSK_PERMISSION_MENU, JSON.stringify(_this.userMenus));
+            _this.leaves = responseJson['resultData'];
+            var _loop_1 = function (i) {
+                if (_this.dataValidation.isEmptyJson(_this.leaves[i]['UserId'])) {
+                    return "continue";
+                }
+                //Call the user information for each of the user ids
+                reqJsonUser = {
+                    "UserId": _this.leaves[i]['UserId'],
+                    "AppType": "W"
+                };
+                _this.http.callApi(reqJsonUser, _this.codes.API_GET_PARTICULAR_USER_INFORMATION).then(function (resJson) {
+                    if (_this.dataValidation.isEmptyJson(resJson)) {
+                        _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Particular User Information API');
+                        return;
+                    }
+                    if (_this.dataValidation.isEmptyJson(resJson['resultData'])) {
+                        _this.msgHelper.showErrorDialog('Error !!!', resJson['resMessage']);
+                        return;
+                    }
+                    console.error(resJson['resultData']);
+                    _this.leaves[i]['UserName'] = resJson['resultData'][0]['FirstName'] + " " + resJson['resultData'][0]['LastName'];
+                    _this.leaves[i]['UserImagePath'] = resJson['resultData'][0]['UserImagePath'];
+                });
+            };
+            var reqJsonUser;
+            for (var i = 0; i < _this.leaves.length; i++) {
+                _loop_1(i);
+            }
+        });
+        var requestJson = {
+            "YearValue": String(new Date().getFullYear()),
+            "LeaveStatus": "A",
+            "AppType": "W"
+        };
+        this.http.callApi(requestJson, this.codes.API_GET_LEAVE_BALANCE_INFORMATION).then(function (responseJson) {
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
+                return;
+            }
+            if (_this.dataValidation.isEmptyJson(responseJson['resultData'])) {
+                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+                return;
+            }
+            _this.appleaves = responseJson['resultData'];
+            var _loop_2 = function (i) {
+                if (_this.dataValidation.isEmptyJson(_this.appleaves[i]['UserId'])) {
+                    return "continue";
+                }
+                //Call the user information for each of the user ids
+                reqJsonUser = {
+                    "UserId": _this.appleaves[i]['UserId'],
+                    "AppType": "W"
+                };
+                _this.http.callApi(reqJsonUser, _this.codes.API_GET_PARTICULAR_USER_INFORMATION).then(function (resJson) {
+                    if (_this.dataValidation.isEmptyJson(resJson)) {
+                        _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Particular User Information API');
+                        return;
+                    }
+                    if (_this.dataValidation.isEmptyJson(resJson['resultData'])) {
+                        _this.msgHelper.showErrorDialog('Error !!!', resJson['resMessage']);
+                        return;
+                    }
+                    console.error(resJson['resultData']);
+                    _this.appleaves[i]['UserName'] = resJson['resultData'][0]['FirstName'] + " " + resJson['resultData'][0]['LastName'];
+                    _this.appleaves[i]['UserImagePath'] = resJson['resultData'][0]['UserImagePath'];
+                });
+            };
+            var reqJsonUser;
+            for (var i = 0; i < _this.appleaves.length; i++) {
+                _loop_2(i);
+            }
+        });
+        var requestJson = {
+            "YearValue": String(new Date().getFullYear()),
+            "LeaveStatus": "A",
+            "AppType": "W"
+        };
+        this.http.callApi(requestJson, this.codes.API_GET_LEAVE_BALANCE_INFORMATION).then(function (responseJson) {
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Leave Type API');
+                return;
+            }
+            if (_this.dataValidation.isEmptyJson(responseJson['resultData'])) {
+                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
+                return;
+            }
+            _this.rejleaves = responseJson['resultData'];
+            var _loop_3 = function (i) {
+                if (_this.dataValidation.isEmptyJson(_this.rejleaves[i]['UserId'])) {
+                    return "continue";
+                }
+                //Call the user information for each of the user ids
+                reqJsonUser = {
+                    "UserId": _this.rejleaves[i]['UserId'],
+                    "AppType": "W"
+                };
+                _this.http.callApi(reqJsonUser, _this.codes.API_GET_PARTICULAR_USER_INFORMATION).then(function (resJson) {
+                    if (_this.dataValidation.isEmptyJson(resJson)) {
+                        _this.msgHelper.showErrorDialog('Error !!!', 'Empty response received from Get Particular User Information API');
+                        return;
+                    }
+                    if (_this.dataValidation.isEmptyJson(resJson['resultData'])) {
+                        _this.msgHelper.showErrorDialog('Error !!!', resJson['resMessage']);
+                        return;
+                    }
+                    console.error(resJson['resultData']);
+                    _this.rejleaves[i]['UserName'] = resJson['resultData'][0]['FirstName'] + " " + resJson['resultData'][0]['LastName'];
+                    _this.rejleaves[i]['UserImagePath'] = resJson['resultData'][0]['UserImagePath'];
+                });
+            };
+            var reqJsonUser;
+            for (var i = 0; i < _this.rejleaves.length; i++) {
+                _loop_3(i);
+            }
         });
     };
-    HomePage.prototype.getUserGroupId = function (resultData, userId, userGroup) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                for (var j = 0; j < userGroup.length; j++) {
-                    // alert(userGroup[j]['GroupId']+' '+ resultData[i]['UserGroupIds']);
-                    if (userGroup[j]['UserGroupId'] == resultData[i]['UserGroupIds']) {
-                        return userGroup[j]['UserGroupName'];
-                    }
-                }
-            }
-        }
-        return null;
+    LeaveApprovalPage.prototype.approve = function (leave) {
+        leave['Status'] = "A";
+        var approveModal = this.modalCtrl.create('ApproveLeaveCommentsPage', { "Leave": leave });
+        approveModal.present();
     };
-    HomePage.prototype.getUserTypeName = function (resultData, userId) {
-        for (var i = 0; i <= resultData.length - 1; i++) {
-            if (resultData[i]['UserId'] == userId) {
-                return resultData[i]['UserTypeName'];
-            }
-        }
-        return null;
+    LeaveApprovalPage.prototype.reject = function (leave) {
+        leave['Status'] = "R";
+        var approveModal = this.modalCtrl.create('ApproveLeaveCommentsPage', { "Leave": leave });
+        approveModal.present();
     };
-    HomePage.prototype.goToUserMessages = function () {
-        var userModal = this.modalCtrl.create('UserMessageNotificationListPage');
-        userModal.present();
-    };
-    HomePage.prototype.goToProjectSelection = function () {
-        var projectSelectionModal = this.modalCtrl.create('ProjectInformationPage');
-        projectSelectionModal.present();
-    };
-    HomePage.prototype.editUser = function (user) {
-        var userModal = this.modalCtrl.create('UpdateUserPage', { 'userinfo': user });
-        userModal.present();
-    };
-    HomePage.prototype.deleteUser = function (user) {
-        var _this = this;
-        var alert = this.alertController.create({
-            title: 'User to be deleted',
-            message: 'User is to be deleted. <strong>Are you sure</strong>!!!',
-            buttons: [
-                {
-                    text: 'No',
-                    role: 'no',
-                    handler: function () {
-                    }
-                }, {
-                    text: 'Yes',
-                    handler: function () {
-                        //Call the delete user API
-                        var requestJson = {
-                            "UserId": user['UserId'],
-                            "AppType": "W"
-                        };
-                        var loading = _this.msgHelper.showWorkingDialog('Deleting the user ...');
-                        _this.httpCall.callApi(requestJson, _this.codes.API_DELETE_USER).then(function (responseJson) {
-                            loading.dismiss();
-                            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                                _this.msgHelper.showErrorDialog('Error !!', 'Empty response received from server  !!!');
-                                return;
-                            }
-                            if (responseJson['status'] == 1) {
-                                _this.msgHelper.showToast('User deleted !!!');
-                                _this.ionViewDidLoad();
-                            }
-                        });
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    HomePage.prototype.addUser = function () {
-        var userModal = this.modalCtrl.create('AddUserPage');
-        userModal.present();
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Component"])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n   <!--header starts here-->\n   <ion-row>\n    <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n      <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n      <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n      position: absolute;\n      top: 7px !important;\n      left: 7px !important;" />\n    </ion-col>\n\n    <ion-col class="nopadding mt-20">\n      <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n    </ion-col>\n\n    <ion-col class="nopadding">\n     <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n    </ion-col>\n\n  </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n  \n\n\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear (click)="navCtrl.setRoot(\'ProjectHomePage\')" *ngIf="dataValidation.doesContainMenu(\'Projects\')"><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RecognitionsPage\')" *ngIf="dataValidation.doesContainMenu(\'Recognition\')"><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RewardsPage\')" *ngIf="dataValidation.doesContainMenu(\'Rewards\')"><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Talents\')" [disabled]=true><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'CollaboratorPage\')" *ngIf="dataValidation.doesContainMenu(\'Collaborators\')"><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'PermissionsPage\')" *ngIf="dataValidation.doesContainMenu(\'Permissions\')"><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Calendar\')" (click)="navCtrl.setRoot(\'EventListPage\')"><img src="../../assets/imgs/menu_calendario_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Configuration\')" (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/home/home.html"*/,
+    LeaveApprovalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
+            selector: 'page-leave-approval',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/leave-approval/leave-approval.html"*/'<ion-header style="padding-left:10px !important; padding-right:10px !important">\n  <!--header starts here-->\n  <ion-row>\n   <ion-col class="nopadding mt-16" (click)="goToProjectSelection()">\n     <round-progress [current]="75" [max]="100" [radius]="20" [stroke]="7" [color]="\'#00ff00\'"></round-progress>\n     <img src="../../assets/imgs/icon_video.png" style="width: 26px !important;\n     position: absolute;\n     top: 7px !important;\n     left: 7px !important;" />\n   </ion-col>\n\n   <ion-col class="nopadding mt-20">\n     <star-provider [coins]="50" [stars]="20" [videos]="150"></star-provider>\n   </ion-col>\n\n   <ion-col class="nopadding">\n    <user-info [messageNumber]="0" [notificationNumber]="0" (click)="goToUserMessages()" style="position: absolute;top: 0px !important;right: 0px !important;"></user-info>      \n   </ion-col>\n\n </ion-row>\n<!--header ends here-->\n</ion-header>\n\n<!--Body starts here-->\n<ion-content padding class="background-content mt-66" style="height: 80% !important; width: 95% !important; margin-left: 2.5% !important; text-align: center;">\n\n  <ion-list *ngFor="let leave of leaves">\n    <ion-row >\n    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> \n      <img [src]="leave[\'UserImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n    <ion-col col-10 class="ta-left nopadding"> \n    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave[\'UserName\']}}</p>\n    <p style="font-size:12px !important; color: #888 !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave[\'LeaveFromDate\'],\'d-MMM,yyyy\')}}&nbsp;to&nbsp;{{datePipe.transform(leave[\'LeaveToDate\'],\'d-MMM,yyyy\')}}</p>\n    <p *ngIf="leave[\'LeaveStatus\'] == \'A\' && !dataValidation.isEmptyJson(leave[\'ApproveOrRejectedBy\'])"><ion-badge color="secondary">Approved</ion-badge></p>\n    <span *ngIf="dataValidation.isEmptyJson(leave[\'ApproveOrRejectedBy\'])">\n    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>\n    &nbsp;\n    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>\n  </span>\n    </ion-col>\n  </ion-row>\n  <ion-row class="underline">\n    <ion-col col-2></ion-col>\n    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">\n    {{leave[\'ApprovedOrRejectedLeaveComments\']}}\n  </ion-col>\n  </ion-row>\n  </ion-list>\n\n\n\n<!-- <strong style="margin-bottom: 2% !important; color: #aaa !important;">Approved Leaves</strong> -->\n  <ion-list *ngFor="let leave of appleaves">\n    <ion-row >\n    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> \n      <img [src]="leave[\'UserImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n    <ion-col col-8 class="ta-left nopadding"> \n    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave[\'UserName\']}}</p>\n    <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave[\'LeaveFromDate\'],\'d-MMM,yyyy\')}}&nbsp;to&nbsp;{{datePipe.transform(leave[\'LeaveToDate\'],\'d-MMM,yyyy\')}}</p>\n    <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="secondary">Approved by {{leave[\'ApprovedOrRejectedByName\']}}</ion-badge></p>\n    <!-- <span *ngIf="dataValidation.isEmptyJson(leave[\'ApproveOrRejectedBy\'])">\n    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>\n    &nbsp;\n    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>\n  </span> -->\n    </ion-col>\n    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> \n      <img [src]="leave[\'ApprovedOrRejectedByImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n  </ion-row>\n  <ion-row class="underline">\n    <ion-col col-2></ion-col>\n    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">\n    {{leave[\'ApprovedOrRejectedLeaveComments\']}}\n  </ion-col>\n  </ion-row>\n  </ion-list>\n\n\n\n\n  <!-- <strong style="margin-bottom: 2% !important; color: #aaa !important">Rejected Leaves</strong> -->\n  <ion-list *ngFor="let leave of rejleaves">\n    <ion-row >\n    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> \n      <img [src]="leave[\'UserImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n    <ion-col col-8 class="ta-left nopadding"> \n    <p style="color: dodgerblue !important; font-size: 16px !important;" class="nomargin">{{leave[\'UserName\']}}</p>\n    <p style="font-size:12px !important; color: #aaa !important; font-weight: 800 !important;" class="nomargin">{{datePipe.transform(leave[\'LeaveFromDate\'],\'d-MMM,yyyy\')}}&nbsp;to&nbsp;{{datePipe.transform(leave[\'LeaveToDate\'],\'d-MMM,yyyy\')}}</p>\n    <p class="nomargin" style="margin-bottom: 2% !important;"><ion-badge color="danger">Rejected by {{leave[\'ApprovedOrRejectedByName\']}}</ion-badge></p>\n    <!-- <span *ngIf="dataValidation.isEmptyJson(leave[\'ApproveOrRejectedBy\'])">\n    <button ion-button clear class="nomargin" style="padding: 0px !important;" (click)="approve(leave)">Approve</button>\n    &nbsp;\n    <button ion-button clear color="danger" class="nomargin" style="padding: 0px !important;" (click)="reject(leave)">Reject</button>\n  </span> -->\n    </ion-col>\n    <ion-col col-2 style="margin-top: 2% !important;" class="nopadding"> \n      <img [src]="leave[\'ApprovedOrRejectedByImagePath\']" class="camera-img-wrapper" />\n    </ion-col>\n  </ion-row>\n  <ion-row class="underline">\n    <ion-col col-2></ion-col>\n    <ion-col col-10 style="font-size: 12px !important; text-align: justify !important; color: #888 !important;">\n    {{leave[\'ApprovedOrRejectedLeaveComments\']}}\n  </ion-col>\n  </ion-row>\n  </ion-list>\n</ion-content>\n<!--Body ends here-->\n\n<!--Footer starts here-->\n<ion-footer style="background-color: #efefef; text-align: center;">\n  <button ion-button clear (click)="navCtrl.setRoot(\'ProjectHomePage\')" *ngIf="dataValidation.doesContainMenu(\'Projects\')"><img src="../../assets/imgs/menu_proyectos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RecognitionsPage\')" *ngIf="dataValidation.doesContainMenu(\'Recognition\')"><img src="../../assets/imgs/menu_reconocimientos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'RewardsPage\')" *ngIf="dataValidation.doesContainMenu(\'Rewards\')"><img src="../../assets/imgs/menu_recompensas_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Talents\')" [disabled]=true><img src="../../assets/imgs/menu_talentos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'CollaboratorPage\')" *ngIf="dataValidation.doesContainMenu(\'Collaborators\')"><img src="../../assets/imgs/menu_colaboradores_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear (click)="navCtrl.setRoot(\'PermissionsPage\')" *ngIf="dataValidation.doesContainMenu(\'Permissions\')"><img src="../../assets/imgs/menu_permisos_off.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Calendar\')" (click)="navCtrl.setRoot(\'EventListPage\')"><img src="../../assets/imgs/menu_calendario_on.png" style="width: 15px !important;"/></button>\n  <button ion-button clear *ngIf="dataValidation.doesContainMenu(\'Configuration\')" (click)="navCtrl.setRoot(\'GeneralSettingsPage\')"><img src="../../assets/imgs/menu_configuracion_off.png" style="width: 15px !important;"/></button>\n</ion-footer>\n\n<!--Footer ends here-->'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/leave-approval/leave-approval.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["ModalController"],
-            __WEBPACK_IMPORTED_MODULE_4__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_2__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["AlertController"]])
-    ], HomePage);
-    return HomePage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["ModalController"],
+            __WEBPACK_IMPORTED_MODULE_3__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_1__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_common__["DatePipe"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]])
+    ], LeaveApprovalPage);
+    return LeaveApprovalPage;
 }());
 
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=leave-approval.js.map
 
 /***/ })
 

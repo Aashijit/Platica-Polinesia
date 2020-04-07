@@ -1,14 +1,14 @@
 webpackJsonp([17],{
 
-/***/ 442:
+/***/ 443:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditUserTypePageModule", function() { return EditUserTypePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgotPasswordPageModule", function() { return ForgotPasswordPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_user_type__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forgot_password__ = __webpack_require__(473);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EditUserTypePageModule = /** @class */ (function () {
-    function EditUserTypePageModule() {
+var ForgotPasswordPageModule = /** @class */ (function () {
+    function ForgotPasswordPageModule() {
     }
-    EditUserTypePageModule = __decorate([
+    ForgotPasswordPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__edit_user_type__["a" /* EditUserTypePage */],
+                __WEBPACK_IMPORTED_MODULE_2__forgot_password__["a" /* ForgotPasswordPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__edit_user_type__["a" /* EditUserTypePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__forgot_password__["a" /* ForgotPasswordPage */]),
             ],
         })
-    ], EditUserTypePageModule);
-    return EditUserTypePageModule;
+    ], ForgotPasswordPageModule);
+    return ForgotPasswordPageModule;
 }());
 
-//# sourceMappingURL=edit-user-type.module.js.map
+//# sourceMappingURL=forgot-password.module.js.map
 
 /***/ }),
 
-/***/ 470:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditUserTypePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_data_data__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__ = __webpack_require__(43);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotPasswordPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_data_data__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(31);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -64,71 +64,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditUserTypePage = /** @class */ (function () {
-    function EditUserTypePage(navCtrl, navParams, httpCall, codes, dataValidation, msgHelper, alertController) {
+var ForgotPasswordPage = /** @class */ (function () {
+    function ForgotPasswordPage(navCtrl, navParams, dataValidation, msgHelper, httpCall, codes) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.httpCall = httpCall;
-        this.codes = codes;
         this.dataValidation = dataValidation;
         this.msgHelper = msgHelper;
-        this.alertController = alertController;
-        this.userTypeName = null;
-        this.userTypeAlias = null;
-        this.userTypeId = null;
-        this.userTypeName = this.navParams.get('UserTypeName');
-        this.userTypeAlias = this.navParams.get('UserTypeAlias');
-        this.userTypeId = this.navParams.get('UserTypeId');
+        this.httpCall = httpCall;
+        this.codes = codes;
     }
-    EditUserTypePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EditUserTypePage');
+    ForgotPasswordPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ForgotPasswordPage');
     };
-    EditUserTypePage.prototype.editUserType = function () {
+    ForgotPasswordPage.prototype.getPassword = function () {
         var _this = this;
-        var currentUserInfo = JSON.parse(localStorage.getItem(this.codes.LSK_USER_INFORMATION_JSON));
-        if (this.dataValidation.isEmptyJson(currentUserInfo)) {
-            this.msgHelper.showToast('Could not fetch user id');
+        if (!this.dataValidation.isValidEmailId(this.emailId)) {
+            this.msgHelper.showToast('Email id looks invalid !!!');
             return;
         }
-        //TODO: Generate the User type alias
+        var loading = this.msgHelper.showWorkingDialog('Sending you a mail ...');
         var requestJson = {
-            "UserTypeId": this.userTypeId,
-            "UserTypeName": this.userTypeName,
-            "UserTypeAlias": this.userTypeAlias,
-            "ModifiedByName": currentUserInfo[0]['UserId'],
+            "Email": this.emailId,
+            "Mobile": "",
             "AppType": "W"
         };
-        var loading = this.msgHelper.showWorkingDialog('Updating user type ... ');
-        loading.present();
-        this.httpCall.callApi(requestJson, this.codes.API_UPDATE_USER_TYPE).then(function (responseJson) {
-            if (_this.dataValidation.isEmptyJson(responseJson)) {
-                _this.msgHelper.showErrorDialog('Error !!!', " Empty response received from update user type API");
-                return;
-            }
-            if (responseJson['status'] != 1) {
-                _this.msgHelper.showErrorDialog('Error !!!', responseJson['resMessage']);
-                return;
-            }
+        this.httpCall.callApi(requestJson, this.codes.API_FORGOT_PASSWORD).then(function (responseJson) {
             loading.dismiss();
-            _this.msgHelper.showToast('User Type Updated !!!');
-            _this.navCtrl.pop();
+            if (_this.dataValidation.isEmptyJson(responseJson)) {
+                _this.msgHelper.showErrorDialog('Error', 'Did not receive any response !!!');
+                return;
+            }
+            if (responseJson['status'] == 1) {
+                _this.msgHelper.showToast('Check your registered mail');
+                _this.navCtrl.pop();
+            }
         });
     };
-    EditUserTypePage.prototype.closeModal = function () {
+    ForgotPasswordPage.prototype.closeModal = function () {
         this.navCtrl.pop();
     };
-    EditUserTypePage = __decorate([
+    ForgotPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["Component"])({
-            selector: 'page-edit-user-type',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/edit-user-type/edit-user-type.html"*/'      \n  \n\n<ion-content padding class="custom-popup">\n  <h1 style="color: wheat;">Edit User Type</h1>\n  <br/>\n  <br/>\n  <ion-item>\n    <ion-label floating> User type name</ion-label> \n    <ion-input [(ngModel)]="userTypeName"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating> User type alias</ion-label> \n    <ion-input [(ngModel)]="userTypeAlias"></ion-input>\n  </ion-item>\n\n  <p style="text-align: center !important;">\n  <button ion-button clear (click)="editUserType()">Update user type &nbsp;<ion-icon name="create"></ion-icon></button>\n</p>\n</ion-content>\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/edit-user-type/edit-user-type.html"*/,
+            selector: 'page-forgot-password',template:/*ion-inline-start:"/home/aashijit/Platica-Polinesia/src/pages/forgot-password/forgot-password.html"*/'<ion-content padding class="custom-popup">\n\n  <ion-item style="margin-top: 10% !important;">\n    <ion-label color="primary" stacked>Email Id</ion-label>\n    <ion-input type="email" placeholder="Your registered email id" class="input-underline" [(ngModel)]="emailId">\n    </ion-input>\n  </ion-item>\n\n<p style="text-align: center;">\n  <button ion-button outline round (click)="getPassword()">Get Password&nbsp;<ion-icon name="key"></ion-icon></button>\n</p>\n\n</ion-content>\n\n\n\n<ion-footer>\n  <button ion-button clear full (click)="closeModal();" color="light">\n    <ion-icon name="close-circle" color="white"></ion-icon>\n  </button>\n</ion-footer>\n\n'/*ion-inline-end:"/home/aashijit/Platica-Polinesia/src/pages/forgot-password/forgot-password.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["NavParams"],
-            __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_3__Utils_Codes__["a" /* Codes */], __WEBPACK_IMPORTED_MODULE_0__Utils_DataValidation__["a" /* DataValidation */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_message_helper__["a" /* MessageHelper */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["AlertController"]])
-    ], EditUserTypePage);
-    return EditUserTypePage;
+            __WEBPACK_IMPORTED_MODULE_3__Utils_DataValidation__["a" /* DataValidation */], __WEBPACK_IMPORTED_MODULE_2__providers_message_helper__["a" /* MessageHelper */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_data_data__["a" /* HttpProvider */], __WEBPACK_IMPORTED_MODULE_0__Utils_Codes__["a" /* Codes */]])
+    ], ForgotPasswordPage);
+    return ForgotPasswordPage;
 }());
 
-//# sourceMappingURL=edit-user-type.js.map
+//# sourceMappingURL=forgot-password.js.map
 
 /***/ })
 

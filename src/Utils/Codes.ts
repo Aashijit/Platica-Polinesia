@@ -70,6 +70,7 @@ export class Codes{
 
     public API_GET_MATERIAL_REQUISITION_LIST="Material/GetMaterialRequisitionList";
     public API_ISSUE_MATERIAL="Material/MaterialIssue";
+    public API_REFUND_MATERIAL="Material/MaterialRefund";
     public API_LIST_ISSUE_MATERIAL="Material/GetMaterialIssueList";
 
 
